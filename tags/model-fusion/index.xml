@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>Model fusion on Coookgu&#39;s Tech Blog</title>
+        <link>https://gujh14.github.io/tags/model-fusion/</link>
+        <description>Recent content in Model fusion on Coookgu&#39;s Tech Blog</description>
+        <generator>Hugo -- gohugo.io</generator>
+        <language>en-us</language>
+        <lastBuildDate>Fri, 29 Jul 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://gujh14.github.io/tags/model-fusion/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>PhysChem: Deep Molecular Representation Learning via Fusing Physical and Chemical Information</title>
+        <link>https://gujh14.github.io/p/physchem-deep-molecular-representation-learning-via-fusing-physical-and-chemical-information/</link>
+        <pubDate>Fri, 29 Jul 2022 00:00:00 +0000</pubDate>
+        
+        <guid>https://gujh14.github.io/p/physchem-deep-molecular-representation-learning-via-fusing-physical-and-chemical-information/</guid>
+        <description>&lt;img src="https://gujh14.github.io/p/physchem-deep-molecular-representation-learning-via-fusing-physical-and-chemical-information/physchem_1.png" alt="Featured image of post PhysChem: Deep Molecular Representation Learning via Fusing Physical and Chemical Information" /&gt;&lt;p&gt;NeurIPS Poster, &amp;lsquo;21,&lt;br&gt;
+&lt;a class=&#34;link&#34; href=&#34;https://arxiv.org/abs/2112.04624&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://arxiv.org/abs/2112.04624&lt;/a&gt;&lt;/p&gt;
+&lt;h1 id=&#34;summary&#34;&gt;Summary&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;Used physicist network (PhysNet) and chemist network (ChemNet) simultaneously, and each network shares information to solve individual tasks.&lt;/li&gt;
+&lt;li&gt;PhysNet: Neural physical engine. Mimics molecular dynamics to predict conformation.&lt;/li&gt;
+&lt;li&gt;ChemNet: Message passing network for chemical &amp;amp; biomedical property prediction.&lt;/li&gt;
+&lt;li&gt;Molecule without 3D conformation can be inferred during test time.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;preliminaries&#34;&gt;Preliminaries&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Molecular representation learning:&lt;br&gt;
+Embedding molecules into latent space for downstream tasks.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Neural Physical Engines&lt;br&gt;
+Neural networks are capable of learning annotated potentials and forces in particle systems.&lt;br&gt;
+HamNet proposed a neural physical engine that operated on a generalized space, where positions and momentums of atoms were defined as high-dimensional vectors.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Multi-task learning&lt;br&gt;
+Sharing representations for different but related tasks.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Model fusion&lt;br&gt;
+Merging different models on identical tasks to improve performance.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;notation&#34;&gt;Notation&lt;/h2&gt;
+&lt;p&gt;Graph $\mathcal{M} = (\mathcal{V}, \mathcal{E}, n, m, \mathbf{X}^v, \mathbf{X}^e)$&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;$\mathcal{V}$: set of $n$ atoms&lt;/li&gt;
+&lt;li&gt;$\mathcal{E}$: set of $m$ chemical bonds&lt;/li&gt;
+&lt;li&gt;$\mathbf{X}^v \in \mathbb{R}^{n \times d_v} = (x^v_1, &amp;hellip;, x^v_n)^\top$: matrix of atomic features&lt;/li&gt;
+&lt;li&gt;$\mathbf{X}^e \in \mathbb{R}^{m \times d_e} = (x^e_1, &amp;hellip;, x^e_m)^\top$: matrix of bond features&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;model&#34;&gt;Model&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&#34;https://gujh14.github.io/p/physchem-deep-molecular-representation-learning-via-fusing-physical-and-chemical-information/physchem_1.png&#34;
+	width=&#34;2000&#34;
+	height=&#34;709&#34;
+	srcset=&#34;https://gujh14.github.io/p/physchem-deep-molecular-representation-learning-via-fusing-physical-and-chemical-information/physchem_1_hu614a3ffe516a8cd557a8bbd359513341_952945_480x0_resize_box_3.png 480w, https://gujh14.github.io/p/physchem-deep-molecular-representation-learning-via-fusing-physical-and-chemical-information/physchem_1_hu614a3ffe516a8cd557a8bbd359513341_952945_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;Image 1&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;282&#34;
+		data-flex-basis=&#34;677px&#34;
+	
+&gt;
+Figure 1. PhysChem Architecture&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Initializer
+&lt;ul&gt;
+&lt;li&gt;Input: atomic features, bond features (from RDKit)&lt;/li&gt;
+&lt;li&gt;Layer: fully connected layers&lt;/li&gt;
+&lt;li&gt;Output:&lt;/li&gt;
+&lt;li&gt;bond states, atom states for ChemNet&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+        </item>
+        
+    </channel>
+</rss>
