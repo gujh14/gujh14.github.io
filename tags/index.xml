@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
-        <title>Tags on Coookgu&#39;s Tech Blog</title>
+        <title>Tags on JH Gu&#39;s Tech Blog</title>
         <link>https://gujh14.github.io/tags/</link>
-        <description>Recent content in Tags on Coookgu&#39;s Tech Blog</description>
+        <description>Recent content in Tags on JH Gu&#39;s Tech Blog</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>en-us</language>
         <lastBuildDate>Fri, 29 Jul 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://gujh14.github.io/tags/index.xml" rel="self" type="application/rss+xml" /><item>
@@ -39,11 +39,27 @@
         <description></description>
         </item>
         <item>
+        <title>NeurIPS 2021</title>
+        <link>https://gujh14.github.io/tags/neurips-2021/</link>
+        <pubDate>Fri, 29 Jul 2022 00:00:00 +0000</pubDate>
+        
+        <guid>https://gujh14.github.io/tags/neurips-2021/</guid>
+        <description></description>
+        </item>
+        <item>
         <title>Drug Repositioning</title>
         <link>https://gujh14.github.io/tags/drug-repositioning/</link>
         <pubDate>Fri, 22 Jul 2022 00:00:00 +0000</pubDate>
         
         <guid>https://gujh14.github.io/tags/drug-repositioning/</guid>
+        <description></description>
+        </item>
+        <item>
+        <title>Oncogene 2020</title>
+        <link>https://gujh14.github.io/tags/oncogene-2020/</link>
+        <pubDate>Fri, 22 Jul 2022 00:00:00 +0000</pubDate>
+        
+        <guid>https://gujh14.github.io/tags/oncogene-2020/</guid>
         <description></description>
         </item>
         

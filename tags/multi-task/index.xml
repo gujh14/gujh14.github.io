@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
-        <title>Multi-task on Coookgu&#39;s Tech Blog</title>
+        <title>Multi-task on JH Gu&#39;s Tech Blog</title>
         <link>https://gujh14.github.io/tags/multi-task/</link>
-        <description>Recent content in Multi-task on Coookgu&#39;s Tech Blog</description>
+        <description>Recent content in Multi-task on JH Gu&#39;s Tech Blog</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>en-us</language>
         <lastBuildDate>Fri, 29 Jul 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://gujh14.github.io/tags/multi-task/index.xml" rel="self" type="application/rss+xml" /><item>
@@ -72,7 +72,8 @@ Figure 1. PhysChem Architecture&lt;/p&gt;
 &lt;li&gt;Input: atomic features, bond features (from RDKit)&lt;/li&gt;
 &lt;li&gt;Layer: fully connected layers&lt;/li&gt;
 &lt;li&gt;Output:&lt;/li&gt;
-&lt;li&gt;bond states, atom states for ChemNet&lt;/li&gt;
+&lt;li&gt;bond states, atom states for ChemNet&lt;br&gt;
+$v^{(0)}&lt;em&gt;i = \text{FC}(x^v_i), i\in \mathcal{V}$, $e^{(0)}&lt;/em&gt;{i,j} = \text{FC}(x^e_{i,j}), (i, j)\in \mathcal{E}$&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;/ul&gt;

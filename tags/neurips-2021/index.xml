@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
-        <title>Chemical conformation on JH Gu&#39;s Tech Blog</title>
-        <link>https://gujh14.github.io/tags/chemical-conformation/</link>
-        <description>Recent content in Chemical conformation on JH Gu&#39;s Tech Blog</description>
+        <title>NeurIPS 2021 on JH Gu&#39;s Tech Blog</title>
+        <link>https://gujh14.github.io/tags/neurips-2021/</link>
+        <description>Recent content in NeurIPS 2021 on JH Gu&#39;s Tech Blog</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>en-us</language>
-        <lastBuildDate>Fri, 29 Jul 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://gujh14.github.io/tags/chemical-conformation/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Fri, 29 Jul 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://gujh14.github.io/tags/neurips-2021/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>PhysChem: Deep Molecular Representation Learning via Fusing Physical and Chemical Information</title>
         <link>https://gujh14.github.io/p/physchem-deep-molecular-representation-learning-via-fusing-physical-and-chemical-information/</link>
         <pubDate>Fri, 29 Jul 2022 00:00:00 +0000</pubDate>

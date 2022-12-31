@@ -1,12 +1,21 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
-        <title>Coookgu&#39;s Tech Blog</title>
+        <title>JH Gu&#39;s Tech Blog</title>
         <link>https://gujh14.github.io/</link>
-        <description>Recent content on Coookgu&#39;s Tech Blog</description>
+        <description>Recent content on JH Gu&#39;s Tech Blog</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>en-us</language>
-        <lastBuildDate>Fri, 29 Jul 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://gujh14.github.io/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Thu, 01 Dec 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://gujh14.github.io/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>About JH Gu</title>
+        <link>https://gujh14.github.io/about-jh-gu/</link>
+        <pubDate>Thu, 01 Dec 2022 00:00:00 +0000</pubDate>
+        
+        <guid>https://gujh14.github.io/about-jh-gu/</guid>
+        <description>&lt;p&gt;blabla&lt;/p&gt;
+</description>
+        </item>
+        <item>
         <title>PhysChem: Deep Molecular Representation Learning via Fusing Physical and Chemical Information</title>
         <link>https://gujh14.github.io/p/physchem-deep-molecular-representation-learning-via-fusing-physical-and-chemical-information/</link>
         <pubDate>Fri, 29 Jul 2022 00:00:00 +0000</pubDate>
@@ -72,7 +81,8 @@ Figure 1. PhysChem Architecture&lt;/p&gt;
 &lt;li&gt;Input: atomic features, bond features (from RDKit)&lt;/li&gt;
 &lt;li&gt;Layer: fully connected layers&lt;/li&gt;
 &lt;li&gt;Output:&lt;/li&gt;
-&lt;li&gt;bond states, atom states for ChemNet&lt;/li&gt;
+&lt;li&gt;bond states, atom states for ChemNet&lt;br&gt;
+$v^{(0)}&lt;em&gt;i = \text{FC}(x^v_i), i\in \mathcal{V}$, $e^{(0)}&lt;/em&gt;{i,j} = \text{FC}(x^e_{i,j}), (i, j)\in \mathcal{E}$&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
@@ -167,34 +177,6 @@ BTZ의 anti-migration, anti-invasion effect를 in vitro level에서 확인한 �
         
         <guid>https://gujh14.github.io/archives/</guid>
         <description></description>
-        </item>
-        <item>
-        <title>About</title>
-        <link>https://gujh14.github.io/about/</link>
-        <pubDate>Thu, 28 Feb 2019 00:00:00 +0000</pubDate>
-        
-        <guid>https://gujh14.github.io/about/</guid>
-        <description>&lt;p&gt;Written in Go, Hugo is an open source static site generator available under the &lt;a class=&#34;link&#34; href=&#34;https://github.com/gohugoio/hugo/blob/master/LICENSE&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
-    &gt;Apache Licence 2.0.&lt;/a&gt; Hugo supports TOML, YAML and JSON data file types, Markdown and HTML content files and uses shortcodes to add rich content. Other notable features are taxonomies, multilingual mode, image processing, custom output formats, HTML/CSS/JS minification and support for Sass SCSS workflows.&lt;/p&gt;
-&lt;p&gt;Hugo makes use of a variety of open source projects including:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;https://github.com/yuin/goldmark&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
-    &gt;https://github.com/yuin/goldmark&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;https://github.com/alecthomas/chroma&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
-    &gt;https://github.com/alecthomas/chroma&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;https://github.com/muesli/smartcrop&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
-    &gt;https://github.com/muesli/smartcrop&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;https://github.com/spf13/cobra&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
-    &gt;https://github.com/spf13/cobra&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;https://github.com/spf13/viper&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
-    &gt;https://github.com/spf13/viper&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;Hugo is ideal for blogs, corporate websites, creative portfolios, online magazines, single page applications or even a website with thousands of pages.&lt;/p&gt;
-&lt;p&gt;Hugo is for people who want to hand code their own website without worrying about setting up complicated runtimes, dependencies and databases.&lt;/p&gt;
-&lt;p&gt;Websites built with Hugo are extremelly fast, secure and can be deployed anywhere including, AWS, GitHub Pages, Heroku, Netlify and any other hosting provider.&lt;/p&gt;
-&lt;p&gt;Learn more and contribute on &lt;a class=&#34;link&#34; href=&#34;https://github.com/gohugoio&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
-    &gt;GitHub&lt;/a&gt;.&lt;/p&gt;
-</description>
         </item>
         <item>
         <title>Links</title>
