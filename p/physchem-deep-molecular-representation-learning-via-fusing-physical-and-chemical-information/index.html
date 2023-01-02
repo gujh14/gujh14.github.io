@@ -323,6 +323,7 @@ Neural networks are capable of learning annotated potentials and forces in parti
     <li><a href="#preliminaries">Preliminaries</a></li>
     <li><a href="#notation">Notation</a></li>
     <li><a href="#model">Model</a></li>
+    <li><a href="#loss">Loss</a></li>
   </ol>
 </nav>
         </div>
@@ -399,7 +400,7 @@ Neural networks are capable of learning annotated potentials and forces in parti
 
 
                 <time class="article-time--reading">
-                    1 minute read
+                    2 minute read
                 </time>
             </div>
         
@@ -469,14 +470,99 @@ Merging different models on identical tasks to improve performance.</p>
 >
 Figure 1. PhysChem Architecture</p>
 <ul>
-<li>Initializer
+<li>
+<p>Initializer</p>
 <ul>
 <li>Input: atomic features, bond features (from RDKit)</li>
 <li>Layer: fully connected layers</li>
 <li>Output:</li>
 <li>bond states, atom states for ChemNet<br>
-$v^{(0)}<em>i = \text{FC}(x^v_i), i\in \mathcal{V}$, $e^{(0)}</em>{i,j} = \text{FC}(x^e_{i,j}), (i, j)\in \mathcal{E}$</li>
+$v^{(0)}_i = \text{FC}(x^v_i), i\in \mathcal{V}$<br>
+$e^{(0)}_{i,j} = \text{FC}(x^e_{i,j}), (i, j)\in \mathcal{E}$</li>
+<li>atom positions, atomic momenta for PhysNet<br>
+Bond strength adjacency matrix<br>
+$$A(i,j)=\begin{cases}0, &amp; \text{if $(i,j) \notin \mathcal{E}$} \\ \text{FC}_{\text{sigmoid}}(x^e_{i,j}), &amp; \text{if $(i,j) \in \mathcal{E}$} \end{cases}$$
+$\tilde{V} = \text{GCN}(A, V^{(0)})$<br>
+${ (q^{(0)}_i \oplus p^{(0)}_i)}  = \text{LSTM}({\tilde{v}_i}), i \in \mathcal{V}$</li>
 </ul>
+</li>
+<li>
+<p>PhysNet</p>
+<ul>
+<li>PhysNet is inspired by <a class="link" href="https://openreview.net/forum?id=q-cnWaaoUTH"  target="_blank" rel="noopener"
+    >HamNet</a>.<br>
+HamNet showed that neural networks can simulate molecular dynamics for conformation prediction.</li>
+<li>Directly parameterize the forces between each pair of atoms.</li>
+<li>Consider the effects of chemical interactions(e.g. bond types) by cooperating with ChemNet’s bond states.</li>
+<li>Introduces torsion forces.</li>
+<li>Output: 3D conformation
+<img src="/p/physchem-deep-molecular-representation-learning-via-fusing-physical-and-chemical-information/physnet.jpeg"
+	width="1424"
+	height="1000"
+	srcset="/p/physchem-deep-molecular-representation-learning-via-fusing-physical-and-chemical-information/physnet_huc04268559fc6ac467b55debd1d11cbcb_463344_480x0_resize_q75_box.jpeg 480w, /p/physchem-deep-molecular-representation-learning-via-fusing-physical-and-chemical-information/physnet_huc04268559fc6ac467b55debd1d11cbcb_463344_1024x0_resize_q75_box.jpeg 1024w"
+	loading="lazy"
+	
+		alt="Image 1"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="142"
+		data-flex-basis="341px"
+	
+></li>
+</ul>
+</li>
+<li>
+<p>ChemNet</p>
+<ul>
+<li>ChemNet modifies MPNN(message passing neural network) for molecular representation learning.</li>
+<li>Output: Molecule representation
+<img src="/p/physchem-deep-molecular-representation-learning-via-fusing-physical-and-chemical-information/chemnet.jpeg"
+	width="1598"
+	height="1000"
+	srcset="/p/physchem-deep-molecular-representation-learning-via-fusing-physical-and-chemical-information/chemnet_huea3837eddd924d917074e41bba2e849a_561970_480x0_resize_q75_box.jpeg 480w, /p/physchem-deep-molecular-representation-learning-via-fusing-physical-and-chemical-information/chemnet_huea3837eddd924d917074e41bba2e849a_561970_1024x0_resize_q75_box.jpeg 1024w"
+	loading="lazy"
+	
+		alt="Image 1"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="159"
+		data-flex-basis="383px"
+	
+></li>
+</ul>
+</li>
+</ul>
+<h2 id="loss">Loss</h2>
+<ul>
+<li>
+<p>$L_{\text{phys}}$: Conn-k loss for Conformation prediction (PhysNet)</p>
+<p>$k$-hop connectivity loss</p>
+<p>$L_{\text{Conn}-k}(\hat{\mathbf{R}}, \mathbf{R}) = |\frac{1}{n} \hat{\mathbf{C}}^{(k)} \odot (\hat{\mathbf{D}} - \mathbf{D}) \odot (\hat{\mathbf{D}} - \mathbf{D}) |_{F}$</p>
+<p>$\odot$: element-wise product</p>
+<p>$| \cdot |$: Frobenius norm</p>
+<p>$(\hat{\mathbf{D}} - \mathbf{D})$ : distance matrix of the real and predicted conformations $(\hat{\mathbf{R}} - \mathbf{R})$</p>
+<p>$\hat{\mathbf{C}}^{(k)}$: normalized $k$-hop connectivity matrix</p>
+</li>
+<li>
+<p>$L_{\text{chem}}$: MAE or Cross entropy loss for Property prediction (ChemNet)</p>
+</li>
+<li>
+<p>Total loss</p>
+<p>$L_{\text{total}} = \lambda L_{\text{phys}} + L_{\text{chem}}$</p>
+</li>
+</ul>
+<hr>
+<p>Checkpoints</p>
+<ul>
+<li>
+<p>Is Conn-k loss generally used in other conformation prediction models?</p>
+<p>No! But seems related to local distance loss.</p>
+</li>
+<li>
+<p>Is triplet descriptor generally used in other models?</p>
+<p>No!</p>
 </li>
 </ul>
 

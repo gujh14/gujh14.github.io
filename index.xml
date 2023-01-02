@@ -76,14 +76,99 @@ Merging different models on identical tasks to improve performance.&lt;/p&gt;
 &gt;
 Figure 1. PhysChem Architecture&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;Initializer
+&lt;li&gt;
+&lt;p&gt;Initializer&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;Input: atomic features, bond features (from RDKit)&lt;/li&gt;
 &lt;li&gt;Layer: fully connected layers&lt;/li&gt;
 &lt;li&gt;Output:&lt;/li&gt;
 &lt;li&gt;bond states, atom states for ChemNet&lt;br&gt;
-$v^{(0)}&lt;em&gt;i = \text{FC}(x^v_i), i\in \mathcal{V}$, $e^{(0)}&lt;/em&gt;{i,j} = \text{FC}(x^e_{i,j}), (i, j)\in \mathcal{E}$&lt;/li&gt;
+$v^{(0)}_i = \text{FC}(x^v_i), i\in \mathcal{V}$&lt;br&gt;
+$e^{(0)}_{i,j} = \text{FC}(x^e_{i,j}), (i, j)\in \mathcal{E}$&lt;/li&gt;
+&lt;li&gt;atom positions, atomic momenta for PhysNet&lt;br&gt;
+Bond strength adjacency matrix&lt;br&gt;
+$$A(i,j)=\begin{cases}0, &amp;amp; \text{if $(i,j) \notin \mathcal{E}$} \\ \text{FC}_{\text{sigmoid}}(x^e_{i,j}), &amp;amp; \text{if $(i,j) \in \mathcal{E}$} \end{cases}$$
+$\tilde{V} = \text{GCN}(A, V^{(0)})$&lt;br&gt;
+${ (q^{(0)}_i \oplus p^{(0)}_i)}  = \text{LSTM}({\tilde{v}_i}), i \in \mathcal{V}$&lt;/li&gt;
 &lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;PhysNet&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;PhysNet is inspired by &lt;a class=&#34;link&#34; href=&#34;https://openreview.net/forum?id=q-cnWaaoUTH&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;HamNet&lt;/a&gt;.&lt;br&gt;
+HamNet showed that neural networks can simulate molecular dynamics for conformation prediction.&lt;/li&gt;
+&lt;li&gt;Directly parameterize the forces between each pair of atoms.&lt;/li&gt;
+&lt;li&gt;Consider the effects of chemical interactions(e.g. bond types) by cooperating with ChemNet’s bond states.&lt;/li&gt;
+&lt;li&gt;Introduces torsion forces.&lt;/li&gt;
+&lt;li&gt;Output: 3D conformation
+&lt;img src=&#34;https://gujh14.github.io/p/physchem-deep-molecular-representation-learning-via-fusing-physical-and-chemical-information/physnet.jpeg&#34;
+	width=&#34;1424&#34;
+	height=&#34;1000&#34;
+	srcset=&#34;https://gujh14.github.io/p/physchem-deep-molecular-representation-learning-via-fusing-physical-and-chemical-information/physnet_huc04268559fc6ac467b55debd1d11cbcb_463344_480x0_resize_q75_box.jpeg 480w, https://gujh14.github.io/p/physchem-deep-molecular-representation-learning-via-fusing-physical-and-chemical-information/physnet_huc04268559fc6ac467b55debd1d11cbcb_463344_1024x0_resize_q75_box.jpeg 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;Image 1&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;142&#34;
+		data-flex-basis=&#34;341px&#34;
+	
+&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;ChemNet&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;ChemNet modifies MPNN(message passing neural network) for molecular representation learning.&lt;/li&gt;
+&lt;li&gt;Output: Molecule representation
+&lt;img src=&#34;https://gujh14.github.io/p/physchem-deep-molecular-representation-learning-via-fusing-physical-and-chemical-information/chemnet.jpeg&#34;
+	width=&#34;1598&#34;
+	height=&#34;1000&#34;
+	srcset=&#34;https://gujh14.github.io/p/physchem-deep-molecular-representation-learning-via-fusing-physical-and-chemical-information/chemnet_huea3837eddd924d917074e41bba2e849a_561970_480x0_resize_q75_box.jpeg 480w, https://gujh14.github.io/p/physchem-deep-molecular-representation-learning-via-fusing-physical-and-chemical-information/chemnet_huea3837eddd924d917074e41bba2e849a_561970_1024x0_resize_q75_box.jpeg 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;Image 1&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;159&#34;
+		data-flex-basis=&#34;383px&#34;
+	
+&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;loss&#34;&gt;Loss&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;$L_{\text{phys}}$: Conn-k loss for Conformation prediction (PhysNet)&lt;/p&gt;
+&lt;p&gt;$k$-hop connectivity loss&lt;/p&gt;
+&lt;p&gt;$L_{\text{Conn}-k}(\hat{\mathbf{R}}, \mathbf{R}) = |\frac{1}{n} \hat{\mathbf{C}}^{(k)} \odot (\hat{\mathbf{D}} - \mathbf{D}) \odot (\hat{\mathbf{D}} - \mathbf{D}) |_{F}$&lt;/p&gt;
+&lt;p&gt;$\odot$: element-wise product&lt;/p&gt;
+&lt;p&gt;$| \cdot |$: Frobenius norm&lt;/p&gt;
+&lt;p&gt;$(\hat{\mathbf{D}} - \mathbf{D})$ : distance matrix of the real and predicted conformations $(\hat{\mathbf{R}} - \mathbf{R})$&lt;/p&gt;
+&lt;p&gt;$\hat{\mathbf{C}}^{(k)}$: normalized $k$-hop connectivity matrix&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;$L_{\text{chem}}$: MAE or Cross entropy loss for Property prediction (ChemNet)&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Total loss&lt;/p&gt;
+&lt;p&gt;$L_{\text{total}} = \lambda L_{\text{phys}} + L_{\text{chem}}$&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;p&gt;Checkpoints&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Is Conn-k loss generally used in other conformation prediction models?&lt;/p&gt;
+&lt;p&gt;No! But seems related to local distance loss.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Is triplet descriptor generally used in other models?&lt;/p&gt;
+&lt;p&gt;No!&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
 </description>
