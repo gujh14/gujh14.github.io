@@ -72,7 +72,7 @@
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>https://gujh14.github.io/categories/research-technical/</loc>
+    <loc>https://gujh14.github.io/categories/researchtechnical/</loc>
     <lastmod>2022-11-22T00:00:00+00:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
@@ -142,8 +142,23 @@
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>https://gujh14.github.io/categories/research-application/</loc>
+    <loc>https://gujh14.github.io/categories/researchapplication/</loc>
     <lastmod>2022-07-22T00:00:00+00:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>https://gujh14.github.io/tags/icml-2017/</loc>
+    <lastmod>2021-09-15T00:00:00+00:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>https://gujh14.github.io/p/maml-model-agnostic-meta-learning-for-fast-adaptation-of-deep-networks/</loc>
+    <lastmod>2021-09-15T00:00:00+00:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>https://gujh14.github.io/tags/meta-learning/</loc>
+    <lastmod>2021-09-15T00:00:00+00:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url><url>

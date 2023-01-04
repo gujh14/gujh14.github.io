@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>Research(Application) on JH Gu&#39;s Tech Blog</title>
+        <link>https://gujh14.github.io/categories/researchapplication/</link>
+        <description>Recent content in Research(Application) on JH Gu&#39;s Tech Blog</description>
+        <generator>Hugo -- gohugo.io</generator>
+        <language>en-us</language>
+        <lastBuildDate>Fri, 22 Jul 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://gujh14.github.io/categories/researchapplication/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>CMap based Drug Repositioning of BTZ to reverse the metastatic effect of GALNT14 in lung cancer</title>
+        <link>https://gujh14.github.io/p/cmap-based-drug-repositioning-of-btz-to-reverse-the-metastatic-effect-of-galnt14-in-lung-cancer/</link>
+        <pubDate>Fri, 22 Jul 2022 00:00:00 +0000</pubDate>
+        
+        <guid>https://gujh14.github.io/p/cmap-based-drug-repositioning-of-btz-to-reverse-the-metastatic-effect-of-galnt14-in-lung-cancer/</guid>
+        <description>&lt;img src="https://gujh14.github.io/p/cmap-based-drug-repositioning-of-btz-to-reverse-the-metastatic-effect-of-galnt14-in-lung-cancer/cmap_0.png" alt="Featured image of post CMap based Drug Repositioning of BTZ to reverse the metastatic effect of GALNT14 in lung cancer" /&gt;&lt;p&gt;Oncogene, &amp;lsquo;20&lt;br&gt;
+&lt;a class=&#34;link&#34; href=&#34;https://www.nature.com/articles/s41388-020-1316-2&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://www.nature.com/articles/s41388-020-1316-2&lt;/a&gt;&lt;/p&gt;
+&lt;h1 id=&#34;summary&#34;&gt;Summary&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;In-silico approach based on CMap to identify drug candidates for lung cancer metastasis&lt;/li&gt;
+&lt;li&gt;Revealed the underlying mechanisms of undruggable target (GALNT14) and targeted the downstream transcription factor&lt;/li&gt;
+&lt;li&gt;Repositioned drug: BTZ (Bortezomib)&lt;/li&gt;
+&lt;li&gt;Integrated multiple independent expression signatures from cancer patients (TCGA), genetic perturbations(knock-down or overexpression), and drug treatment (CMap)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;background&#34;&gt;Background&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;GALNT14: a putative driver of lung cancer metastasis, leading to poor survival &amp;amp; has poor druggability.&lt;/li&gt;
+&lt;li&gt;Bortezomib: drug used for multiple myeloma and mantle cell lymphoma&lt;/li&gt;
+&lt;li&gt;CMap: a collection of genome wide expression profiles of cell lines treated with &amp;gt; 20,000 chemicals&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;main-results&#34;&gt;Main Results&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&#34;https://gujh14.github.io/p/cmap-based-drug-repositioning-of-btz-to-reverse-the-metastatic-effect-of-galnt14-in-lung-cancer/cmap_1.png&#34;
+	width=&#34;1024&#34;
+	height=&#34;1528&#34;
+	srcset=&#34;https://gujh14.github.io/p/cmap-based-drug-repositioning-of-btz-to-reverse-the-metastatic-effect-of-galnt14-in-lung-cancer/cmap_1_hu6d4a003a2f6221a0fe806f7889e0f77f_1360011_480x0_resize_box_3.png 480w, https://gujh14.github.io/p/cmap-based-drug-repositioning-of-btz-to-reverse-the-metastatic-effect-of-galnt14-in-lung-cancer/cmap_1_hu6d4a003a2f6221a0fe806f7889e0f77f_1360011_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;Image 1&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;67&#34;
+		data-flex-basis=&#34;160px&#34;
+	
+&gt;
+Figure 1. GALNT14 as a putative molecular target for lung cancer metastasis.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;1a. TCGA Lung adenocarcinoma cohort의 516명 lung cancer 환자의 transcriptome data.&lt;/li&gt;
+&lt;li&gt;1b. relapse-free survival / DEG 분석에서 7개의 gene들이 검출되었고, 그 7개의 gene의 expression이 높은 group, 낮은 group으로 분류.&lt;/li&gt;
+&lt;li&gt;1c. metastasis와 tumor signature가 high-expression group에서 enrich 되었음.&lt;/li&gt;
+&lt;li&gt;1d. GALNT14만 단독으로 보아도 metastasis와 tumor 에서 enrich 되어 있음을 알 수 있음.&lt;/li&gt;
+&lt;li&gt;1e, 1f. GALNT14이 각각 metastatic potential과 tumorigenic potential이 있다는 in vivo 실험 결과.&lt;/li&gt;
+&lt;li&gt;1g. Metastatic lung cancer cell이 non-metastatic cancer보다 GALNT14 depletion에 더 vulnerable.&lt;/li&gt;
+&lt;li&gt;1h. GALNT14이 survival에 분명한 negative correlation을 보임.&lt;br&gt;
+이것으로 미루어보아, GALNT14이 lung cancer metastasis의 promising molecular target이라는 것을 알 수 있음.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&#34;https://gujh14.github.io/p/cmap-based-drug-repositioning-of-btz-to-reverse-the-metastatic-effect-of-galnt14-in-lung-cancer/cmap_2.png&#34;
+	width=&#34;946&#34;
+	height=&#34;1304&#34;
+	srcset=&#34;https://gujh14.github.io/p/cmap-based-drug-repositioning-of-btz-to-reverse-the-metastatic-effect-of-galnt14-in-lung-cancer/cmap_2_hu005e6e010ae2c58e20e9931e08cc1b64_761825_480x0_resize_box_3.png 480w, https://gujh14.github.io/p/cmap-based-drug-repositioning-of-btz-to-reverse-the-metastatic-effect-of-galnt14-in-lung-cancer/cmap_2_hu005e6e010ae2c58e20e9931e08cc1b64_761825_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;Image 2&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;72&#34;
+		data-flex-basis=&#34;174px&#34;
+	
+&gt;
+Figure 5. In vivo validation of the anti-metastatic effect of BTZ.
+BTZ의 anti-migration, anti-invasion effect를 in vitro level에서 확인한 뒤 in vivo에서 cancer metastasis efficacy를 확인한 실험 결과&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;5a. 쥐의 꼬리 정맥으로 H460 lung cancer cell을 주입하여 local metastasis를 유도하고 control 군, BTZ 처리군, CFZ 처리군으로 구분하였음.&lt;/li&gt;
+&lt;li&gt;5b. BTZ, CFZ의 proteasome inhibition을 확인하기 위해 혈액에서 proteasome activity를 측정한 결과. 상당히 줄어들었음을 알 수 있음. P.C. 는 positive control&lt;/li&gt;
+&lt;li&gt;5c. Body weight 정보. 항암제 처리로 인해 다른 조직 등에 dramatic한 영향은 없었음.&lt;/li&gt;
+&lt;li&gt;5d. Lung cancer로 metastasis 유무 사진. Vehicle과 CFZ는 상당부분 Metastasis가 일어난 것을 볼 수 있지만 BTZ는 6개 중 1개만 미약하게 metastasis 발생.&lt;/li&gt;
+&lt;li&gt;5e. H&amp;amp;E staining 후의 lung image&lt;/li&gt;
+&lt;li&gt;5f. tumor nodule size의 average. BTZ는 매우 작음.&lt;/li&gt;
+&lt;li&gt;5g. tumor nodule의 수 분포. BTZ 매우 적음.&lt;/li&gt;
+&lt;li&gt;5h. proteasome activity 차이&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;discussion&#34;&gt;Discussion&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Unlike other studies that used CMap, they focused exclusively on a target gene related to a pertinent phenotype and identified BTZ as a drug candidate with novel anti-metastatic effects.&lt;/li&gt;
+&lt;li&gt;In pathway level, the most enriched pathway was TGF￼ signaling, and they also identified the GALNT14-TGF￼ signature, which has invasive properties that are attenuated by BTZ.&lt;/li&gt;
+&lt;li&gt;They integrated multiple independent expression signatures from cancer patients(TCGA), genetic perturbations(knock-down or overexpression), and drug treatment(CMap).&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+        </item>
+        
+    </channel>
+</rss>

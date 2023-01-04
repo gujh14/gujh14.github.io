@@ -1,0 +1,1197 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='ICML, &amp;lsquo;17 Model-Agnostic Meta-Learning for Fast Adaptation of Deep Networks Summary MAML is a general and model-agnostic algorithm that can be directly applied to a model trained with gradient descent procedure. MAML does not expand the number of learned parameters. MAML does not place constraints on the model architecture. Keywords Model agnostic Fast adaptation Optimization based approach Learning good model parameters Preliminaries Common Approaches of Meta-Learning and MAML MAML is'>
+<title>MAML: Model-Agnostic Meta -Learning for Fast Adaptation of Deep Networks</title>
+
+<link rel='canonical' href='https://gujh14.github.io/p/maml-model-agnostic-meta-learning-for-fast-adaptation-of-deep-networks/'>
+
+<link rel="stylesheet" href="/scss/style.min.8191399262444ab68b72a18c97392f5349be20a1615d77445be51e974c144cff.css"><meta property='og:title' content='MAML: Model-Agnostic Meta -Learning for Fast Adaptation of Deep Networks'>
+<meta property='og:description' content='ICML, &amp;lsquo;17 Model-Agnostic Meta-Learning for Fast Adaptation of Deep Networks Summary MAML is a general and model-agnostic algorithm that can be directly applied to a model trained with gradient descent procedure. MAML does not expand the number of learned parameters. MAML does not place constraints on the model architecture. Keywords Model agnostic Fast adaptation Optimization based approach Learning good model parameters Preliminaries Common Approaches of Meta-Learning and MAML MAML is'>
+<meta property='og:url' content='https://gujh14.github.io/p/maml-model-agnostic-meta-learning-for-fast-adaptation-of-deep-networks/'>
+<meta property='og:site_name' content='JH Gu&#39;s Tech Blog'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='ICML 2017' /><meta property='article:tag' content='Meta Learning' /><meta property='article:published_time' content='2021-09-15T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2021-09-15T00:00:00&#43;00:00'/><meta property='og:image' content='https://gujh14.github.io/thumbnail.png' />
+<meta name="twitter:title" content="MAML: Model-Agnostic Meta -Learning for Fast Adaptation of Deep Networks">
+<meta name="twitter:description" content="ICML, &amp;lsquo;17 Model-Agnostic Meta-Learning for Fast Adaptation of Deep Networks Summary MAML is a general and model-agnostic algorithm that can be directly applied to a model trained with gradient descent procedure. MAML does not expand the number of learned parameters. MAML does not place constraints on the model architecture. Keywords Model agnostic Fast adaptation Optimization based approach Learning good model parameters Preliminaries Common Approaches of Meta-Learning and MAML MAML is"><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='https://gujh14.github.io/thumbnail.png' />
+    <link rel="shortcut icon" href="/favicon.ico" />
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-253021474-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="Toggle Menu">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/avatar_hufcbd7da9f307c4c4f078e698b3a6d837_2396352_300x0_resize_q75_box.jpg" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+                    <span class="emoji">🍥</span>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">JH Gu&#39;s Tech Blog</a></h1>
+            <h2 class="site-description">Machine Learning researcher for Drug Discovery</h2>
+        </div>
+    </header><ol class="social-menu">
+            
+                <li>
+                    <a 
+                        href='https://github.com/gujh14'
+                        target="_blank"
+                        title="GitHub"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://instagram.com/coookgu'
+                        target="_blank"
+                        title="Instagram"
+                        rel="me"
+                    >
+                        
+                        
+                            <!-- Uploaded to: SVG Repo, www.svgrepo.com, Transformed by: SVG Repo Mixer Tools -->
+<svg fill="#000000" width="800px" height="800px" viewBox="0 0 256 256" id="Flat" xmlns="http://www.w3.org/2000/svg">
+  <path d="M128,84a44,44,0,1,0,44,44A44.04978,44.04978,0,0,0,128,84Zm0,80a36,36,0,1,1,36-36A36.04061,36.04061,0,0,1,128,164ZM172,32H84A52.059,52.059,0,0,0,32,84v88a52.059,52.059,0,0,0,52,52h88a52.059,52.059,0,0,0,52-52V84A52.059,52.059,0,0,0,172,32Zm44,140a44.04978,44.04978,0,0,1-44,44H84a44.04978,44.04978,0,0,1-44-44V84A44.04978,44.04978,0,0,1,84,40h88a44.04978,44.04978,0,0,1,44,44ZM188,76a8,8,0,1,1-8-8A8.00917,8.00917,0,0,1,188,76Z"/>
+</svg>
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://twitter.com/coookgu'
+                        target="_blank"
+                        title="Twitter"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-twitter" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M22 4.01c-1 .49 -1.98 .689 -3 .99c-1.121 -1.265 -2.783 -1.335 -4.38 -.737s-2.643 2.06 -2.62 3.737v1c-3.245 .083 -6.135 -1.395 -8 -4c0 0 -4.182 7.433 4 11c-1.872 1.247 -3.739 2.088 -6 2c3.308 1.803 6.913 2.423 10.034 1.517c3.58 -1.04 6.522 -3.723 7.651 -7.742a13.84 13.84 0 0 0 .497 -3.753c-.002 -.249 1.51 -2.772 1.818 -4.013z" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+        <li >
+            <a href='/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>Home</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/about-jh-gu/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>About JH Gu</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/archives/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>Archives</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>Search</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/links/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5" />
+  <path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5" />
+</svg>
+
+
+
+                
+                <span>Links</span>
+            </a>
+        </li>
+        
+
+        <div class="menu-bottom-section">
+                <li id="i18n-switch">  
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-language" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M4 5h7" />
+  <path d="M9 3v2c0 4.418 -2.239 8 -5 8" />
+  <path d="M5 9c-.003 2.144 2.952 3.908 6.7 4" />
+  <path d="M12 20l4 -9l4 9" />
+  <path d="M19.1 18h-6.2" />
+</svg>
+
+
+
+                    <select name="language" onchange="window.location.href = this.selectedOptions[0].value">
+                        
+                            <option value="https://gujh14.github.io/" selected>English</option>
+                        
+                            <option value="https://gujh14.github.io/ko/" >한국어</option>
+                        
+                    </select>
+                </li>
+            
+            
+            
+                <li id="dark-mode-toggle">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <span>Dark Mode</span>
+                </li>
+            
+        </div>
+    </ol>
+</aside>
+
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">Table of contents</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#keywords">Keywords</a></li>
+    <li><a href="#preliminaries">Preliminaries</a></li>
+    <li><a href="#introduction">Introduction</a></li>
+    <li><a href="#2-model-agnostic-meta-learning">2. Model-Agnostic Meta Learning</a>
+      <ol>
+        <li><a href="#21-meta-learning-problem-set-up">2.1. Meta-Learning Problem Set-Up</a></li>
+        <li><a href="#22-a-model-agnostic-meta-learning-algorithm">2.2. A Model-Agnostic Meta-Learning Algorithm</a></li>
+      </ol>
+    </li>
+    <li><a href="#3-species-of-maml">3. Species of MAML</a>
+      <ol>
+        <li><a href="#31-supervised-regression-and-classification">3.1. Supervised Regression and Classification</a></li>
+        <li><a href="#32-reinforcement-learning">3.2. Reinforcement Learning</a></li>
+      </ol>
+    </li>
+    <li><a href="#4-comparison-with-related-works">4. Comparison with related works</a></li>
+    <li><a href="#5-experimental-evaluation">5. Experimental Evaluation</a>
+      <ol>
+        <li><a href="#51-regression">5.1. Regression</a></li>
+        <li><a href="#52-classification">5.2. Classification</a></li>
+        <li><a href="#53-reinforcement-learning">5.3. Reinforcement Learning</a></li>
+      </ol>
+    </li>
+    <li><a href="#references">References</a></li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+            <main class="main full-width">
+    <article class="has-image main-article">
+    <header class="article-header">
+        <div class="article-image">
+            <a href="/p/maml-model-agnostic-meta-learning-for-fast-adaptation-of-deep-networks/">
+                
+                    <img src="/thumbnail.png" loading="lazy" alt="Featured image of post MAML: Model-Agnostic Meta -Learning for Fast Adaptation of Deep Networks" />
+                
+            </a>
+        </div>
+    
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/researchtechnical/" >
+                Research(Technical)
+            </a>
+        
+    </header>
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/p/maml-model-agnostic-meta-learning-for-fast-adaptation-of-deep-networks/">MAML: Model-Agnostic Meta -Learning for Fast Adaptation of Deep Networks</a>
+        </h2>
+    
+        
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">15 Sep 2021</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    3 minute read
+                </time>
+            </div>
+        
+    </footer>
+    
+
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <p>ICML, &lsquo;17<br>
+<a class="link" href="https://arxiv.org/abs/1703.03400"  target="_blank" rel="noopener"
+    >Model-Agnostic Meta-Learning for Fast Adaptation of Deep Networks</a></p>
+<h1 id="summary">Summary</h1>
+<ul>
+<li>MAML is a general and model-agnostic algorithm that can be directly applied to a model trained with <strong>gradient descent</strong> procedure.</li>
+<li>MAML does not expand the number of learned parameters.</li>
+<li>MAML does not place constraints on the model architecture.</li>
+</ul>
+<h2 id="keywords">Keywords</h2>
+<ul>
+<li>Model agnostic</li>
+<li>Fast adaptation</li>
+<li>Optimization based approach</li>
+<li>Learning good model parameters</li>
+</ul>
+<h2 id="preliminaries">Preliminaries</h2>
+<ul>
+<li>
+<p>Common Approaches of Meta-Learning and MAML</p>
+<p><img src="/p/maml-model-agnostic-meta-learning-for-fast-adaptation-of-deep-networks/Untitled.png"
+	width="1522"
+	height="726"
+	srcset="/p/maml-model-agnostic-meta-learning-for-fast-adaptation-of-deep-networks/Untitled_hu2810079d992af17206a7c032e637187e_371302_480x0_resize_box_3.png 480w, /p/maml-model-agnostic-meta-learning-for-fast-adaptation-of-deep-networks/Untitled_hu2810079d992af17206a7c032e637187e_371302_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+		alt="https://lilianweng.github.io/lil-log/2018/11/30/meta-learning.html"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="209"
+		data-flex-basis="503px"
+	
+></p>
+<p>MAML is one of the most influential model of optimization-based approaches.</p>
+<p><img src="/p/maml-model-agnostic-meta-learning-for-fast-adaptation-of-deep-networks/Untitled1.png"
+	width="1484"
+	height="834"
+	srcset="/p/maml-model-agnostic-meta-learning-for-fast-adaptation-of-deep-networks/Untitled1_hu7ef081ff7698cafbf43593ac8d1bcbcd_922101_480x0_resize_box_3.png 480w, /p/maml-model-agnostic-meta-learning-for-fast-adaptation-of-deep-networks/Untitled1_hu7ef081ff7698cafbf43593ac8d1bcbcd_922101_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+		alt="https://youtu.be/Izqod36syY8"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="177"
+		data-flex-basis="427px"
+	
+></p>
+</li>
+<li>
+<p>A few terminologies of meta-learning problems</p>
+<p><img src="/p/maml-model-agnostic-meta-learning-for-fast-adaptation-of-deep-networks/Untitled2.png"
+	width="2102"
+	height="1524"
+	srcset="/p/maml-model-agnostic-meta-learning-for-fast-adaptation-of-deep-networks/Untitled2_hu73d9cc73c6ab2d7d1dd2a961a777268b_357680_480x0_resize_box_3.png 480w, /p/maml-model-agnostic-meta-learning-for-fast-adaptation-of-deep-networks/Untitled2_hu73d9cc73c6ab2d7d1dd2a961a777268b_357680_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+		alt="https://ai.stanford.edu/~cbfinn/_files/dissertation.pdf"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="137"
+		data-flex-basis="331px"
+	
+></p>
+</li>
+</ul>
+<h2 id="introduction">Introduction</h2>
+<p><img src="/p/maml-model-agnostic-meta-learning-for-fast-adaptation-of-deep-networks/Untitled3.png"
+	width="636"
+	height="382"
+	srcset="/p/maml-model-agnostic-meta-learning-for-fast-adaptation-of-deep-networks/Untitled3_hu49418efd97bf156417160555a8d5baef_47140_480x0_resize_box_3.png 480w, /p/maml-model-agnostic-meta-learning-for-fast-adaptation-of-deep-networks/Untitled3_hu49418efd97bf156417160555a8d5baef_47140_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="166"
+		data-flex-basis="399px"
+	
+></p>
+<p>Goal of ideal artificial agent:</p>
+<p>Learning and adapting quickly from only a few examples.</p>
+<p>To do so, an agent must..</p>
+<ul>
+<li>Integrate its prior experience with a small amount of new information.</li>
+<li>Avoid overfitting to the new data.</li>
+</ul>
+<p>→ Meta-learning has same goals.</p>
+<p>MAML:</p>
+<blockquote>
+<p>&ldquo;The key idea of MAML is to train the model&rsquo;s <strong>initial parameters</strong> such that the model has maximal performance on a new task after the parameters have been updated through one or more gradient steps computed with a small amount of data from that new task.&rdquo;</p>
+</blockquote>
+<p>Learning process of MAML:</p>
+<p>MAML maximizes the sensitivity of the loss functions of new tasks.</p>
+<p>Authors demonstrated the algorithm on three different model types.</p>
+<ul>
+<li>Few-shot regression</li>
+<li>Image classification</li>
+<li>Reinforcement learning</li>
+</ul>
+<h2 id="2-model-agnostic-meta-learning">2. Model-Agnostic Meta Learning</h2>
+<h3 id="21-meta-learning-problem-set-up">2.1. Meta-Learning Problem Set-Up</h3>
+<p>To apply MAML to a variety of learning problems, authors introduce a generic notion of a learning task:</p>
+<p>$\mathcal{T} = { \mathcal{L}(\mathbf{x}_1, \mathbf{a}_1, &hellip;, \mathbf{x}_H, \mathbf{a}_H), q(\mathbf{x}_1), q(\mathbf{x}_{t+1}|\mathbf{x}_t, \mathbf{a}_t), H }$</p>
+<p>Each task $\mathcal{T}$ consists of..</p>
+<p>$\mathcal{L}$: a loss function, might be misclassification loss or a cost function in a Markov decision process</p>
+<p>$q(\mathbf{x}_1)$: a distribution over initial observations</p>
+<p>$q(\mathbf{x}_{t+1}|\mathbf{x}_t , \mathbf{a}_t)$: a transition distribution</p>
+<p>$H$: an episode length(e.g. in i.i.d. supervised learning problems, the length $H = 1$.)</p>
+<p>Authors consider a distribution over tasks $p(\mathcal{T})$</p>
+<p>Meta-training:</p>
+<p>A new task $\mathcal{T}_i$ is sampled from $p(\mathcal{T})$.</p>
+<p>The model is trained with only $K$ samples drawn from $q_i$.</p>
+<p>Loss $\mathcal{L}_{\mathcal{T}_i}$ is calculated and feedbacked to model.</p>
+<p>Model $f$ is tested on new samples from $\mathcal{T}_i$.</p>
+<p>The model $f$ is then improved by considering how the $test$ error on new data from $q_i$ changes with respect to the parameters.</p>
+<h3 id="22-a-model-agnostic-meta-learning-algorithm">2.2. A Model-Agnostic Meta-Learning Algorithm</h3>
+<p>Intuition: Some internal representations are more transferrable than others. How can we encourage the emergence of such general-purpose representations?</p>
+<p><img src="/p/maml-model-agnostic-meta-learning-for-fast-adaptation-of-deep-networks/Untitled4.png"
+	width="2354"
+	height="1132"
+	srcset="/p/maml-model-agnostic-meta-learning-for-fast-adaptation-of-deep-networks/Untitled4_huffde7ac579bb4dc3080f2015f65a7fd2_1156243_480x0_resize_box_3.png 480w, /p/maml-model-agnostic-meta-learning-for-fast-adaptation-of-deep-networks/Untitled4_huffde7ac579bb4dc3080f2015f65a7fd2_1156243_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="207"
+		data-flex-basis="499px"
+	
+></p>
+<p><img src="/p/maml-model-agnostic-meta-learning-for-fast-adaptation-of-deep-networks/Untitled5.png"
+	width="2360"
+	height="1116"
+	srcset="/p/maml-model-agnostic-meta-learning-for-fast-adaptation-of-deep-networks/Untitled5_hu896a6c8d932c96e0c863feb29ee4c599_1114541_480x0_resize_box_3.png 480w, /p/maml-model-agnostic-meta-learning-for-fast-adaptation-of-deep-networks/Untitled5_hu896a6c8d932c96e0c863feb29ee4c599_1114541_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="211"
+		data-flex-basis="507px"
+	
+></p>
+<ul>
+<li>
+<p>A model $f_\theta$ has paramters $\theta$.</p>
+</li>
+<li>
+<p>For each task $\mathcal{T}_i$, $f_\theta$&rsquo;s parameters $\theta$ become $\theta_i&rsquo;$.</p>
+</li>
+<li>
+<p>Algorithm</p>
+<p><img src="/p/maml-model-agnostic-meta-learning-for-fast-adaptation-of-deep-networks/Untitled6.png"
+	width="862"
+	height="598"
+	srcset="/p/maml-model-agnostic-meta-learning-for-fast-adaptation-of-deep-networks/Untitled6_hu4f3fbc659182e4f29d6ca5f28e4663c9_286070_480x0_resize_box_3.png 480w, /p/maml-model-agnostic-meta-learning-for-fast-adaptation-of-deep-networks/Untitled6_hu4f3fbc659182e4f29d6ca5f28e4663c9_286070_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="144"
+		data-flex-basis="345px"
+	
+></p>
+<ul>
+<li>
+<p>cf) Terminologies for below description(temporarily defined by JH Gu)</p>
+<p><img src="/p/maml-model-agnostic-meta-learning-for-fast-adaptation-of-deep-networks/Untitled7.png"
+	width="1708"
+	height="1352"
+	srcset="/p/maml-model-agnostic-meta-learning-for-fast-adaptation-of-deep-networks/Untitled7_hu8110c6352be8c0d888d6667531616c11_282586_480x0_resize_box_3.png 480w, /p/maml-model-agnostic-meta-learning-for-fast-adaptation-of-deep-networks/Untitled7_hu8110c6352be8c0d888d6667531616c11_282586_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="126"
+		data-flex-basis="303px"
+	
+></p>
+</li>
+<li>
+<p>Divide tasks</p>
+<ol>
+<li>
+<p>Separate tasks into meta-training task set(${\mathcal{T}_i^{\text{tr}}}$) and meta-test task set(${\mathcal{T}_i^{\text{test}}}$).</p>
+<p>(We can think of ${\mathcal{T}_i^{\text{tr}}}$ as monthly tests(모의고사), and ${\mathcal{T}_i^{\text{test}}}$ as annual tests(수능))</p>
+</li>
+<li>
+<p>For each task, divide each samples into $\mathcal{D}_{\mathcal{T}_i}^{\text{study}}$(task-specific samples for studying, also called as support set), $\mathcal{D}_{\mathcal{T_i}}^{\text{check}}$(task-specific samples for checking, also called as query set)</p>
+<p>(We can think of $\mathcal{D}_{\mathcal{T}_i}^{\text{study}}$ as 필수예제 in 수학의 정석, and $\mathcal{D}_{\mathcal{T}_i}^{\text{check}}$ as 연습문제 in 수학의 정석)</p>
+</li>
+</ol>
+</li>
+<li>
+<p>Meta-training using meta-training task set ${\mathcal{T}_i^{\text{tr}}}$</p>
+<ul>
+<li>
+<p>Inner loop(task-specific $K$-shot learning)</p>
+<p>For each $\mathcal{T}_i$ in ${\mathcal{T}_i^{\text{tr}}}$, a new parameter $\theta_i&rsquo;$ is created.</p>
+<ol>
+<li>
+<p>Each $\theta_i&rsquo;$ is initialized as $\theta$.</p>
+</li>
+<li>
+<p>With task-specific samples for studying($\mathcal{D}_{\mathcal{T}_i^{\text{tr}}}^{\text{study}}$), each $\theta_i&rsquo;$ is updated by:</p>
+<p>$$
+\theta_i&rsquo; = \theta - \alpha \nabla_\theta \mathcal{L}_{\mathcal{T}_i}(f_\theta)
+$$</p>
+</li>
+</ol>
+</li>
+<li>
+<p>Outer loop(meta-learning across tasks)</p>
+<ol>
+<li>
+<p>With task-specific samples for checking($\mathcal{D}_{\mathcal{T_i}^{\text{tr}}}^{\text{check}}$), $\theta$ is updated by:</p>
+<p>$$
+\theta = \theta - \beta \nabla_\theta \sum_{\mathcal{T}_i \sim p(\mathcal{T})}\mathcal{L}_{\mathcal{T}_i} (f_{\theta_i&rsquo;})
+$$</p>
+<ul>
+<li>
+<p>cf) second-order derivative(Hessian) problem</p>
+<p>The MAML meta-gradient update(outer loop) involves a gradient through a gradient, which can be resource-intensive. This requires an additional backward pass through $f$ to compute Hessian vector products.</p>
+<p>$$
+\begin{align*} \textcolor{red}{\theta&rsquo;} &amp;= \theta - \alpha \nabla_\theta \mathcal{L}(\theta) \ \nabla_\theta \mathcal{L}(\textcolor{red}{\theta&rsquo;}) &amp;= (\textcolor{red}\nabla_{\textcolor{red}{\theta&rsquo;}} \mathcal{L}(\textcolor{red}{\theta&rsquo;})) \cdot (\nabla_\theta \textcolor{red}{\theta&rsquo;}) \ &amp;= (\textcolor{red}\nabla_{\textcolor{red}{\theta&rsquo;}} \mathcal{L}(\textcolor{red}{\theta&rsquo;})) \cdot (\nabla_\theta (\theta - \alpha \nabla_\theta \mathcal{L}(\theta)) \ &amp;\approx (\textcolor{red}\nabla_{\textcolor{red}{\theta&rsquo;}} \mathcal{L}(\textcolor{red}{\theta&rsquo;})) \cdot (\nabla_\theta \theta) \ &amp;= (\textcolor{red}\nabla_{\textcolor{red}{\theta&rsquo;}} \mathcal{L}(\textcolor{red}{\theta&rsquo;})) \end{align*}
+$$</p>
+<p>Authors included a comparison to drop the backward pass term and using just the first-order approximation, which showed not much difference.</p>
+<p><img src="/p/maml-model-agnostic-meta-learning-for-fast-adaptation-of-deep-networks/Untitled8.png"
+	width="1174"
+	height="308"
+	srcset="/p/maml-model-agnostic-meta-learning-for-fast-adaptation-of-deep-networks/Untitled8_hu06f5aec29bc68380b99667335eb21667_106124_480x0_resize_box_3.png 480w, /p/maml-model-agnostic-meta-learning-for-fast-adaptation-of-deep-networks/Untitled8_hu06f5aec29bc68380b99667335eb21667_106124_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="381"
+		data-flex-basis="914px"
+	
+></p>
+</li>
+</ul>
+</li>
+</ol>
+</li>
+</ul>
+</li>
+<li>
+<p>Measure model performance using meta-test task set ${\mathcal{T}_i^{\text{test}}}$</p>
+<ol>
+<li>For each $\mathcal{T}_i$ in ${\mathcal{T}_i^{\text{test}}}$, adjust task-specific parameters with $\mathcal{D}_{\mathcal{T}_i^{\text{test}}}^{\text{study}}$.</li>
+<li>Test the performance with $\mathcal{D}_{\mathcal{T_i}^{\text{test}}}^{\text{check}}$.</li>
+</ol>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="3-species-of-maml">3. Species of MAML</h2>
+<h3 id="31-supervised-regression-and-classification">3.1. Supervised Regression and Classification</h3>
+<ul>
+<li>
+<p>Algorithm</p>
+<p><img src="/p/maml-model-agnostic-meta-learning-for-fast-adaptation-of-deep-networks/Untitled9.png"
+	width="858"
+	height="700"
+	srcset="/p/maml-model-agnostic-meta-learning-for-fast-adaptation-of-deep-networks/Untitled9_hu8161162bc48d5bed870c55b7080befad_351296_480x0_resize_box_3.png 480w, /p/maml-model-agnostic-meta-learning-for-fast-adaptation-of-deep-networks/Untitled9_hu8161162bc48d5bed870c55b7080befad_351296_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="122"
+		data-flex-basis="294px"
+	
+></p>
+</li>
+<li>
+<p>Formalizing supervised regression and classification</p>
+<ul>
+<li>Horizon $H = 1$</li>
+<li>Drop the timestep subscript on $\mathbf{x}_t$ (since model accepts a single input and produces a single output)</li>
+<li>The task $\mathcal{T}_i$ generates $K$ i.i.d. observations $\mathbf{x}$ from $q_i$</li>
+<li>Task loss is represented by the error between the model&rsquo;s output for $\mathbf{x}$ and the corresponding target values $\mathbf{y}$.</li>
+</ul>
+</li>
+<li>
+<p>Loss functions</p>
+<ul>
+<li>
+<p>MSE for regression</p>
+<p>$$
+\mathcal{L}_{\mathcal{T}_i}(f_\phi) = \sum_{\mathbf{x}^{(j)}, \mathbf{y}^{(j)} \sim \mathcal{T}_i} | f_\phi(\mathbf{x}^{(j)}) - \mathbf{y}^{(j)}|^2_2
+$$</p>
+</li>
+<li>
+<p>Cross entropy loss for discrete classification</p>
+<p>$$
+\mathcal{L}_{\mathcal{T}_i}(f_\phi) = \sum_{\mathbf{x}^{(j)}, \mathbf{y}^{(j)} \sim \mathcal{T}_i} \big\{ \mathbf{y}^{(j)} \log f_\phi (\mathbf{x}^{(j)}) - (1-\mathbf{y}^{(j)})\log(1-f_\phi(\mathbf{x}^{(j)}) \big\}
+$$</p>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="32-reinforcement-learning">3.2. Reinforcement Learning</h3>
+<ul>
+<li>
+<p>Algorithm</p>
+<p><img src="/p/maml-model-agnostic-meta-learning-for-fast-adaptation-of-deep-networks/Untitled10.png"
+	width="858"
+	height="698"
+	srcset="/p/maml-model-agnostic-meta-learning-for-fast-adaptation-of-deep-networks/Untitled10_hu3c6285d700509d496607cdcdbd973580_136262_480x0_resize_box_3.png 480w, /p/maml-model-agnostic-meta-learning-for-fast-adaptation-of-deep-networks/Untitled10_hu3c6285d700509d496607cdcdbd973580_136262_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+		alt="Untitled"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="122"
+		data-flex-basis="295px"
+	
+></p>
+</li>
+<li>
+<p>Goal of MAML in RL:</p>
+<p>Quickly acquire a policy for a new test task using only a small amount of experience in the test setting.</p>
+</li>
+<li>
+<p>Formalizing RL</p>
+<p>Each RL task $\mathcal{T}_i$ contains..</p>
+<ul>
+<li>Initial state distribution $q_i(\mathbf{x}_1)$</li>
+<li>Transition distribution $q_i(\mathbf{x}_{t+1}|\mathbf{x}_t, \mathbf{a}_t)$
+<ul>
+<li>$\mathbf{a}_t$: action</li>
+</ul>
+</li>
+<li>Loss $\mathcal{L}_{\mathcal{T}_i}$, which corresponds to the negative reward function $R$</li>
+</ul>
+<p>Therefore, entire task is a Markov decision process(MDP) with horizon $H$</p>
+<p>The model being learned, $f_\theta$, is a policy that maps from states $\mathbf{x}_t$ to a distribution over actions $\mathbf{a}_t$ at each timestep $t \in { 1, &hellip;, H}$</p>
+</li>
+<li>
+<p>Loss function for task $\mathcal{T}_i$ and model $f_\phi$:</p>
+<p>$$
+\mathcal{L}_{\mathcal{T}_i}(f_\phi) = -\mathbb{E}_{\mathbf{x}_t, \mathbf{a}_t \sim f_\phi, q_{\mathcal{T}_i}} \bigg [ \sum_{t=1}^H R_i(\mathbf{x}_t, \mathbf{a}_t) \bigg ]
+$$</p>
+</li>
+<li>
+<p>Policy gradient method</p>
+<p>Since the expected reward is generally not differentiable due to unknown dynamics, authors used policy gradient methods to estimate the gradient.</p>
+<p>The policy gradient method is an on-policy algorithm</p>
+<p>→ There are additional sampling procedures in step 5 and 8.</p>
+</li>
+</ul>
+<h2 id="4-comparison-with-related-works">4. Comparison with related works</h2>
+<p>Comparison with other popular approaches</p>
+<ul>
+<li>
+<p>Training a meta-learner that learns how to update the parameters of the learner&rsquo;s model</p>
+<p>ex) On the optimization of a synaptic learning rule(Bengio et al. 1992)</p>
+<p>→ Requires additional parameters, while MAML does not.</p>
+</li>
+<li>
+<p>Training to compare new examples in a learned metric space</p>
+<p>ex) Siamese networks(Koch, 2015), recurrence with attention mechanisms(Vinyals et al. 2016)</p>
+<p>→ Difficult to directly extend to our problems, such as reinforcement learning.</p>
+</li>
+<li>
+<p>Training memory-augmented models</p>
+<p>ex) Meta-learning with memory-augmented neural networks(Santoro et al. 2016)</p>
+<p>The recurrent learner is trained to adapt to new tasks as it is rolled out.</p>
+<p>→ Not really straightforward.</p>
+</li>
+</ul>
+<h2 id="5-experimental-evaluation">5. Experimental Evaluation</h2>
+<p>Three questions</p>
+<ol>
+<li>Can MAML enable fast learning of new tasks?</li>
+<li>Can MAML be used for meta-learning in multiple different domains?</li>
+<li>Can a model learned with MAML continue to improve with additional gradient updates and/or examples?</li>
+</ol>
+<h3 id="51-regression">5.1. Regression</h3>
+<p><img src="/p/maml-model-agnostic-meta-learning-for-fast-adaptation-of-deep-networks/Untitled11.png"
+	width="2054"
+	height="640"
+	srcset="/p/maml-model-agnostic-meta-learning-for-fast-adaptation-of-deep-networks/Untitled11_hueb5d57f33093f3e6c97de66eea7eedea_389010_480x0_resize_box_3.png 480w, /p/maml-model-agnostic-meta-learning-for-fast-adaptation-of-deep-networks/Untitled11_hueb5d57f33093f3e6c97de66eea7eedea_389010_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="320"
+		data-flex-basis="770px"
+	
+></p>
+<p><img src="/p/maml-model-agnostic-meta-learning-for-fast-adaptation-of-deep-networks/Untitled12.png"
+	width="2034"
+	height="650"
+	srcset="/p/maml-model-agnostic-meta-learning-for-fast-adaptation-of-deep-networks/Untitled12_hu1ff3a227b90faeda4e52f0040b735e3e_305489_480x0_resize_box_3.png 480w, /p/maml-model-agnostic-meta-learning-for-fast-adaptation-of-deep-networks/Untitled12_hu1ff3a227b90faeda4e52f0040b735e3e_305489_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="312"
+		data-flex-basis="751px"
+	
+></p>
+<h3 id="52-classification">5.2. Classification</h3>
+<p><img src="/p/maml-model-agnostic-meta-learning-for-fast-adaptation-of-deep-networks/Untitled13.png"
+	width="1796"
+	height="808"
+	srcset="/p/maml-model-agnostic-meta-learning-for-fast-adaptation-of-deep-networks/Untitled13_hu8b2f95fd4f45de82cd6351f281788721_270027_480x0_resize_box_3.png 480w, /p/maml-model-agnostic-meta-learning-for-fast-adaptation-of-deep-networks/Untitled13_hu8b2f95fd4f45de82cd6351f281788721_270027_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="222"
+		data-flex-basis="533px"
+	
+></p>
+<p><img src="/p/maml-model-agnostic-meta-learning-for-fast-adaptation-of-deep-networks/Untitled14.png"
+	width="2042"
+	height="246"
+	srcset="/p/maml-model-agnostic-meta-learning-for-fast-adaptation-of-deep-networks/Untitled14_hubf35b4892da9571cbc8a38fed428c704_107171_480x0_resize_box_3.png 480w, /p/maml-model-agnostic-meta-learning-for-fast-adaptation-of-deep-networks/Untitled14_hubf35b4892da9571cbc8a38fed428c704_107171_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="830"
+		data-flex-basis="1992px"
+	
+></p>
+<h3 id="53-reinforcement-learning">5.3. Reinforcement Learning</h3>
+<p><img src="/p/maml-model-agnostic-meta-learning-for-fast-adaptation-of-deep-networks/Untitled15.png"
+	width="1002"
+	height="734"
+	srcset="/p/maml-model-agnostic-meta-learning-for-fast-adaptation-of-deep-networks/Untitled15_hucc6319bab99c944b90e93c405f346352_263853_480x0_resize_box_3.png 480w, /p/maml-model-agnostic-meta-learning-for-fast-adaptation-of-deep-networks/Untitled15_hucc6319bab99c944b90e93c405f346352_263853_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="136"
+		data-flex-basis="327px"
+	
+></p>
+<p><img src="/p/maml-model-agnostic-meta-learning-for-fast-adaptation-of-deep-networks/Untitled16.png"
+	width="2042"
+	height="576"
+	srcset="/p/maml-model-agnostic-meta-learning-for-fast-adaptation-of-deep-networks/Untitled16_hu9fd7b30672c4ee6f028386c6c663c852_404417_480x0_resize_box_3.png 480w, /p/maml-model-agnostic-meta-learning-for-fast-adaptation-of-deep-networks/Untitled16_hu9fd7b30672c4ee6f028386c6c663c852_404417_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="354"
+		data-flex-basis="850px"
+	
+></p>
+<hr>
+<h2 id="references">References</h2>
+<p><a class="link" href="https://youtu.be/Izqod36syY8"  target="_blank" rel="noopener"
+    >KAIST NeuroAI JC_#1 Meta Learning (편집본)</a></p>
+<p><a class="link" href="https://ai.stanford.edu/~cbfinn/_files/dissertation.pdf"  target="_blank" rel="noopener"
+    >https://ai.stanford.edu/~cbfinn/_files/dissertation.pdf</a></p>
+<p><a class="link" href="https://velog.io/@tobigs_xai/10%ec%a3%bc%ec%b0%a8-MAML-Model-agnostic-Meta-Learning-for-Fast-Adaptation-of-Deep-Networks-%eb%85%bc%eb%ac%b8-%eb%a6%ac%eb%b7%b0"  target="_blank" rel="noopener"
+    >[10주차] (MAML) Model-agnostic Meta Learning for Fast Adaptation of Deep Networks 논문 리뷰</a></p>
+<p><a class="link" href="https://lilianweng.github.io/lil-log/2018/11/30/meta-learning.html"  target="_blank" rel="noopener"
+    >Meta-Learning: Learning to Learn Fast</a></p>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/icml-2017/">ICML 2017</a>
+        
+            <a href="/tags/meta-learning/">Meta Learning</a>
+        
+    </section>
+
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+
+    
+        <link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/katex.min.css"integrity="sha256-J&#43;iAE0sgH8QSz9hpcDxXIftnj65JEZgNhGcgReTTK9s="crossorigin="anonymous"
+            ><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/katex.min.js"integrity="sha256-InsNdER1b2xUewP&#43;pKCUJpkhiqwHgqiPXDlIk7GzBu4="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/contrib/auto-render.min.js"integrity="sha256-y39Mpg7V3D4lhBX4x6O0bUqTV4pSrfgwEfGKfxkOdgI="crossorigin="anonymous"
+                defer
+                >
+            </script><script>
+    window.addEventListener("DOMContentLoaded", () => {
+        renderMathInElement(document.querySelector(`.article-content`), {
+            delimiters: [
+                { left: "$$", right: "$$", display: true },
+                { left: "$", right: "$", display: false },
+                { left: "\\(", right: "\\)", display: false },
+                { left: "\\[", right: "\\]", display: true }
+            ]
+        });})
+</script>
+    
+</article>
+
+    
+
+    
+
+<aside class="related-content--wrapper">
+    <h2 class="section-title">Related content</h2>
+    <div class="related-content">
+        <div class="flex article-list--tile">
+            
+                
+<article class="has-image">
+    <a href="/p/does-gnn-pre-training-help-molecular-representation/">
+        
+        
+            <div class="article-image">
+                <img src="/p/does-gnn-pre-training-help-molecular-representation/0.b471fb84ebc6833319819aca8beac3d0_hube49b7519c97672414e9b0ddbe5479a4_229014_250x150_fill_box_smart1_3.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post Does GNN Pre-training Help Molecular Representation?"
+                        
+                        data-hash="md5-tHH7hOvGgzMZgZrKi&#43;rD0A==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Does GNN Pre-training Help Molecular Representation?</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/graph-self-supervised-learning-with-accurate-discrepancy-learning/">
+        
+        
+            <div class="article-image">
+                <img src="/p/graph-self-supervised-learning-with-accurate-discrepancy-learning/0.49465fa84dca02b048da5b4efb9209b7_hu1da554d6c291b842a8ea287e9b40bdf6_233064_250x150_fill_box_smart1_3.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post Graph Self-supervised Learning with Accurate Discrepancy Learning"
+                        
+                        data-hash="md5-SUZfqE3KArBI2ltO&#43;5IJtw==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Graph Self-supervised Learning with Accurate Discrepancy Learning</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/physchem-deep-molecular-representation-learning-via-fusing-physical-and-chemical-information/">
+        
+        
+            <div class="article-image">
+                <img src="/p/physchem-deep-molecular-representation-learning-via-fusing-physical-and-chemical-information/physchem_1.41601d124d7da4c34d71567d5753ea1d_hu614a3ffe516a8cd557a8bbd359513341_952945_250x150_fill_box_smart1_3.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post PhysChem: Deep Molecular Representation Learning via Fusing Physical and Chemical Information"
+                        
+                        data-hash="md5-QWAdEk19pMNNcVZ9V1PqHQ==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">PhysChem: Deep Molecular Representation Learning via Fusing Physical and Chemical Information</h2>
+        </div>
+    </a>
+</article>
+
+            
+        </div>
+    </div>
+</aside>
+
+     
+    
+        
+    <div class="disqus-container">
+    <div id="disqus_thread"></div>
+<script type="application/javascript">
+    window.disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "jh-gu-blog" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div>
+
+<style>
+    .disqus-container {
+        background-color: var(--card-background);
+        border-radius: var(--card-border-radius);
+        box-shadow: var(--shadow-l1);
+        padding: var(--card-padding);
+    }
+</style>
+
+<script>
+    window.addEventListener('onColorSchemeChange', (e) => {
+        if (typeof DISQUS == 'object') {
+            DISQUS.reset({
+                reload: true
+            });
+        }
+    })
+</script>
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2020 - 
+        
+        2023 JH Gu&#39;s Tech Blog
+    </section>
+    
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.16.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>
