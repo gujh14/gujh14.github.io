@@ -4,6 +4,8 @@
   <url>
     <loc>https://gujh14.github.io/</loc>
     <lastmod>2022-12-01T00:00:00+00:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
     <xhtml:link
                 rel="alternate"
                 hreflang="ko"
@@ -17,12 +19,18 @@
   </url><url>
     <loc>https://gujh14.github.io/about-jh-gu/</loc>
     <lastmod>2022-12-01T00:00:00+00:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
   </url><url>
     <loc>https://gujh14.github.io/page/</loc>
     <lastmod>2022-12-01T00:00:00+00:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
   </url><url>
     <loc>https://gujh14.github.io/categories/</loc>
     <lastmod>2022-11-22T00:00:00+00:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
     <xhtml:link
                 rel="alternate"
                 hreflang="ko"
@@ -36,27 +44,43 @@
   </url><url>
     <loc>https://gujh14.github.io/p/does-gnn-pre-training-help-molecular-representation/</loc>
     <lastmod>2022-11-22T00:00:00+00:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
   </url><url>
     <loc>https://gujh14.github.io/tags/gnn/</loc>
     <lastmod>2022-11-22T00:00:00+00:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
   </url><url>
     <loc>https://gujh14.github.io/tags/molecule/</loc>
     <lastmod>2022-11-22T00:00:00+00:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
   </url><url>
     <loc>https://gujh14.github.io/tags/neurips-2022/</loc>
     <lastmod>2022-11-22T00:00:00+00:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
   </url><url>
     <loc>https://gujh14.github.io/post/</loc>
     <lastmod>2022-11-22T00:00:00+00:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
   </url><url>
     <loc>https://gujh14.github.io/tags/pre-training/</loc>
     <lastmod>2022-11-22T00:00:00+00:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
   </url><url>
     <loc>https://gujh14.github.io/categories/research-technical/</loc>
     <lastmod>2022-11-22T00:00:00+00:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
   </url><url>
     <loc>https://gujh14.github.io/tags/</loc>
     <lastmod>2022-11-22T00:00:00+00:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
     <xhtml:link
                 rel="alternate"
                 hreflang="ko"
@@ -70,44 +94,74 @@
   </url><url>
     <loc>https://gujh14.github.io/p/graph-self-supervised-learning-with-accurate-discrepancy-learning/</loc>
     <lastmod>2022-09-21T00:00:00+00:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
   </url><url>
     <loc>https://gujh14.github.io/tags/chemical-conformation/</loc>
     <lastmod>2022-07-29T00:00:00+00:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
   </url><url>
     <loc>https://gujh14.github.io/tags/model-fusion/</loc>
     <lastmod>2022-07-29T00:00:00+00:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
   </url><url>
     <loc>https://gujh14.github.io/tags/molecular-property/</loc>
     <lastmod>2022-07-29T00:00:00+00:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
   </url><url>
     <loc>https://gujh14.github.io/tags/multi-task/</loc>
     <lastmod>2022-07-29T00:00:00+00:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
   </url><url>
     <loc>https://gujh14.github.io/tags/neurips-2021/</loc>
     <lastmod>2022-07-29T00:00:00+00:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
   </url><url>
     <loc>https://gujh14.github.io/p/physchem-deep-molecular-representation-learning-via-fusing-physical-and-chemical-information/</loc>
     <lastmod>2022-07-29T00:00:00+00:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
   </url><url>
     <loc>https://gujh14.github.io/p/cmap-based-drug-repositioning-of-btz-to-reverse-the-metastatic-effect-of-galnt14-in-lung-cancer/</loc>
     <lastmod>2022-07-22T00:00:00+00:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
   </url><url>
     <loc>https://gujh14.github.io/tags/drug-repositioning/</loc>
     <lastmod>2022-07-22T00:00:00+00:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
   </url><url>
     <loc>https://gujh14.github.io/tags/oncogene-2020/</loc>
     <lastmod>2022-07-22T00:00:00+00:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
   </url><url>
     <loc>https://gujh14.github.io/categories/research-application/</loc>
     <lastmod>2022-07-22T00:00:00+00:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
   </url><url>
     <loc>https://gujh14.github.io/archives/</loc>
     <lastmod>2019-05-28T00:00:00+00:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
   </url><url>
     <loc>https://gujh14.github.io/links/</loc>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
   </url><url>
     <loc>https://gujh14.github.io/search/</loc>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
   </url><url>
     <loc>https://gujh14.github.io/categories/test/</loc>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
   </url>
 </urlset>
