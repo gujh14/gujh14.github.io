@@ -6,7 +6,39 @@
         <description>Recent content in Tags on JH Gu&#39;s Tech Blog</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>en-us</language>
-        <lastBuildDate>Fri, 29 Jul 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://gujh14.github.io/tags/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Tue, 22 Nov 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://gujh14.github.io/tags/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>GNN</title>
+        <link>https://gujh14.github.io/tags/gnn/</link>
+        <pubDate>Tue, 22 Nov 2022 00:00:00 +0000</pubDate>
+        
+        <guid>https://gujh14.github.io/tags/gnn/</guid>
+        <description></description>
+        </item>
+        <item>
+        <title>Molecule</title>
+        <link>https://gujh14.github.io/tags/molecule/</link>
+        <pubDate>Tue, 22 Nov 2022 00:00:00 +0000</pubDate>
+        
+        <guid>https://gujh14.github.io/tags/molecule/</guid>
+        <description></description>
+        </item>
+        <item>
+        <title>NeurIPS 2022</title>
+        <link>https://gujh14.github.io/tags/neurips-2022/</link>
+        <pubDate>Tue, 22 Nov 2022 00:00:00 +0000</pubDate>
+        
+        <guid>https://gujh14.github.io/tags/neurips-2022/</guid>
+        <description></description>
+        </item>
+        <item>
+        <title>Pre-training</title>
+        <link>https://gujh14.github.io/tags/pre-training/</link>
+        <pubDate>Tue, 22 Nov 2022 00:00:00 +0000</pubDate>
+        
+        <guid>https://gujh14.github.io/tags/pre-training/</guid>
+        <description></description>
+        </item>
+        <item>
         <title>Chemical conformation</title>
         <link>https://gujh14.github.io/tags/chemical-conformation/</link>
         <pubDate>Fri, 29 Jul 2022 00:00:00 +0000</pubDate>
