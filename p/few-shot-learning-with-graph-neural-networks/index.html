@@ -1,0 +1,1262 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='ICLR, &amp;lsquo;17, Few-Shot Learning with Graph Neural Networks Summary Used similarity value between samples for few shot learning. Regard each sample as nodes, and similarity kernel as edges. Similarity kernel is trainable. (i.e. Not just simple inner product) Can be applied to semi-supervised learning and active learning. State-of-the-art performance in Omniglot and Mini-ImageNet in 2017. Keywords Few shot learning Graph neural network Semi-supervised learning Active learning with Attention Introduction Supervised'>
+<title>Few-shot Learning with Graph Neural Networks</title>
+
+<link rel='canonical' href='https://gujh14.github.io/p/few-shot-learning-with-graph-neural-networks/'>
+
+<link rel="stylesheet" href="/scss/style.min.8191399262444ab68b72a18c97392f5349be20a1615d77445be51e974c144cff.css"><meta property='og:title' content='Few-shot Learning with Graph Neural Networks'>
+<meta property='og:description' content='ICLR, &amp;lsquo;17, Few-Shot Learning with Graph Neural Networks Summary Used similarity value between samples for few shot learning. Regard each sample as nodes, and similarity kernel as edges. Similarity kernel is trainable. (i.e. Not just simple inner product) Can be applied to semi-supervised learning and active learning. State-of-the-art performance in Omniglot and Mini-ImageNet in 2017. Keywords Few shot learning Graph neural network Semi-supervised learning Active learning with Attention Introduction Supervised'>
+<meta property='og:url' content='https://gujh14.github.io/p/few-shot-learning-with-graph-neural-networks/'>
+<meta property='og:site_name' content='JH Gu&#39;s Tech Blog'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='Few shot learning' /><meta property='article:tag' content='GNN' /><meta property='article:published_time' content='2021-10-15T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2021-10-15T00:00:00&#43;00:00'/><meta property='og:image' content='https://gujh14.github.io/p/few-shot-learning-with-graph-neural-networks/0.png' />
+<meta name="twitter:title" content="Few-shot Learning with Graph Neural Networks">
+<meta name="twitter:description" content="ICLR, &amp;lsquo;17, Few-Shot Learning with Graph Neural Networks Summary Used similarity value between samples for few shot learning. Regard each sample as nodes, and similarity kernel as edges. Similarity kernel is trainable. (i.e. Not just simple inner product) Can be applied to semi-supervised learning and active learning. State-of-the-art performance in Omniglot and Mini-ImageNet in 2017. Keywords Few shot learning Graph neural network Semi-supervised learning Active learning with Attention Introduction Supervised"><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='https://gujh14.github.io/p/few-shot-learning-with-graph-neural-networks/0.png' />
+    <link rel="shortcut icon" href="/favicon.ico" />
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-253021474-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="Toggle Menu">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/avatar_hufcbd7da9f307c4c4f078e698b3a6d837_2396352_300x0_resize_q75_box.jpg" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+                    <span class="emoji">🍥</span>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">JH Gu&#39;s Tech Blog</a></h1>
+            <h2 class="site-description">Machine Learning researcher for Drug Discovery</h2>
+        </div>
+    </header><ol class="social-menu">
+            
+                <li>
+                    <a 
+                        href='https://github.com/gujh14'
+                        target="_blank"
+                        title="GitHub"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://instagram.com/coookgu'
+                        target="_blank"
+                        title="Instagram"
+                        rel="me"
+                    >
+                        
+                        
+                            <!-- Uploaded to: SVG Repo, www.svgrepo.com, Transformed by: SVG Repo Mixer Tools -->
+<svg fill="#000000" width="800px" height="800px" viewBox="0 0 256 256" id="Flat" xmlns="http://www.w3.org/2000/svg">
+  <path d="M128,84a44,44,0,1,0,44,44A44.04978,44.04978,0,0,0,128,84Zm0,80a36,36,0,1,1,36-36A36.04061,36.04061,0,0,1,128,164ZM172,32H84A52.059,52.059,0,0,0,32,84v88a52.059,52.059,0,0,0,52,52h88a52.059,52.059,0,0,0,52-52V84A52.059,52.059,0,0,0,172,32Zm44,140a44.04978,44.04978,0,0,1-44,44H84a44.04978,44.04978,0,0,1-44-44V84A44.04978,44.04978,0,0,1,84,40h88a44.04978,44.04978,0,0,1,44,44ZM188,76a8,8,0,1,1-8-8A8.00917,8.00917,0,0,1,188,76Z"/>
+</svg>
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://twitter.com/coookgu'
+                        target="_blank"
+                        title="Twitter"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-twitter" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M22 4.01c-1 .49 -1.98 .689 -3 .99c-1.121 -1.265 -2.783 -1.335 -4.38 -.737s-2.643 2.06 -2.62 3.737v1c-3.245 .083 -6.135 -1.395 -8 -4c0 0 -4.182 7.433 4 11c-1.872 1.247 -3.739 2.088 -6 2c3.308 1.803 6.913 2.423 10.034 1.517c3.58 -1.04 6.522 -3.723 7.651 -7.742a13.84 13.84 0 0 0 .497 -3.753c-.002 -.249 1.51 -2.772 1.818 -4.013z" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+        <li >
+            <a href='/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>Home</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/about-jh-gu/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>About JH Gu</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/archives/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>Archives</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>Search</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/links/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5" />
+  <path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5" />
+</svg>
+
+
+
+                
+                <span>Links</span>
+            </a>
+        </li>
+        
+
+        <div class="menu-bottom-section">
+                <li id="i18n-switch">  
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-language" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M4 5h7" />
+  <path d="M9 3v2c0 4.418 -2.239 8 -5 8" />
+  <path d="M5 9c-.003 2.144 2.952 3.908 6.7 4" />
+  <path d="M12 20l4 -9l4 9" />
+  <path d="M19.1 18h-6.2" />
+</svg>
+
+
+
+                    <select name="language" onchange="window.location.href = this.selectedOptions[0].value">
+                        
+                            <option value="https://gujh14.github.io/" selected>English</option>
+                        
+                            <option value="https://gujh14.github.io/ko/" >한국어</option>
+                        
+                    </select>
+                </li>
+            
+            
+            
+                <li id="dark-mode-toggle">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <span>Dark Mode</span>
+                </li>
+            
+        </div>
+    </ol>
+</aside>
+
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">Table of contents</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#keywords">Keywords</a></li>
+    <li><a href="#introduction">Introduction</a></li>
+    <li><a href="#closely-related-works-and-ideas">Closely related works and ideas</a></li>
+    <li><a href="#problem-set-up">Problem set-up</a>
+      <ol>
+        <li><a href="#general-set-up">General set-up</a></li>
+        <li><a href="#few-shot-learning-setting">Few shot learning setting</a></li>
+        <li><a href="#semi-supervised-learning-setting">Semi-supervised learning setting</a></li>
+        <li><a href="#active-learning-setting">Active learning setting</a></li>
+      </ol>
+    </li>
+    <li><a href="#model">Model</a>
+      <ol>
+        <li><a href="#set-and-graph-input-representations">Set and Graph Input Representations</a></li>
+        <li><a href="#graph-neural-networks">Graph Neural Networks</a></li>
+      </ol>
+    </li>
+    <li><a href="#training">Training</a>
+      <ol>
+        <li><a href="#few-shot-and-semi-supervised-learning">Few-shot and Semi-supervised learning</a></li>
+        <li><a href="#active-learning-with-attention">Active learning (with attention)</a></li>
+      </ol>
+    </li>
+    <li><a href="#results">Results</a>
+      <ol>
+        <li><a href="#few-shot-learning">Few-shot learning</a></li>
+        <li><a href="#semi-supervised-learning">Semi-supervised learning</a></li>
+        <li><a href="#active-learning">Active learning</a></li>
+      </ol>
+    </li>
+    <li><a href="#references">References</a></li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+            <main class="main full-width">
+    <article class="has-image main-article">
+    <header class="article-header">
+        <div class="article-image">
+            <a href="/p/few-shot-learning-with-graph-neural-networks/">
+                <img src="/p/few-shot-learning-with-graph-neural-networks/0_huf5f09756431b976762376288fbc9ebb4_363745_800x0_resize_box_3.png"
+                        srcset="/p/few-shot-learning-with-graph-neural-networks/0_huf5f09756431b976762376288fbc9ebb4_363745_800x0_resize_box_3.png 800w, /p/few-shot-learning-with-graph-neural-networks/0_huf5f09756431b976762376288fbc9ebb4_363745_1600x0_resize_box_3.png 1600w"
+                        width="800" 
+                        height="342" 
+                        loading="lazy"
+                        alt="Featured image of post Few-shot Learning with Graph Neural Networks" />
+                
+            </a>
+        </div>
+    
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/research-technical/" >
+                Research (Technical)
+            </a>
+        
+    </header>
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/p/few-shot-learning-with-graph-neural-networks/">Few-shot Learning with Graph Neural Networks</a>
+        </h2>
+    
+        
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">15 Oct 2021</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    3 minute read
+                </time>
+            </div>
+        
+    </footer>
+    
+
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <p>ICLR, &lsquo;17,<br>
+<a class="link" href="https://arxiv.org/abs/1711.04043"  target="_blank" rel="noopener"
+    >Few-Shot Learning with Graph Neural Networks</a></p>
+<h1 id="summary">Summary</h1>
+<ul>
+<li>Used similarity value between samples for few shot learning.</li>
+<li>Regard each sample as nodes, and similarity kernel as edges.</li>
+<li>Similarity kernel is trainable. (i.e. Not just simple inner product)</li>
+<li>Can be applied to semi-supervised learning and active learning.</li>
+<li>State-of-the-art performance in Omniglot and Mini-ImageNet in 2017.</li>
+</ul>
+<h2 id="keywords">Keywords</h2>
+<ul>
+<li>Few shot learning</li>
+<li>Graph neural network</li>
+<li>Semi-supervised learning</li>
+<li>Active learning with Attention</li>
+</ul>
+<h2 id="introduction">Introduction</h2>
+<ul>
+<li>Supervised end-to-end learning has been extremely successful in computer vision, speech, or machine translation tasks.</li>
+<li>However, there are some tasks(e.g. few shot learning) that cannot achieve high performance with conventional methods.</li>
+<li><strong>New</strong> supervised learning setup
+<ul>
+<li>Input-output setup:
+<ul>
+<li>With i.i.d. samples  of collections of images and their associated label similarity</li>
+<li>cf) conventional setup: i.i.d. samples of images and their associated labels</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Authors&rsquo; model can be extended to semi-supervised and active learning
+<ul>
+<li>
+<p>Semi-supervised learning:</p>
+<p>Learning from a mixture of labeled and unlabeled examples</p>
+<p><img src="/p/few-shot-learning-with-graph-neural-networks/Untitled2.png"
+	width="1024"
+	height="428"
+	srcset="/p/few-shot-learning-with-graph-neural-networks/Untitled2_huc1bfe4fa7e46f3525a992e0a384e32c8_196077_480x0_resize_box_3.png 480w, /p/few-shot-learning-with-graph-neural-networks/Untitled2_huc1bfe4fa7e46f3525a992e0a384e32c8_196077_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+		alt="https://blog.est.ai/2020/11/ssl/"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="239"
+		data-flex-basis="574px"
+	
+></p>
+</li>
+<li>
+<p>Active learning:</p>
+<p>The learner has the option to request those missing labels that will be most helpful for the prediction task</p>
+<p><img src="/p/few-shot-learning-with-graph-neural-networks/Untitled3.png"
+	width="1704"
+	height="610"
+	srcset="/p/few-shot-learning-with-graph-neural-networks/Untitled3_huc6f63af45ed0ccc0628e36f08d894c39_473048_480x0_resize_box_3.png 480w, /p/few-shot-learning-with-graph-neural-networks/Untitled3_huc6f63af45ed0ccc0628e36f08d894c39_473048_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+		alt="ICML 2019 active learning tutorial"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="279"
+		data-flex-basis="670px"
+	
+></p>
+<p><img src="/p/few-shot-learning-with-graph-neural-networks/Untitled4.png"
+	width="1024"
+	height="428"
+	srcset="/p/few-shot-learning-with-graph-neural-networks/Untitled4_hu29a98bb38a9c671de7bd69329e42d18f_525600_480x0_resize_box_3.png 480w, /p/few-shot-learning-with-graph-neural-networks/Untitled4_hu29a98bb38a9c671de7bd69329e42d18f_525600_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+		alt="Annotated by JH Gu"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="239"
+		data-flex-basis="574px"
+	
+></p>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="closely-related-works-and-ideas">Closely related works and ideas</h2>
+<ul>
+<li>
+<p>[Research article] Matching Networks for One shot learning - Vinyals et al.(2016)</p>
+<ul>
+<li>
+<p>Mapped support set of images into the desired label.</p>
+</li>
+<li>
+<p>And developed an end-to-end trainable k-nearest neighbors, accepting those support sets as input via attention LSTM.</p>
+<p><img src="/p/few-shot-learning-with-graph-neural-networks/Untitled5.png"
+	width="2610"
+	height="1132"
+	srcset="/p/few-shot-learning-with-graph-neural-networks/Untitled5_hu0e12fc917e2d1e75fc1d11c369c80fd5_198931_480x0_resize_box_3.png 480w, /p/few-shot-learning-with-graph-neural-networks/Untitled5_hu0e12fc917e2d1e75fc1d11c369c80fd5_198931_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+		alt="Vinyals et al.(2016), cited over 3000 times"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="230"
+		data-flex-basis="553px"
+	
+></p>
+<p><img src="/p/few-shot-learning-with-graph-neural-networks/Untitled6.png"
+	width="1722"
+	height="1194"
+	srcset="/p/few-shot-learning-with-graph-neural-networks/Untitled6_hu682bd0f012da9d625d12e31d1ed30fa9_900563_480x0_resize_box_3.png 480w, /p/few-shot-learning-with-graph-neural-networks/Untitled6_hu682bd0f012da9d625d12e31d1ed30fa9_900563_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="144"
+		data-flex-basis="346px"
+	
+></p>
+<p><img src="/p/few-shot-learning-with-graph-neural-networks/Untitled7.png"
+	width="2114"
+	height="786"
+	srcset="/p/few-shot-learning-with-graph-neural-networks/Untitled7_huc8e7223a5841039c99c90f590a76f75b_236044_480x0_resize_box_3.png 480w, /p/few-shot-learning-with-graph-neural-networks/Untitled7_huc8e7223a5841039c99c90f590a76f75b_236044_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="268"
+		data-flex-basis="645px"
+	
+></p>
+<ul>
+<li>$k$: number of data in support set</li>
+<li>$\hat{x}$: new data</li>
+<li>$\hat{y}$: its class</li>
+<li>$\hat{y}$ is a linear combination of the labels in the support set</li>
+<li>$a$: attention mechanism, which is a kernel</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>[Research article] Prototypical Networks for Few-shot Learning - Snell et al.(2017)</p>
+<p><img src="/p/few-shot-learning-with-graph-neural-networks/Untitled8.png"
+	width="1096"
+	height="320"
+	srcset="/p/few-shot-learning-with-graph-neural-networks/Untitled8_hu673a9f33c51a89e6c015e050431013a1_40631_480x0_resize_box_3.png 480w, /p/few-shot-learning-with-graph-neural-networks/Untitled8_hu673a9f33c51a89e6c015e050431013a1_40631_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="342"
+		data-flex-basis="822px"
+	
+></p>
+<p><img src="https://blog.kakaocdn.net/dn/QTf75/btqV2blwJop/GPGDedaSftJNpHDXvq2XGk/img.gif"
+	
+	
+	
+	loading="lazy"
+	
+		alt="https://blog.kakaocdn.net/dn/QTf75/btqV2blwJop/GPGDedaSftJNpHDXvq2XGk/img.gif"
+	
+	
+></p>
+<p>Authors point out the overfitting problem of Matching networks.</p>
+<ul>
+<li>Prototype: Center(mean) of each class cluster</li>
+<li>Similarity: $-\text{Euclidean distance}$</li>
+</ul>
+</li>
+<li>
+<p>[Review article] Geometric deep learning - Bronstein et al.(2017)</p>
+<p><img src="/p/few-shot-learning-with-graph-neural-networks/Untitled9.png"
+	width="3380"
+	height="760"
+	srcset="/p/few-shot-learning-with-graph-neural-networks/Untitled9_huce1372555d0695877b90856ae5320997_165518_480x0_resize_box_3.png 480w, /p/few-shot-learning-with-graph-neural-networks/Untitled9_huce1372555d0695877b90856ae5320997_165518_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="444"
+		data-flex-basis="1067px"
+	
+></p>
+<blockquote>
+<p>&ldquo;Geometric deep learning is an umbrella term for emerging techniques attempting to generalize deep models to non-Euclidian domains such as graphs and manifolds&rdquo;</p>
+</blockquote>
+</li>
+<li>
+<p>[Research article] Message passing - Gilmer et al.(2017)</p>
+<p><img src="/p/few-shot-learning-with-graph-neural-networks/Untitled10.png"
+	width="3232"
+	height="614"
+	srcset="/p/few-shot-learning-with-graph-neural-networks/Untitled10_hu1eef0041f9c47cde680bf6ae160fab5e_104258_480x0_resize_box_3.png 480w, /p/few-shot-learning-with-graph-neural-networks/Untitled10_hu1eef0041f9c47cde680bf6ae160fab5e_104258_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="526"
+		data-flex-basis="1263px"
+	
+></p>
+<p>$$
+m^{t+1}_v = \sum_{w \in N(v)} M_t(h^t_v, h^t_w, e_{vw}) \ h^{t+1}_v = U_t(h^t_v, m^{t+1}_v )
+$$</p>
+<ul>
+<li>$M_t$: message functions</li>
+<li>$U_t$: vertex update functions</li>
+<li>$h^t_v$: hidden states of node $v$ in the graph at time $t$</li>
+<li>$m^{t+1}_v$: messages of node $v$ in the graph at time $t+1$</li>
+<li>$N(v)$: neighbors of node $v$</li>
+</ul>
+<p>e.g.)</p>
+<p><img src="https://miro.medium.com/max/1400/1*oSQyFjtUkI7_u7lJXWU68Q.gif"
+	
+	
+	
+	loading="lazy"
+	
+		alt="GIF from https://towardsdatascience.com/introduction-to-message-passing-neural-networks-e670dc103a87"
+	
+	
+></p>
+</li>
+</ul>
+<h2 id="problem-set-up">Problem set-up</h2>
+<p>Authors view the task as a supervised interpolation problem on a graph</p>
+<ul>
+<li>Nodes: <strong>Images</strong></li>
+<li>Edges: <strong>Similarity kernels →</strong> <em>TRAINABLE</em></li>
+</ul>
+<h3 id="general-set-up">General set-up</h3>
+<p>Input-output pairs $(\mathcal{T}_i, Y_i)_i$ drawn from i.i.d. from a distribution $\mathcal{P}$ of partially labeled image collections</p>
+<p><img src="/p/few-shot-learning-with-graph-neural-networks/Untitled11.png"
+	width="4000"
+	height="423"
+	srcset="/p/few-shot-learning-with-graph-neural-networks/Untitled11_hu5436287761932c1cedb9fbd5fa84a3d6_135160_480x0_resize_box_3.png 480w, /p/few-shot-learning-with-graph-neural-networks/Untitled11_hu5436287761932c1cedb9fbd5fa84a3d6_135160_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="945"
+		data-flex-basis="2269px"
+	
+></p>
+<ul>
+<li>$s$: # labeled samples</li>
+<li>$r$: # unlabled samples</li>
+<li>$t$: # samples to classify</li>
+<li>$K$: # classes</li>
+<li>$\mathcal{P}_l(\mathbb{R}^N)$: class-specific image distribution over $\mathbb{R}^N$</li>
+<li>targets $Y_i$ are associated with $\bar{x}_1, &hellip;, \bar{x}_t \in \mathcal{T}_i$</li>
+</ul>
+<p>Learning objective:</p>
+<p>$\min_\Theta \frac{1}{L} \sum_{i \leq L} \ell(\Phi(\mathcal{T}_i, \Theta), Y_i) + \mathcal{R}(\Theta)$</p>
+<p>($\mathcal{R}$ is the standard regularization objective)</p>
+<h3 id="few-shot-learning-setting">Few shot learning setting</h3>
+<p>$r=0, t=1, s=qK$   $\longrightarrow$   $q-\text{shot} , K-\text{way}$</p>
+<h3 id="semi-supervised-learning-setting">Semi-supervised learning setting</h3>
+<p>$r &gt; 0, t=1$</p>
+<p>Model can use the auxiliary images(unlabeled set) ${ \tilde{x}_1, &hellip;, \tilde{x}_r }$ to improve the prediction accuracy, by leveraging the fact that these samples are drawn from the common distributions.</p>
+<h3 id="active-learning-setting">Active learning setting</h3>
+<p>The learner has the ability to request labels from the auxiliary images ${\tilde{x}_1, &hellip;, \tilde{x}_r}$.</p>
+<h2 id="model">Model</h2>
+<p><img src="/p/few-shot-learning-with-graph-neural-networks/Untitled12.png"
+	width="1188"
+	height="900"
+	srcset="/p/few-shot-learning-with-graph-neural-networks/Untitled12_hu518b9887168c60fff5bff4e932a1b548_336596_480x0_resize_box_3.png 480w, /p/few-shot-learning-with-graph-neural-networks/Untitled12_hu518b9887168c60fff5bff4e932a1b548_336596_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="132"
+		data-flex-basis="316px"
+	
+></p>
+<ul>
+<li>$\phi(x)$: CNN</li>
+<li>$h(l)$: One-hot encoded label(for labeled set), or uniform distribution(for unlabeled set)</li>
+</ul>
+<h3 id="set-and-graph-input-representations">Set and Graph Input Representations</h3>
+<p>The goal of few shot learning:</p>
+<p>To propagate label information from labeled samples towards the unlabeled query image</p>
+<p>→ The propagation can be formalized as a posterior inference over a graphical model</p>
+<p>$G_\mathcal{T} = (V,E)$</p>
+<p>Similarity measure is not pre-specified, but learned!</p>
+<p>c.f.) in Siamese network, the similarity measure is fixed(L1 distance)!</p>
+<p>본 논문(Few shot learning with GNN)에 쓰인 문장 구조가 이상해서 헷갈리게 쓰여있음.</p>
+<p><img src="/p/few-shot-learning-with-graph-neural-networks/Untitled13.png"
+	width="3024"
+	height="1004"
+	srcset="/p/few-shot-learning-with-graph-neural-networks/Untitled13_hu195ce8430d176ca0bb51f3bd3cc2cd4a_386759_480x0_resize_box_3.png 480w, /p/few-shot-learning-with-graph-neural-networks/Untitled13_hu195ce8430d176ca0bb51f3bd3cc2cd4a_386759_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+		alt="Koch et al.(2015), https://tyami.github.io/deep learning/Siamese-neural-networks/"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="301"
+		data-flex-basis="722px"
+	
+></p>
+<h3 id="graph-neural-networks">Graph Neural Networks</h3>
+<p><img src="/p/few-shot-learning-with-graph-neural-networks/Untitled14.png"
+	width="1982"
+	height="838"
+	srcset="/p/few-shot-learning-with-graph-neural-networks/Untitled14_hu2b7b1594699112bb43a74ec4c994064f_379402_480x0_resize_box_3.png 480w, /p/few-shot-learning-with-graph-neural-networks/Untitled14_hu2b7b1594699112bb43a74ec4c994064f_379402_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="236"
+		data-flex-basis="567px"
+	
+></p>
+<p>We are given an input signal $F \in \mathbb{R}^{V \times d}$ on the vertices of a weighted graph $G$.</p>
+<p>Then we consider a family, or a set &ldquo;$\mathcal{A}$&rdquo; of graph intrinsic linear operators.</p>
+<p>$\mathcal{A} = {\tilde{A}^{(k)}, \mathbf{1}}$</p>
+<ul>
+<li>
+<p>Linear operator</p>
+<p>e.g.) Simplest linear operator is adjacency operator $A$, where $(AF)<em>i = \sum</em>{j \sim i} w_{i,j}F_j$ ($w_{i,j}$ is associated weight)</p>
+</li>
+</ul>
+<p>GNN layer</p>
+<p>A GNN layer $\text{Gc}(\cdot)$ receives as input a signal $\mathbf{x}^{(k)} \in \mathbb{R}^{V\times d_k}$ and produces $\mathbf{x}^{(k+1)} \in \mathbb{R}^{V\times d_{k+1}}$</p>
+<p>$$
+\mathbf{x}^{(k+1)} = \text{Gc}(\mathbf{x}^{(k)}) = \rho\Big(\sum_{B\in\mathcal{A}} B\mathbf{x}^{(k)}\theta^{(k)}_{B, l}\Big )
+$$</p>
+<p>$\mathbf{x}^{(k)}$: representation vector of a certain node at time step $k$</p>
+<p>$\theta$: trainable parameters</p>
+<p>$\rho$: Leaky ReLU</p>
+<p>Construction of edge feature matrix, inspired by message passing algorithm</p>
+<p>$$
+\tilde{A}^{(k)}_{i, j} = \varphi_{\tilde{\theta}}(\mathbf{x}^{(k)}_i, \mathbf{x}^{(k)}_j )
+$$</p>
+<ul>
+<li>
+<p>$\tilde{A}^{(k)}_{i, j}$: <strong>learned</strong> edge features from the node&rsquo;s current hidden representation(at time step $k$)</p>
+</li>
+<li>
+<p>$\varphi$: a metric and a symmetric function parameterized with neural network</p>
+<p>$$
+\varphi_{\tilde{\theta}}(\mathbf{x}^{(k)}_i, \mathbf{x}^{(k)}_j ) = \text{MLP}_{\tilde{\theta}}(abs(\mathbf{x}^{(k)}_i - \mathbf{x}^{(k)}_j))
+$$</p>
+</li>
+</ul>
+<p>→ $\tilde{A}^{(k)}$ is then normalized by row-wise softmax</p>
+<p>→ And added to the family $\mathcal{A} = {\tilde{A}^{(k)}, \mathbf{1}}$</p>
+<ul>
+<li>$\mathbf{1}$: Identity matrix, which is the self-edge to aggregate vertex&rsquo;s own features</li>
+</ul>
+<p>Construction of initial node features</p>
+<p>$$
+\mathbf{x}^{(0)}_i = (\phi(x_i), h(l_i))
+$$</p>
+<p>$\phi$: convolutional neural network</p>
+<p>$h(l) \in \mathbb{R}^K_+$ : a one-hot encoding of the label</p>
+<p>For images with unknown label, $\tilde{x}_j$(unlabeled data) and  $\bar{x}_j$(test data), $h(l_j)$ is set with uniform distribution.</p>
+<h2 id="training">Training</h2>
+<h3 id="few-shot-and-semi-supervised-learning">Few-shot and Semi-supervised learning</h3>
+<p>The final layer of GNN is a softmax mapping. We then use cross-entropy loss:</p>
+<p>$$
+\ell(\Phi(\mathcal{T}; \Theta), Y) = -\sum_k y_k \log P(Y_* = y_k , |, \mathcal{T})
+$$</p>
+<p>The semi-supervised setting is trained identically, but the initial label fields of $\tilde{x}_j$s will be filled with uniform distribution.</p>
+<h3 id="active-learning-with-attention">Active learning (with attention)</h3>
+<p>In active learning, the model has the intrinsic ability to query for one of the labels from ${ \tilde{x}_1, &hellip;, \tilde{x}_r }$.</p>
+<p>The network will learn to ask for the most informative label to classify the sample $\bar{x}$.</p>
+<p>The querying is done after the first layer of GNN by using a softmax attention over the unlabeled nodes of the graph.</p>
+<p>Attention</p>
+<p>We apply a function $g(\mathbf{x}^{(1)}_i) \in \mathbb{R}^1$ that maps each unlabeld vector node to a scalar value.</p>
+<p>A softmax is applied over the ${1, &hellip;, r}$ scalar values obtained after applying $g$:</p>
+<p>$r$: # unlabeled samples</p>
+<p>$$
+\text{Attention} = \text{Softmax}(g(\mathbf{x}^{(1)}_{{1,&hellip;,r}}))
+$$</p>
+<p>To query only one sample we set all elements to zero except for one. → $\text{Attention}'$</p>
+<ul>
+<li>At training, model randomly samples one value based on its multinomial probability.</li>
+<li>At test, model just keeps the maximum value.</li>
+</ul>
+<p>Then we multiply this with the label vectors</p>
+<p>$$
+w \cdot h(l_{i*}) = \langle \text{Attention}&rsquo;, h(l_{{1, &hellip;, r}}) \rangle
+$$</p>
+<p>($w$ is scaling factor)</p>
+<p>This value is then summed to the current representation.</p>
+<p>$$
+\mathbf{x}^{(1)}_{i*} = [\text{Gc}(\mathbf{x}^{(0)}_{i*}), \mathbf{x}^{(0)}_{i*}] = [\text{Gc}(\mathbf{x}^{(0)}_{i*}), (\phi(x_{i*}), h(l_{i*}))]
+$$</p>
+<h2 id="results">Results</h2>
+<h3 id="few-shot-learning">Few-shot learning</h3>
+<p>Omniglot</p>
+<p><img src="/p/few-shot-learning-with-graph-neural-networks/Untitled15.png"
+	width="1744"
+	height="720"
+	srcset="/p/few-shot-learning-with-graph-neural-networks/Untitled15_hud1dea68979c0bbf767eb191d1fd1d37e_221954_480x0_resize_box_3.png 480w, /p/few-shot-learning-with-graph-neural-networks/Untitled15_hud1dea68979c0bbf767eb191d1fd1d37e_221954_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="242"
+		data-flex-basis="581px"
+	
+></p>
+<p># of parameters: $\sim5\text{M} (\text{TCML})$, $\sim300 \text{K}(3 \text{layers GNN})$</p>
+<p>Omniglot: 1,623 characters  X 20 examples for each characters</p>
+<p><img src="/p/few-shot-learning-with-graph-neural-networks/Untitled16.png"
+	width="2170"
+	height="945"
+	srcset="/p/few-shot-learning-with-graph-neural-networks/Untitled16_hu734905f970a0a113fc187b3c1a108a68_954773_480x0_resize_box_3.png 480w, /p/few-shot-learning-with-graph-neural-networks/Untitled16_hu734905f970a0a113fc187b3c1a108a68_954773_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+		alt="Omniglot"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="229"
+		data-flex-basis="551px"
+	
+></p>
+<p>Mini-ImageNet: Originally introduced by Vinyals et al.(2016)</p>
+<p><img src="/p/few-shot-learning-with-graph-neural-networks/Untitled17.png"
+	width="1628"
+	height="584"
+	srcset="/p/few-shot-learning-with-graph-neural-networks/Untitled17_hu78e7bfaf35d1da92942e4f4a1fe7dadb_170810_480x0_resize_box_3.png 480w, /p/few-shot-learning-with-graph-neural-networks/Untitled17_hu78e7bfaf35d1da92942e4f4a1fe7dadb_170810_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="278"
+		data-flex-basis="669px"
+	
+></p>
+<p># of parameters: $\sim 11\text{M} (\text{TCML})$, $\sim 400 \text{K}(3 \text{ layers GNN})$</p>
+<p><img src="/p/few-shot-learning-with-graph-neural-networks/Untitled18.png"
+	width="795"
+	height="400"
+	srcset="/p/few-shot-learning-with-graph-neural-networks/Untitled18_hu379e1637ed83ad26af73f3539cf37e81_707619_480x0_resize_box_3.png 480w, /p/few-shot-learning-with-graph-neural-networks/Untitled18_hu379e1637ed83ad26af73f3539cf37e81_707619_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+		alt="Mini-ImageNet"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="198"
+		data-flex-basis="477px"
+	
+></p>
+<p>Mini-ImageNet</p>
+<p>Divided into 64 training, 16 validation, 20 testing classes each containing 600 examples.</p>
+<h3 id="semi-supervised-learning">Semi-supervised learning</h3>
+<p>Omniglot</p>
+<p><img src="/p/few-shot-learning-with-graph-neural-networks/Untitled19.png"
+	width="1444"
+	height="304"
+	srcset="/p/few-shot-learning-with-graph-neural-networks/Untitled19_hu21116ea201fb3837edc6f9ad35132df9_60736_480x0_resize_box_3.png 480w, /p/few-shot-learning-with-graph-neural-networks/Untitled19_hu21116ea201fb3837edc6f9ad35132df9_60736_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="475"
+		data-flex-basis="1140px"
+	
+></p>
+<p>Mini-ImageNet</p>
+<p><img src="/p/few-shot-learning-with-graph-neural-networks/Untitled20.png"
+	width="1666"
+	height="342"
+	srcset="/p/few-shot-learning-with-graph-neural-networks/Untitled20_hu1158a4c24840395ac6dcb63f5d7034ea_78788_480x0_resize_box_3.png 480w, /p/few-shot-learning-with-graph-neural-networks/Untitled20_hu1158a4c24840395ac6dcb63f5d7034ea_78788_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="487"
+		data-flex-basis="1169px"
+	
+></p>
+<h3 id="active-learning">Active learning</h3>
+<p><img src="/p/few-shot-learning-with-graph-neural-networks/Untitled21.png"
+	width="1676"
+	height="444"
+	srcset="/p/few-shot-learning-with-graph-neural-networks/Untitled21_hu57c3addab4b9d756f0d1227c98fe6ef2_119500_480x0_resize_box_3.png 480w, /p/few-shot-learning-with-graph-neural-networks/Untitled21_hu57c3addab4b9d756f0d1227c98fe6ef2_119500_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="377"
+		data-flex-basis="905px"
+	
+></p>
+<p>Random: Network chooses a random sample to be labeled, instead of one that maximally reduces the loss of the classification task $\mathcal{T}$</p>
+<h2 id="references">References</h2>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/few-shot-learning/">Few shot learning</a>
+        
+            <a href="/tags/gnn/">GNN</a>
+        
+    </section>
+
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+
+    
+        <link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/katex.min.css"integrity="sha256-J&#43;iAE0sgH8QSz9hpcDxXIftnj65JEZgNhGcgReTTK9s="crossorigin="anonymous"
+            ><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/katex.min.js"integrity="sha256-InsNdER1b2xUewP&#43;pKCUJpkhiqwHgqiPXDlIk7GzBu4="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/contrib/auto-render.min.js"integrity="sha256-y39Mpg7V3D4lhBX4x6O0bUqTV4pSrfgwEfGKfxkOdgI="crossorigin="anonymous"
+                defer
+                >
+            </script><script>
+    window.addEventListener("DOMContentLoaded", () => {
+        renderMathInElement(document.querySelector(`.article-content`), {
+            delimiters: [
+                { left: "$$", right: "$$", display: true },
+                { left: "$", right: "$", display: false },
+                { left: "\\(", right: "\\)", display: false },
+                { left: "\\[", right: "\\]", display: true }
+            ]
+        });})
+</script>
+    
+</article>
+
+    
+
+    
+
+<aside class="related-content--wrapper">
+    <h2 class="section-title">Related content</h2>
+    <div class="related-content">
+        <div class="flex article-list--tile">
+            
+                
+<article class="has-image">
+    <a href="/p/does-gnn-pre-training-help-molecular-representation/">
+        
+        
+            <div class="article-image">
+                <img src="/p/does-gnn-pre-training-help-molecular-representation/0.b471fb84ebc6833319819aca8beac3d0_hube49b7519c97672414e9b0ddbe5479a4_229014_250x150_fill_box_smart1_3.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post Does GNN Pre-training Help Molecular Representation?"
+                        
+                        data-hash="md5-tHH7hOvGgzMZgZrKi&#43;rD0A==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Does GNN Pre-training Help Molecular Representation?</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/graph-self-supervised-learning-with-accurate-discrepancy-learning/">
+        
+        
+            <div class="article-image">
+                <img src="/p/graph-self-supervised-learning-with-accurate-discrepancy-learning/0.49465fa84dca02b048da5b4efb9209b7_hu1da554d6c291b842a8ea287e9b40bdf6_233064_250x150_fill_box_smart1_3.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post Graph Self-supervised Learning with Accurate Discrepancy Learning"
+                        
+                        data-hash="md5-SUZfqE3KArBI2ltO&#43;5IJtw==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Graph Self-supervised Learning with Accurate Discrepancy Learning</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/physchem-deep-molecular-representation-learning-via-fusing-physical-and-chemical-information/">
+        
+        
+            <div class="article-image">
+                <img src="/p/physchem-deep-molecular-representation-learning-via-fusing-physical-and-chemical-information/physchem_1.41601d124d7da4c34d71567d5753ea1d_hu614a3ffe516a8cd557a8bbd359513341_952945_250x150_fill_box_smart1_3.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post PhysChem: Deep Molecular Representation Learning via Fusing Physical and Chemical Information"
+                        
+                        data-hash="md5-QWAdEk19pMNNcVZ9V1PqHQ==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">PhysChem: Deep Molecular Representation Learning via Fusing Physical and Chemical Information</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/maml-model-agnostic-meta-learning-for-fast-adaptation-of-deep-networks/">
+        
+        
+            <div class="article-image">
+                
+                    <img src="/thumbnail.png" loading="lazy" data-key="" data-hash="/thumbnail.png"/>
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">MAML: Model-Agnostic Meta -Learning for Fast Adaptation of Deep Networks</h2>
+        </div>
+    </a>
+</article>
+
+            
+        </div>
+    </div>
+</aside>
+
+     
+    
+        
+    <div class="disqus-container">
+    <div id="disqus_thread"></div>
+<script type="application/javascript">
+    window.disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "jh-gu-blog" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div>
+
+<style>
+    .disqus-container {
+        background-color: var(--card-background);
+        border-radius: var(--card-border-radius);
+        box-shadow: var(--shadow-l1);
+        padding: var(--card-padding);
+    }
+</style>
+
+<script>
+    window.addEventListener('onColorSchemeChange', (e) => {
+        if (typeof DISQUS == 'object') {
+            DISQUS.reset({
+                reload: true
+            });
+        }
+    })
+</script>
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2020 - 
+        
+        2023 JH Gu&#39;s Tech Blog
+    </section>
+    
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.16.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>

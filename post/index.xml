@@ -743,6 +743,513 @@ BTZ의 anti-migration, anti-invasion effect를 in vitro level에서 확인한 �
 </description>
         </item>
         <item>
+        <title>Few-shot Learning with Graph Neural Networks</title>
+        <link>https://gujh14.github.io/p/few-shot-learning-with-graph-neural-networks/</link>
+        <pubDate>Fri, 15 Oct 2021 00:00:00 +0000</pubDate>
+        
+        <guid>https://gujh14.github.io/p/few-shot-learning-with-graph-neural-networks/</guid>
+        <description>&lt;img src="https://gujh14.github.io/p/few-shot-learning-with-graph-neural-networks/0.png" alt="Featured image of post Few-shot Learning with Graph Neural Networks" /&gt;&lt;p&gt;ICLR, &amp;lsquo;17,&lt;br&gt;
+&lt;a class=&#34;link&#34; href=&#34;https://arxiv.org/abs/1711.04043&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Few-Shot Learning with Graph Neural Networks&lt;/a&gt;&lt;/p&gt;
+&lt;h1 id=&#34;summary&#34;&gt;Summary&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;Used similarity value between samples for few shot learning.&lt;/li&gt;
+&lt;li&gt;Regard each sample as nodes, and similarity kernel as edges.&lt;/li&gt;
+&lt;li&gt;Similarity kernel is trainable. (i.e. Not just simple inner product)&lt;/li&gt;
+&lt;li&gt;Can be applied to semi-supervised learning and active learning.&lt;/li&gt;
+&lt;li&gt;State-of-the-art performance in Omniglot and Mini-ImageNet in 2017.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;keywords&#34;&gt;Keywords&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Few shot learning&lt;/li&gt;
+&lt;li&gt;Graph neural network&lt;/li&gt;
+&lt;li&gt;Semi-supervised learning&lt;/li&gt;
+&lt;li&gt;Active learning with Attention&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Supervised end-to-end learning has been extremely successful in computer vision, speech, or machine translation tasks.&lt;/li&gt;
+&lt;li&gt;However, there are some tasks(e.g. few shot learning) that cannot achieve high performance with conventional methods.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;New&lt;/strong&gt; supervised learning setup
+&lt;ul&gt;
+&lt;li&gt;Input-output setup:
+&lt;ul&gt;
+&lt;li&gt;With i.i.d. samples  of collections of images and their associated label similarity&lt;/li&gt;
+&lt;li&gt;cf) conventional setup: i.i.d. samples of images and their associated labels&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Authors&amp;rsquo; model can be extended to semi-supervised and active learning
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Semi-supervised learning:&lt;/p&gt;
+&lt;p&gt;Learning from a mixture of labeled and unlabeled examples&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://gujh14.github.io/p/few-shot-learning-with-graph-neural-networks/Untitled2.png&#34;
+	width=&#34;1024&#34;
+	height=&#34;428&#34;
+	srcset=&#34;https://gujh14.github.io/p/few-shot-learning-with-graph-neural-networks/Untitled2_huc1bfe4fa7e46f3525a992e0a384e32c8_196077_480x0_resize_box_3.png 480w, https://gujh14.github.io/p/few-shot-learning-with-graph-neural-networks/Untitled2_huc1bfe4fa7e46f3525a992e0a384e32c8_196077_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;https://blog.est.ai/2020/11/ssl/&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;239&#34;
+		data-flex-basis=&#34;574px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Active learning:&lt;/p&gt;
+&lt;p&gt;The learner has the option to request those missing labels that will be most helpful for the prediction task&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://gujh14.github.io/p/few-shot-learning-with-graph-neural-networks/Untitled3.png&#34;
+	width=&#34;1704&#34;
+	height=&#34;610&#34;
+	srcset=&#34;https://gujh14.github.io/p/few-shot-learning-with-graph-neural-networks/Untitled3_huc6f63af45ed0ccc0628e36f08d894c39_473048_480x0_resize_box_3.png 480w, https://gujh14.github.io/p/few-shot-learning-with-graph-neural-networks/Untitled3_huc6f63af45ed0ccc0628e36f08d894c39_473048_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;ICML 2019 active learning tutorial&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;279&#34;
+		data-flex-basis=&#34;670px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://gujh14.github.io/p/few-shot-learning-with-graph-neural-networks/Untitled4.png&#34;
+	width=&#34;1024&#34;
+	height=&#34;428&#34;
+	srcset=&#34;https://gujh14.github.io/p/few-shot-learning-with-graph-neural-networks/Untitled4_hu29a98bb38a9c671de7bd69329e42d18f_525600_480x0_resize_box_3.png 480w, https://gujh14.github.io/p/few-shot-learning-with-graph-neural-networks/Untitled4_hu29a98bb38a9c671de7bd69329e42d18f_525600_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;Annotated by JH Gu&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;239&#34;
+		data-flex-basis=&#34;574px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;closely-related-works-and-ideas&#34;&gt;Closely related works and ideas&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;[Research article] Matching Networks for One shot learning - Vinyals et al.(2016)&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Mapped support set of images into the desired label.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;And developed an end-to-end trainable k-nearest neighbors, accepting those support sets as input via attention LSTM.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://gujh14.github.io/p/few-shot-learning-with-graph-neural-networks/Untitled5.png&#34;
+	width=&#34;2610&#34;
+	height=&#34;1132&#34;
+	srcset=&#34;https://gujh14.github.io/p/few-shot-learning-with-graph-neural-networks/Untitled5_hu0e12fc917e2d1e75fc1d11c369c80fd5_198931_480x0_resize_box_3.png 480w, https://gujh14.github.io/p/few-shot-learning-with-graph-neural-networks/Untitled5_hu0e12fc917e2d1e75fc1d11c369c80fd5_198931_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;Vinyals et al.(2016), cited over 3000 times&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;230&#34;
+		data-flex-basis=&#34;553px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://gujh14.github.io/p/few-shot-learning-with-graph-neural-networks/Untitled6.png&#34;
+	width=&#34;1722&#34;
+	height=&#34;1194&#34;
+	srcset=&#34;https://gujh14.github.io/p/few-shot-learning-with-graph-neural-networks/Untitled6_hu682bd0f012da9d625d12e31d1ed30fa9_900563_480x0_resize_box_3.png 480w, https://gujh14.github.io/p/few-shot-learning-with-graph-neural-networks/Untitled6_hu682bd0f012da9d625d12e31d1ed30fa9_900563_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;144&#34;
+		data-flex-basis=&#34;346px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://gujh14.github.io/p/few-shot-learning-with-graph-neural-networks/Untitled7.png&#34;
+	width=&#34;2114&#34;
+	height=&#34;786&#34;
+	srcset=&#34;https://gujh14.github.io/p/few-shot-learning-with-graph-neural-networks/Untitled7_huc8e7223a5841039c99c90f590a76f75b_236044_480x0_resize_box_3.png 480w, https://gujh14.github.io/p/few-shot-learning-with-graph-neural-networks/Untitled7_huc8e7223a5841039c99c90f590a76f75b_236044_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;268&#34;
+		data-flex-basis=&#34;645px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;$k$: number of data in support set&lt;/li&gt;
+&lt;li&gt;$\hat{x}$: new data&lt;/li&gt;
+&lt;li&gt;$\hat{y}$: its class&lt;/li&gt;
+&lt;li&gt;$\hat{y}$ is a linear combination of the labels in the support set&lt;/li&gt;
+&lt;li&gt;$a$: attention mechanism, which is a kernel&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;[Research article] Prototypical Networks for Few-shot Learning - Snell et al.(2017)&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://gujh14.github.io/p/few-shot-learning-with-graph-neural-networks/Untitled8.png&#34;
+	width=&#34;1096&#34;
+	height=&#34;320&#34;
+	srcset=&#34;https://gujh14.github.io/p/few-shot-learning-with-graph-neural-networks/Untitled8_hu673a9f33c51a89e6c015e050431013a1_40631_480x0_resize_box_3.png 480w, https://gujh14.github.io/p/few-shot-learning-with-graph-neural-networks/Untitled8_hu673a9f33c51a89e6c015e050431013a1_40631_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;342&#34;
+		data-flex-basis=&#34;822px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://blog.kakaocdn.net/dn/QTf75/btqV2blwJop/GPGDedaSftJNpHDXvq2XGk/img.gif&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;https://blog.kakaocdn.net/dn/QTf75/btqV2blwJop/GPGDedaSftJNpHDXvq2XGk/img.gif&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;Authors point out the overfitting problem of Matching networks.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Prototype: Center(mean) of each class cluster&lt;/li&gt;
+&lt;li&gt;Similarity: $-\text{Euclidean distance}$&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;[Review article] Geometric deep learning - Bronstein et al.(2017)&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://gujh14.github.io/p/few-shot-learning-with-graph-neural-networks/Untitled9.png&#34;
+	width=&#34;3380&#34;
+	height=&#34;760&#34;
+	srcset=&#34;https://gujh14.github.io/p/few-shot-learning-with-graph-neural-networks/Untitled9_huce1372555d0695877b90856ae5320997_165518_480x0_resize_box_3.png 480w, https://gujh14.github.io/p/few-shot-learning-with-graph-neural-networks/Untitled9_huce1372555d0695877b90856ae5320997_165518_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;444&#34;
+		data-flex-basis=&#34;1067px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&amp;ldquo;Geometric deep learning is an umbrella term for emerging techniques attempting to generalize deep models to non-Euclidian domains such as graphs and manifolds&amp;rdquo;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;[Research article] Message passing - Gilmer et al.(2017)&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://gujh14.github.io/p/few-shot-learning-with-graph-neural-networks/Untitled10.png&#34;
+	width=&#34;3232&#34;
+	height=&#34;614&#34;
+	srcset=&#34;https://gujh14.github.io/p/few-shot-learning-with-graph-neural-networks/Untitled10_hu1eef0041f9c47cde680bf6ae160fab5e_104258_480x0_resize_box_3.png 480w, https://gujh14.github.io/p/few-shot-learning-with-graph-neural-networks/Untitled10_hu1eef0041f9c47cde680bf6ae160fab5e_104258_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;526&#34;
+		data-flex-basis=&#34;1263px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;$$
+m^{t+1}_v = \sum_{w \in N(v)} M_t(h^t_v, h^t_w, e_{vw}) \ h^{t+1}_v = U_t(h^t_v, m^{t+1}_v )
+$$&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;$M_t$: message functions&lt;/li&gt;
+&lt;li&gt;$U_t$: vertex update functions&lt;/li&gt;
+&lt;li&gt;$h^t_v$: hidden states of node $v$ in the graph at time $t$&lt;/li&gt;
+&lt;li&gt;$m^{t+1}_v$: messages of node $v$ in the graph at time $t+1$&lt;/li&gt;
+&lt;li&gt;$N(v)$: neighbors of node $v$&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;e.g.)&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://miro.medium.com/max/1400/1*oSQyFjtUkI7_u7lJXWU68Q.gif&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;GIF from https://towardsdatascience.com/introduction-to-message-passing-neural-networks-e670dc103a87&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;problem-set-up&#34;&gt;Problem set-up&lt;/h2&gt;
+&lt;p&gt;Authors view the task as a supervised interpolation problem on a graph&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Nodes: &lt;strong&gt;Images&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;Edges: &lt;strong&gt;Similarity kernels →&lt;/strong&gt; &lt;em&gt;TRAINABLE&lt;/em&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;general-set-up&#34;&gt;General set-up&lt;/h3&gt;
+&lt;p&gt;Input-output pairs $(\mathcal{T}_i, Y_i)_i$ drawn from i.i.d. from a distribution $\mathcal{P}$ of partially labeled image collections&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://gujh14.github.io/p/few-shot-learning-with-graph-neural-networks/Untitled11.png&#34;
+	width=&#34;4000&#34;
+	height=&#34;423&#34;
+	srcset=&#34;https://gujh14.github.io/p/few-shot-learning-with-graph-neural-networks/Untitled11_hu5436287761932c1cedb9fbd5fa84a3d6_135160_480x0_resize_box_3.png 480w, https://gujh14.github.io/p/few-shot-learning-with-graph-neural-networks/Untitled11_hu5436287761932c1cedb9fbd5fa84a3d6_135160_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;945&#34;
+		data-flex-basis=&#34;2269px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;$s$: # labeled samples&lt;/li&gt;
+&lt;li&gt;$r$: # unlabled samples&lt;/li&gt;
+&lt;li&gt;$t$: # samples to classify&lt;/li&gt;
+&lt;li&gt;$K$: # classes&lt;/li&gt;
+&lt;li&gt;$\mathcal{P}_l(\mathbb{R}^N)$: class-specific image distribution over $\mathbb{R}^N$&lt;/li&gt;
+&lt;li&gt;targets $Y_i$ are associated with $\bar{x}_1, &amp;hellip;, \bar{x}_t \in \mathcal{T}_i$&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Learning objective:&lt;/p&gt;
+&lt;p&gt;$\min_\Theta \frac{1}{L} \sum_{i \leq L} \ell(\Phi(\mathcal{T}_i, \Theta), Y_i) + \mathcal{R}(\Theta)$&lt;/p&gt;
+&lt;p&gt;($\mathcal{R}$ is the standard regularization objective)&lt;/p&gt;
+&lt;h3 id=&#34;few-shot-learning-setting&#34;&gt;Few shot learning setting&lt;/h3&gt;
+&lt;p&gt;$r=0, t=1, s=qK$   $\longrightarrow$   $q-\text{shot} , K-\text{way}$&lt;/p&gt;
+&lt;h3 id=&#34;semi-supervised-learning-setting&#34;&gt;Semi-supervised learning setting&lt;/h3&gt;
+&lt;p&gt;$r &amp;gt; 0, t=1$&lt;/p&gt;
+&lt;p&gt;Model can use the auxiliary images(unlabeled set) ${ \tilde{x}_1, &amp;hellip;, \tilde{x}_r }$ to improve the prediction accuracy, by leveraging the fact that these samples are drawn from the common distributions.&lt;/p&gt;
+&lt;h3 id=&#34;active-learning-setting&#34;&gt;Active learning setting&lt;/h3&gt;
+&lt;p&gt;The learner has the ability to request labels from the auxiliary images ${\tilde{x}_1, &amp;hellip;, \tilde{x}_r}$.&lt;/p&gt;
+&lt;h2 id=&#34;model&#34;&gt;Model&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&#34;https://gujh14.github.io/p/few-shot-learning-with-graph-neural-networks/Untitled12.png&#34;
+	width=&#34;1188&#34;
+	height=&#34;900&#34;
+	srcset=&#34;https://gujh14.github.io/p/few-shot-learning-with-graph-neural-networks/Untitled12_hu518b9887168c60fff5bff4e932a1b548_336596_480x0_resize_box_3.png 480w, https://gujh14.github.io/p/few-shot-learning-with-graph-neural-networks/Untitled12_hu518b9887168c60fff5bff4e932a1b548_336596_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;132&#34;
+		data-flex-basis=&#34;316px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;$\phi(x)$: CNN&lt;/li&gt;
+&lt;li&gt;$h(l)$: One-hot encoded label(for labeled set), or uniform distribution(for unlabeled set)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;set-and-graph-input-representations&#34;&gt;Set and Graph Input Representations&lt;/h3&gt;
+&lt;p&gt;The goal of few shot learning:&lt;/p&gt;
+&lt;p&gt;To propagate label information from labeled samples towards the unlabeled query image&lt;/p&gt;
+&lt;p&gt;→ The propagation can be formalized as a posterior inference over a graphical model&lt;/p&gt;
+&lt;p&gt;$G_\mathcal{T} = (V,E)$&lt;/p&gt;
+&lt;p&gt;Similarity measure is not pre-specified, but learned!&lt;/p&gt;
+&lt;p&gt;c.f.) in Siamese network, the similarity measure is fixed(L1 distance)!&lt;/p&gt;
+&lt;p&gt;본 논문(Few shot learning with GNN)에 쓰인 문장 구조가 이상해서 헷갈리게 쓰여있음.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://gujh14.github.io/p/few-shot-learning-with-graph-neural-networks/Untitled13.png&#34;
+	width=&#34;3024&#34;
+	height=&#34;1004&#34;
+	srcset=&#34;https://gujh14.github.io/p/few-shot-learning-with-graph-neural-networks/Untitled13_hu195ce8430d176ca0bb51f3bd3cc2cd4a_386759_480x0_resize_box_3.png 480w, https://gujh14.github.io/p/few-shot-learning-with-graph-neural-networks/Untitled13_hu195ce8430d176ca0bb51f3bd3cc2cd4a_386759_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;Koch et al.(2015), https://tyami.github.io/deep learning/Siamese-neural-networks/&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;301&#34;
+		data-flex-basis=&#34;722px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;h3 id=&#34;graph-neural-networks&#34;&gt;Graph Neural Networks&lt;/h3&gt;
+&lt;p&gt;&lt;img src=&#34;https://gujh14.github.io/p/few-shot-learning-with-graph-neural-networks/Untitled14.png&#34;
+	width=&#34;1982&#34;
+	height=&#34;838&#34;
+	srcset=&#34;https://gujh14.github.io/p/few-shot-learning-with-graph-neural-networks/Untitled14_hu2b7b1594699112bb43a74ec4c994064f_379402_480x0_resize_box_3.png 480w, https://gujh14.github.io/p/few-shot-learning-with-graph-neural-networks/Untitled14_hu2b7b1594699112bb43a74ec4c994064f_379402_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;236&#34;
+		data-flex-basis=&#34;567px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;We are given an input signal $F \in \mathbb{R}^{V \times d}$ on the vertices of a weighted graph $G$.&lt;/p&gt;
+&lt;p&gt;Then we consider a family, or a set &amp;ldquo;$\mathcal{A}$&amp;rdquo; of graph intrinsic linear operators.&lt;/p&gt;
+&lt;p&gt;$\mathcal{A} = {\tilde{A}^{(k)}, \mathbf{1}}$&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Linear operator&lt;/p&gt;
+&lt;p&gt;e.g.) Simplest linear operator is adjacency operator $A$, where $(AF)&lt;em&gt;i = \sum&lt;/em&gt;{j \sim i} w_{i,j}F_j$ ($w_{i,j}$ is associated weight)&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;GNN layer&lt;/p&gt;
+&lt;p&gt;A GNN layer $\text{Gc}(\cdot)$ receives as input a signal $\mathbf{x}^{(k)} \in \mathbb{R}^{V\times d_k}$ and produces $\mathbf{x}^{(k+1)} \in \mathbb{R}^{V\times d_{k+1}}$&lt;/p&gt;
+&lt;p&gt;$$
+\mathbf{x}^{(k+1)} = \text{Gc}(\mathbf{x}^{(k)}) = \rho\Big(\sum_{B\in\mathcal{A}} B\mathbf{x}^{(k)}\theta^{(k)}_{B, l}\Big )
+$$&lt;/p&gt;
+&lt;p&gt;$\mathbf{x}^{(k)}$: representation vector of a certain node at time step $k$&lt;/p&gt;
+&lt;p&gt;$\theta$: trainable parameters&lt;/p&gt;
+&lt;p&gt;$\rho$: Leaky ReLU&lt;/p&gt;
+&lt;p&gt;Construction of edge feature matrix, inspired by message passing algorithm&lt;/p&gt;
+&lt;p&gt;$$
+\tilde{A}^{(k)}_{i, j} = \varphi_{\tilde{\theta}}(\mathbf{x}^{(k)}_i, \mathbf{x}^{(k)}_j )
+$$&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;$\tilde{A}^{(k)}_{i, j}$: &lt;strong&gt;learned&lt;/strong&gt; edge features from the node&amp;rsquo;s current hidden representation(at time step $k$)&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;$\varphi$: a metric and a symmetric function parameterized with neural network&lt;/p&gt;
+&lt;p&gt;$$
+\varphi_{\tilde{\theta}}(\mathbf{x}^{(k)}_i, \mathbf{x}^{(k)}_j ) = \text{MLP}_{\tilde{\theta}}(abs(\mathbf{x}^{(k)}_i - \mathbf{x}^{(k)}_j))
+$$&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;→ $\tilde{A}^{(k)}$ is then normalized by row-wise softmax&lt;/p&gt;
+&lt;p&gt;→ And added to the family $\mathcal{A} = {\tilde{A}^{(k)}, \mathbf{1}}$&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;$\mathbf{1}$: Identity matrix, which is the self-edge to aggregate vertex&amp;rsquo;s own features&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Construction of initial node features&lt;/p&gt;
+&lt;p&gt;$$
+\mathbf{x}^{(0)}_i = (\phi(x_i), h(l_i))
+$$&lt;/p&gt;
+&lt;p&gt;$\phi$: convolutional neural network&lt;/p&gt;
+&lt;p&gt;$h(l) \in \mathbb{R}^K_+$ : a one-hot encoding of the label&lt;/p&gt;
+&lt;p&gt;For images with unknown label, $\tilde{x}_j$(unlabeled data) and  $\bar{x}_j$(test data), $h(l_j)$ is set with uniform distribution.&lt;/p&gt;
+&lt;h2 id=&#34;training&#34;&gt;Training&lt;/h2&gt;
+&lt;h3 id=&#34;few-shot-and-semi-supervised-learning&#34;&gt;Few-shot and Semi-supervised learning&lt;/h3&gt;
+&lt;p&gt;The final layer of GNN is a softmax mapping. We then use cross-entropy loss:&lt;/p&gt;
+&lt;p&gt;$$
+\ell(\Phi(\mathcal{T}; \Theta), Y) = -\sum_k y_k \log P(Y_* = y_k , |, \mathcal{T})
+$$&lt;/p&gt;
+&lt;p&gt;The semi-supervised setting is trained identically, but the initial label fields of $\tilde{x}_j$s will be filled with uniform distribution.&lt;/p&gt;
+&lt;h3 id=&#34;active-learning-with-attention&#34;&gt;Active learning (with attention)&lt;/h3&gt;
+&lt;p&gt;In active learning, the model has the intrinsic ability to query for one of the labels from ${ \tilde{x}_1, &amp;hellip;, \tilde{x}_r }$.&lt;/p&gt;
+&lt;p&gt;The network will learn to ask for the most informative label to classify the sample $\bar{x}$.&lt;/p&gt;
+&lt;p&gt;The querying is done after the first layer of GNN by using a softmax attention over the unlabeled nodes of the graph.&lt;/p&gt;
+&lt;p&gt;Attention&lt;/p&gt;
+&lt;p&gt;We apply a function $g(\mathbf{x}^{(1)}_i) \in \mathbb{R}^1$ that maps each unlabeld vector node to a scalar value.&lt;/p&gt;
+&lt;p&gt;A softmax is applied over the ${1, &amp;hellip;, r}$ scalar values obtained after applying $g$:&lt;/p&gt;
+&lt;p&gt;$r$: # unlabeled samples&lt;/p&gt;
+&lt;p&gt;$$
+\text{Attention} = \text{Softmax}(g(\mathbf{x}^{(1)}_{{1,&amp;hellip;,r}}))
+$$&lt;/p&gt;
+&lt;p&gt;To query only one sample we set all elements to zero except for one. → $\text{Attention}&#39;$&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;At training, model randomly samples one value based on its multinomial probability.&lt;/li&gt;
+&lt;li&gt;At test, model just keeps the maximum value.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Then we multiply this with the label vectors&lt;/p&gt;
+&lt;p&gt;$$
+w \cdot h(l_{i*}) = \langle \text{Attention}&amp;rsquo;, h(l_{{1, &amp;hellip;, r}}) \rangle
+$$&lt;/p&gt;
+&lt;p&gt;($w$ is scaling factor)&lt;/p&gt;
+&lt;p&gt;This value is then summed to the current representation.&lt;/p&gt;
+&lt;p&gt;$$
+\mathbf{x}^{(1)}_{i*} = [\text{Gc}(\mathbf{x}^{(0)}_{i*}), \mathbf{x}^{(0)}_{i*}] = [\text{Gc}(\mathbf{x}^{(0)}_{i*}), (\phi(x_{i*}), h(l_{i*}))]
+$$&lt;/p&gt;
+&lt;h2 id=&#34;results&#34;&gt;Results&lt;/h2&gt;
+&lt;h3 id=&#34;few-shot-learning&#34;&gt;Few-shot learning&lt;/h3&gt;
+&lt;p&gt;Omniglot&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://gujh14.github.io/p/few-shot-learning-with-graph-neural-networks/Untitled15.png&#34;
+	width=&#34;1744&#34;
+	height=&#34;720&#34;
+	srcset=&#34;https://gujh14.github.io/p/few-shot-learning-with-graph-neural-networks/Untitled15_hud1dea68979c0bbf767eb191d1fd1d37e_221954_480x0_resize_box_3.png 480w, https://gujh14.github.io/p/few-shot-learning-with-graph-neural-networks/Untitled15_hud1dea68979c0bbf767eb191d1fd1d37e_221954_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;242&#34;
+		data-flex-basis=&#34;581px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;# of parameters: $\sim5\text{M} (\text{TCML})$, $\sim300 \text{K}(3 \text{layers GNN})$&lt;/p&gt;
+&lt;p&gt;Omniglot: 1,623 characters  X 20 examples for each characters&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://gujh14.github.io/p/few-shot-learning-with-graph-neural-networks/Untitled16.png&#34;
+	width=&#34;2170&#34;
+	height=&#34;945&#34;
+	srcset=&#34;https://gujh14.github.io/p/few-shot-learning-with-graph-neural-networks/Untitled16_hu734905f970a0a113fc187b3c1a108a68_954773_480x0_resize_box_3.png 480w, https://gujh14.github.io/p/few-shot-learning-with-graph-neural-networks/Untitled16_hu734905f970a0a113fc187b3c1a108a68_954773_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;Omniglot&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;229&#34;
+		data-flex-basis=&#34;551px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;Mini-ImageNet: Originally introduced by Vinyals et al.(2016)&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://gujh14.github.io/p/few-shot-learning-with-graph-neural-networks/Untitled17.png&#34;
+	width=&#34;1628&#34;
+	height=&#34;584&#34;
+	srcset=&#34;https://gujh14.github.io/p/few-shot-learning-with-graph-neural-networks/Untitled17_hu78e7bfaf35d1da92942e4f4a1fe7dadb_170810_480x0_resize_box_3.png 480w, https://gujh14.github.io/p/few-shot-learning-with-graph-neural-networks/Untitled17_hu78e7bfaf35d1da92942e4f4a1fe7dadb_170810_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;278&#34;
+		data-flex-basis=&#34;669px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;# of parameters: $\sim 11\text{M} (\text{TCML})$, $\sim 400 \text{K}(3 \text{ layers GNN})$&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://gujh14.github.io/p/few-shot-learning-with-graph-neural-networks/Untitled18.png&#34;
+	width=&#34;795&#34;
+	height=&#34;400&#34;
+	srcset=&#34;https://gujh14.github.io/p/few-shot-learning-with-graph-neural-networks/Untitled18_hu379e1637ed83ad26af73f3539cf37e81_707619_480x0_resize_box_3.png 480w, https://gujh14.github.io/p/few-shot-learning-with-graph-neural-networks/Untitled18_hu379e1637ed83ad26af73f3539cf37e81_707619_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;Mini-ImageNet&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;198&#34;
+		data-flex-basis=&#34;477px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;Mini-ImageNet&lt;/p&gt;
+&lt;p&gt;Divided into 64 training, 16 validation, 20 testing classes each containing 600 examples.&lt;/p&gt;
+&lt;h3 id=&#34;semi-supervised-learning&#34;&gt;Semi-supervised learning&lt;/h3&gt;
+&lt;p&gt;Omniglot&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://gujh14.github.io/p/few-shot-learning-with-graph-neural-networks/Untitled19.png&#34;
+	width=&#34;1444&#34;
+	height=&#34;304&#34;
+	srcset=&#34;https://gujh14.github.io/p/few-shot-learning-with-graph-neural-networks/Untitled19_hu21116ea201fb3837edc6f9ad35132df9_60736_480x0_resize_box_3.png 480w, https://gujh14.github.io/p/few-shot-learning-with-graph-neural-networks/Untitled19_hu21116ea201fb3837edc6f9ad35132df9_60736_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;475&#34;
+		data-flex-basis=&#34;1140px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;Mini-ImageNet&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://gujh14.github.io/p/few-shot-learning-with-graph-neural-networks/Untitled20.png&#34;
+	width=&#34;1666&#34;
+	height=&#34;342&#34;
+	srcset=&#34;https://gujh14.github.io/p/few-shot-learning-with-graph-neural-networks/Untitled20_hu1158a4c24840395ac6dcb63f5d7034ea_78788_480x0_resize_box_3.png 480w, https://gujh14.github.io/p/few-shot-learning-with-graph-neural-networks/Untitled20_hu1158a4c24840395ac6dcb63f5d7034ea_78788_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;487&#34;
+		data-flex-basis=&#34;1169px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;h3 id=&#34;active-learning&#34;&gt;Active learning&lt;/h3&gt;
+&lt;p&gt;&lt;img src=&#34;https://gujh14.github.io/p/few-shot-learning-with-graph-neural-networks/Untitled21.png&#34;
+	width=&#34;1676&#34;
+	height=&#34;444&#34;
+	srcset=&#34;https://gujh14.github.io/p/few-shot-learning-with-graph-neural-networks/Untitled21_hu57c3addab4b9d756f0d1227c98fe6ef2_119500_480x0_resize_box_3.png 480w, https://gujh14.github.io/p/few-shot-learning-with-graph-neural-networks/Untitled21_hu57c3addab4b9d756f0d1227c98fe6ef2_119500_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;377&#34;
+		data-flex-basis=&#34;905px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;Random: Network chooses a random sample to be labeled, instead of one that maximally reduces the loss of the classification task $\mathcal{T}$&lt;/p&gt;
+&lt;h2 id=&#34;references&#34;&gt;References&lt;/h2&gt;
+</description>
+        </item>
+        <item>
         <title>MAML: Model-Agnostic Meta -Learning for Fast Adaptation of Deep Networks</title>
         <link>https://gujh14.github.io/p/maml-model-agnostic-meta-learning-for-fast-adaptation-of-deep-networks/</link>
         <pubDate>Wed, 15 Sep 2021 00:00:00 +0000</pubDate>

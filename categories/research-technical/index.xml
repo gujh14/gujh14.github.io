@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
-        <title>Research - Technical on JH Gu&#39;s Tech Blog</title>
+        <title>Research (Technical) on JH Gu&#39;s Tech Blog</title>
         <link>https://gujh14.github.io/categories/research-technical/</link>
-        <description>Recent content in Research - Technical on JH Gu&#39;s Tech Blog</description>
+        <description>Recent content in Research (Technical) on JH Gu&#39;s Tech Blog</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>en-us</language>
         <lastBuildDate>Tue, 22 Nov 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://gujh14.github.io/categories/research-technical/index.xml" rel="self" type="application/rss+xml" /><item>
@@ -658,6 +658,985 @@ HamNet showed that neural networks can simulate molecular dynamics for conformat
 &lt;p&gt;No!&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
+</description>
+        </item>
+        <item>
+        <title>Few-shot Learning with Graph Neural Networks</title>
+        <link>https://gujh14.github.io/p/few-shot-learning-with-graph-neural-networks/</link>
+        <pubDate>Fri, 15 Oct 2021 00:00:00 +0000</pubDate>
+        
+        <guid>https://gujh14.github.io/p/few-shot-learning-with-graph-neural-networks/</guid>
+        <description>&lt;img src="https://gujh14.github.io/p/few-shot-learning-with-graph-neural-networks/0.png" alt="Featured image of post Few-shot Learning with Graph Neural Networks" /&gt;&lt;p&gt;ICLR, &amp;lsquo;17,&lt;br&gt;
+&lt;a class=&#34;link&#34; href=&#34;https://arxiv.org/abs/1711.04043&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Few-Shot Learning with Graph Neural Networks&lt;/a&gt;&lt;/p&gt;
+&lt;h1 id=&#34;summary&#34;&gt;Summary&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;Used similarity value between samples for few shot learning.&lt;/li&gt;
+&lt;li&gt;Regard each sample as nodes, and similarity kernel as edges.&lt;/li&gt;
+&lt;li&gt;Similarity kernel is trainable. (i.e. Not just simple inner product)&lt;/li&gt;
+&lt;li&gt;Can be applied to semi-supervised learning and active learning.&lt;/li&gt;
+&lt;li&gt;State-of-the-art performance in Omniglot and Mini-ImageNet in 2017.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;keywords&#34;&gt;Keywords&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Few shot learning&lt;/li&gt;
+&lt;li&gt;Graph neural network&lt;/li&gt;
+&lt;li&gt;Semi-supervised learning&lt;/li&gt;
+&lt;li&gt;Active learning with Attention&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Supervised end-to-end learning has been extremely successful in computer vision, speech, or machine translation tasks.&lt;/li&gt;
+&lt;li&gt;However, there are some tasks(e.g. few shot learning) that cannot achieve high performance with conventional methods.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;New&lt;/strong&gt; supervised learning setup
+&lt;ul&gt;
+&lt;li&gt;Input-output setup:
+&lt;ul&gt;
+&lt;li&gt;With i.i.d. samples  of collections of images and their associated label similarity&lt;/li&gt;
+&lt;li&gt;cf) conventional setup: i.i.d. samples of images and their associated labels&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Authors&amp;rsquo; model can be extended to semi-supervised and active learning
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Semi-supervised learning:&lt;/p&gt;
+&lt;p&gt;Learning from a mixture of labeled and unlabeled examples&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://gujh14.github.io/p/few-shot-learning-with-graph-neural-networks/Untitled2.png&#34;
+	width=&#34;1024&#34;
+	height=&#34;428&#34;
+	srcset=&#34;https://gujh14.github.io/p/few-shot-learning-with-graph-neural-networks/Untitled2_huc1bfe4fa7e46f3525a992e0a384e32c8_196077_480x0_resize_box_3.png 480w, https://gujh14.github.io/p/few-shot-learning-with-graph-neural-networks/Untitled2_huc1bfe4fa7e46f3525a992e0a384e32c8_196077_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;https://blog.est.ai/2020/11/ssl/&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;239&#34;
+		data-flex-basis=&#34;574px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Active learning:&lt;/p&gt;
+&lt;p&gt;The learner has the option to request those missing labels that will be most helpful for the prediction task&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://gujh14.github.io/p/few-shot-learning-with-graph-neural-networks/Untitled3.png&#34;
+	width=&#34;1704&#34;
+	height=&#34;610&#34;
+	srcset=&#34;https://gujh14.github.io/p/few-shot-learning-with-graph-neural-networks/Untitled3_huc6f63af45ed0ccc0628e36f08d894c39_473048_480x0_resize_box_3.png 480w, https://gujh14.github.io/p/few-shot-learning-with-graph-neural-networks/Untitled3_huc6f63af45ed0ccc0628e36f08d894c39_473048_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;ICML 2019 active learning tutorial&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;279&#34;
+		data-flex-basis=&#34;670px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://gujh14.github.io/p/few-shot-learning-with-graph-neural-networks/Untitled4.png&#34;
+	width=&#34;1024&#34;
+	height=&#34;428&#34;
+	srcset=&#34;https://gujh14.github.io/p/few-shot-learning-with-graph-neural-networks/Untitled4_hu29a98bb38a9c671de7bd69329e42d18f_525600_480x0_resize_box_3.png 480w, https://gujh14.github.io/p/few-shot-learning-with-graph-neural-networks/Untitled4_hu29a98bb38a9c671de7bd69329e42d18f_525600_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;Annotated by JH Gu&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;239&#34;
+		data-flex-basis=&#34;574px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;closely-related-works-and-ideas&#34;&gt;Closely related works and ideas&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;[Research article] Matching Networks for One shot learning - Vinyals et al.(2016)&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Mapped support set of images into the desired label.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;And developed an end-to-end trainable k-nearest neighbors, accepting those support sets as input via attention LSTM.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://gujh14.github.io/p/few-shot-learning-with-graph-neural-networks/Untitled5.png&#34;
+	width=&#34;2610&#34;
+	height=&#34;1132&#34;
+	srcset=&#34;https://gujh14.github.io/p/few-shot-learning-with-graph-neural-networks/Untitled5_hu0e12fc917e2d1e75fc1d11c369c80fd5_198931_480x0_resize_box_3.png 480w, https://gujh14.github.io/p/few-shot-learning-with-graph-neural-networks/Untitled5_hu0e12fc917e2d1e75fc1d11c369c80fd5_198931_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;Vinyals et al.(2016), cited over 3000 times&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;230&#34;
+		data-flex-basis=&#34;553px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://gujh14.github.io/p/few-shot-learning-with-graph-neural-networks/Untitled6.png&#34;
+	width=&#34;1722&#34;
+	height=&#34;1194&#34;
+	srcset=&#34;https://gujh14.github.io/p/few-shot-learning-with-graph-neural-networks/Untitled6_hu682bd0f012da9d625d12e31d1ed30fa9_900563_480x0_resize_box_3.png 480w, https://gujh14.github.io/p/few-shot-learning-with-graph-neural-networks/Untitled6_hu682bd0f012da9d625d12e31d1ed30fa9_900563_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;144&#34;
+		data-flex-basis=&#34;346px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://gujh14.github.io/p/few-shot-learning-with-graph-neural-networks/Untitled7.png&#34;
+	width=&#34;2114&#34;
+	height=&#34;786&#34;
+	srcset=&#34;https://gujh14.github.io/p/few-shot-learning-with-graph-neural-networks/Untitled7_huc8e7223a5841039c99c90f590a76f75b_236044_480x0_resize_box_3.png 480w, https://gujh14.github.io/p/few-shot-learning-with-graph-neural-networks/Untitled7_huc8e7223a5841039c99c90f590a76f75b_236044_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;268&#34;
+		data-flex-basis=&#34;645px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;$k$: number of data in support set&lt;/li&gt;
+&lt;li&gt;$\hat{x}$: new data&lt;/li&gt;
+&lt;li&gt;$\hat{y}$: its class&lt;/li&gt;
+&lt;li&gt;$\hat{y}$ is a linear combination of the labels in the support set&lt;/li&gt;
+&lt;li&gt;$a$: attention mechanism, which is a kernel&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;[Research article] Prototypical Networks for Few-shot Learning - Snell et al.(2017)&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://gujh14.github.io/p/few-shot-learning-with-graph-neural-networks/Untitled8.png&#34;
+	width=&#34;1096&#34;
+	height=&#34;320&#34;
+	srcset=&#34;https://gujh14.github.io/p/few-shot-learning-with-graph-neural-networks/Untitled8_hu673a9f33c51a89e6c015e050431013a1_40631_480x0_resize_box_3.png 480w, https://gujh14.github.io/p/few-shot-learning-with-graph-neural-networks/Untitled8_hu673a9f33c51a89e6c015e050431013a1_40631_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;342&#34;
+		data-flex-basis=&#34;822px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://blog.kakaocdn.net/dn/QTf75/btqV2blwJop/GPGDedaSftJNpHDXvq2XGk/img.gif&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;https://blog.kakaocdn.net/dn/QTf75/btqV2blwJop/GPGDedaSftJNpHDXvq2XGk/img.gif&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;Authors point out the overfitting problem of Matching networks.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Prototype: Center(mean) of each class cluster&lt;/li&gt;
+&lt;li&gt;Similarity: $-\text{Euclidean distance}$&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;[Review article] Geometric deep learning - Bronstein et al.(2017)&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://gujh14.github.io/p/few-shot-learning-with-graph-neural-networks/Untitled9.png&#34;
+	width=&#34;3380&#34;
+	height=&#34;760&#34;
+	srcset=&#34;https://gujh14.github.io/p/few-shot-learning-with-graph-neural-networks/Untitled9_huce1372555d0695877b90856ae5320997_165518_480x0_resize_box_3.png 480w, https://gujh14.github.io/p/few-shot-learning-with-graph-neural-networks/Untitled9_huce1372555d0695877b90856ae5320997_165518_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;444&#34;
+		data-flex-basis=&#34;1067px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&amp;ldquo;Geometric deep learning is an umbrella term for emerging techniques attempting to generalize deep models to non-Euclidian domains such as graphs and manifolds&amp;rdquo;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;[Research article] Message passing - Gilmer et al.(2017)&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://gujh14.github.io/p/few-shot-learning-with-graph-neural-networks/Untitled10.png&#34;
+	width=&#34;3232&#34;
+	height=&#34;614&#34;
+	srcset=&#34;https://gujh14.github.io/p/few-shot-learning-with-graph-neural-networks/Untitled10_hu1eef0041f9c47cde680bf6ae160fab5e_104258_480x0_resize_box_3.png 480w, https://gujh14.github.io/p/few-shot-learning-with-graph-neural-networks/Untitled10_hu1eef0041f9c47cde680bf6ae160fab5e_104258_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;526&#34;
+		data-flex-basis=&#34;1263px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;$$
+m^{t+1}_v = \sum_{w \in N(v)} M_t(h^t_v, h^t_w, e_{vw}) \ h^{t+1}_v = U_t(h^t_v, m^{t+1}_v )
+$$&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;$M_t$: message functions&lt;/li&gt;
+&lt;li&gt;$U_t$: vertex update functions&lt;/li&gt;
+&lt;li&gt;$h^t_v$: hidden states of node $v$ in the graph at time $t$&lt;/li&gt;
+&lt;li&gt;$m^{t+1}_v$: messages of node $v$ in the graph at time $t+1$&lt;/li&gt;
+&lt;li&gt;$N(v)$: neighbors of node $v$&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;e.g.)&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://miro.medium.com/max/1400/1*oSQyFjtUkI7_u7lJXWU68Q.gif&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;GIF from https://towardsdatascience.com/introduction-to-message-passing-neural-networks-e670dc103a87&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;problem-set-up&#34;&gt;Problem set-up&lt;/h2&gt;
+&lt;p&gt;Authors view the task as a supervised interpolation problem on a graph&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Nodes: &lt;strong&gt;Images&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;Edges: &lt;strong&gt;Similarity kernels →&lt;/strong&gt; &lt;em&gt;TRAINABLE&lt;/em&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;general-set-up&#34;&gt;General set-up&lt;/h3&gt;
+&lt;p&gt;Input-output pairs $(\mathcal{T}_i, Y_i)_i$ drawn from i.i.d. from a distribution $\mathcal{P}$ of partially labeled image collections&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://gujh14.github.io/p/few-shot-learning-with-graph-neural-networks/Untitled11.png&#34;
+	width=&#34;4000&#34;
+	height=&#34;423&#34;
+	srcset=&#34;https://gujh14.github.io/p/few-shot-learning-with-graph-neural-networks/Untitled11_hu5436287761932c1cedb9fbd5fa84a3d6_135160_480x0_resize_box_3.png 480w, https://gujh14.github.io/p/few-shot-learning-with-graph-neural-networks/Untitled11_hu5436287761932c1cedb9fbd5fa84a3d6_135160_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;945&#34;
+		data-flex-basis=&#34;2269px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;$s$: # labeled samples&lt;/li&gt;
+&lt;li&gt;$r$: # unlabled samples&lt;/li&gt;
+&lt;li&gt;$t$: # samples to classify&lt;/li&gt;
+&lt;li&gt;$K$: # classes&lt;/li&gt;
+&lt;li&gt;$\mathcal{P}_l(\mathbb{R}^N)$: class-specific image distribution over $\mathbb{R}^N$&lt;/li&gt;
+&lt;li&gt;targets $Y_i$ are associated with $\bar{x}_1, &amp;hellip;, \bar{x}_t \in \mathcal{T}_i$&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Learning objective:&lt;/p&gt;
+&lt;p&gt;$\min_\Theta \frac{1}{L} \sum_{i \leq L} \ell(\Phi(\mathcal{T}_i, \Theta), Y_i) + \mathcal{R}(\Theta)$&lt;/p&gt;
+&lt;p&gt;($\mathcal{R}$ is the standard regularization objective)&lt;/p&gt;
+&lt;h3 id=&#34;few-shot-learning-setting&#34;&gt;Few shot learning setting&lt;/h3&gt;
+&lt;p&gt;$r=0, t=1, s=qK$   $\longrightarrow$   $q-\text{shot} , K-\text{way}$&lt;/p&gt;
+&lt;h3 id=&#34;semi-supervised-learning-setting&#34;&gt;Semi-supervised learning setting&lt;/h3&gt;
+&lt;p&gt;$r &amp;gt; 0, t=1$&lt;/p&gt;
+&lt;p&gt;Model can use the auxiliary images(unlabeled set) ${ \tilde{x}_1, &amp;hellip;, \tilde{x}_r }$ to improve the prediction accuracy, by leveraging the fact that these samples are drawn from the common distributions.&lt;/p&gt;
+&lt;h3 id=&#34;active-learning-setting&#34;&gt;Active learning setting&lt;/h3&gt;
+&lt;p&gt;The learner has the ability to request labels from the auxiliary images ${\tilde{x}_1, &amp;hellip;, \tilde{x}_r}$.&lt;/p&gt;
+&lt;h2 id=&#34;model&#34;&gt;Model&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&#34;https://gujh14.github.io/p/few-shot-learning-with-graph-neural-networks/Untitled12.png&#34;
+	width=&#34;1188&#34;
+	height=&#34;900&#34;
+	srcset=&#34;https://gujh14.github.io/p/few-shot-learning-with-graph-neural-networks/Untitled12_hu518b9887168c60fff5bff4e932a1b548_336596_480x0_resize_box_3.png 480w, https://gujh14.github.io/p/few-shot-learning-with-graph-neural-networks/Untitled12_hu518b9887168c60fff5bff4e932a1b548_336596_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;132&#34;
+		data-flex-basis=&#34;316px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;$\phi(x)$: CNN&lt;/li&gt;
+&lt;li&gt;$h(l)$: One-hot encoded label(for labeled set), or uniform distribution(for unlabeled set)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;set-and-graph-input-representations&#34;&gt;Set and Graph Input Representations&lt;/h3&gt;
+&lt;p&gt;The goal of few shot learning:&lt;/p&gt;
+&lt;p&gt;To propagate label information from labeled samples towards the unlabeled query image&lt;/p&gt;
+&lt;p&gt;→ The propagation can be formalized as a posterior inference over a graphical model&lt;/p&gt;
+&lt;p&gt;$G_\mathcal{T} = (V,E)$&lt;/p&gt;
+&lt;p&gt;Similarity measure is not pre-specified, but learned!&lt;/p&gt;
+&lt;p&gt;c.f.) in Siamese network, the similarity measure is fixed(L1 distance)!&lt;/p&gt;
+&lt;p&gt;본 논문(Few shot learning with GNN)에 쓰인 문장 구조가 이상해서 헷갈리게 쓰여있음.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://gujh14.github.io/p/few-shot-learning-with-graph-neural-networks/Untitled13.png&#34;
+	width=&#34;3024&#34;
+	height=&#34;1004&#34;
+	srcset=&#34;https://gujh14.github.io/p/few-shot-learning-with-graph-neural-networks/Untitled13_hu195ce8430d176ca0bb51f3bd3cc2cd4a_386759_480x0_resize_box_3.png 480w, https://gujh14.github.io/p/few-shot-learning-with-graph-neural-networks/Untitled13_hu195ce8430d176ca0bb51f3bd3cc2cd4a_386759_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;Koch et al.(2015), https://tyami.github.io/deep learning/Siamese-neural-networks/&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;301&#34;
+		data-flex-basis=&#34;722px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;h3 id=&#34;graph-neural-networks&#34;&gt;Graph Neural Networks&lt;/h3&gt;
+&lt;p&gt;&lt;img src=&#34;https://gujh14.github.io/p/few-shot-learning-with-graph-neural-networks/Untitled14.png&#34;
+	width=&#34;1982&#34;
+	height=&#34;838&#34;
+	srcset=&#34;https://gujh14.github.io/p/few-shot-learning-with-graph-neural-networks/Untitled14_hu2b7b1594699112bb43a74ec4c994064f_379402_480x0_resize_box_3.png 480w, https://gujh14.github.io/p/few-shot-learning-with-graph-neural-networks/Untitled14_hu2b7b1594699112bb43a74ec4c994064f_379402_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;236&#34;
+		data-flex-basis=&#34;567px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;We are given an input signal $F \in \mathbb{R}^{V \times d}$ on the vertices of a weighted graph $G$.&lt;/p&gt;
+&lt;p&gt;Then we consider a family, or a set &amp;ldquo;$\mathcal{A}$&amp;rdquo; of graph intrinsic linear operators.&lt;/p&gt;
+&lt;p&gt;$\mathcal{A} = {\tilde{A}^{(k)}, \mathbf{1}}$&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Linear operator&lt;/p&gt;
+&lt;p&gt;e.g.) Simplest linear operator is adjacency operator $A$, where $(AF)&lt;em&gt;i = \sum&lt;/em&gt;{j \sim i} w_{i,j}F_j$ ($w_{i,j}$ is associated weight)&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;GNN layer&lt;/p&gt;
+&lt;p&gt;A GNN layer $\text{Gc}(\cdot)$ receives as input a signal $\mathbf{x}^{(k)} \in \mathbb{R}^{V\times d_k}$ and produces $\mathbf{x}^{(k+1)} \in \mathbb{R}^{V\times d_{k+1}}$&lt;/p&gt;
+&lt;p&gt;$$
+\mathbf{x}^{(k+1)} = \text{Gc}(\mathbf{x}^{(k)}) = \rho\Big(\sum_{B\in\mathcal{A}} B\mathbf{x}^{(k)}\theta^{(k)}_{B, l}\Big )
+$$&lt;/p&gt;
+&lt;p&gt;$\mathbf{x}^{(k)}$: representation vector of a certain node at time step $k$&lt;/p&gt;
+&lt;p&gt;$\theta$: trainable parameters&lt;/p&gt;
+&lt;p&gt;$\rho$: Leaky ReLU&lt;/p&gt;
+&lt;p&gt;Construction of edge feature matrix, inspired by message passing algorithm&lt;/p&gt;
+&lt;p&gt;$$
+\tilde{A}^{(k)}_{i, j} = \varphi_{\tilde{\theta}}(\mathbf{x}^{(k)}_i, \mathbf{x}^{(k)}_j )
+$$&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;$\tilde{A}^{(k)}_{i, j}$: &lt;strong&gt;learned&lt;/strong&gt; edge features from the node&amp;rsquo;s current hidden representation(at time step $k$)&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;$\varphi$: a metric and a symmetric function parameterized with neural network&lt;/p&gt;
+&lt;p&gt;$$
+\varphi_{\tilde{\theta}}(\mathbf{x}^{(k)}_i, \mathbf{x}^{(k)}_j ) = \text{MLP}_{\tilde{\theta}}(abs(\mathbf{x}^{(k)}_i - \mathbf{x}^{(k)}_j))
+$$&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;→ $\tilde{A}^{(k)}$ is then normalized by row-wise softmax&lt;/p&gt;
+&lt;p&gt;→ And added to the family $\mathcal{A} = {\tilde{A}^{(k)}, \mathbf{1}}$&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;$\mathbf{1}$: Identity matrix, which is the self-edge to aggregate vertex&amp;rsquo;s own features&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Construction of initial node features&lt;/p&gt;
+&lt;p&gt;$$
+\mathbf{x}^{(0)}_i = (\phi(x_i), h(l_i))
+$$&lt;/p&gt;
+&lt;p&gt;$\phi$: convolutional neural network&lt;/p&gt;
+&lt;p&gt;$h(l) \in \mathbb{R}^K_+$ : a one-hot encoding of the label&lt;/p&gt;
+&lt;p&gt;For images with unknown label, $\tilde{x}_j$(unlabeled data) and  $\bar{x}_j$(test data), $h(l_j)$ is set with uniform distribution.&lt;/p&gt;
+&lt;h2 id=&#34;training&#34;&gt;Training&lt;/h2&gt;
+&lt;h3 id=&#34;few-shot-and-semi-supervised-learning&#34;&gt;Few-shot and Semi-supervised learning&lt;/h3&gt;
+&lt;p&gt;The final layer of GNN is a softmax mapping. We then use cross-entropy loss:&lt;/p&gt;
+&lt;p&gt;$$
+\ell(\Phi(\mathcal{T}; \Theta), Y) = -\sum_k y_k \log P(Y_* = y_k , |, \mathcal{T})
+$$&lt;/p&gt;
+&lt;p&gt;The semi-supervised setting is trained identically, but the initial label fields of $\tilde{x}_j$s will be filled with uniform distribution.&lt;/p&gt;
+&lt;h3 id=&#34;active-learning-with-attention&#34;&gt;Active learning (with attention)&lt;/h3&gt;
+&lt;p&gt;In active learning, the model has the intrinsic ability to query for one of the labels from ${ \tilde{x}_1, &amp;hellip;, \tilde{x}_r }$.&lt;/p&gt;
+&lt;p&gt;The network will learn to ask for the most informative label to classify the sample $\bar{x}$.&lt;/p&gt;
+&lt;p&gt;The querying is done after the first layer of GNN by using a softmax attention over the unlabeled nodes of the graph.&lt;/p&gt;
+&lt;p&gt;Attention&lt;/p&gt;
+&lt;p&gt;We apply a function $g(\mathbf{x}^{(1)}_i) \in \mathbb{R}^1$ that maps each unlabeld vector node to a scalar value.&lt;/p&gt;
+&lt;p&gt;A softmax is applied over the ${1, &amp;hellip;, r}$ scalar values obtained after applying $g$:&lt;/p&gt;
+&lt;p&gt;$r$: # unlabeled samples&lt;/p&gt;
+&lt;p&gt;$$
+\text{Attention} = \text{Softmax}(g(\mathbf{x}^{(1)}_{{1,&amp;hellip;,r}}))
+$$&lt;/p&gt;
+&lt;p&gt;To query only one sample we set all elements to zero except for one. → $\text{Attention}&#39;$&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;At training, model randomly samples one value based on its multinomial probability.&lt;/li&gt;
+&lt;li&gt;At test, model just keeps the maximum value.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Then we multiply this with the label vectors&lt;/p&gt;
+&lt;p&gt;$$
+w \cdot h(l_{i*}) = \langle \text{Attention}&amp;rsquo;, h(l_{{1, &amp;hellip;, r}}) \rangle
+$$&lt;/p&gt;
+&lt;p&gt;($w$ is scaling factor)&lt;/p&gt;
+&lt;p&gt;This value is then summed to the current representation.&lt;/p&gt;
+&lt;p&gt;$$
+\mathbf{x}^{(1)}_{i*} = [\text{Gc}(\mathbf{x}^{(0)}_{i*}), \mathbf{x}^{(0)}_{i*}] = [\text{Gc}(\mathbf{x}^{(0)}_{i*}), (\phi(x_{i*}), h(l_{i*}))]
+$$&lt;/p&gt;
+&lt;h2 id=&#34;results&#34;&gt;Results&lt;/h2&gt;
+&lt;h3 id=&#34;few-shot-learning&#34;&gt;Few-shot learning&lt;/h3&gt;
+&lt;p&gt;Omniglot&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://gujh14.github.io/p/few-shot-learning-with-graph-neural-networks/Untitled15.png&#34;
+	width=&#34;1744&#34;
+	height=&#34;720&#34;
+	srcset=&#34;https://gujh14.github.io/p/few-shot-learning-with-graph-neural-networks/Untitled15_hud1dea68979c0bbf767eb191d1fd1d37e_221954_480x0_resize_box_3.png 480w, https://gujh14.github.io/p/few-shot-learning-with-graph-neural-networks/Untitled15_hud1dea68979c0bbf767eb191d1fd1d37e_221954_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;242&#34;
+		data-flex-basis=&#34;581px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;# of parameters: $\sim5\text{M} (\text{TCML})$, $\sim300 \text{K}(3 \text{layers GNN})$&lt;/p&gt;
+&lt;p&gt;Omniglot: 1,623 characters  X 20 examples for each characters&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://gujh14.github.io/p/few-shot-learning-with-graph-neural-networks/Untitled16.png&#34;
+	width=&#34;2170&#34;
+	height=&#34;945&#34;
+	srcset=&#34;https://gujh14.github.io/p/few-shot-learning-with-graph-neural-networks/Untitled16_hu734905f970a0a113fc187b3c1a108a68_954773_480x0_resize_box_3.png 480w, https://gujh14.github.io/p/few-shot-learning-with-graph-neural-networks/Untitled16_hu734905f970a0a113fc187b3c1a108a68_954773_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;Omniglot&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;229&#34;
+		data-flex-basis=&#34;551px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;Mini-ImageNet: Originally introduced by Vinyals et al.(2016)&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://gujh14.github.io/p/few-shot-learning-with-graph-neural-networks/Untitled17.png&#34;
+	width=&#34;1628&#34;
+	height=&#34;584&#34;
+	srcset=&#34;https://gujh14.github.io/p/few-shot-learning-with-graph-neural-networks/Untitled17_hu78e7bfaf35d1da92942e4f4a1fe7dadb_170810_480x0_resize_box_3.png 480w, https://gujh14.github.io/p/few-shot-learning-with-graph-neural-networks/Untitled17_hu78e7bfaf35d1da92942e4f4a1fe7dadb_170810_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;278&#34;
+		data-flex-basis=&#34;669px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;# of parameters: $\sim 11\text{M} (\text{TCML})$, $\sim 400 \text{K}(3 \text{ layers GNN})$&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://gujh14.github.io/p/few-shot-learning-with-graph-neural-networks/Untitled18.png&#34;
+	width=&#34;795&#34;
+	height=&#34;400&#34;
+	srcset=&#34;https://gujh14.github.io/p/few-shot-learning-with-graph-neural-networks/Untitled18_hu379e1637ed83ad26af73f3539cf37e81_707619_480x0_resize_box_3.png 480w, https://gujh14.github.io/p/few-shot-learning-with-graph-neural-networks/Untitled18_hu379e1637ed83ad26af73f3539cf37e81_707619_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;Mini-ImageNet&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;198&#34;
+		data-flex-basis=&#34;477px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;Mini-ImageNet&lt;/p&gt;
+&lt;p&gt;Divided into 64 training, 16 validation, 20 testing classes each containing 600 examples.&lt;/p&gt;
+&lt;h3 id=&#34;semi-supervised-learning&#34;&gt;Semi-supervised learning&lt;/h3&gt;
+&lt;p&gt;Omniglot&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://gujh14.github.io/p/few-shot-learning-with-graph-neural-networks/Untitled19.png&#34;
+	width=&#34;1444&#34;
+	height=&#34;304&#34;
+	srcset=&#34;https://gujh14.github.io/p/few-shot-learning-with-graph-neural-networks/Untitled19_hu21116ea201fb3837edc6f9ad35132df9_60736_480x0_resize_box_3.png 480w, https://gujh14.github.io/p/few-shot-learning-with-graph-neural-networks/Untitled19_hu21116ea201fb3837edc6f9ad35132df9_60736_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;475&#34;
+		data-flex-basis=&#34;1140px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;Mini-ImageNet&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://gujh14.github.io/p/few-shot-learning-with-graph-neural-networks/Untitled20.png&#34;
+	width=&#34;1666&#34;
+	height=&#34;342&#34;
+	srcset=&#34;https://gujh14.github.io/p/few-shot-learning-with-graph-neural-networks/Untitled20_hu1158a4c24840395ac6dcb63f5d7034ea_78788_480x0_resize_box_3.png 480w, https://gujh14.github.io/p/few-shot-learning-with-graph-neural-networks/Untitled20_hu1158a4c24840395ac6dcb63f5d7034ea_78788_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;487&#34;
+		data-flex-basis=&#34;1169px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;h3 id=&#34;active-learning&#34;&gt;Active learning&lt;/h3&gt;
+&lt;p&gt;&lt;img src=&#34;https://gujh14.github.io/p/few-shot-learning-with-graph-neural-networks/Untitled21.png&#34;
+	width=&#34;1676&#34;
+	height=&#34;444&#34;
+	srcset=&#34;https://gujh14.github.io/p/few-shot-learning-with-graph-neural-networks/Untitled21_hu57c3addab4b9d756f0d1227c98fe6ef2_119500_480x0_resize_box_3.png 480w, https://gujh14.github.io/p/few-shot-learning-with-graph-neural-networks/Untitled21_hu57c3addab4b9d756f0d1227c98fe6ef2_119500_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;377&#34;
+		data-flex-basis=&#34;905px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;Random: Network chooses a random sample to be labeled, instead of one that maximally reduces the loss of the classification task $\mathcal{T}$&lt;/p&gt;
+&lt;h2 id=&#34;references&#34;&gt;References&lt;/h2&gt;
+</description>
+        </item>
+        <item>
+        <title>MAML: Model-Agnostic Meta -Learning for Fast Adaptation of Deep Networks</title>
+        <link>https://gujh14.github.io/p/maml-model-agnostic-meta-learning-for-fast-adaptation-of-deep-networks/</link>
+        <pubDate>Wed, 15 Sep 2021 00:00:00 +0000</pubDate>
+        
+        <guid>https://gujh14.github.io/p/maml-model-agnostic-meta-learning-for-fast-adaptation-of-deep-networks/</guid>
+        <description>&lt;img src="https://gujh14.github.io/thumbnail.png" alt="Featured image of post MAML: Model-Agnostic Meta -Learning for Fast Adaptation of Deep Networks" /&gt;&lt;p&gt;ICML, &amp;lsquo;17&lt;br&gt;
+&lt;a class=&#34;link&#34; href=&#34;https://arxiv.org/abs/1703.03400&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Model-Agnostic Meta-Learning for Fast Adaptation of Deep Networks&lt;/a&gt;&lt;/p&gt;
+&lt;h1 id=&#34;summary&#34;&gt;Summary&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;MAML is a general and model-agnostic algorithm that can be directly applied to a model trained with &lt;strong&gt;gradient descent&lt;/strong&gt; procedure.&lt;/li&gt;
+&lt;li&gt;MAML does not expand the number of learned parameters.&lt;/li&gt;
+&lt;li&gt;MAML does not place constraints on the model architecture.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;keywords&#34;&gt;Keywords&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Model agnostic&lt;/li&gt;
+&lt;li&gt;Fast adaptation&lt;/li&gt;
+&lt;li&gt;Optimization based approach&lt;/li&gt;
+&lt;li&gt;Learning good model parameters&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;preliminaries&#34;&gt;Preliminaries&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Common Approaches of Meta-Learning and MAML&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://gujh14.github.io/p/maml-model-agnostic-meta-learning-for-fast-adaptation-of-deep-networks/Untitled.png&#34;
+	width=&#34;1522&#34;
+	height=&#34;726&#34;
+	srcset=&#34;https://gujh14.github.io/p/maml-model-agnostic-meta-learning-for-fast-adaptation-of-deep-networks/Untitled_hu2810079d992af17206a7c032e637187e_371302_480x0_resize_box_3.png 480w, https://gujh14.github.io/p/maml-model-agnostic-meta-learning-for-fast-adaptation-of-deep-networks/Untitled_hu2810079d992af17206a7c032e637187e_371302_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;https://lilianweng.github.io/lil-log/2018/11/30/meta-learning.html&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;209&#34;
+		data-flex-basis=&#34;503px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;MAML is one of the most influential model of optimization-based approaches.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://gujh14.github.io/p/maml-model-agnostic-meta-learning-for-fast-adaptation-of-deep-networks/Untitled1.png&#34;
+	width=&#34;1484&#34;
+	height=&#34;834&#34;
+	srcset=&#34;https://gujh14.github.io/p/maml-model-agnostic-meta-learning-for-fast-adaptation-of-deep-networks/Untitled1_hu7ef081ff7698cafbf43593ac8d1bcbcd_922101_480x0_resize_box_3.png 480w, https://gujh14.github.io/p/maml-model-agnostic-meta-learning-for-fast-adaptation-of-deep-networks/Untitled1_hu7ef081ff7698cafbf43593ac8d1bcbcd_922101_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;https://youtu.be/Izqod36syY8&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;177&#34;
+		data-flex-basis=&#34;427px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;A few terminologies of meta-learning problems&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://gujh14.github.io/p/maml-model-agnostic-meta-learning-for-fast-adaptation-of-deep-networks/Untitled2.png&#34;
+	width=&#34;2102&#34;
+	height=&#34;1524&#34;
+	srcset=&#34;https://gujh14.github.io/p/maml-model-agnostic-meta-learning-for-fast-adaptation-of-deep-networks/Untitled2_hu73d9cc73c6ab2d7d1dd2a961a777268b_357680_480x0_resize_box_3.png 480w, https://gujh14.github.io/p/maml-model-agnostic-meta-learning-for-fast-adaptation-of-deep-networks/Untitled2_hu73d9cc73c6ab2d7d1dd2a961a777268b_357680_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;https://ai.stanford.edu/~cbfinn/_files/dissertation.pdf&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;137&#34;
+		data-flex-basis=&#34;331px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&#34;https://gujh14.github.io/p/maml-model-agnostic-meta-learning-for-fast-adaptation-of-deep-networks/Untitled3.png&#34;
+	width=&#34;636&#34;
+	height=&#34;382&#34;
+	srcset=&#34;https://gujh14.github.io/p/maml-model-agnostic-meta-learning-for-fast-adaptation-of-deep-networks/Untitled3_hu49418efd97bf156417160555a8d5baef_47140_480x0_resize_box_3.png 480w, https://gujh14.github.io/p/maml-model-agnostic-meta-learning-for-fast-adaptation-of-deep-networks/Untitled3_hu49418efd97bf156417160555a8d5baef_47140_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;166&#34;
+		data-flex-basis=&#34;399px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;Goal of ideal artificial agent:&lt;/p&gt;
+&lt;p&gt;Learning and adapting quickly from only a few examples.&lt;/p&gt;
+&lt;p&gt;To do so, an agent must..&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Integrate its prior experience with a small amount of new information.&lt;/li&gt;
+&lt;li&gt;Avoid overfitting to the new data.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;→ Meta-learning has same goals.&lt;/p&gt;
+&lt;p&gt;MAML:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&amp;ldquo;The key idea of MAML is to train the model&amp;rsquo;s &lt;strong&gt;initial parameters&lt;/strong&gt; such that the model has maximal performance on a new task after the parameters have been updated through one or more gradient steps computed with a small amount of data from that new task.&amp;rdquo;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Learning process of MAML:&lt;/p&gt;
+&lt;p&gt;MAML maximizes the sensitivity of the loss functions of new tasks.&lt;/p&gt;
+&lt;p&gt;Authors demonstrated the algorithm on three different model types.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Few-shot regression&lt;/li&gt;
+&lt;li&gt;Image classification&lt;/li&gt;
+&lt;li&gt;Reinforcement learning&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;2-model-agnostic-meta-learning&#34;&gt;2. Model-Agnostic Meta Learning&lt;/h2&gt;
+&lt;h3 id=&#34;21-meta-learning-problem-set-up&#34;&gt;2.1. Meta-Learning Problem Set-Up&lt;/h3&gt;
+&lt;p&gt;To apply MAML to a variety of learning problems, authors introduce a generic notion of a learning task:&lt;/p&gt;
+&lt;p&gt;$\mathcal{T} = { \mathcal{L}(\mathbf{x}_1, \mathbf{a}_1, &amp;hellip;, \mathbf{x}_H, \mathbf{a}_H), q(\mathbf{x}_1), q(\mathbf{x}_{t+1}|\mathbf{x}_t, \mathbf{a}_t), H }$&lt;/p&gt;
+&lt;p&gt;Each task $\mathcal{T}$ consists of..&lt;/p&gt;
+&lt;p&gt;$\mathcal{L}$: a loss function, might be misclassification loss or a cost function in a Markov decision process&lt;/p&gt;
+&lt;p&gt;$q(\mathbf{x}_1)$: a distribution over initial observations&lt;/p&gt;
+&lt;p&gt;$q(\mathbf{x}_{t+1}|\mathbf{x}_t , \mathbf{a}_t)$: a transition distribution&lt;/p&gt;
+&lt;p&gt;$H$: an episode length(e.g. in i.i.d. supervised learning problems, the length $H = 1$.)&lt;/p&gt;
+&lt;p&gt;Authors consider a distribution over tasks $p(\mathcal{T})$&lt;/p&gt;
+&lt;p&gt;Meta-training:&lt;/p&gt;
+&lt;p&gt;A new task $\mathcal{T}_i$ is sampled from $p(\mathcal{T})$.&lt;/p&gt;
+&lt;p&gt;The model is trained with only $K$ samples drawn from $q_i$.&lt;/p&gt;
+&lt;p&gt;Loss $\mathcal{L}_{\mathcal{T}_i}$ is calculated and feedbacked to model.&lt;/p&gt;
+&lt;p&gt;Model $f$ is tested on new samples from $\mathcal{T}_i$.&lt;/p&gt;
+&lt;p&gt;The model $f$ is then improved by considering how the $test$ error on new data from $q_i$ changes with respect to the parameters.&lt;/p&gt;
+&lt;h3 id=&#34;22-a-model-agnostic-meta-learning-algorithm&#34;&gt;2.2. A Model-Agnostic Meta-Learning Algorithm&lt;/h3&gt;
+&lt;p&gt;Intuition: Some internal representations are more transferrable than others. How can we encourage the emergence of such general-purpose representations?&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://gujh14.github.io/p/maml-model-agnostic-meta-learning-for-fast-adaptation-of-deep-networks/Untitled4.png&#34;
+	width=&#34;2354&#34;
+	height=&#34;1132&#34;
+	srcset=&#34;https://gujh14.github.io/p/maml-model-agnostic-meta-learning-for-fast-adaptation-of-deep-networks/Untitled4_huffde7ac579bb4dc3080f2015f65a7fd2_1156243_480x0_resize_box_3.png 480w, https://gujh14.github.io/p/maml-model-agnostic-meta-learning-for-fast-adaptation-of-deep-networks/Untitled4_huffde7ac579bb4dc3080f2015f65a7fd2_1156243_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;207&#34;
+		data-flex-basis=&#34;499px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://gujh14.github.io/p/maml-model-agnostic-meta-learning-for-fast-adaptation-of-deep-networks/Untitled5.png&#34;
+	width=&#34;2360&#34;
+	height=&#34;1116&#34;
+	srcset=&#34;https://gujh14.github.io/p/maml-model-agnostic-meta-learning-for-fast-adaptation-of-deep-networks/Untitled5_hu896a6c8d932c96e0c863feb29ee4c599_1114541_480x0_resize_box_3.png 480w, https://gujh14.github.io/p/maml-model-agnostic-meta-learning-for-fast-adaptation-of-deep-networks/Untitled5_hu896a6c8d932c96e0c863feb29ee4c599_1114541_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;211&#34;
+		data-flex-basis=&#34;507px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;A model $f_\theta$ has paramters $\theta$.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;For each task $\mathcal{T}_i$, $f_\theta$&amp;rsquo;s parameters $\theta$ become $\theta_i&amp;rsquo;$.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Algorithm&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://gujh14.github.io/p/maml-model-agnostic-meta-learning-for-fast-adaptation-of-deep-networks/Untitled6.png&#34;
+	width=&#34;862&#34;
+	height=&#34;598&#34;
+	srcset=&#34;https://gujh14.github.io/p/maml-model-agnostic-meta-learning-for-fast-adaptation-of-deep-networks/Untitled6_hu4f3fbc659182e4f29d6ca5f28e4663c9_286070_480x0_resize_box_3.png 480w, https://gujh14.github.io/p/maml-model-agnostic-meta-learning-for-fast-adaptation-of-deep-networks/Untitled6_hu4f3fbc659182e4f29d6ca5f28e4663c9_286070_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;144&#34;
+		data-flex-basis=&#34;345px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;cf) Terminologies for below description(temporarily defined by JH Gu)&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://gujh14.github.io/p/maml-model-agnostic-meta-learning-for-fast-adaptation-of-deep-networks/Untitled7.png&#34;
+	width=&#34;1708&#34;
+	height=&#34;1352&#34;
+	srcset=&#34;https://gujh14.github.io/p/maml-model-agnostic-meta-learning-for-fast-adaptation-of-deep-networks/Untitled7_hu8110c6352be8c0d888d6667531616c11_282586_480x0_resize_box_3.png 480w, https://gujh14.github.io/p/maml-model-agnostic-meta-learning-for-fast-adaptation-of-deep-networks/Untitled7_hu8110c6352be8c0d888d6667531616c11_282586_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;126&#34;
+		data-flex-basis=&#34;303px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Divide tasks&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;Separate tasks into meta-training task set(${\mathcal{T}_i^{\text{tr}}}$) and meta-test task set(${\mathcal{T}_i^{\text{test}}}$).&lt;/p&gt;
+&lt;p&gt;(We can think of ${\mathcal{T}_i^{\text{tr}}}$ as monthly tests(모의고사), and ${\mathcal{T}_i^{\text{test}}}$ as annual tests(수능))&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;For each task, divide each samples into $\mathcal{D}_{\mathcal{T}_i}^{\text{study}}$(task-specific samples for studying, also called as support set), $\mathcal{D}_{\mathcal{T_i}}^{\text{check}}$(task-specific samples for checking, also called as query set)&lt;/p&gt;
+&lt;p&gt;(We can think of $\mathcal{D}_{\mathcal{T}_i}^{\text{study}}$ as 필수예제 in 수학의 정석, and $\mathcal{D}_{\mathcal{T}_i}^{\text{check}}$ as 연습문제 in 수학의 정석)&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Meta-training using meta-training task set ${\mathcal{T}_i^{\text{tr}}}$&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Inner loop(task-specific $K$-shot learning)&lt;/p&gt;
+&lt;p&gt;For each $\mathcal{T}_i$ in ${\mathcal{T}_i^{\text{tr}}}$, a new parameter $\theta_i&amp;rsquo;$ is created.&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;Each $\theta_i&amp;rsquo;$ is initialized as $\theta$.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;With task-specific samples for studying($\mathcal{D}_{\mathcal{T}_i^{\text{tr}}}^{\text{study}}$), each $\theta_i&amp;rsquo;$ is updated by:&lt;/p&gt;
+&lt;p&gt;$$
+\theta_i&amp;rsquo; = \theta - \alpha \nabla_\theta \mathcal{L}_{\mathcal{T}_i}(f_\theta)
+$$&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Outer loop(meta-learning across tasks)&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;With task-specific samples for checking($\mathcal{D}_{\mathcal{T_i}^{\text{tr}}}^{\text{check}}$), $\theta$ is updated by:&lt;/p&gt;
+&lt;p&gt;$$
+\theta = \theta - \beta \nabla_\theta \sum_{\mathcal{T}_i \sim p(\mathcal{T})}\mathcal{L}_{\mathcal{T}_i} (f_{\theta_i&amp;rsquo;})
+$$&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;cf) second-order derivative(Hessian) problem&lt;/p&gt;
+&lt;p&gt;The MAML meta-gradient update(outer loop) involves a gradient through a gradient, which can be resource-intensive. This requires an additional backward pass through $f$ to compute Hessian vector products.&lt;/p&gt;
+&lt;p&gt;$$
+\begin{align*} \textcolor{red}{\theta&amp;rsquo;} &amp;amp;= \theta - \alpha \nabla_\theta \mathcal{L}(\theta) \ \nabla_\theta \mathcal{L}(\textcolor{red}{\theta&amp;rsquo;}) &amp;amp;= (\textcolor{red}\nabla_{\textcolor{red}{\theta&amp;rsquo;}} \mathcal{L}(\textcolor{red}{\theta&amp;rsquo;})) \cdot (\nabla_\theta \textcolor{red}{\theta&amp;rsquo;}) \ &amp;amp;= (\textcolor{red}\nabla_{\textcolor{red}{\theta&amp;rsquo;}} \mathcal{L}(\textcolor{red}{\theta&amp;rsquo;})) \cdot (\nabla_\theta (\theta - \alpha \nabla_\theta \mathcal{L}(\theta)) \ &amp;amp;\approx (\textcolor{red}\nabla_{\textcolor{red}{\theta&amp;rsquo;}} \mathcal{L}(\textcolor{red}{\theta&amp;rsquo;})) \cdot (\nabla_\theta \theta) \ &amp;amp;= (\textcolor{red}\nabla_{\textcolor{red}{\theta&amp;rsquo;}} \mathcal{L}(\textcolor{red}{\theta&amp;rsquo;})) \end{align*}
+$$&lt;/p&gt;
+&lt;p&gt;Authors included a comparison to drop the backward pass term and using just the first-order approximation, which showed not much difference.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://gujh14.github.io/p/maml-model-agnostic-meta-learning-for-fast-adaptation-of-deep-networks/Untitled8.png&#34;
+	width=&#34;1174&#34;
+	height=&#34;308&#34;
+	srcset=&#34;https://gujh14.github.io/p/maml-model-agnostic-meta-learning-for-fast-adaptation-of-deep-networks/Untitled8_hu06f5aec29bc68380b99667335eb21667_106124_480x0_resize_box_3.png 480w, https://gujh14.github.io/p/maml-model-agnostic-meta-learning-for-fast-adaptation-of-deep-networks/Untitled8_hu06f5aec29bc68380b99667335eb21667_106124_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;381&#34;
+		data-flex-basis=&#34;914px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Measure model performance using meta-test task set ${\mathcal{T}_i^{\text{test}}}$&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;For each $\mathcal{T}_i$ in ${\mathcal{T}_i^{\text{test}}}$, adjust task-specific parameters with $\mathcal{D}_{\mathcal{T}_i^{\text{test}}}^{\text{study}}$.&lt;/li&gt;
+&lt;li&gt;Test the performance with $\mathcal{D}_{\mathcal{T_i}^{\text{test}}}^{\text{check}}$.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;3-species-of-maml&#34;&gt;3. Species of MAML&lt;/h2&gt;
+&lt;h3 id=&#34;31-supervised-regression-and-classification&#34;&gt;3.1. Supervised Regression and Classification&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Algorithm&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://gujh14.github.io/p/maml-model-agnostic-meta-learning-for-fast-adaptation-of-deep-networks/Untitled9.png&#34;
+	width=&#34;858&#34;
+	height=&#34;700&#34;
+	srcset=&#34;https://gujh14.github.io/p/maml-model-agnostic-meta-learning-for-fast-adaptation-of-deep-networks/Untitled9_hu8161162bc48d5bed870c55b7080befad_351296_480x0_resize_box_3.png 480w, https://gujh14.github.io/p/maml-model-agnostic-meta-learning-for-fast-adaptation-of-deep-networks/Untitled9_hu8161162bc48d5bed870c55b7080befad_351296_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;122&#34;
+		data-flex-basis=&#34;294px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Formalizing supervised regression and classification&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Horizon $H = 1$&lt;/li&gt;
+&lt;li&gt;Drop the timestep subscript on $\mathbf{x}_t$ (since model accepts a single input and produces a single output)&lt;/li&gt;
+&lt;li&gt;The task $\mathcal{T}_i$ generates $K$ i.i.d. observations $\mathbf{x}$ from $q_i$&lt;/li&gt;
+&lt;li&gt;Task loss is represented by the error between the model&amp;rsquo;s output for $\mathbf{x}$ and the corresponding target values $\mathbf{y}$.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Loss functions&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;MSE for regression&lt;/p&gt;
+&lt;p&gt;$$
+\mathcal{L}_{\mathcal{T}_i}(f_\phi) = \sum_{\mathbf{x}^{(j)}, \mathbf{y}^{(j)} \sim \mathcal{T}_i} | f_\phi(\mathbf{x}^{(j)}) - \mathbf{y}^{(j)}|^2_2
+$$&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Cross entropy loss for discrete classification&lt;/p&gt;
+&lt;p&gt;$$
+\mathcal{L}_{\mathcal{T}_i}(f_\phi) = \sum_{\mathbf{x}^{(j)}, \mathbf{y}^{(j)} \sim \mathcal{T}_i} \big\{ \mathbf{y}^{(j)} \log f_\phi (\mathbf{x}^{(j)}) - (1-\mathbf{y}^{(j)})\log(1-f_\phi(\mathbf{x}^{(j)}) \big\}
+$$&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;32-reinforcement-learning&#34;&gt;3.2. Reinforcement Learning&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Algorithm&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://gujh14.github.io/p/maml-model-agnostic-meta-learning-for-fast-adaptation-of-deep-networks/Untitled10.png&#34;
+	width=&#34;858&#34;
+	height=&#34;698&#34;
+	srcset=&#34;https://gujh14.github.io/p/maml-model-agnostic-meta-learning-for-fast-adaptation-of-deep-networks/Untitled10_hu3c6285d700509d496607cdcdbd973580_136262_480x0_resize_box_3.png 480w, https://gujh14.github.io/p/maml-model-agnostic-meta-learning-for-fast-adaptation-of-deep-networks/Untitled10_hu3c6285d700509d496607cdcdbd973580_136262_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;Untitled&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;122&#34;
+		data-flex-basis=&#34;295px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Goal of MAML in RL:&lt;/p&gt;
+&lt;p&gt;Quickly acquire a policy for a new test task using only a small amount of experience in the test setting.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Formalizing RL&lt;/p&gt;
+&lt;p&gt;Each RL task $\mathcal{T}_i$ contains..&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Initial state distribution $q_i(\mathbf{x}_1)$&lt;/li&gt;
+&lt;li&gt;Transition distribution $q_i(\mathbf{x}_{t+1}|\mathbf{x}_t, \mathbf{a}_t)$
+&lt;ul&gt;
+&lt;li&gt;$\mathbf{a}_t$: action&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Loss $\mathcal{L}_{\mathcal{T}_i}$, which corresponds to the negative reward function $R$&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Therefore, entire task is a Markov decision process(MDP) with horizon $H$&lt;/p&gt;
+&lt;p&gt;The model being learned, $f_\theta$, is a policy that maps from states $\mathbf{x}_t$ to a distribution over actions $\mathbf{a}_t$ at each timestep $t \in { 1, &amp;hellip;, H}$&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Loss function for task $\mathcal{T}_i$ and model $f_\phi$:&lt;/p&gt;
+&lt;p&gt;$$
+\mathcal{L}_{\mathcal{T}_i}(f_\phi) = -\mathbb{E}_{\mathbf{x}_t, \mathbf{a}_t \sim f_\phi, q_{\mathcal{T}_i}} \bigg [ \sum_{t=1}^H R_i(\mathbf{x}_t, \mathbf{a}_t) \bigg ]
+$$&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Policy gradient method&lt;/p&gt;
+&lt;p&gt;Since the expected reward is generally not differentiable due to unknown dynamics, authors used policy gradient methods to estimate the gradient.&lt;/p&gt;
+&lt;p&gt;The policy gradient method is an on-policy algorithm&lt;/p&gt;
+&lt;p&gt;→ There are additional sampling procedures in step 5 and 8.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;4-comparison-with-related-works&#34;&gt;4. Comparison with related works&lt;/h2&gt;
+&lt;p&gt;Comparison with other popular approaches&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Training a meta-learner that learns how to update the parameters of the learner&amp;rsquo;s model&lt;/p&gt;
+&lt;p&gt;ex) On the optimization of a synaptic learning rule(Bengio et al. 1992)&lt;/p&gt;
+&lt;p&gt;→ Requires additional parameters, while MAML does not.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Training to compare new examples in a learned metric space&lt;/p&gt;
+&lt;p&gt;ex) Siamese networks(Koch, 2015), recurrence with attention mechanisms(Vinyals et al. 2016)&lt;/p&gt;
+&lt;p&gt;→ Difficult to directly extend to our problems, such as reinforcement learning.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Training memory-augmented models&lt;/p&gt;
+&lt;p&gt;ex) Meta-learning with memory-augmented neural networks(Santoro et al. 2016)&lt;/p&gt;
+&lt;p&gt;The recurrent learner is trained to adapt to new tasks as it is rolled out.&lt;/p&gt;
+&lt;p&gt;→ Not really straightforward.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;5-experimental-evaluation&#34;&gt;5. Experimental Evaluation&lt;/h2&gt;
+&lt;p&gt;Three questions&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Can MAML enable fast learning of new tasks?&lt;/li&gt;
+&lt;li&gt;Can MAML be used for meta-learning in multiple different domains?&lt;/li&gt;
+&lt;li&gt;Can a model learned with MAML continue to improve with additional gradient updates and/or examples?&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&#34;51-regression&#34;&gt;5.1. Regression&lt;/h3&gt;
+&lt;p&gt;&lt;img src=&#34;https://gujh14.github.io/p/maml-model-agnostic-meta-learning-for-fast-adaptation-of-deep-networks/Untitled11.png&#34;
+	width=&#34;2054&#34;
+	height=&#34;640&#34;
+	srcset=&#34;https://gujh14.github.io/p/maml-model-agnostic-meta-learning-for-fast-adaptation-of-deep-networks/Untitled11_hueb5d57f33093f3e6c97de66eea7eedea_389010_480x0_resize_box_3.png 480w, https://gujh14.github.io/p/maml-model-agnostic-meta-learning-for-fast-adaptation-of-deep-networks/Untitled11_hueb5d57f33093f3e6c97de66eea7eedea_389010_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;320&#34;
+		data-flex-basis=&#34;770px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://gujh14.github.io/p/maml-model-agnostic-meta-learning-for-fast-adaptation-of-deep-networks/Untitled12.png&#34;
+	width=&#34;2034&#34;
+	height=&#34;650&#34;
+	srcset=&#34;https://gujh14.github.io/p/maml-model-agnostic-meta-learning-for-fast-adaptation-of-deep-networks/Untitled12_hu1ff3a227b90faeda4e52f0040b735e3e_305489_480x0_resize_box_3.png 480w, https://gujh14.github.io/p/maml-model-agnostic-meta-learning-for-fast-adaptation-of-deep-networks/Untitled12_hu1ff3a227b90faeda4e52f0040b735e3e_305489_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;312&#34;
+		data-flex-basis=&#34;751px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;h3 id=&#34;52-classification&#34;&gt;5.2. Classification&lt;/h3&gt;
+&lt;p&gt;&lt;img src=&#34;https://gujh14.github.io/p/maml-model-agnostic-meta-learning-for-fast-adaptation-of-deep-networks/Untitled13.png&#34;
+	width=&#34;1796&#34;
+	height=&#34;808&#34;
+	srcset=&#34;https://gujh14.github.io/p/maml-model-agnostic-meta-learning-for-fast-adaptation-of-deep-networks/Untitled13_hu8b2f95fd4f45de82cd6351f281788721_270027_480x0_resize_box_3.png 480w, https://gujh14.github.io/p/maml-model-agnostic-meta-learning-for-fast-adaptation-of-deep-networks/Untitled13_hu8b2f95fd4f45de82cd6351f281788721_270027_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;222&#34;
+		data-flex-basis=&#34;533px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://gujh14.github.io/p/maml-model-agnostic-meta-learning-for-fast-adaptation-of-deep-networks/Untitled14.png&#34;
+	width=&#34;2042&#34;
+	height=&#34;246&#34;
+	srcset=&#34;https://gujh14.github.io/p/maml-model-agnostic-meta-learning-for-fast-adaptation-of-deep-networks/Untitled14_hubf35b4892da9571cbc8a38fed428c704_107171_480x0_resize_box_3.png 480w, https://gujh14.github.io/p/maml-model-agnostic-meta-learning-for-fast-adaptation-of-deep-networks/Untitled14_hubf35b4892da9571cbc8a38fed428c704_107171_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;830&#34;
+		data-flex-basis=&#34;1992px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;h3 id=&#34;53-reinforcement-learning&#34;&gt;5.3. Reinforcement Learning&lt;/h3&gt;
+&lt;p&gt;&lt;img src=&#34;https://gujh14.github.io/p/maml-model-agnostic-meta-learning-for-fast-adaptation-of-deep-networks/Untitled15.png&#34;
+	width=&#34;1002&#34;
+	height=&#34;734&#34;
+	srcset=&#34;https://gujh14.github.io/p/maml-model-agnostic-meta-learning-for-fast-adaptation-of-deep-networks/Untitled15_hucc6319bab99c944b90e93c405f346352_263853_480x0_resize_box_3.png 480w, https://gujh14.github.io/p/maml-model-agnostic-meta-learning-for-fast-adaptation-of-deep-networks/Untitled15_hucc6319bab99c944b90e93c405f346352_263853_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;136&#34;
+		data-flex-basis=&#34;327px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://gujh14.github.io/p/maml-model-agnostic-meta-learning-for-fast-adaptation-of-deep-networks/Untitled16.png&#34;
+	width=&#34;2042&#34;
+	height=&#34;576&#34;
+	srcset=&#34;https://gujh14.github.io/p/maml-model-agnostic-meta-learning-for-fast-adaptation-of-deep-networks/Untitled16_hu9fd7b30672c4ee6f028386c6c663c852_404417_480x0_resize_box_3.png 480w, https://gujh14.github.io/p/maml-model-agnostic-meta-learning-for-fast-adaptation-of-deep-networks/Untitled16_hu9fd7b30672c4ee6f028386c6c663c852_404417_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;354&#34;
+		data-flex-basis=&#34;850px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;references&#34;&gt;References&lt;/h2&gt;
+&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://youtu.be/Izqod36syY8&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;KAIST NeuroAI JC_#1 Meta Learning (편집본)&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://ai.stanford.edu/~cbfinn/_files/dissertation.pdf&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://ai.stanford.edu/~cbfinn/_files/dissertation.pdf&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://velog.io/@tobigs_xai/10%ec%a3%bc%ec%b0%a8-MAML-Model-agnostic-Meta-Learning-for-Fast-Adaptation-of-Deep-Networks-%eb%85%bc%eb%ac%b8-%eb%a6%ac%eb%b7%b0&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;[10주차] (MAML) Model-agnostic Meta Learning for Fast Adaptation of Deep Networks 논문 리뷰&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://lilianweng.github.io/lil-log/2018/11/30/meta-learning.html&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Meta-Learning: Learning to Learn Fast&lt;/a&gt;&lt;/p&gt;
 </description>
         </item>
         
