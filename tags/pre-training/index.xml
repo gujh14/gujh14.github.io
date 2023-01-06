@@ -12,9 +12,9 @@
         <pubDate>Tue, 22 Nov 2022 00:00:00 +0000</pubDate>
         
         <guid>https://gujh14.github.io/p/does-gnn-pre-training-help-molecular-representation/</guid>
-        <description>&lt;img src="https://gujh14.github.io/p/does-gnn-pre-training-help-molecular-representation/0.png" alt="Featured image of post Does GNN Pre-training Help Molecular Representation?" /&gt;&lt;p&gt;NeurIPS, &amp;lsquo;22
+        <description>&lt;img src="https://gujh14.github.io/p/does-gnn-pre-training-help-molecular-representation/thumbnail.png" alt="Featured image of post Does GNN Pre-training Help Molecular Representation?" /&gt;&lt;p&gt;NeurIPS, &amp;lsquo;22&lt;br&gt;
 &lt;a class=&#34;link&#34; href=&#34;https://arxiv.org/abs/2207.06010&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
-    &gt;https://arxiv.org/abs/2207.06010&lt;/a&gt;&lt;/p&gt;
+    &gt;Does GNN Pre-training Help Molecular Representation?&lt;/a&gt;&lt;/p&gt;
 &lt;h1 id=&#34;summary&#34;&gt;Summary&lt;/h1&gt;
 &lt;ul&gt;
 &lt;li&gt;Self-supervised pre-training alone &lt;strong&gt;does not&lt;/strong&gt; provide statistically significant improvements over non-pre-trained methods on downstream tasks.&lt;/li&gt;

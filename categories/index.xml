@@ -7,6 +7,14 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>en-us</language>
         <lastBuildDate>Tue, 22 Nov 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://gujh14.github.io/categories/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>NeurIPS</title>
+        <link>https://gujh14.github.io/categories/neurips/</link>
+        <pubDate>Tue, 22 Nov 2022 00:00:00 +0000</pubDate>
+        
+        <guid>https://gujh14.github.io/categories/neurips/</guid>
+        <description></description>
+        </item>
+        <item>
         <title>Research (Technical)</title>
         <link>https://gujh14.github.io/categories/research-technical/</link>
         <pubDate>Tue, 22 Nov 2022 00:00:00 +0000</pubDate>
@@ -15,11 +23,35 @@
         <description></description>
         </item>
         <item>
+        <title>Oncogene</title>
+        <link>https://gujh14.github.io/categories/oncogene/</link>
+        <pubDate>Fri, 22 Jul 2022 00:00:00 +0000</pubDate>
+        
+        <guid>https://gujh14.github.io/categories/oncogene/</guid>
+        <description></description>
+        </item>
+        <item>
         <title>Research (Application)</title>
         <link>https://gujh14.github.io/categories/research-application/</link>
         <pubDate>Fri, 22 Jul 2022 00:00:00 +0000</pubDate>
         
         <guid>https://gujh14.github.io/categories/research-application/</guid>
+        <description></description>
+        </item>
+        <item>
+        <title>ICLR</title>
+        <link>https://gujh14.github.io/categories/iclr/</link>
+        <pubDate>Fri, 15 Oct 2021 00:00:00 +0000</pubDate>
+        
+        <guid>https://gujh14.github.io/categories/iclr/</guid>
+        <description></description>
+        </item>
+        <item>
+        <title>ICML</title>
+        <link>https://gujh14.github.io/categories/icml/</link>
+        <pubDate>Wed, 15 Sep 2021 00:00:00 +0000</pubDate>
+        
+        <guid>https://gujh14.github.io/categories/icml/</guid>
         <description></description>
         </item>
         <item>

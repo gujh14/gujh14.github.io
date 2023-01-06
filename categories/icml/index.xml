@@ -1,0 +1,483 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>ICML on JH Gu&#39;s Tech Blog</title>
+        <link>https://gujh14.github.io/categories/icml/</link>
+        <description>Recent content in ICML on JH Gu&#39;s Tech Blog</description>
+        <generator>Hugo -- gohugo.io</generator>
+        <language>en-us</language>
+        <lastBuildDate>Wed, 15 Sep 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://gujh14.github.io/categories/icml/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>MAML: Model-Agnostic Meta -Learning for Fast Adaptation of Deep Networks</title>
+        <link>https://gujh14.github.io/p/maml-model-agnostic-meta-learning-for-fast-adaptation-of-deep-networks/</link>
+        <pubDate>Wed, 15 Sep 2021 00:00:00 +0000</pubDate>
+        
+        <guid>https://gujh14.github.io/p/maml-model-agnostic-meta-learning-for-fast-adaptation-of-deep-networks/</guid>
+        <description>&lt;img src="https://gujh14.github.io/p/maml-model-agnostic-meta-learning-for-fast-adaptation-of-deep-networks/thumbnail.png" alt="Featured image of post MAML: Model-Agnostic Meta -Learning for Fast Adaptation of Deep Networks" /&gt;&lt;p&gt;ICML, &amp;lsquo;17&lt;br&gt;
+&lt;a class=&#34;link&#34; href=&#34;https://arxiv.org/abs/1703.03400&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Model-Agnostic Meta-Learning for Fast Adaptation of Deep Networks&lt;/a&gt;&lt;/p&gt;
+&lt;h1 id=&#34;summary&#34;&gt;Summary&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;MAML is a general and model-agnostic algorithm that can be directly applied to a model trained with &lt;strong&gt;gradient descent&lt;/strong&gt; procedure.&lt;/li&gt;
+&lt;li&gt;MAML does not expand the number of learned parameters.&lt;/li&gt;
+&lt;li&gt;MAML does not place constraints on the model architecture.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;keywords&#34;&gt;Keywords&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Model agnostic&lt;/li&gt;
+&lt;li&gt;Fast adaptation&lt;/li&gt;
+&lt;li&gt;Optimization based approach&lt;/li&gt;
+&lt;li&gt;Learning good model parameters&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;preliminaries&#34;&gt;Preliminaries&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Common Approaches of Meta-Learning and MAML&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://gujh14.github.io/p/maml-model-agnostic-meta-learning-for-fast-adaptation-of-deep-networks/Untitled.png&#34;
+	width=&#34;1522&#34;
+	height=&#34;726&#34;
+	srcset=&#34;https://gujh14.github.io/p/maml-model-agnostic-meta-learning-for-fast-adaptation-of-deep-networks/Untitled_hu2810079d992af17206a7c032e637187e_371302_480x0_resize_box_3.png 480w, https://gujh14.github.io/p/maml-model-agnostic-meta-learning-for-fast-adaptation-of-deep-networks/Untitled_hu2810079d992af17206a7c032e637187e_371302_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;https://lilianweng.github.io/lil-log/2018/11/30/meta-learning.html&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;209&#34;
+		data-flex-basis=&#34;503px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;MAML is one of the most influential model of optimization-based approaches.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://gujh14.github.io/p/maml-model-agnostic-meta-learning-for-fast-adaptation-of-deep-networks/Untitled1.png&#34;
+	width=&#34;1484&#34;
+	height=&#34;834&#34;
+	srcset=&#34;https://gujh14.github.io/p/maml-model-agnostic-meta-learning-for-fast-adaptation-of-deep-networks/Untitled1_hu7ef081ff7698cafbf43593ac8d1bcbcd_922101_480x0_resize_box_3.png 480w, https://gujh14.github.io/p/maml-model-agnostic-meta-learning-for-fast-adaptation-of-deep-networks/Untitled1_hu7ef081ff7698cafbf43593ac8d1bcbcd_922101_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;https://youtu.be/Izqod36syY8&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;177&#34;
+		data-flex-basis=&#34;427px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;A few terminologies of meta-learning problems&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://gujh14.github.io/p/maml-model-agnostic-meta-learning-for-fast-adaptation-of-deep-networks/Untitled2.png&#34;
+	width=&#34;2102&#34;
+	height=&#34;1524&#34;
+	srcset=&#34;https://gujh14.github.io/p/maml-model-agnostic-meta-learning-for-fast-adaptation-of-deep-networks/Untitled2_hu73d9cc73c6ab2d7d1dd2a961a777268b_357680_480x0_resize_box_3.png 480w, https://gujh14.github.io/p/maml-model-agnostic-meta-learning-for-fast-adaptation-of-deep-networks/Untitled2_hu73d9cc73c6ab2d7d1dd2a961a777268b_357680_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;https://ai.stanford.edu/~cbfinn/_files/dissertation.pdf&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;137&#34;
+		data-flex-basis=&#34;331px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&#34;https://gujh14.github.io/p/maml-model-agnostic-meta-learning-for-fast-adaptation-of-deep-networks/Untitled3.png&#34;
+	width=&#34;636&#34;
+	height=&#34;382&#34;
+	srcset=&#34;https://gujh14.github.io/p/maml-model-agnostic-meta-learning-for-fast-adaptation-of-deep-networks/Untitled3_hu49418efd97bf156417160555a8d5baef_47140_480x0_resize_box_3.png 480w, https://gujh14.github.io/p/maml-model-agnostic-meta-learning-for-fast-adaptation-of-deep-networks/Untitled3_hu49418efd97bf156417160555a8d5baef_47140_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;166&#34;
+		data-flex-basis=&#34;399px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;Goal of ideal artificial agent:&lt;/p&gt;
+&lt;p&gt;Learning and adapting quickly from only a few examples.&lt;/p&gt;
+&lt;p&gt;To do so, an agent must..&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Integrate its prior experience with a small amount of new information.&lt;/li&gt;
+&lt;li&gt;Avoid overfitting to the new data.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;→ Meta-learning has same goals.&lt;/p&gt;
+&lt;p&gt;MAML:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&amp;ldquo;The key idea of MAML is to train the model&amp;rsquo;s &lt;strong&gt;initial parameters&lt;/strong&gt; such that the model has maximal performance on a new task after the parameters have been updated through one or more gradient steps computed with a small amount of data from that new task.&amp;rdquo;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Learning process of MAML:&lt;/p&gt;
+&lt;p&gt;MAML maximizes the sensitivity of the loss functions of new tasks.&lt;/p&gt;
+&lt;p&gt;Authors demonstrated the algorithm on three different model types.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Few-shot regression&lt;/li&gt;
+&lt;li&gt;Image classification&lt;/li&gt;
+&lt;li&gt;Reinforcement learning&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;2-model-agnostic-meta-learning&#34;&gt;2. Model-Agnostic Meta Learning&lt;/h2&gt;
+&lt;h3 id=&#34;21-meta-learning-problem-set-up&#34;&gt;2.1. Meta-Learning Problem Set-Up&lt;/h3&gt;
+&lt;p&gt;To apply MAML to a variety of learning problems, authors introduce a generic notion of a learning task:&lt;/p&gt;
+&lt;p&gt;$\mathcal{T} = { \mathcal{L}(\mathbf{x}_1, \mathbf{a}_1, &amp;hellip;, \mathbf{x}_H, \mathbf{a}_H), q(\mathbf{x}_1), q(\mathbf{x}_{t+1}|\mathbf{x}_t, \mathbf{a}_t), H }$&lt;/p&gt;
+&lt;p&gt;Each task $\mathcal{T}$ consists of..&lt;/p&gt;
+&lt;p&gt;$\mathcal{L}$: a loss function, might be misclassification loss or a cost function in a Markov decision process&lt;/p&gt;
+&lt;p&gt;$q(\mathbf{x}_1)$: a distribution over initial observations&lt;/p&gt;
+&lt;p&gt;$q(\mathbf{x}_{t+1}|\mathbf{x}_t , \mathbf{a}_t)$: a transition distribution&lt;/p&gt;
+&lt;p&gt;$H$: an episode length(e.g. in i.i.d. supervised learning problems, the length $H = 1$.)&lt;/p&gt;
+&lt;p&gt;Authors consider a distribution over tasks $p(\mathcal{T})$&lt;/p&gt;
+&lt;p&gt;Meta-training:&lt;/p&gt;
+&lt;p&gt;A new task $\mathcal{T}_i$ is sampled from $p(\mathcal{T})$.&lt;/p&gt;
+&lt;p&gt;The model is trained with only $K$ samples drawn from $q_i$.&lt;/p&gt;
+&lt;p&gt;Loss $\mathcal{L}_{\mathcal{T}_i}$ is calculated and feedbacked to model.&lt;/p&gt;
+&lt;p&gt;Model $f$ is tested on new samples from $\mathcal{T}_i$.&lt;/p&gt;
+&lt;p&gt;The model $f$ is then improved by considering how the $test$ error on new data from $q_i$ changes with respect to the parameters.&lt;/p&gt;
+&lt;h3 id=&#34;22-a-model-agnostic-meta-learning-algorithm&#34;&gt;2.2. A Model-Agnostic Meta-Learning Algorithm&lt;/h3&gt;
+&lt;p&gt;Intuition: Some internal representations are more transferrable than others. How can we encourage the emergence of such general-purpose representations?&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://gujh14.github.io/p/maml-model-agnostic-meta-learning-for-fast-adaptation-of-deep-networks/Untitled4.png&#34;
+	width=&#34;2354&#34;
+	height=&#34;1132&#34;
+	srcset=&#34;https://gujh14.github.io/p/maml-model-agnostic-meta-learning-for-fast-adaptation-of-deep-networks/Untitled4_huffde7ac579bb4dc3080f2015f65a7fd2_1156243_480x0_resize_box_3.png 480w, https://gujh14.github.io/p/maml-model-agnostic-meta-learning-for-fast-adaptation-of-deep-networks/Untitled4_huffde7ac579bb4dc3080f2015f65a7fd2_1156243_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;207&#34;
+		data-flex-basis=&#34;499px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://gujh14.github.io/p/maml-model-agnostic-meta-learning-for-fast-adaptation-of-deep-networks/Untitled5.png&#34;
+	width=&#34;2360&#34;
+	height=&#34;1116&#34;
+	srcset=&#34;https://gujh14.github.io/p/maml-model-agnostic-meta-learning-for-fast-adaptation-of-deep-networks/Untitled5_hu896a6c8d932c96e0c863feb29ee4c599_1114541_480x0_resize_box_3.png 480w, https://gujh14.github.io/p/maml-model-agnostic-meta-learning-for-fast-adaptation-of-deep-networks/Untitled5_hu896a6c8d932c96e0c863feb29ee4c599_1114541_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;211&#34;
+		data-flex-basis=&#34;507px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;A model $f_\theta$ has paramters $\theta$.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;For each task $\mathcal{T}_i$, $f_\theta$&amp;rsquo;s parameters $\theta$ become $\theta_i&amp;rsquo;$.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Algorithm&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://gujh14.github.io/p/maml-model-agnostic-meta-learning-for-fast-adaptation-of-deep-networks/Untitled6.png&#34;
+	width=&#34;862&#34;
+	height=&#34;598&#34;
+	srcset=&#34;https://gujh14.github.io/p/maml-model-agnostic-meta-learning-for-fast-adaptation-of-deep-networks/Untitled6_hu4f3fbc659182e4f29d6ca5f28e4663c9_286070_480x0_resize_box_3.png 480w, https://gujh14.github.io/p/maml-model-agnostic-meta-learning-for-fast-adaptation-of-deep-networks/Untitled6_hu4f3fbc659182e4f29d6ca5f28e4663c9_286070_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;144&#34;
+		data-flex-basis=&#34;345px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;cf) Terminologies for below description(temporarily defined by JH Gu)&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://gujh14.github.io/p/maml-model-agnostic-meta-learning-for-fast-adaptation-of-deep-networks/Untitled7.png&#34;
+	width=&#34;1708&#34;
+	height=&#34;1352&#34;
+	srcset=&#34;https://gujh14.github.io/p/maml-model-agnostic-meta-learning-for-fast-adaptation-of-deep-networks/Untitled7_hu8110c6352be8c0d888d6667531616c11_282586_480x0_resize_box_3.png 480w, https://gujh14.github.io/p/maml-model-agnostic-meta-learning-for-fast-adaptation-of-deep-networks/Untitled7_hu8110c6352be8c0d888d6667531616c11_282586_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;126&#34;
+		data-flex-basis=&#34;303px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Divide tasks&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;Separate tasks into meta-training task set(${\mathcal{T}_i^{\text{tr}}}$) and meta-test task set(${\mathcal{T}_i^{\text{test}}}$).&lt;/p&gt;
+&lt;p&gt;(We can think of ${\mathcal{T}_i^{\text{tr}}}$ as monthly tests(모의고사), and ${\mathcal{T}_i^{\text{test}}}$ as annual tests(수능))&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;For each task, divide each samples into $\mathcal{D}_{\mathcal{T}_i}^{\text{study}}$(task-specific samples for studying, also called as support set), $\mathcal{D}_{\mathcal{T_i}}^{\text{check}}$(task-specific samples for checking, also called as query set)&lt;/p&gt;
+&lt;p&gt;(We can think of $\mathcal{D}_{\mathcal{T}_i}^{\text{study}}$ as 필수예제 in 수학의 정석, and $\mathcal{D}_{\mathcal{T}_i}^{\text{check}}$ as 연습문제 in 수학의 정석)&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Meta-training using meta-training task set ${\mathcal{T}_i^{\text{tr}}}$&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Inner loop(task-specific $K$-shot learning)&lt;/p&gt;
+&lt;p&gt;For each $\mathcal{T}_i$ in ${\mathcal{T}_i^{\text{tr}}}$, a new parameter $\theta_i&amp;rsquo;$ is created.&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;Each $\theta_i&amp;rsquo;$ is initialized as $\theta$.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;With task-specific samples for studying($\mathcal{D}_{\mathcal{T}_i^{\text{tr}}}^{\text{study}}$), each $\theta_i&amp;rsquo;$ is updated by:&lt;/p&gt;
+&lt;p&gt;$$
+\theta_i&amp;rsquo; = \theta - \alpha \nabla_\theta \mathcal{L}_{\mathcal{T}_i}(f_\theta)
+$$&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Outer loop(meta-learning across tasks)&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;With task-specific samples for checking($\mathcal{D}_{\mathcal{T_i}^{\text{tr}}}^{\text{check}}$), $\theta$ is updated by:&lt;/p&gt;
+&lt;p&gt;$$
+\theta = \theta - \beta \nabla_\theta \sum_{\mathcal{T}_i \sim p(\mathcal{T})}\mathcal{L}_{\mathcal{T}_i} (f_{\theta_i&amp;rsquo;})
+$$&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;cf) second-order derivative(Hessian) problem&lt;/p&gt;
+&lt;p&gt;The MAML meta-gradient update(outer loop) involves a gradient through a gradient, which can be resource-intensive. This requires an additional backward pass through $f$ to compute Hessian vector products.&lt;/p&gt;
+&lt;p&gt;$$
+\begin{align*} \textcolor{red}{\theta&amp;rsquo;} &amp;amp;= \theta - \alpha \nabla_\theta \mathcal{L}(\theta) \ \nabla_\theta \mathcal{L}(\textcolor{red}{\theta&amp;rsquo;}) &amp;amp;= (\textcolor{red}\nabla_{\textcolor{red}{\theta&amp;rsquo;}} \mathcal{L}(\textcolor{red}{\theta&amp;rsquo;})) \cdot (\nabla_\theta \textcolor{red}{\theta&amp;rsquo;}) \ &amp;amp;= (\textcolor{red}\nabla_{\textcolor{red}{\theta&amp;rsquo;}} \mathcal{L}(\textcolor{red}{\theta&amp;rsquo;})) \cdot (\nabla_\theta (\theta - \alpha \nabla_\theta \mathcal{L}(\theta)) \ &amp;amp;\approx (\textcolor{red}\nabla_{\textcolor{red}{\theta&amp;rsquo;}} \mathcal{L}(\textcolor{red}{\theta&amp;rsquo;})) \cdot (\nabla_\theta \theta) \ &amp;amp;= (\textcolor{red}\nabla_{\textcolor{red}{\theta&amp;rsquo;}} \mathcal{L}(\textcolor{red}{\theta&amp;rsquo;})) \end{align*}
+$$&lt;/p&gt;
+&lt;p&gt;Authors included a comparison to drop the backward pass term and using just the first-order approximation, which showed not much difference.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://gujh14.github.io/p/maml-model-agnostic-meta-learning-for-fast-adaptation-of-deep-networks/Untitled8.png&#34;
+	width=&#34;1174&#34;
+	height=&#34;308&#34;
+	srcset=&#34;https://gujh14.github.io/p/maml-model-agnostic-meta-learning-for-fast-adaptation-of-deep-networks/Untitled8_hu06f5aec29bc68380b99667335eb21667_106124_480x0_resize_box_3.png 480w, https://gujh14.github.io/p/maml-model-agnostic-meta-learning-for-fast-adaptation-of-deep-networks/Untitled8_hu06f5aec29bc68380b99667335eb21667_106124_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;381&#34;
+		data-flex-basis=&#34;914px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Measure model performance using meta-test task set ${\mathcal{T}_i^{\text{test}}}$&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;For each $\mathcal{T}_i$ in ${\mathcal{T}_i^{\text{test}}}$, adjust task-specific parameters with $\mathcal{D}_{\mathcal{T}_i^{\text{test}}}^{\text{study}}$.&lt;/li&gt;
+&lt;li&gt;Test the performance with $\mathcal{D}_{\mathcal{T_i}^{\text{test}}}^{\text{check}}$.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;3-species-of-maml&#34;&gt;3. Species of MAML&lt;/h2&gt;
+&lt;h3 id=&#34;31-supervised-regression-and-classification&#34;&gt;3.1. Supervised Regression and Classification&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Algorithm&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://gujh14.github.io/p/maml-model-agnostic-meta-learning-for-fast-adaptation-of-deep-networks/Untitled9.png&#34;
+	width=&#34;858&#34;
+	height=&#34;700&#34;
+	srcset=&#34;https://gujh14.github.io/p/maml-model-agnostic-meta-learning-for-fast-adaptation-of-deep-networks/Untitled9_hu8161162bc48d5bed870c55b7080befad_351296_480x0_resize_box_3.png 480w, https://gujh14.github.io/p/maml-model-agnostic-meta-learning-for-fast-adaptation-of-deep-networks/Untitled9_hu8161162bc48d5bed870c55b7080befad_351296_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;122&#34;
+		data-flex-basis=&#34;294px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Formalizing supervised regression and classification&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Horizon $H = 1$&lt;/li&gt;
+&lt;li&gt;Drop the timestep subscript on $\mathbf{x}_t$ (since model accepts a single input and produces a single output)&lt;/li&gt;
+&lt;li&gt;The task $\mathcal{T}_i$ generates $K$ i.i.d. observations $\mathbf{x}$ from $q_i$&lt;/li&gt;
+&lt;li&gt;Task loss is represented by the error between the model&amp;rsquo;s output for $\mathbf{x}$ and the corresponding target values $\mathbf{y}$.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Loss functions&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;MSE for regression&lt;/p&gt;
+&lt;p&gt;$$
+\mathcal{L}_{\mathcal{T}_i}(f_\phi) = \sum_{\mathbf{x}^{(j)}, \mathbf{y}^{(j)} \sim \mathcal{T}_i} | f_\phi(\mathbf{x}^{(j)}) - \mathbf{y}^{(j)}|^2_2
+$$&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Cross entropy loss for discrete classification&lt;/p&gt;
+&lt;p&gt;$$
+\mathcal{L}_{\mathcal{T}_i}(f_\phi) = \sum_{\mathbf{x}^{(j)}, \mathbf{y}^{(j)} \sim \mathcal{T}_i} \big\{ \mathbf{y}^{(j)} \log f_\phi (\mathbf{x}^{(j)}) - (1-\mathbf{y}^{(j)})\log(1-f_\phi(\mathbf{x}^{(j)}) \big\}
+$$&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;32-reinforcement-learning&#34;&gt;3.2. Reinforcement Learning&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Algorithm&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://gujh14.github.io/p/maml-model-agnostic-meta-learning-for-fast-adaptation-of-deep-networks/Untitled10.png&#34;
+	width=&#34;858&#34;
+	height=&#34;698&#34;
+	srcset=&#34;https://gujh14.github.io/p/maml-model-agnostic-meta-learning-for-fast-adaptation-of-deep-networks/Untitled10_hu3c6285d700509d496607cdcdbd973580_136262_480x0_resize_box_3.png 480w, https://gujh14.github.io/p/maml-model-agnostic-meta-learning-for-fast-adaptation-of-deep-networks/Untitled10_hu3c6285d700509d496607cdcdbd973580_136262_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;Untitled&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;122&#34;
+		data-flex-basis=&#34;295px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Goal of MAML in RL:&lt;/p&gt;
+&lt;p&gt;Quickly acquire a policy for a new test task using only a small amount of experience in the test setting.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Formalizing RL&lt;/p&gt;
+&lt;p&gt;Each RL task $\mathcal{T}_i$ contains..&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Initial state distribution $q_i(\mathbf{x}_1)$&lt;/li&gt;
+&lt;li&gt;Transition distribution $q_i(\mathbf{x}_{t+1}|\mathbf{x}_t, \mathbf{a}_t)$
+&lt;ul&gt;
+&lt;li&gt;$\mathbf{a}_t$: action&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Loss $\mathcal{L}_{\mathcal{T}_i}$, which corresponds to the negative reward function $R$&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Therefore, entire task is a Markov decision process(MDP) with horizon $H$&lt;/p&gt;
+&lt;p&gt;The model being learned, $f_\theta$, is a policy that maps from states $\mathbf{x}_t$ to a distribution over actions $\mathbf{a}_t$ at each timestep $t \in { 1, &amp;hellip;, H}$&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Loss function for task $\mathcal{T}_i$ and model $f_\phi$:&lt;/p&gt;
+&lt;p&gt;$$
+\mathcal{L}_{\mathcal{T}_i}(f_\phi) = -\mathbb{E}_{\mathbf{x}_t, \mathbf{a}_t \sim f_\phi, q_{\mathcal{T}_i}} \bigg [ \sum_{t=1}^H R_i(\mathbf{x}_t, \mathbf{a}_t) \bigg ]
+$$&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Policy gradient method&lt;/p&gt;
+&lt;p&gt;Since the expected reward is generally not differentiable due to unknown dynamics, authors used policy gradient methods to estimate the gradient.&lt;/p&gt;
+&lt;p&gt;The policy gradient method is an on-policy algorithm&lt;/p&gt;
+&lt;p&gt;→ There are additional sampling procedures in step 5 and 8.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;4-comparison-with-related-works&#34;&gt;4. Comparison with related works&lt;/h2&gt;
+&lt;p&gt;Comparison with other popular approaches&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Training a meta-learner that learns how to update the parameters of the learner&amp;rsquo;s model&lt;/p&gt;
+&lt;p&gt;ex) On the optimization of a synaptic learning rule(Bengio et al. 1992)&lt;/p&gt;
+&lt;p&gt;→ Requires additional parameters, while MAML does not.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Training to compare new examples in a learned metric space&lt;/p&gt;
+&lt;p&gt;ex) Siamese networks(Koch, 2015), recurrence with attention mechanisms(Vinyals et al. 2016)&lt;/p&gt;
+&lt;p&gt;→ Difficult to directly extend to our problems, such as reinforcement learning.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Training memory-augmented models&lt;/p&gt;
+&lt;p&gt;ex) Meta-learning with memory-augmented neural networks(Santoro et al. 2016)&lt;/p&gt;
+&lt;p&gt;The recurrent learner is trained to adapt to new tasks as it is rolled out.&lt;/p&gt;
+&lt;p&gt;→ Not really straightforward.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;5-experimental-evaluation&#34;&gt;5. Experimental Evaluation&lt;/h2&gt;
+&lt;p&gt;Three questions&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Can MAML enable fast learning of new tasks?&lt;/li&gt;
+&lt;li&gt;Can MAML be used for meta-learning in multiple different domains?&lt;/li&gt;
+&lt;li&gt;Can a model learned with MAML continue to improve with additional gradient updates and/or examples?&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&#34;51-regression&#34;&gt;5.1. Regression&lt;/h3&gt;
+&lt;p&gt;&lt;img src=&#34;https://gujh14.github.io/p/maml-model-agnostic-meta-learning-for-fast-adaptation-of-deep-networks/Untitled11.png&#34;
+	width=&#34;2054&#34;
+	height=&#34;640&#34;
+	srcset=&#34;https://gujh14.github.io/p/maml-model-agnostic-meta-learning-for-fast-adaptation-of-deep-networks/Untitled11_hueb5d57f33093f3e6c97de66eea7eedea_389010_480x0_resize_box_3.png 480w, https://gujh14.github.io/p/maml-model-agnostic-meta-learning-for-fast-adaptation-of-deep-networks/Untitled11_hueb5d57f33093f3e6c97de66eea7eedea_389010_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;320&#34;
+		data-flex-basis=&#34;770px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://gujh14.github.io/p/maml-model-agnostic-meta-learning-for-fast-adaptation-of-deep-networks/Untitled12.png&#34;
+	width=&#34;2034&#34;
+	height=&#34;650&#34;
+	srcset=&#34;https://gujh14.github.io/p/maml-model-agnostic-meta-learning-for-fast-adaptation-of-deep-networks/Untitled12_hu1ff3a227b90faeda4e52f0040b735e3e_305489_480x0_resize_box_3.png 480w, https://gujh14.github.io/p/maml-model-agnostic-meta-learning-for-fast-adaptation-of-deep-networks/Untitled12_hu1ff3a227b90faeda4e52f0040b735e3e_305489_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;312&#34;
+		data-flex-basis=&#34;751px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;h3 id=&#34;52-classification&#34;&gt;5.2. Classification&lt;/h3&gt;
+&lt;p&gt;&lt;img src=&#34;https://gujh14.github.io/p/maml-model-agnostic-meta-learning-for-fast-adaptation-of-deep-networks/Untitled13.png&#34;
+	width=&#34;1796&#34;
+	height=&#34;808&#34;
+	srcset=&#34;https://gujh14.github.io/p/maml-model-agnostic-meta-learning-for-fast-adaptation-of-deep-networks/Untitled13_hu8b2f95fd4f45de82cd6351f281788721_270027_480x0_resize_box_3.png 480w, https://gujh14.github.io/p/maml-model-agnostic-meta-learning-for-fast-adaptation-of-deep-networks/Untitled13_hu8b2f95fd4f45de82cd6351f281788721_270027_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;222&#34;
+		data-flex-basis=&#34;533px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://gujh14.github.io/p/maml-model-agnostic-meta-learning-for-fast-adaptation-of-deep-networks/Untitled14.png&#34;
+	width=&#34;2042&#34;
+	height=&#34;246&#34;
+	srcset=&#34;https://gujh14.github.io/p/maml-model-agnostic-meta-learning-for-fast-adaptation-of-deep-networks/Untitled14_hubf35b4892da9571cbc8a38fed428c704_107171_480x0_resize_box_3.png 480w, https://gujh14.github.io/p/maml-model-agnostic-meta-learning-for-fast-adaptation-of-deep-networks/Untitled14_hubf35b4892da9571cbc8a38fed428c704_107171_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;830&#34;
+		data-flex-basis=&#34;1992px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;h3 id=&#34;53-reinforcement-learning&#34;&gt;5.3. Reinforcement Learning&lt;/h3&gt;
+&lt;p&gt;&lt;img src=&#34;https://gujh14.github.io/p/maml-model-agnostic-meta-learning-for-fast-adaptation-of-deep-networks/Untitled15.png&#34;
+	width=&#34;1002&#34;
+	height=&#34;734&#34;
+	srcset=&#34;https://gujh14.github.io/p/maml-model-agnostic-meta-learning-for-fast-adaptation-of-deep-networks/Untitled15_hucc6319bab99c944b90e93c405f346352_263853_480x0_resize_box_3.png 480w, https://gujh14.github.io/p/maml-model-agnostic-meta-learning-for-fast-adaptation-of-deep-networks/Untitled15_hucc6319bab99c944b90e93c405f346352_263853_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;136&#34;
+		data-flex-basis=&#34;327px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://gujh14.github.io/p/maml-model-agnostic-meta-learning-for-fast-adaptation-of-deep-networks/Untitled16.png&#34;
+	width=&#34;2042&#34;
+	height=&#34;576&#34;
+	srcset=&#34;https://gujh14.github.io/p/maml-model-agnostic-meta-learning-for-fast-adaptation-of-deep-networks/Untitled16_hu9fd7b30672c4ee6f028386c6c663c852_404417_480x0_resize_box_3.png 480w, https://gujh14.github.io/p/maml-model-agnostic-meta-learning-for-fast-adaptation-of-deep-networks/Untitled16_hu9fd7b30672c4ee6f028386c6c663c852_404417_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;354&#34;
+		data-flex-basis=&#34;850px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;references&#34;&gt;References&lt;/h2&gt;
+&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://youtu.be/Izqod36syY8&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;KAIST NeuroAI JC_#1 Meta Learning (편집본)&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://ai.stanford.edu/~cbfinn/_files/dissertation.pdf&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://ai.stanford.edu/~cbfinn/_files/dissertation.pdf&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://velog.io/@tobigs_xai/10%ec%a3%bc%ec%b0%a8-MAML-Model-agnostic-Meta-Learning-for-Fast-Adaptation-of-Deep-Networks-%eb%85%bc%eb%ac%b8-%eb%a6%ac%eb%b7%b0&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;[10주차] (MAML) Model-agnostic Meta Learning for Fast Adaptation of Deep Networks 논문 리뷰&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://lilianweng.github.io/lil-log/2018/11/30/meta-learning.html&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Meta-Learning: Learning to Learn Fast&lt;/a&gt;&lt;/p&gt;
+</description>
+        </item>
+        
+    </channel>
+</rss>
