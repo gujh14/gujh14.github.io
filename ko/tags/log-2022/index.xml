@@ -17,9 +17,9 @@
     &gt;&amp;ldquo;A Generalist Neural Algorithmic Learner&amp;rdquo;&lt;/a&gt;&lt;/p&gt;
 &lt;h1 id=&#34;summary&#34;&gt;Summary&lt;/h1&gt;
 &lt;ul&gt;
-&lt;li&gt;Neural network, especially GNN, can learn traditional computer science algorithms in CLRS book.&lt;/li&gt;
-&lt;li&gt;A generalist neural algorithmic learner is necessary if the algorithm is not obvious.&lt;/li&gt;
-&lt;li&gt;Chunking mechanism was important to stabilize multi-task learning.&lt;/li&gt;
+&lt;li&gt;Neural network, 그 중에서도 GNN은 전통적인 컴퓨터과학 알고리즘(CLRS 책에 기재된)을 학습할 수 있다.&lt;/li&gt;
+&lt;li&gt;필요한 algorithm이 간단하지 않을 경우, generalist neural algorithmic learner가 필요하다.&lt;/li&gt;
+&lt;li&gt;안정적인 multi-task learning에 있어서 chunking mechanism이 중요했다.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h2 id=&#34;starting-point-a-benchmark-to-train-neural-computer-scientists&#34;&gt;Starting point: A benchmark to train neural computer scientists&lt;/h2&gt;
 &lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://arxiv.org/abs/2205.15659&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
