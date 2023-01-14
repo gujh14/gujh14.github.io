@@ -6,20 +6,28 @@
         <description>Recent content in Categories on JH Gu&#39;s Tech Blog</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>en-us</language>
-        <lastBuildDate>Tue, 22 Nov 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://gujh14.github.io/categories/index.xml" rel="self" type="application/rss+xml" /><item>
-        <title>NeurIPS</title>
-        <link>https://gujh14.github.io/categories/neurips/</link>
-        <pubDate>Tue, 22 Nov 2022 00:00:00 +0000</pubDate>
+        <lastBuildDate>Fri, 13 Jan 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://gujh14.github.io/categories/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>LoG</title>
+        <link>https://gujh14.github.io/categories/log/</link>
+        <pubDate>Fri, 13 Jan 2023 00:00:00 +0000</pubDate>
         
-        <guid>https://gujh14.github.io/categories/neurips/</guid>
+        <guid>https://gujh14.github.io/categories/log/</guid>
         <description></description>
         </item>
         <item>
         <title>Research (Technical)</title>
         <link>https://gujh14.github.io/categories/research-technical/</link>
-        <pubDate>Tue, 22 Nov 2022 00:00:00 +0000</pubDate>
+        <pubDate>Fri, 13 Jan 2023 00:00:00 +0000</pubDate>
         
         <guid>https://gujh14.github.io/categories/research-technical/</guid>
+        <description></description>
+        </item>
+        <item>
+        <title>NeurIPS</title>
+        <link>https://gujh14.github.io/categories/neurips/</link>
+        <pubDate>Tue, 22 Nov 2022 00:00:00 +0000</pubDate>
+        
+        <guid>https://gujh14.github.io/categories/neurips/</guid>
         <description></description>
         </item>
         <item>
@@ -53,14 +61,6 @@
         
         <guid>https://gujh14.github.io/categories/icml/</guid>
         <description></description>
-        </item>
-        <item>
-        <title>Test</title>
-        <link>https://gujh14.github.io/categories/test/</link>
-        <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-        
-        <guid>https://gujh14.github.io/categories/test/</guid>
-        <description>&lt;img src="https://gujh14.github.io/categories/test/hutomo-abrianto-l2jk-uxb1BY-unsplash.jpg" alt="Featured image of post Test" /&gt;</description>
         </item>
         
     </channel>

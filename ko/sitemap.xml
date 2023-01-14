@@ -2,7 +2,38 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://gujh14.github.io/ko/p/a-generalist-neural-algorithmic-learner/</loc>
+    <lastmod>2023-01-13T00:00:00+00:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://gujh14.github.io/p/a-generalist-neural-algorithmic-learner/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="ko"
+                href="https://gujh14.github.io/ko/p/a-generalist-neural-algorithmic-learner/"
+                />
+  </url><url>
+    <loc>https://gujh14.github.io/ko/tags/algorithmic-learner/</loc>
+    <lastmod>2023-01-13T00:00:00+00:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://gujh14.github.io/tags/algorithmic-learner/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="ko"
+                href="https://gujh14.github.io/ko/tags/algorithmic-learner/"
+                />
+  </url><url>
     <loc>https://gujh14.github.io/ko/categories/</loc>
+    <lastmod>2023-01-13T00:00:00+00:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
     <xhtml:link
@@ -16,7 +47,23 @@
                 href="https://gujh14.github.io/ko/categories/"
                 />
   </url><url>
+    <loc>https://gujh14.github.io/ko/tags/gnn/</loc>
+    <lastmod>2023-01-13T00:00:00+00:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://gujh14.github.io/tags/gnn/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="ko"
+                href="https://gujh14.github.io/ko/tags/gnn/"
+                />
+  </url><url>
     <loc>https://gujh14.github.io/ko/</loc>
+    <lastmod>2023-01-13T00:00:00+00:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
     <xhtml:link
@@ -30,7 +77,83 @@
                 href="https://gujh14.github.io/ko/"
                 />
   </url><url>
+    <loc>https://gujh14.github.io/ko/categories/log/</loc>
+    <lastmod>2023-01-13T00:00:00+00:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://gujh14.github.io/categories/log/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="ko"
+                href="https://gujh14.github.io/ko/categories/log/"
+                />
+  </url><url>
+    <loc>https://gujh14.github.io/ko/tags/log-2022/</loc>
+    <lastmod>2023-01-13T00:00:00+00:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://gujh14.github.io/tags/log-2022/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="ko"
+                href="https://gujh14.github.io/ko/tags/log-2022/"
+                />
+  </url><url>
+    <loc>https://gujh14.github.io/ko/tags/multi-task/</loc>
+    <lastmod>2023-01-13T00:00:00+00:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://gujh14.github.io/tags/multi-task/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="ko"
+                href="https://gujh14.github.io/ko/tags/multi-task/"
+                />
+  </url><url>
+    <loc>https://gujh14.github.io/ko/post/</loc>
+    <lastmod>2023-01-13T00:00:00+00:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://gujh14.github.io/post/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="ko"
+                href="https://gujh14.github.io/ko/post/"
+                />
+  </url><url>
+    <loc>https://gujh14.github.io/ko/categories/research-technical/</loc>
+    <lastmod>2023-01-13T00:00:00+00:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://gujh14.github.io/categories/research-technical/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="ko"
+                href="https://gujh14.github.io/ko/categories/research-technical/"
+                />
+  </url><url>
     <loc>https://gujh14.github.io/ko/tags/</loc>
+    <lastmod>2023-01-13T00:00:00+00:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
     <xhtml:link

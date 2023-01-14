@@ -6,12 +6,36 @@
         <description>Recent content in Tags on JH Gu&#39;s Tech Blog</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>en-us</language>
-        <lastBuildDate>Tue, 22 Nov 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://gujh14.github.io/tags/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Fri, 13 Jan 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://gujh14.github.io/tags/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>Algorithmic learner</title>
+        <link>https://gujh14.github.io/tags/algorithmic-learner/</link>
+        <pubDate>Fri, 13 Jan 2023 00:00:00 +0000</pubDate>
+        
+        <guid>https://gujh14.github.io/tags/algorithmic-learner/</guid>
+        <description></description>
+        </item>
+        <item>
         <title>GNN</title>
         <link>https://gujh14.github.io/tags/gnn/</link>
-        <pubDate>Tue, 22 Nov 2022 00:00:00 +0000</pubDate>
+        <pubDate>Fri, 13 Jan 2023 00:00:00 +0000</pubDate>
         
         <guid>https://gujh14.github.io/tags/gnn/</guid>
+        <description></description>
+        </item>
+        <item>
+        <title>LoG 2022</title>
+        <link>https://gujh14.github.io/tags/log-2022/</link>
+        <pubDate>Fri, 13 Jan 2023 00:00:00 +0000</pubDate>
+        
+        <guid>https://gujh14.github.io/tags/log-2022/</guid>
+        <description></description>
+        </item>
+        <item>
+        <title>Multi-task</title>
+        <link>https://gujh14.github.io/tags/multi-task/</link>
+        <pubDate>Fri, 13 Jan 2023 00:00:00 +0000</pubDate>
+        
+        <guid>https://gujh14.github.io/tags/multi-task/</guid>
         <description></description>
         </item>
         <item>
@@ -60,14 +84,6 @@
         <pubDate>Fri, 29 Jul 2022 00:00:00 +0000</pubDate>
         
         <guid>https://gujh14.github.io/tags/molecular-property/</guid>
-        <description></description>
-        </item>
-        <item>
-        <title>Multi-task</title>
-        <link>https://gujh14.github.io/tags/multi-task/</link>
-        <pubDate>Fri, 29 Jul 2022 00:00:00 +0000</pubDate>
-        
-        <guid>https://gujh14.github.io/tags/multi-task/</guid>
         <description></description>
         </item>
         <item>

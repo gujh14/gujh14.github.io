@@ -6,7 +6,367 @@
         <description>Recent content in GNN on JH Gu&#39;s Tech Blog</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>en-us</language>
-        <lastBuildDate>Tue, 22 Nov 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://gujh14.github.io/tags/gnn/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Fri, 13 Jan 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://gujh14.github.io/tags/gnn/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>A Generalist Neural Algorithmic Learner</title>
+        <link>https://gujh14.github.io/p/a-generalist-neural-algorithmic-learner/</link>
+        <pubDate>Fri, 13 Jan 2023 00:00:00 +0000</pubDate>
+        
+        <guid>https://gujh14.github.io/p/a-generalist-neural-algorithmic-learner/</guid>
+        <description>&lt;img src="https://gujh14.github.io/p/a-generalist-neural-algorithmic-learner/thumbnail.png" alt="Featured image of post A Generalist Neural Algorithmic Learner" /&gt;&lt;p&gt;LoG, 22 &lt;br&gt;
+&lt;a class=&#34;link&#34; href=&#34;https://arxiv.org/abs/2209.11142&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;&amp;ldquo;A Generalist Neural Algorithmic Learner&amp;rdquo;&lt;/a&gt;&lt;/p&gt;
+&lt;h1 id=&#34;summary&#34;&gt;Summary&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;Neural network, especially GNN, can learn traditional computer science algorithms in CLRS book.&lt;/li&gt;
+&lt;li&gt;A generalist neural algorithmic learner is necessary if the algorithm is not obvious.&lt;/li&gt;
+&lt;li&gt;Chunking mechanism was important to stabilize multi-task learning.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;starting-point-a-benchmark-to-train-neural-computer-scientists&#34;&gt;Starting point: A benchmark to train neural computer scientists&lt;/h2&gt;
+&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://arxiv.org/abs/2205.15659&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;The CLRS Algorithmic Reasoning Benchmark&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://github.com/deepmind/clrs&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://github.com/deepmind/clrs&lt;/a&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Can we train a neural network to execute classical CS algorithms?&lt;/li&gt;
+&lt;li&gt;A differentiable computer scientist could then apply its &amp;ldquo;knowledge&amp;rdquo; to natural inputs.&lt;/li&gt;
+&lt;li&gt;We will also ponder: can it learn multiple algorithms at the same time?&lt;/li&gt;
+&lt;li&gt;Typically the problem is modeled with a recurrent architecture:
+&lt;ul&gt;
+&lt;li&gt;LSTMs as in, e.g., Differentiable Neural Computers&lt;/li&gt;
+&lt;li&gt;Transformers, as in the Universal Transformer&lt;/li&gt;
+&lt;li&gt;ConvNets&lt;/li&gt;
+&lt;li&gt;GNNs - our approach&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Introduction to Algorithms: CLRS&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://gujh14.github.io/p/a-generalist-neural-algorithmic-learner/imgs/Untitled.png&#34;
+	width=&#34;442&#34;
+	height=&#34;500&#34;
+	srcset=&#34;https://gujh14.github.io/p/a-generalist-neural-algorithmic-learner/imgs/Untitled_hua63265e8260ecb294a7579e9be70a8cf_138413_480x0_resize_box_3.png 480w, https://gujh14.github.io/p/a-generalist-neural-algorithmic-learner/imgs/Untitled_hua63265e8260ecb294a7579e9be70a8cf_138413_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;88&#34;
+		data-flex-basis=&#34;212px&#34;
+	
+&gt;
+&lt;img src=&#34;https://gujh14.github.io/p/a-generalist-neural-algorithmic-learner/imgs/Untitled1.png&#34;
+	width=&#34;1352&#34;
+	height=&#34;2296&#34;
+	srcset=&#34;https://gujh14.github.io/p/a-generalist-neural-algorithmic-learner/imgs/Untitled1_hucd8b39bbcea98e1dc70ae8292aef00b9_466801_480x0_resize_box_3.png 480w, https://gujh14.github.io/p/a-generalist-neural-algorithmic-learner/imgs/Untitled1_hucd8b39bbcea98e1dc70ae8292aef00b9_466801_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;List of algorithms included in the benchmark&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;58&#34;
+		data-flex-basis=&#34;141px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;Representation&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;All algorithms have been boiled down to a common graph representation&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Each algorithm is specified by a fixed number of &amp;ldquo;probes&amp;rdquo;.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;For example, the spec of insertion sort consists of the following 6 probes:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;&#39;pos&#39;: (Stage. INPUT, Location.NODE, Type.SCALAR)&lt;/code&gt; → the id of each node&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;&#39;key&#39;: (Stage.INPUT, Location. NODE, Type.SCALAR)&lt;/code&gt; → the values to sort&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;&#39;pred&#39;: (Stage.OUTPUT, Location. NODE, Type.POINTER)&lt;/code&gt; → the final node order&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;&#39;pred h&#39;: (Stage. HINT, Location. NODE, Type. POINTER)&lt;/code&gt; → the node order along execution&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;&#39;i&#39;: (Stage.HINT, Location.NODE, Type.MASK_ONE)&lt;/code&gt; → index for insertion&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;&#39;j&#39;: (Stage.HINT, Location.NODE, Type.MASK_ONE)&lt;/code&gt; → index tracking &amp;ldquo;sorted up to&amp;rdquo;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;A probe can be input, output or hint.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;The inputs and outputs are fixed during algorithm execution, the hints change during execution&lt;/p&gt;
+&lt;p&gt;→ they specify the algorithm (e.g., all sorting algorithms have the same inputs and outputs, differing only in their hints).&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;representation-encoding&#34;&gt;Representation: Encoding&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&#34;https://gujh14.github.io/p/a-generalist-neural-algorithmic-learner/imgs/Untitled2.png&#34;
+	width=&#34;1890&#34;
+	height=&#34;978&#34;
+	srcset=&#34;https://gujh14.github.io/p/a-generalist-neural-algorithmic-learner/imgs/Untitled2_hu7e853881e8b757dd1a85a210730154a4_566098_480x0_resize_box_3.png 480w, https://gujh14.github.io/p/a-generalist-neural-algorithmic-learner/imgs/Untitled2_hu7e853881e8b757dd1a85a210730154a4_566098_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;193&#34;
+		data-flex-basis=&#34;463px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;pos&lt;/code&gt;: Positional ID (ID of node) is encoded as vector by encoder.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://gujh14.github.io/p/a-generalist-neural-algorithmic-learner/imgs/Untitled3.png&#34;
+	width=&#34;1876&#34;
+	height=&#34;966&#34;
+	srcset=&#34;https://gujh14.github.io/p/a-generalist-neural-algorithmic-learner/imgs/Untitled3_hu7baf8378b39f5fa240e98e584947107a_603402_480x0_resize_box_3.png 480w, https://gujh14.github.io/p/a-generalist-neural-algorithmic-learner/imgs/Untitled3_hu7baf8378b39f5fa240e98e584947107a_603402_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;194&#34;
+		data-flex-basis=&#34;466px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;key&lt;/code&gt;: The value to be processed is also encoded as vector and added to &lt;code&gt;pos&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://gujh14.github.io/p/a-generalist-neural-algorithmic-learner/imgs/Untitled4.png&#34;
+	width=&#34;1890&#34;
+	height=&#34;974&#34;
+	srcset=&#34;https://gujh14.github.io/p/a-generalist-neural-algorithmic-learner/imgs/Untitled4_hucd1cc34f62c703accc3d07c639180e51_633524_480x0_resize_box_3.png 480w, https://gujh14.github.io/p/a-generalist-neural-algorithmic-learner/imgs/Untitled4_hucd1cc34f62c703accc3d07c639180e51_633524_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;194&#34;
+		data-flex-basis=&#34;465px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;pred_h&lt;/code&gt;: pointer used as hint is encoded and used as edge embedding.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://gujh14.github.io/p/a-generalist-neural-algorithmic-learner/imgs/Untitled5.png&#34;
+	width=&#34;1886&#34;
+	height=&#34;988&#34;
+	srcset=&#34;https://gujh14.github.io/p/a-generalist-neural-algorithmic-learner/imgs/Untitled5_huaaecf81d46faf81870899897fc493e3b_810218_480x0_resize_box_3.png 480w, https://gujh14.github.io/p/a-generalist-neural-algorithmic-learner/imgs/Untitled5_huaaecf81d46faf81870899897fc493e3b_810218_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;190&#34;
+		data-flex-basis=&#34;458px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;i&lt;/code&gt;, &lt;code&gt;j&lt;/code&gt;: index needed for insertion are also added.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://gujh14.github.io/p/a-generalist-neural-algorithmic-learner/imgs/Untitled6.png&#34;
+	width=&#34;1408&#34;
+	height=&#34;872&#34;
+	srcset=&#34;https://gujh14.github.io/p/a-generalist-neural-algorithmic-learner/imgs/Untitled6_hue476ddce194debfa21fdc58a72e3d857_332819_480x0_resize_box_3.png 480w, https://gujh14.github.io/p/a-generalist-neural-algorithmic-learner/imgs/Untitled6_hue476ddce194debfa21fdc58a72e3d857_332819_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;161&#34;
+		data-flex-basis=&#34;387px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://gujh14.github.io/p/a-generalist-neural-algorithmic-learner/imgs/Untitled7.png&#34;
+	width=&#34;1420&#34;
+	height=&#34;832&#34;
+	srcset=&#34;https://gujh14.github.io/p/a-generalist-neural-algorithmic-learner/imgs/Untitled7_hua63bee05ca500a02321ab8fba0e28fac_373127_480x0_resize_box_3.png 480w, https://gujh14.github.io/p/a-generalist-neural-algorithmic-learner/imgs/Untitled7_hua63bee05ca500a02321ab8fba0e28fac_373127_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;170&#34;
+		data-flex-basis=&#34;409px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://gujh14.github.io/p/a-generalist-neural-algorithmic-learner/imgs/Untitled8.png&#34;
+	width=&#34;1388&#34;
+	height=&#34;838&#34;
+	srcset=&#34;https://gujh14.github.io/p/a-generalist-neural-algorithmic-learner/imgs/Untitled8_hu182e9048a4d33125a9f3cad1eff4208e_440343_480x0_resize_box_3.png 480w, https://gujh14.github.io/p/a-generalist-neural-algorithmic-learner/imgs/Untitled8_hu182e9048a4d33125a9f3cad1eff4208e_440343_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;165&#34;
+		data-flex-basis=&#34;397px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;h2 id=&#34;representation-decoding&#34;&gt;Representation: Decoding&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&#34;https://gujh14.github.io/p/a-generalist-neural-algorithmic-learner/imgs/Untitled9.png&#34;
+	width=&#34;2160&#34;
+	height=&#34;1006&#34;
+	srcset=&#34;https://gujh14.github.io/p/a-generalist-neural-algorithmic-learner/imgs/Untitled9_hu1c5ed84ce779c0009f05f3a5c7d8805a_1301394_480x0_resize_box_3.png 480w, https://gujh14.github.io/p/a-generalist-neural-algorithmic-learner/imgs/Untitled9_hu1c5ed84ce779c0009f05f3a5c7d8805a_1301394_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;214&#34;
+		data-flex-basis=&#34;515px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;Processing step is agnostic to the algorithm. Processing parameter is shared.&lt;/p&gt;
+&lt;h2 id=&#34;training&#34;&gt;Training&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&#34;https://gujh14.github.io/p/a-generalist-neural-algorithmic-learner/imgs/Untitled10.png&#34;
+	width=&#34;1910&#34;
+	height=&#34;1120&#34;
+	srcset=&#34;https://gujh14.github.io/p/a-generalist-neural-algorithmic-learner/imgs/Untitled10_hu780304005a57f8d4da75acf6761a1447_1221193_480x0_resize_box_3.png 480w, https://gujh14.github.io/p/a-generalist-neural-algorithmic-learner/imgs/Untitled10_hu780304005a57f8d4da75acf6761a1447_1221193_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;170&#34;
+		data-flex-basis=&#34;409px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;Hint: used only when training (not testing)&lt;/p&gt;
+&lt;p&gt;When training, hint loss is also added along with output loss.&lt;/p&gt;
+&lt;h2 id=&#34;details&#34;&gt;Details&lt;/h2&gt;
+&lt;p&gt;Trained on unlimited samples of size (number of nodes) &amp;lt; 16&lt;/p&gt;
+&lt;p&gt;The training distribution doesn&amp;rsquo;t cover all possible inputs though (e.g., we use only
+Erdös-Rényi graphs)&lt;/p&gt;
+&lt;p&gt;Tested on samples of size 64.&lt;/p&gt;
+&lt;p&gt;The length of the trajectory is given → both at train &amp;amp; test time.&lt;/p&gt;
+&lt;p&gt;Early stopping based on in-distribution scores.&lt;/p&gt;
+&lt;h2 id=&#34;but-why-even-care-about-building-a-generalist&#34;&gt;But.. why even care about building a generalist?&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&#34;https://gujh14.github.io/p/a-generalist-neural-algorithmic-learner/imgs/Untitled11.png&#34;
+	width=&#34;1788&#34;
+	height=&#34;920&#34;
+	srcset=&#34;https://gujh14.github.io/p/a-generalist-neural-algorithmic-learner/imgs/Untitled11_hud75bfcc42b7bb40e9cc645bc00eace8d_751629_480x0_resize_box_3.png 480w, https://gujh14.github.io/p/a-generalist-neural-algorithmic-learner/imgs/Untitled11_hud75bfcc42b7bb40e9cc645bc00eace8d_751629_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;194&#34;
+		data-flex-basis=&#34;466px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;→ It is all about problem solving!&lt;/p&gt;
+&lt;p&gt;How do we solve problems?&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Example: Route recommendation&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://gujh14.github.io/p/a-generalist-neural-algorithmic-learner/imgs/Untitled12.png&#34;
+	width=&#34;2190&#34;
+	height=&#34;1214&#34;
+	srcset=&#34;https://gujh14.github.io/p/a-generalist-neural-algorithmic-learner/imgs/Untitled12_hu7e6e9af231f964be6a6ec86c54c77193_1572950_480x0_resize_box_3.png 480w, https://gujh14.github.io/p/a-generalist-neural-algorithmic-learner/imgs/Untitled12_hu7e6e9af231f964be6a6ec86c54c77193_1572950_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;180&#34;
+		data-flex-basis=&#34;432px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;details-1&#34;&gt;Details&lt;/h3&gt;
+&lt;p&gt;&lt;img src=&#34;https://gujh14.github.io/p/a-generalist-neural-algorithmic-learner/imgs/Untitled13.png&#34;
+	width=&#34;1136&#34;
+	height=&#34;572&#34;
+	srcset=&#34;https://gujh14.github.io/p/a-generalist-neural-algorithmic-learner/imgs/Untitled13_hue16f66050313a9e43df5d697661818d7_432973_480x0_resize_box_3.png 480w, https://gujh14.github.io/p/a-generalist-neural-algorithmic-learner/imgs/Untitled13_hue16f66050313a9e43df5d697661818d7_432973_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;198&#34;
+		data-flex-basis=&#34;476px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;With Neural Algorithmic Reasoning, we break the &lt;strong&gt;blue&lt;/strong&gt; bottleneck!&lt;/p&gt;
+&lt;p&gt;A generalist processor would break the &lt;strong&gt;red&lt;/strong&gt; one!&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;If the model have a shared latent space where all the &amp;ldquo;key&amp;rdquo; algorithms would be executed&amp;hellip;&lt;/li&gt;
+&lt;li&gt;No longer need to decide upfront which algorithm to use!&lt;/li&gt;
+&lt;li&gt;The algorithm (combo) can be softly selected, learned by backprop through the encoder.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;to-get-a-generalist-first-we-need-a-good-specialist&#34;&gt;To get a generalist, first we need a good specialist&lt;/h2&gt;
+&lt;p&gt;However, training a generalist is not as easy as simple training over all 30 algos in CLRS-30!&lt;/p&gt;
+&lt;p&gt;Initial runs of this kind led to NaNs.&lt;/p&gt;
+&lt;p&gt;Prior results, e.g. NE++ (Xhonneux et al., NeurIPS&#39;21) imply this can be successful only if the algorithms being learnt together are highly related (e.g. Prim + Dijkstra)..&lt;/p&gt;
+&lt;p&gt;Key limitation:&lt;/p&gt;
+&lt;p&gt;Tasks with high learning instabilities cause breakages for all other.&lt;/p&gt;
+&lt;p&gt;→ Set out to improve single-task stability first!&lt;/p&gt;
+&lt;h3 id=&#34;bucket-list-of-improvements&#34;&gt;Bucket list of improvements&lt;/h3&gt;
+&lt;p&gt;Key improvements include:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Removing teacher forcing&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Training data augmentation (e.g. sampling multiple sizes below 16)&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Soft hint propagation (e.g. do not apply $\argmax$ to the hints; compute $\text{softmax}$ instead)&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Static hint elimination (if a hint provably never changes, convert it to an input)&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Encoder initialization (Xavier) + gradient clipping&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Randomized positional embeddings&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Permutation decoders using the Sinkhorn operator&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Gating mechanisms in the processor&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Triplet reasoning&lt;/p&gt;
+&lt;p&gt;$t_{ijk} = \psi_t (h_i, h_j, h_k, e_{ij}, e_{ik}, e_{kj}, g)$&lt;/p&gt;
+&lt;p&gt;$h_{ij} = \phi_t(\max_k t_{ijk})$&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;results&#34;&gt;Results&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&#34;https://gujh14.github.io/p/a-generalist-neural-algorithmic-learner/imgs/Untitled14.png&#34;
+	width=&#34;1870&#34;
+	height=&#34;888&#34;
+	srcset=&#34;https://gujh14.github.io/p/a-generalist-neural-algorithmic-learner/imgs/Untitled14_huf219c2988f878053e5a1b857a2f9f297_1096341_480x0_resize_box_3.png 480w, https://gujh14.github.io/p/a-generalist-neural-algorithmic-learner/imgs/Untitled14_huf219c2988f878053e5a1b857a2f9f297_1096341_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;210&#34;
+		data-flex-basis=&#34;505px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;h2 id=&#34;final-step-to-the-generalist-chunking&#34;&gt;Final step to the generalist: Chunking&lt;/h2&gt;
+&lt;p&gt;The &lt;strong&gt;chunking mechanism&lt;/strong&gt; was important for multi-task learning!&lt;/p&gt;
+&lt;p&gt;This not only helps protect against OOM issues, it also improves learning stability!&lt;/p&gt;
+&lt;p&gt;The idea is conceptually simple (though tricky to implement)&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;The length of the trajectory is set to 16.&lt;/li&gt;
+&lt;li&gt;Shorter samples are not padded, but concatenated by next sample.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;i.e. if trajectory doesn&amp;rsquo;t fully fit in the chunk, this is OK-can restart from a midpoint hint.&lt;/p&gt;
+&lt;p&gt;Initialization of the hidden state should not matter, since CLRS-30 tasks are Markovian!&lt;/p&gt;
+&lt;h3 id=&#34;single-generalist-that-matches-the-thirty-specialists&#34;&gt;Single generalist that matches the thirty specialists&lt;/h3&gt;
+&lt;p&gt;&lt;img src=&#34;https://gujh14.github.io/p/a-generalist-neural-algorithmic-learner/imgs/Untitled15.png&#34;
+	width=&#34;2232&#34;
+	height=&#34;730&#34;
+	srcset=&#34;https://gujh14.github.io/p/a-generalist-neural-algorithmic-learner/imgs/Untitled15_hu1f7b1e05436ecf853aeb420a00a1cb90_1553889_480x0_resize_box_3.png 480w, https://gujh14.github.io/p/a-generalist-neural-algorithmic-learner/imgs/Untitled15_hu1f7b1e05436ecf853aeb420a00a1cb90_1553889_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;305&#34;
+		data-flex-basis=&#34;733px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;h3 id=&#34;chunking-helps-significantly&#34;&gt;Chunking helps significantly&lt;/h3&gt;
+&lt;p&gt;&lt;img src=&#34;https://gujh14.github.io/p/a-generalist-neural-algorithmic-learner/imgs/Untitled16.png&#34;
+	width=&#34;2196&#34;
+	height=&#34;818&#34;
+	srcset=&#34;https://gujh14.github.io/p/a-generalist-neural-algorithmic-learner/imgs/Untitled16_hue2c0561d8ac9d7e91097433a7ef8d5ad_959613_480x0_resize_box_3.png 480w, https://gujh14.github.io/p/a-generalist-neural-algorithmic-learner/imgs/Untitled16_hue2c0561d8ac9d7e91097433a7ef8d5ad_959613_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;268&#34;
+		data-flex-basis=&#34;644px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;h2 id=&#34;reference&#34;&gt;Reference&lt;/h2&gt;
+&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://www.youtube.com/live/wp5S9GHyAgw?feature=share&amp;amp;t=10170&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Learning on Graphs Conference 2022 - Day 1 Livestream&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://arxiv.org/abs/2209.11142&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;A Generalist Neural Algorithmic Learner&lt;/a&gt;&lt;/p&gt;
+</description>
+        </item>
+        <item>
         <title>Does GNN Pre-training Help Molecular Representation?</title>
         <link>https://gujh14.github.io/p/does-gnn-pre-training-help-molecular-representation/</link>
         <pubDate>Tue, 22 Nov 2022 00:00:00 +0000</pubDate>

@@ -1,0 +1,357 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>LoG on JH Gu&#39;s Tech Blog</title>
+        <link>https://gujh14.github.io/ko/categories/log/</link>
+        <description>Recent content in LoG on JH Gu&#39;s Tech Blog</description>
+        <generator>Hugo -- gohugo.io</generator>
+        <language>en-us</language>
+        <lastBuildDate>Fri, 13 Jan 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://gujh14.github.io/ko/categories/log/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>A Generalist Neural Algorithmic Learner</title>
+        <link>https://gujh14.github.io/ko/p/a-generalist-neural-algorithmic-learner/</link>
+        <pubDate>Fri, 13 Jan 2023 00:00:00 +0000</pubDate>
+        
+        <guid>https://gujh14.github.io/ko/p/a-generalist-neural-algorithmic-learner/</guid>
+        <description>&lt;img src="https://gujh14.github.io/ko/p/a-generalist-neural-algorithmic-learner/thumbnail.png" alt="Featured image of post A Generalist Neural Algorithmic Learner" /&gt;&lt;p&gt;LoG, 22 &lt;br&gt;
+&lt;a class=&#34;link&#34; href=&#34;https://arxiv.org/abs/2209.11142&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;&amp;ldquo;A Generalist Neural Algorithmic Learner&amp;rdquo;&lt;/a&gt;&lt;/p&gt;
+&lt;h1 id=&#34;summary&#34;&gt;Summary&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;Neural network, especially GNN, can learn traditional computer science algorithms in CLRS book.&lt;/li&gt;
+&lt;li&gt;A generalist neural algorithmic learner is necessary if the algorithm is not obvious.&lt;/li&gt;
+&lt;li&gt;Chunking mechanism was important to stabilize multi-task learning.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;starting-point-a-benchmark-to-train-neural-computer-scientists&#34;&gt;Starting point: A benchmark to train neural computer scientists&lt;/h2&gt;
+&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://arxiv.org/abs/2205.15659&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;The CLRS Algorithmic Reasoning Benchmark&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://github.com/deepmind/clrs&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://github.com/deepmind/clrs&lt;/a&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Neural network가 전통적인 CS algorithm을 풀도록 학습시킬 수 있을까?&lt;/li&gt;
+&lt;li&gt;이후에는 이 지식을 natural input에 적용해서 real-world problem을 풀 수 있을 것이다.&lt;/li&gt;
+&lt;li&gt;그리고, 그 algorithm을 여러 개 학습시킬 수 있을까?&lt;/li&gt;
+&lt;li&gt;이런 문제들은 recurrent architecture로 modeling 할 수 있다.
+&lt;ul&gt;
+&lt;li&gt;LSTM, Transformer, ConvNet, GNN 등.&lt;/li&gt;
+&lt;li&gt;저자들은 GNN을 사용.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Benchmark: Introduction to Algorithms: CLRS&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://gujh14.github.io/ko/p/a-generalist-neural-algorithmic-learner/imgs/Untitled.png&#34;
+	width=&#34;442&#34;
+	height=&#34;500&#34;
+	srcset=&#34;https://gujh14.github.io/ko/p/a-generalist-neural-algorithmic-learner/imgs/Untitled_hua63265e8260ecb294a7579e9be70a8cf_138413_480x0_resize_box_3.png 480w, https://gujh14.github.io/ko/p/a-generalist-neural-algorithmic-learner/imgs/Untitled_hua63265e8260ecb294a7579e9be70a8cf_138413_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;88&#34;
+		data-flex-basis=&#34;212px&#34;
+	
+&gt;
+&lt;img src=&#34;https://gujh14.github.io/ko/p/a-generalist-neural-algorithmic-learner/imgs/Untitled1.png&#34;
+	width=&#34;1352&#34;
+	height=&#34;2296&#34;
+	srcset=&#34;https://gujh14.github.io/ko/p/a-generalist-neural-algorithmic-learner/imgs/Untitled1_hucd8b39bbcea98e1dc70ae8292aef00b9_466801_480x0_resize_box_3.png 480w, https://gujh14.github.io/ko/p/a-generalist-neural-algorithmic-learner/imgs/Untitled1_hucd8b39bbcea98e1dc70ae8292aef00b9_466801_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;List of algorithms included in the benchmark&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;58&#34;
+		data-flex-basis=&#34;141px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;h2 id=&#34;representation&#34;&gt;Representation&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;모든 알고리즘은 graph 형태로 표현되었다.&lt;/li&gt;
+&lt;li&gt;각 알고리즘은 정해진 숫자만큼의 “probe”로 표현된다.&lt;/li&gt;
+&lt;li&gt;예를 들어, insertion sort 알고리즘은 아래 6가지의 probe로 구성된다.
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;&#39;pos&#39;: (Stage. INPUT, Location.NODE, Type.SCALAR)&lt;/code&gt; → 각 node의 ID&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;&#39;key&#39;: (Stage.INPUT, Location. NODE, Type.SCALAR)&lt;/code&gt; → 정렬할 value&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;&#39;pred&#39;: (Stage.OUTPUT, Location. NODE, Type.POINTER)&lt;/code&gt; → 최종 node 순서&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;&#39;pred h&#39;: (Stage. HINT, Location. NODE, Type. POINTER)&lt;/code&gt; → 실행하면서 바뀌는 node 순서&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;&#39;i&#39;: (Stage.HINT, Location.NODE, Type.MASK_ONE)&lt;/code&gt; → insertion할 index&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;&#39;j&#39;: (Stage.HINT, Location.NODE, Type.MASK_ONE)&lt;/code&gt; → tracking 할 index&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Probe는 input, output, hint 중 하나.&lt;/li&gt;
+&lt;li&gt;Input과 output은 알고리즘 실행 시 고정, hint는 실행되면서 바뀜.
+&lt;ul&gt;
+&lt;li&gt;따라서, 모든 sorting algorithm은 input과 output이 같고 hint만 다름.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;representation-encoding&#34;&gt;Representation: Encoding&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&#34;https://gujh14.github.io/ko/p/a-generalist-neural-algorithmic-learner/imgs/Untitled2.png&#34;
+	width=&#34;1890&#34;
+	height=&#34;978&#34;
+	srcset=&#34;https://gujh14.github.io/ko/p/a-generalist-neural-algorithmic-learner/imgs/Untitled2_hu7e853881e8b757dd1a85a210730154a4_566098_480x0_resize_box_3.png 480w, https://gujh14.github.io/ko/p/a-generalist-neural-algorithmic-learner/imgs/Untitled2_hu7e853881e8b757dd1a85a210730154a4_566098_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;193&#34;
+		data-flex-basis=&#34;463px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;처음 positional ID (node의 ID)는 encoder에 의해 vector 형태로 표현됨.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://gujh14.github.io/ko/p/a-generalist-neural-algorithmic-learner/imgs/Untitled3.png&#34;
+	width=&#34;1876&#34;
+	height=&#34;966&#34;
+	srcset=&#34;https://gujh14.github.io/ko/p/a-generalist-neural-algorithmic-learner/imgs/Untitled3_hu7baf8378b39f5fa240e98e584947107a_603402_480x0_resize_box_3.png 480w, https://gujh14.github.io/ko/p/a-generalist-neural-algorithmic-learner/imgs/Untitled3_hu7baf8378b39f5fa240e98e584947107a_603402_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;194&#34;
+		data-flex-basis=&#34;466px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;Algorithm의 대상이 되는 value도 encoder에 의해 vector 형태로 표현되고, pos에 더해짐.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://gujh14.github.io/ko/p/a-generalist-neural-algorithmic-learner/imgs/Untitled4.png&#34;
+	width=&#34;1890&#34;
+	height=&#34;974&#34;
+	srcset=&#34;https://gujh14.github.io/ko/p/a-generalist-neural-algorithmic-learner/imgs/Untitled4_hucd1cc34f62c703accc3d07c639180e51_633524_480x0_resize_box_3.png 480w, https://gujh14.github.io/ko/p/a-generalist-neural-algorithmic-learner/imgs/Untitled4_hucd1cc34f62c703accc3d07c639180e51_633524_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;194&#34;
+		data-flex-basis=&#34;465px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;Hint로 사용되는 pred_h도 encoder에 의해 pointer로 mapping됨.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://gujh14.github.io/ko/p/a-generalist-neural-algorithmic-learner/imgs/Untitled5.png&#34;
+	width=&#34;1886&#34;
+	height=&#34;988&#34;
+	srcset=&#34;https://gujh14.github.io/ko/p/a-generalist-neural-algorithmic-learner/imgs/Untitled5_huaaecf81d46faf81870899897fc493e3b_810218_480x0_resize_box_3.png 480w, https://gujh14.github.io/ko/p/a-generalist-neural-algorithmic-learner/imgs/Untitled5_huaaecf81d46faf81870899897fc493e3b_810218_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;190&#34;
+		data-flex-basis=&#34;458px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;Insertion에 필요한 index도 encoder에 의해 바뀌어 더해짐.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://gujh14.github.io/ko/p/a-generalist-neural-algorithmic-learner/imgs/Untitled6.png&#34;
+	width=&#34;1408&#34;
+	height=&#34;872&#34;
+	srcset=&#34;https://gujh14.github.io/ko/p/a-generalist-neural-algorithmic-learner/imgs/Untitled6_hue476ddce194debfa21fdc58a72e3d857_332819_480x0_resize_box_3.png 480w, https://gujh14.github.io/ko/p/a-generalist-neural-algorithmic-learner/imgs/Untitled6_hue476ddce194debfa21fdc58a72e3d857_332819_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;161&#34;
+		data-flex-basis=&#34;387px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://gujh14.github.io/ko/p/a-generalist-neural-algorithmic-learner/imgs/Untitled7.png&#34;
+	width=&#34;1420&#34;
+	height=&#34;832&#34;
+	srcset=&#34;https://gujh14.github.io/ko/p/a-generalist-neural-algorithmic-learner/imgs/Untitled7_hua63bee05ca500a02321ab8fba0e28fac_373127_480x0_resize_box_3.png 480w, https://gujh14.github.io/ko/p/a-generalist-neural-algorithmic-learner/imgs/Untitled7_hua63bee05ca500a02321ab8fba0e28fac_373127_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;170&#34;
+		data-flex-basis=&#34;409px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://gujh14.github.io/ko/p/a-generalist-neural-algorithmic-learner/imgs/Untitled8.png&#34;
+	width=&#34;1388&#34;
+	height=&#34;838&#34;
+	srcset=&#34;https://gujh14.github.io/ko/p/a-generalist-neural-algorithmic-learner/imgs/Untitled8_hu182e9048a4d33125a9f3cad1eff4208e_440343_480x0_resize_box_3.png 480w, https://gujh14.github.io/ko/p/a-generalist-neural-algorithmic-learner/imgs/Untitled8_hu182e9048a4d33125a9f3cad1eff4208e_440343_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;165&#34;
+		data-flex-basis=&#34;397px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;h2 id=&#34;representation-decoding&#34;&gt;Representation: Decoding&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&#34;https://gujh14.github.io/ko/p/a-generalist-neural-algorithmic-learner/imgs/Untitled9.png&#34;
+	width=&#34;2160&#34;
+	height=&#34;1006&#34;
+	srcset=&#34;https://gujh14.github.io/ko/p/a-generalist-neural-algorithmic-learner/imgs/Untitled9_hu1c5ed84ce779c0009f05f3a5c7d8805a_1301394_480x0_resize_box_3.png 480w, https://gujh14.github.io/ko/p/a-generalist-neural-algorithmic-learner/imgs/Untitled9_hu1c5ed84ce779c0009f05f3a5c7d8805a_1301394_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;214&#34;
+		data-flex-basis=&#34;515px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;Processing step은 algorithm에 따라 바뀌지 않는다! Processing parameter는 공유됨.&lt;/p&gt;
+&lt;h2 id=&#34;training&#34;&gt;Training&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&#34;https://gujh14.github.io/ko/p/a-generalist-neural-algorithmic-learner/imgs/Untitled10.png&#34;
+	width=&#34;1910&#34;
+	height=&#34;1120&#34;
+	srcset=&#34;https://gujh14.github.io/ko/p/a-generalist-neural-algorithmic-learner/imgs/Untitled10_hu780304005a57f8d4da75acf6761a1447_1221193_480x0_resize_box_3.png 480w, https://gujh14.github.io/ko/p/a-generalist-neural-algorithmic-learner/imgs/Untitled10_hu780304005a57f8d4da75acf6761a1447_1221193_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;170&#34;
+		data-flex-basis=&#34;409px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;Train할 때는 hint를 사용하고, test할 때는 hint를 사용하지 않고 input만 주고 output을 맞춘다.&lt;/p&gt;
+&lt;p&gt;Train할 때는 output loss 뿐만 아니라 중간 과정인 hint loss에 대해서도 loss를 준다.&lt;/p&gt;
+&lt;h2 id=&#34;details&#34;&gt;Details&lt;/h2&gt;
+&lt;p&gt;몇 가지 training detail이 실제 학습에 매우 중요했다.&lt;/p&gt;
+&lt;p&gt;Node 개수가 16이하인 graph에 대해서 train하고, node 개수가 64인 sample에 대해 test 했다.&lt;/p&gt;
+&lt;p&gt;Train, test 시 모두 trajectory의 length도 정해져있다.&lt;/p&gt;
+&lt;p&gt;In-distribution score에 따라 early stopping을 적용했다.&lt;/p&gt;
+&lt;h2 id=&#34;why-even-care-about-building-a-generalist&#34;&gt;Why even care about building a generalist?&lt;/h2&gt;
+&lt;p&gt;왜 generalist algorithmic solver가 필요한 것일까?&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://gujh14.github.io/ko/p/a-generalist-neural-algorithmic-learner/imgs/Untitled11.png&#34;
+	width=&#34;1788&#34;
+	height=&#34;920&#34;
+	srcset=&#34;https://gujh14.github.io/ko/p/a-generalist-neural-algorithmic-learner/imgs/Untitled11_hud75bfcc42b7bb40e9cc645bc00eace8d_751629_480x0_resize_box_3.png 480w, https://gujh14.github.io/ko/p/a-generalist-neural-algorithmic-learner/imgs/Untitled11_hud75bfcc42b7bb40e9cc645bc00eace8d_751629_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;194&#34;
+		data-flex-basis=&#34;466px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;어떤 input에 대해 output을 맞추는 것은 problem solving 인데, 우리가 보통 어떻게 real-world에서 문제를 해결하고 있는지 살펴보자.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Example: Route recommendation&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://gujh14.github.io/ko/p/a-generalist-neural-algorithmic-learner/imgs/Untitled12.png&#34;
+	width=&#34;2190&#34;
+	height=&#34;1214&#34;
+	srcset=&#34;https://gujh14.github.io/ko/p/a-generalist-neural-algorithmic-learner/imgs/Untitled12_hu7e6e9af231f964be6a6ec86c54c77193_1572950_480x0_resize_box_3.png 480w, https://gujh14.github.io/ko/p/a-generalist-neural-algorithmic-learner/imgs/Untitled12_hu7e6e9af231f964be6a6ec86c54c77193_1572950_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;180&#34;
+		data-flex-basis=&#34;432px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;Google map에서 최적의 route 추천을 해야하는 상황을 가정해보자. 그냥 raw map 상태로는 문제를 풀 수 없다. Graph 형태로 문제를 추상화한다음, CLRS에서 공부했던 알고리즘을 적용해서, (아마 대부분 Dijkstra’s algorithm을 써서) 최단 거리를 알아내고, 그것을 정답으로 하여 raw map으로 다시 변환할 것이다.&lt;/p&gt;
+&lt;p&gt;하지만 real-world에서는 꼭 ‘최단거리’가 최적의 route는 아닐 수 있다. 교통상황, 높이, 등등 다양한 factor가 존재하고, 이럴 경우에는 algorithm이 obvious하지 않다.&lt;/p&gt;
+&lt;h3 id=&#34;details-1&#34;&gt;Details&lt;/h3&gt;
+&lt;p&gt;&lt;img src=&#34;https://gujh14.github.io/ko/p/a-generalist-neural-algorithmic-learner/imgs/Untitled13.png&#34;
+	width=&#34;1136&#34;
+	height=&#34;572&#34;
+	srcset=&#34;https://gujh14.github.io/ko/p/a-generalist-neural-algorithmic-learner/imgs/Untitled13_hue16f66050313a9e43df5d697661818d7_432973_480x0_resize_box_3.png 480w, https://gujh14.github.io/ko/p/a-generalist-neural-algorithmic-learner/imgs/Untitled13_hue16f66050313a9e43df5d697661818d7_432973_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;198&#34;
+		data-flex-basis=&#34;476px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;저자들은 neural algorithmic reasoning으로 파란 부분의 bottleneck을 해결할 수 있다고 주장한다.&lt;/p&gt;
+&lt;p&gt;그리고 잘 학습된 generalist processor가 빨간 bottleneck을 해결할 수 있다고 주장한다.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;이 generalist processor는 중요한 알고리즘의 latent space를 잘 공유한다면, 더 이상 특정 알고리즘을 고르지 않아도 되고, 최적의 정답을 추천해줄 수 있을 것이다.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;to-get-a-generalist-first-we-need-a-good-specialist&#34;&gt;To get a generalist, first we need a good specialist!&lt;/h2&gt;
+&lt;p&gt;그러나 CLRS의 30개의 알고리즘에 대해 모두 다 잘 하는 generalist를 naïve하게 학습하는 것은 어려웠다.&lt;/p&gt;
+&lt;p&gt;최근 NE++ (Xhonneux et al., NeurIPS&#39;21) 에서, 이런 알고리즘들은 서로 연관이 높은 것들끼리 (e.g. Prim + Dijkstra) 학습될 때만 잘 학습된다는 얘기가 있었다.&lt;/p&gt;
+&lt;p&gt;DeepMind 저자들이 발견한 학습 양상:&lt;/p&gt;
+&lt;p&gt;학습이 불안정한 task 들은 다른 task에도 크게 영향을 준다.&lt;/p&gt;
+&lt;p&gt;따라서, single-task 단위로 안정성을 먼저 높여 놓아야 한다.&lt;/p&gt;
+&lt;h3 id=&#34;bucket-list-of-improvements&#34;&gt;Bucket list of improvements&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Teacher forcing 없애기&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Training data augmentation (16개 이하의 node size 기준)&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Soft hint propagation (hint에 대해 argmax를 취하지 않고, softmax를 취한다)&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Static hint elimination (hint가 바뀌지 않으면, input으로 사용한다)&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Encoder initialization (Xavier) + Gradient clipping&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Randomized positional embedding&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Sinkhorn operator를 사용한 Permutation decoder&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Processor에 gating mechanism&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Triplet reasoning&lt;/p&gt;
+&lt;p&gt;$t_{ijk} = \psi_t (h_i, h_j, h_k, e_{ij}, e_{ik}, e_{kj}, g)$&lt;/p&gt;
+&lt;p&gt;$h_{ij} = \phi_t(\max_k t_{ijk})$&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;results&#34;&gt;Results&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&#34;https://gujh14.github.io/ko/p/a-generalist-neural-algorithmic-learner/imgs/Untitled14.png&#34;
+	width=&#34;1870&#34;
+	height=&#34;888&#34;
+	srcset=&#34;https://gujh14.github.io/ko/p/a-generalist-neural-algorithmic-learner/imgs/Untitled14_huf219c2988f878053e5a1b857a2f9f297_1096341_480x0_resize_box_3.png 480w, https://gujh14.github.io/ko/p/a-generalist-neural-algorithmic-learner/imgs/Untitled14_huf219c2988f878053e5a1b857a2f9f297_1096341_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;210&#34;
+		data-flex-basis=&#34;505px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;h2 id=&#34;final-step-to-the-generalist&#34;&gt;Final step to the generalist&lt;/h2&gt;
+&lt;p&gt;Multi-task learning을 위해 &lt;strong&gt;chunking mechanism&lt;/strong&gt;이 중요했다.&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Trajectory의 length는 16으로 설정한다.&lt;/li&gt;
+&lt;li&gt;16보다 짧은 sample들은 padding 되지 않고 그냥 다음 task가 concat 된다.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;즉, padding 없이 쭉 연결된 형태이며, 이렇게 구성하면 memory-efficient 하고 학습이 안정화되는 효과가 있었다.&lt;/p&gt;
+&lt;p&gt;이렇게 해도 되는 이유는 CLRS-30 task는 Markovian 이기 때문이다.&lt;/p&gt;
+&lt;h3 id=&#34;single-generalist-that-matches-the-thirty-specialists&#34;&gt;Single generalist that matches the thirty specialists&lt;/h3&gt;
+&lt;p&gt;&lt;img src=&#34;https://gujh14.github.io/ko/p/a-generalist-neural-algorithmic-learner/imgs/Untitled15.png&#34;
+	width=&#34;2232&#34;
+	height=&#34;730&#34;
+	srcset=&#34;https://gujh14.github.io/ko/p/a-generalist-neural-algorithmic-learner/imgs/Untitled15_hu1f7b1e05436ecf853aeb420a00a1cb90_1553889_480x0_resize_box_3.png 480w, https://gujh14.github.io/ko/p/a-generalist-neural-algorithmic-learner/imgs/Untitled15_hu1f7b1e05436ecf853aeb420a00a1cb90_1553889_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;305&#34;
+		data-flex-basis=&#34;733px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;h3 id=&#34;chunking-helps-significantly&#34;&gt;Chunking helps significantly&lt;/h3&gt;
+&lt;p&gt;&lt;img src=&#34;https://gujh14.github.io/ko/p/a-generalist-neural-algorithmic-learner/imgs/Untitled16.png&#34;
+	width=&#34;2196&#34;
+	height=&#34;818&#34;
+	srcset=&#34;https://gujh14.github.io/ko/p/a-generalist-neural-algorithmic-learner/imgs/Untitled16_hue2c0561d8ac9d7e91097433a7ef8d5ad_959613_480x0_resize_box_3.png 480w, https://gujh14.github.io/ko/p/a-generalist-neural-algorithmic-learner/imgs/Untitled16_hue2c0561d8ac9d7e91097433a7ef8d5ad_959613_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;268&#34;
+		data-flex-basis=&#34;644px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;h2 id=&#34;reference&#34;&gt;Reference&lt;/h2&gt;
+&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://www.youtube.com/live/wp5S9GHyAgw?feature=share&amp;amp;t=10170&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Learning on Graphs Conference 2022 - Day 1 Livestream&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://arxiv.org/abs/2209.11142&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;A Generalist Neural Algorithmic Learner&lt;/a&gt;&lt;/p&gt;
+</description>
+        </item>
+        
+    </channel>
+</rss>

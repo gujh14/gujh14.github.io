@@ -1,0 +1,1170 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='LoG, 22 &amp;ldquo;A Generalist Neural Algorithmic Learner&amp;rdquo;
+Summary Neural network, especially GNN, can learn traditional computer science algorithms in CLRS book. A generalist neural algorithmic learner is necessary if the algorithm is not obvious. Chunking mechanism was important to stabilize multi-task learning. Starting point: A benchmark to train neural computer scientists The CLRS Algorithmic Reasoning Benchmark
+https://github.com/deepmind/clrs
+Can we train a neural network to execute classical CS algorithms? A differentiable computer scientist could then apply its &amp;ldquo;knowledge&amp;rdquo; to natural inputs.'>
+<title>A Generalist Neural Algorithmic Learner</title>
+
+<link rel='canonical' href='https://gujh14.github.io/p/a-generalist-neural-algorithmic-learner/'>
+
+<link rel="stylesheet" href="/scss/style.min.8191399262444ab68b72a18c97392f5349be20a1615d77445be51e974c144cff.css"><meta property='og:title' content='A Generalist Neural Algorithmic Learner'>
+<meta property='og:description' content='LoG, 22 &amp;ldquo;A Generalist Neural Algorithmic Learner&amp;rdquo;
+Summary Neural network, especially GNN, can learn traditional computer science algorithms in CLRS book. A generalist neural algorithmic learner is necessary if the algorithm is not obvious. Chunking mechanism was important to stabilize multi-task learning. Starting point: A benchmark to train neural computer scientists The CLRS Algorithmic Reasoning Benchmark
+https://github.com/deepmind/clrs
+Can we train a neural network to execute classical CS algorithms? A differentiable computer scientist could then apply its &amp;ldquo;knowledge&amp;rdquo; to natural inputs.'>
+<meta property='og:url' content='https://gujh14.github.io/p/a-generalist-neural-algorithmic-learner/'>
+<meta property='og:site_name' content='JH Gu&#39;s Tech Blog'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='LoG 2022' /><meta property='article:tag' content='GNN' /><meta property='article:tag' content='Multi-task' /><meta property='article:tag' content='Algorithmic learner' /><meta property='article:published_time' content='2023-01-13T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2023-01-13T00:00:00&#43;00:00'/><meta property='og:image' content='https://gujh14.github.io/p/a-generalist-neural-algorithmic-learner/thumbnail.png' />
+<meta name="twitter:title" content="A Generalist Neural Algorithmic Learner">
+<meta name="twitter:description" content="LoG, 22 &amp;ldquo;A Generalist Neural Algorithmic Learner&amp;rdquo;
+Summary Neural network, especially GNN, can learn traditional computer science algorithms in CLRS book. A generalist neural algorithmic learner is necessary if the algorithm is not obvious. Chunking mechanism was important to stabilize multi-task learning. Starting point: A benchmark to train neural computer scientists The CLRS Algorithmic Reasoning Benchmark
+https://github.com/deepmind/clrs
+Can we train a neural network to execute classical CS algorithms? A differentiable computer scientist could then apply its &amp;ldquo;knowledge&amp;rdquo; to natural inputs."><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='https://gujh14.github.io/p/a-generalist-neural-algorithmic-learner/thumbnail.png' />
+    <link rel="shortcut icon" href="/favicon.ico" />
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-253021474-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="Toggle Menu">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/avatar_hufcbd7da9f307c4c4f078e698b3a6d837_2396352_300x0_resize_q75_box.jpg" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+                    <span class="emoji">🍥</span>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">JH Gu&#39;s Tech Blog</a></h1>
+            <h2 class="site-description">Machine Learning researcher for Drug Discovery</h2>
+        </div>
+    </header><ol class="social-menu">
+            
+                <li>
+                    <a 
+                        href='https://github.com/gujh14'
+                        target="_blank"
+                        title="GitHub"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://instagram.com/coookgu'
+                        target="_blank"
+                        title="Instagram"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0,0,256,256" width="50px" height="50px" fill-rule="nonzero"><g fill="#bababa" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal"><g transform="scale(9.0,9.0)"><path d="M7.54688,0c-4.15625,0 -7.54687,3.39063 -7.54687,7.54688v10.90625c0,4.15625 3.39063,7.54688 7.54688,7.54688h10.90625c4.15625,0 7.54688,-3.39062 7.54688,-7.54687v-10.90625c0,-4.15625 -3.39062,-7.54687 -7.54687,-7.54687zM7.54688,2h10.90625c3.07422,0 5.54688,2.46875 5.54688,5.54688v10.90625c0,3.07422 -2.46875,5.54688 -5.54687,5.54688h-10.90625c-3.07422,0 -5.54687,-2.46875 -5.54687,-5.54687v-10.90625c0,-3.07422 2.46875,-5.54687 5.54688,-5.54687zM20.5,4c-0.82812,0 -1.5,0.67188 -1.5,1.5c0,0.82813 0.67188,1.5 1.5,1.5c0.82813,0 1.5,-0.67187 1.5,-1.5c0,-0.82812 -0.67187,-1.5 -1.5,-1.5zM13,6c-3.85547,0 -7,3.14453 -7,7c0,3.85547 3.14453,7 7,7c3.85547,0 7,-3.14453 7,-7c0,-3.85547 -3.14453,-7 -7,-7zM13,8c2.77344,0 5,2.22656 5,5c0,2.77344 -2.22656,5 -5,5c-2.77344,0 -5,-2.22656 -5,-5c0,-2.77344 2.22656,-5 5,-5z"></path></g></g></svg>
+<!-- 9.84615 -->
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://twitter.com/coookgu'
+                        target="_blank"
+                        title="Twitter"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-twitter" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M22 4.01c-1 .49 -1.98 .689 -3 .99c-1.121 -1.265 -2.783 -1.335 -4.38 -.737s-2.643 2.06 -2.62 3.737v1c-3.245 .083 -6.135 -1.395 -8 -4c0 0 -4.182 7.433 4 11c-1.872 1.247 -3.739 2.088 -6 2c3.308 1.803 6.913 2.423 10.034 1.517c3.58 -1.04 6.522 -3.723 7.651 -7.742a13.84 13.84 0 0 0 .497 -3.753c-.002 -.249 1.51 -2.772 1.818 -4.013z" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+        <li >
+            <a href='/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>Home</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/about-jh-gu/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>About JH Gu</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/archives/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>Archives</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>Search</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/links/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5" />
+  <path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5" />
+</svg>
+
+
+
+                
+                <span>Links</span>
+            </a>
+        </li>
+        
+
+        <div class="menu-bottom-section">
+                <li id="i18n-switch">  
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-language" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M4 5h7" />
+  <path d="M9 3v2c0 4.418 -2.239 8 -5 8" />
+  <path d="M5 9c-.003 2.144 2.952 3.908 6.7 4" />
+  <path d="M12 20l4 -9l4 9" />
+  <path d="M19.1 18h-6.2" />
+</svg>
+
+
+
+                    <select name="language" onchange="window.location.href = this.selectedOptions[0].value">
+                        
+                            <option value="https://gujh14.github.io/" selected>English</option>
+                        
+                            <option value="https://gujh14.github.io/ko/" >한국어</option>
+                        
+                    </select>
+                </li>
+            
+            
+            
+                <li id="dark-mode-toggle">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <span>Dark Mode</span>
+                </li>
+            
+        </div>
+    </ol>
+</aside>
+
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">Table of contents</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#starting-point-a-benchmark-to-train-neural-computer-scientists">Starting point: A benchmark to train neural computer scientists</a></li>
+    <li><a href="#representation-encoding">Representation: Encoding</a></li>
+    <li><a href="#representation-decoding">Representation: Decoding</a></li>
+    <li><a href="#training">Training</a></li>
+    <li><a href="#details">Details</a></li>
+    <li><a href="#but-why-even-care-about-building-a-generalist">But.. why even care about building a generalist?</a>
+      <ol>
+        <li><a href="#details-1">Details</a></li>
+      </ol>
+    </li>
+    <li><a href="#to-get-a-generalist-first-we-need-a-good-specialist">To get a generalist, first we need a good specialist</a>
+      <ol>
+        <li><a href="#bucket-list-of-improvements">Bucket list of improvements</a></li>
+      </ol>
+    </li>
+    <li><a href="#results">Results</a></li>
+    <li><a href="#final-step-to-the-generalist-chunking">Final step to the generalist: Chunking</a>
+      <ol>
+        <li><a href="#single-generalist-that-matches-the-thirty-specialists">Single generalist that matches the thirty specialists</a></li>
+        <li><a href="#chunking-helps-significantly">Chunking helps significantly</a></li>
+      </ol>
+    </li>
+    <li><a href="#reference">Reference</a></li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+            <main class="main full-width">
+    <article class="has-image main-article">
+    <header class="article-header">
+        <div class="article-image">
+            <a href="/p/a-generalist-neural-algorithmic-learner/">
+                <img src="/p/a-generalist-neural-algorithmic-learner/thumbnail_hudd1318377aff45244e3590338f52153c_112022_800x0_resize_box_3.png"
+                        srcset="/p/a-generalist-neural-algorithmic-learner/thumbnail_hudd1318377aff45244e3590338f52153c_112022_800x0_resize_box_3.png 800w, /p/a-generalist-neural-algorithmic-learner/thumbnail_hudd1318377aff45244e3590338f52153c_112022_1600x0_resize_box_3.png 1600w"
+                        width="800" 
+                        height="405" 
+                        loading="lazy"
+                        alt="Featured image of post A Generalist Neural Algorithmic Learner" />
+                
+            </a>
+        </div>
+    
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/research-technical/" >
+                Research (Technical)
+            </a>
+        
+            <a href="/categories/log/" >
+                LoG
+            </a>
+        
+    </header>
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/p/a-generalist-neural-algorithmic-learner/">A Generalist Neural Algorithmic Learner</a>
+        </h2>
+    
+        
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">13 Jan 2023</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    4 minute read
+                </time>
+            </div>
+        
+    </footer>
+    
+
+    
+        <footer class="article-translations">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-language" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M4 5h7" />
+  <path d="M9 3v2c0 4.418 -2.239 8 -5 8" />
+  <path d="M5 9c-.003 2.144 2.952 3.908 6.7 4" />
+  <path d="M12 20l4 -9l4 9" />
+  <path d="M19.1 18h-6.2" />
+</svg>
+
+
+
+            <div>
+                
+                    <a href="https://gujh14.github.io/ko/p/a-generalist-neural-algorithmic-learner/" class="link">한국어</a>
+                
+            </div>
+        </footer>
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <p>LoG, 22 <br>
+<a class="link" href="https://arxiv.org/abs/2209.11142"  target="_blank" rel="noopener"
+    >&ldquo;A Generalist Neural Algorithmic Learner&rdquo;</a></p>
+<h1 id="summary">Summary</h1>
+<ul>
+<li>Neural network, especially GNN, can learn traditional computer science algorithms in CLRS book.</li>
+<li>A generalist neural algorithmic learner is necessary if the algorithm is not obvious.</li>
+<li>Chunking mechanism was important to stabilize multi-task learning.</li>
+</ul>
+<h2 id="starting-point-a-benchmark-to-train-neural-computer-scientists">Starting point: A benchmark to train neural computer scientists</h2>
+<p><a class="link" href="https://arxiv.org/abs/2205.15659"  target="_blank" rel="noopener"
+    >The CLRS Algorithmic Reasoning Benchmark</a></p>
+<p><a class="link" href="https://github.com/deepmind/clrs"  target="_blank" rel="noopener"
+    >https://github.com/deepmind/clrs</a></p>
+<ul>
+<li>Can we train a neural network to execute classical CS algorithms?</li>
+<li>A differentiable computer scientist could then apply its &ldquo;knowledge&rdquo; to natural inputs.</li>
+<li>We will also ponder: can it learn multiple algorithms at the same time?</li>
+<li>Typically the problem is modeled with a recurrent architecture:
+<ul>
+<li>LSTMs as in, e.g., Differentiable Neural Computers</li>
+<li>Transformers, as in the Universal Transformer</li>
+<li>ConvNets</li>
+<li>GNNs - our approach</li>
+</ul>
+</li>
+</ul>
+<p>Introduction to Algorithms: CLRS</p>
+<p><img src="/p/a-generalist-neural-algorithmic-learner/imgs/Untitled.png"
+	width="442"
+	height="500"
+	srcset="/p/a-generalist-neural-algorithmic-learner/imgs/Untitled_hua63265e8260ecb294a7579e9be70a8cf_138413_480x0_resize_box_3.png 480w, /p/a-generalist-neural-algorithmic-learner/imgs/Untitled_hua63265e8260ecb294a7579e9be70a8cf_138413_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="88"
+		data-flex-basis="212px"
+	
+>
+<img src="/p/a-generalist-neural-algorithmic-learner/imgs/Untitled1.png"
+	width="1352"
+	height="2296"
+	srcset="/p/a-generalist-neural-algorithmic-learner/imgs/Untitled1_hucd8b39bbcea98e1dc70ae8292aef00b9_466801_480x0_resize_box_3.png 480w, /p/a-generalist-neural-algorithmic-learner/imgs/Untitled1_hucd8b39bbcea98e1dc70ae8292aef00b9_466801_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+		alt="List of algorithms included in the benchmark"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="58"
+		data-flex-basis="141px"
+	
+></p>
+<p>Representation</p>
+<ul>
+<li>
+<p>All algorithms have been boiled down to a common graph representation</p>
+</li>
+<li>
+<p>Each algorithm is specified by a fixed number of &ldquo;probes&rdquo;.</p>
+</li>
+<li>
+<p>For example, the spec of insertion sort consists of the following 6 probes:</p>
+<ul>
+<li><code>'pos': (Stage. INPUT, Location.NODE, Type.SCALAR)</code> → the id of each node</li>
+<li><code>'key': (Stage.INPUT, Location. NODE, Type.SCALAR)</code> → the values to sort</li>
+<li><code>'pred': (Stage.OUTPUT, Location. NODE, Type.POINTER)</code> → the final node order</li>
+<li><code>'pred h': (Stage. HINT, Location. NODE, Type. POINTER)</code> → the node order along execution</li>
+<li><code>'i': (Stage.HINT, Location.NODE, Type.MASK_ONE)</code> → index for insertion</li>
+<li><code>'j': (Stage.HINT, Location.NODE, Type.MASK_ONE)</code> → index tracking &ldquo;sorted up to&rdquo;</li>
+</ul>
+</li>
+<li>
+<p>A probe can be input, output or hint.</p>
+</li>
+<li>
+<p>The inputs and outputs are fixed during algorithm execution, the hints change during execution</p>
+<p>→ they specify the algorithm (e.g., all sorting algorithms have the same inputs and outputs, differing only in their hints).</p>
+</li>
+</ul>
+<h2 id="representation-encoding">Representation: Encoding</h2>
+<p><img src="/p/a-generalist-neural-algorithmic-learner/imgs/Untitled2.png"
+	width="1890"
+	height="978"
+	srcset="/p/a-generalist-neural-algorithmic-learner/imgs/Untitled2_hu7e853881e8b757dd1a85a210730154a4_566098_480x0_resize_box_3.png 480w, /p/a-generalist-neural-algorithmic-learner/imgs/Untitled2_hu7e853881e8b757dd1a85a210730154a4_566098_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="193"
+		data-flex-basis="463px"
+	
+></p>
+<p><code>pos</code>: Positional ID (ID of node) is encoded as vector by encoder.</p>
+<p><img src="/p/a-generalist-neural-algorithmic-learner/imgs/Untitled3.png"
+	width="1876"
+	height="966"
+	srcset="/p/a-generalist-neural-algorithmic-learner/imgs/Untitled3_hu7baf8378b39f5fa240e98e584947107a_603402_480x0_resize_box_3.png 480w, /p/a-generalist-neural-algorithmic-learner/imgs/Untitled3_hu7baf8378b39f5fa240e98e584947107a_603402_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="194"
+		data-flex-basis="466px"
+	
+></p>
+<p><code>key</code>: The value to be processed is also encoded as vector and added to <code>pos</code>.</p>
+<p><img src="/p/a-generalist-neural-algorithmic-learner/imgs/Untitled4.png"
+	width="1890"
+	height="974"
+	srcset="/p/a-generalist-neural-algorithmic-learner/imgs/Untitled4_hucd1cc34f62c703accc3d07c639180e51_633524_480x0_resize_box_3.png 480w, /p/a-generalist-neural-algorithmic-learner/imgs/Untitled4_hucd1cc34f62c703accc3d07c639180e51_633524_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="194"
+		data-flex-basis="465px"
+	
+></p>
+<p><code>pred_h</code>: pointer used as hint is encoded and used as edge embedding.</p>
+<p><img src="/p/a-generalist-neural-algorithmic-learner/imgs/Untitled5.png"
+	width="1886"
+	height="988"
+	srcset="/p/a-generalist-neural-algorithmic-learner/imgs/Untitled5_huaaecf81d46faf81870899897fc493e3b_810218_480x0_resize_box_3.png 480w, /p/a-generalist-neural-algorithmic-learner/imgs/Untitled5_huaaecf81d46faf81870899897fc493e3b_810218_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="190"
+		data-flex-basis="458px"
+	
+></p>
+<p><code>i</code>, <code>j</code>: index needed for insertion are also added.</p>
+<p><img src="/p/a-generalist-neural-algorithmic-learner/imgs/Untitled6.png"
+	width="1408"
+	height="872"
+	srcset="/p/a-generalist-neural-algorithmic-learner/imgs/Untitled6_hue476ddce194debfa21fdc58a72e3d857_332819_480x0_resize_box_3.png 480w, /p/a-generalist-neural-algorithmic-learner/imgs/Untitled6_hue476ddce194debfa21fdc58a72e3d857_332819_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="161"
+		data-flex-basis="387px"
+	
+></p>
+<p><img src="/p/a-generalist-neural-algorithmic-learner/imgs/Untitled7.png"
+	width="1420"
+	height="832"
+	srcset="/p/a-generalist-neural-algorithmic-learner/imgs/Untitled7_hua63bee05ca500a02321ab8fba0e28fac_373127_480x0_resize_box_3.png 480w, /p/a-generalist-neural-algorithmic-learner/imgs/Untitled7_hua63bee05ca500a02321ab8fba0e28fac_373127_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="170"
+		data-flex-basis="409px"
+	
+></p>
+<p><img src="/p/a-generalist-neural-algorithmic-learner/imgs/Untitled8.png"
+	width="1388"
+	height="838"
+	srcset="/p/a-generalist-neural-algorithmic-learner/imgs/Untitled8_hu182e9048a4d33125a9f3cad1eff4208e_440343_480x0_resize_box_3.png 480w, /p/a-generalist-neural-algorithmic-learner/imgs/Untitled8_hu182e9048a4d33125a9f3cad1eff4208e_440343_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="165"
+		data-flex-basis="397px"
+	
+></p>
+<h2 id="representation-decoding">Representation: Decoding</h2>
+<p><img src="/p/a-generalist-neural-algorithmic-learner/imgs/Untitled9.png"
+	width="2160"
+	height="1006"
+	srcset="/p/a-generalist-neural-algorithmic-learner/imgs/Untitled9_hu1c5ed84ce779c0009f05f3a5c7d8805a_1301394_480x0_resize_box_3.png 480w, /p/a-generalist-neural-algorithmic-learner/imgs/Untitled9_hu1c5ed84ce779c0009f05f3a5c7d8805a_1301394_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="214"
+		data-flex-basis="515px"
+	
+></p>
+<p>Processing step is agnostic to the algorithm. Processing parameter is shared.</p>
+<h2 id="training">Training</h2>
+<p><img src="/p/a-generalist-neural-algorithmic-learner/imgs/Untitled10.png"
+	width="1910"
+	height="1120"
+	srcset="/p/a-generalist-neural-algorithmic-learner/imgs/Untitled10_hu780304005a57f8d4da75acf6761a1447_1221193_480x0_resize_box_3.png 480w, /p/a-generalist-neural-algorithmic-learner/imgs/Untitled10_hu780304005a57f8d4da75acf6761a1447_1221193_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="170"
+		data-flex-basis="409px"
+	
+></p>
+<p>Hint: used only when training (not testing)</p>
+<p>When training, hint loss is also added along with output loss.</p>
+<h2 id="details">Details</h2>
+<p>Trained on unlimited samples of size (number of nodes) &lt; 16</p>
+<p>The training distribution doesn&rsquo;t cover all possible inputs though (e.g., we use only
+Erdös-Rényi graphs)</p>
+<p>Tested on samples of size 64.</p>
+<p>The length of the trajectory is given → both at train &amp; test time.</p>
+<p>Early stopping based on in-distribution scores.</p>
+<h2 id="but-why-even-care-about-building-a-generalist">But.. why even care about building a generalist?</h2>
+<p><img src="/p/a-generalist-neural-algorithmic-learner/imgs/Untitled11.png"
+	width="1788"
+	height="920"
+	srcset="/p/a-generalist-neural-algorithmic-learner/imgs/Untitled11_hud75bfcc42b7bb40e9cc645bc00eace8d_751629_480x0_resize_box_3.png 480w, /p/a-generalist-neural-algorithmic-learner/imgs/Untitled11_hud75bfcc42b7bb40e9cc645bc00eace8d_751629_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="194"
+		data-flex-basis="466px"
+	
+></p>
+<p>→ It is all about problem solving!</p>
+<p>How do we solve problems?</p>
+<ul>
+<li>
+<p>Example: Route recommendation</p>
+<p><img src="/p/a-generalist-neural-algorithmic-learner/imgs/Untitled12.png"
+	width="2190"
+	height="1214"
+	srcset="/p/a-generalist-neural-algorithmic-learner/imgs/Untitled12_hu7e6e9af231f964be6a6ec86c54c77193_1572950_480x0_resize_box_3.png 480w, /p/a-generalist-neural-algorithmic-learner/imgs/Untitled12_hu7e6e9af231f964be6a6ec86c54c77193_1572950_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="180"
+		data-flex-basis="432px"
+	
+></p>
+</li>
+</ul>
+<h3 id="details-1">Details</h3>
+<p><img src="/p/a-generalist-neural-algorithmic-learner/imgs/Untitled13.png"
+	width="1136"
+	height="572"
+	srcset="/p/a-generalist-neural-algorithmic-learner/imgs/Untitled13_hue16f66050313a9e43df5d697661818d7_432973_480x0_resize_box_3.png 480w, /p/a-generalist-neural-algorithmic-learner/imgs/Untitled13_hue16f66050313a9e43df5d697661818d7_432973_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="198"
+		data-flex-basis="476px"
+	
+></p>
+<p>With Neural Algorithmic Reasoning, we break the <strong>blue</strong> bottleneck!</p>
+<p>A generalist processor would break the <strong>red</strong> one!</p>
+<ul>
+<li>If the model have a shared latent space where all the &ldquo;key&rdquo; algorithms would be executed&hellip;</li>
+<li>No longer need to decide upfront which algorithm to use!</li>
+<li>The algorithm (combo) can be softly selected, learned by backprop through the encoder.</li>
+</ul>
+<h2 id="to-get-a-generalist-first-we-need-a-good-specialist">To get a generalist, first we need a good specialist</h2>
+<p>However, training a generalist is not as easy as simple training over all 30 algos in CLRS-30!</p>
+<p>Initial runs of this kind led to NaNs.</p>
+<p>Prior results, e.g. NE++ (Xhonneux et al., NeurIPS'21) imply this can be successful only if the algorithms being learnt together are highly related (e.g. Prim + Dijkstra)..</p>
+<p>Key limitation:</p>
+<p>Tasks with high learning instabilities cause breakages for all other.</p>
+<p>→ Set out to improve single-task stability first!</p>
+<h3 id="bucket-list-of-improvements">Bucket list of improvements</h3>
+<p>Key improvements include:</p>
+<ul>
+<li>
+<p>Removing teacher forcing</p>
+</li>
+<li>
+<p>Training data augmentation (e.g. sampling multiple sizes below 16)</p>
+</li>
+<li>
+<p>Soft hint propagation (e.g. do not apply $\argmax$ to the hints; compute $\text{softmax}$ instead)</p>
+</li>
+<li>
+<p>Static hint elimination (if a hint provably never changes, convert it to an input)</p>
+</li>
+<li>
+<p>Encoder initialization (Xavier) + gradient clipping</p>
+</li>
+<li>
+<p>Randomized positional embeddings</p>
+</li>
+<li>
+<p>Permutation decoders using the Sinkhorn operator</p>
+</li>
+<li>
+<p>Gating mechanisms in the processor</p>
+</li>
+<li>
+<p>Triplet reasoning</p>
+<p>$t_{ijk} = \psi_t (h_i, h_j, h_k, e_{ij}, e_{ik}, e_{kj}, g)$</p>
+<p>$h_{ij} = \phi_t(\max_k t_{ijk})$</p>
+</li>
+</ul>
+<h2 id="results">Results</h2>
+<p><img src="/p/a-generalist-neural-algorithmic-learner/imgs/Untitled14.png"
+	width="1870"
+	height="888"
+	srcset="/p/a-generalist-neural-algorithmic-learner/imgs/Untitled14_huf219c2988f878053e5a1b857a2f9f297_1096341_480x0_resize_box_3.png 480w, /p/a-generalist-neural-algorithmic-learner/imgs/Untitled14_huf219c2988f878053e5a1b857a2f9f297_1096341_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="210"
+		data-flex-basis="505px"
+	
+></p>
+<h2 id="final-step-to-the-generalist-chunking">Final step to the generalist: Chunking</h2>
+<p>The <strong>chunking mechanism</strong> was important for multi-task learning!</p>
+<p>This not only helps protect against OOM issues, it also improves learning stability!</p>
+<p>The idea is conceptually simple (though tricky to implement)</p>
+<ol>
+<li>The length of the trajectory is set to 16.</li>
+<li>Shorter samples are not padded, but concatenated by next sample.</li>
+</ol>
+<p>i.e. if trajectory doesn&rsquo;t fully fit in the chunk, this is OK-can restart from a midpoint hint.</p>
+<p>Initialization of the hidden state should not matter, since CLRS-30 tasks are Markovian!</p>
+<h3 id="single-generalist-that-matches-the-thirty-specialists">Single generalist that matches the thirty specialists</h3>
+<p><img src="/p/a-generalist-neural-algorithmic-learner/imgs/Untitled15.png"
+	width="2232"
+	height="730"
+	srcset="/p/a-generalist-neural-algorithmic-learner/imgs/Untitled15_hu1f7b1e05436ecf853aeb420a00a1cb90_1553889_480x0_resize_box_3.png 480w, /p/a-generalist-neural-algorithmic-learner/imgs/Untitled15_hu1f7b1e05436ecf853aeb420a00a1cb90_1553889_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="305"
+		data-flex-basis="733px"
+	
+></p>
+<h3 id="chunking-helps-significantly">Chunking helps significantly</h3>
+<p><img src="/p/a-generalist-neural-algorithmic-learner/imgs/Untitled16.png"
+	width="2196"
+	height="818"
+	srcset="/p/a-generalist-neural-algorithmic-learner/imgs/Untitled16_hue2c0561d8ac9d7e91097433a7ef8d5ad_959613_480x0_resize_box_3.png 480w, /p/a-generalist-neural-algorithmic-learner/imgs/Untitled16_hue2c0561d8ac9d7e91097433a7ef8d5ad_959613_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="268"
+		data-flex-basis="644px"
+	
+></p>
+<h2 id="reference">Reference</h2>
+<p><a class="link" href="https://www.youtube.com/live/wp5S9GHyAgw?feature=share&amp;t=10170"  target="_blank" rel="noopener"
+    >Learning on Graphs Conference 2022 - Day 1 Livestream</a></p>
+<p><a class="link" href="https://arxiv.org/abs/2209.11142"  target="_blank" rel="noopener"
+    >A Generalist Neural Algorithmic Learner</a></p>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/log-2022/">LoG 2022</a>
+        
+            <a href="/tags/gnn/">GNN</a>
+        
+            <a href="/tags/multi-task/">Multi-task</a>
+        
+            <a href="/tags/algorithmic-learner/">Algorithmic learner</a>
+        
+    </section>
+
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+
+    
+        <link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/katex.min.css"integrity="sha256-J&#43;iAE0sgH8QSz9hpcDxXIftnj65JEZgNhGcgReTTK9s="crossorigin="anonymous"
+            ><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/katex.min.js"integrity="sha256-InsNdER1b2xUewP&#43;pKCUJpkhiqwHgqiPXDlIk7GzBu4="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/contrib/auto-render.min.js"integrity="sha256-y39Mpg7V3D4lhBX4x6O0bUqTV4pSrfgwEfGKfxkOdgI="crossorigin="anonymous"
+                defer
+                >
+            </script><script>
+    window.addEventListener("DOMContentLoaded", () => {
+        renderMathInElement(document.querySelector(`.article-content`), {
+            delimiters: [
+                { left: "$$", right: "$$", display: true },
+                { left: "$", right: "$", display: false },
+                { left: "\\(", right: "\\)", display: false },
+                { left: "\\[", right: "\\]", display: true }
+            ]
+        });})
+</script>
+    
+</article>
+
+    
+
+    
+
+<aside class="related-content--wrapper">
+    <h2 class="section-title">Related content</h2>
+    <div class="related-content">
+        <div class="flex article-list--tile">
+            
+                
+<article class="has-image">
+    <a href="/p/does-gnn-pre-training-help-molecular-representation/">
+        
+        
+            <div class="article-image">
+                <img src="/p/does-gnn-pre-training-help-molecular-representation/thumbnail.b471fb84ebc6833319819aca8beac3d0_hube49b7519c97672414e9b0ddbe5479a4_229014_250x150_fill_box_smart1_3.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post Does GNN Pre-training Help Molecular Representation?"
+                        
+                        data-hash="md5-tHH7hOvGgzMZgZrKi&#43;rD0A==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Does GNN Pre-training Help Molecular Representation?</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/physchem-deep-molecular-representation-learning-via-fusing-physical-and-chemical-information/">
+        
+        
+            <div class="article-image">
+                <img src="/p/physchem-deep-molecular-representation-learning-via-fusing-physical-and-chemical-information/thumbnail.41601d124d7da4c34d71567d5753ea1d_hu614a3ffe516a8cd557a8bbd359513341_952945_250x150_fill_box_smart1_3.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post PhysChem: Deep Molecular Representation Learning via Fusing Physical and Chemical Information"
+                        
+                        data-hash="md5-QWAdEk19pMNNcVZ9V1PqHQ==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">PhysChem: Deep Molecular Representation Learning via Fusing Physical and Chemical Information</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/few-shot-learning-with-graph-neural-networks/">
+        
+        
+            <div class="article-image">
+                <img src="/p/few-shot-learning-with-graph-neural-networks/thumbnail.286574ec60889934044130d39a9bb9b3_hu8ba07e37572d4400f76afaadd55834a8_158186_250x150_fill_box_smart1_3.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post Few-shot Learning with Graph Neural Networks"
+                        
+                        data-hash="md5-KGV07GCImTQEQTDTmpu5sw==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Few-shot Learning with Graph Neural Networks</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/graph-self-supervised-learning-with-accurate-discrepancy-learning/">
+        
+        
+            <div class="article-image">
+                <img src="/p/graph-self-supervised-learning-with-accurate-discrepancy-learning/thumbnail.49465fa84dca02b048da5b4efb9209b7_hu1da554d6c291b842a8ea287e9b40bdf6_233064_250x150_fill_box_smart1_3.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post Graph Self-supervised Learning with Accurate Discrepancy Learning"
+                        
+                        data-hash="md5-SUZfqE3KArBI2ltO&#43;5IJtw==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Graph Self-supervised Learning with Accurate Discrepancy Learning</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/maml-model-agnostic-meta-learning-for-fast-adaptation-of-deep-networks/">
+        
+        
+            <div class="article-image">
+                <img src="/p/maml-model-agnostic-meta-learning-for-fast-adaptation-of-deep-networks/thumbnail.1bcca870141bc0a47ae0d68e3e1658a7_huac13bc7b7974135f98c493a6d9abadaf_36220_250x150_fill_box_smart1_3.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post MAML: Model-Agnostic Meta -Learning for Fast Adaptation of Deep Networks"
+                        
+                        data-hash="md5-G8yocBQbwKR64NaOPhZYpw==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">MAML: Model-Agnostic Meta -Learning for Fast Adaptation of Deep Networks</h2>
+        </div>
+    </a>
+</article>
+
+            
+        </div>
+    </div>
+</aside>
+
+     
+    
+        
+    <div class="disqus-container">
+    <div id="disqus_thread"></div>
+<script type="application/javascript">
+    window.disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "jh-gu-blog" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div>
+
+<style>
+    .disqus-container {
+        background-color: var(--card-background);
+        border-radius: var(--card-border-radius);
+        box-shadow: var(--shadow-l1);
+        padding: var(--card-padding);
+    }
+</style>
+
+<script>
+    window.addEventListener('onColorSchemeChange', (e) => {
+        if (typeof DISQUS == 'object') {
+            DISQUS.reset({
+                reload: true
+            });
+        }
+    })
+</script>
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2020 - 
+        
+        2023 JH Gu&#39;s Tech Blog
+    </section>
+    
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.16.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>
