@@ -6,7 +6,238 @@
         <description>Recent content in Research (Technical) on JH Gu&#39;s Tech Blog</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>en-us</language>
-        <lastBuildDate>Fri, 13 Jan 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://gujh14.github.io/ko/categories/research-technical/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Sun, 15 Jan 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://gujh14.github.io/ko/categories/research-technical/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>Neighborhood-aware Scalable Temporal Network Representation Learning</title>
+        <link>https://gujh14.github.io/ko/p/neighborhood-aware-scalable-temporal-network-representation-learning/</link>
+        <pubDate>Sun, 15 Jan 2023 00:00:00 +0000</pubDate>
+        
+        <guid>https://gujh14.github.io/ko/p/neighborhood-aware-scalable-temporal-network-representation-learning/</guid>
+        <description>&lt;img src="https://gujh14.github.io/ko/p/neighborhood-aware-scalable-temporal-network-representation-learning/thumbnail.png" alt="Featured image of post Neighborhood-aware Scalable Temporal Network Representation Learning" /&gt;&lt;p&gt;LoG, &amp;lsquo;22&lt;br&gt;
+&lt;a class=&#34;link&#34; href=&#34;https://arxiv.org/abs/2209.01084&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;&amp;ldquo;Neighborhood-aware Scalable Temporal Network Representation Learning&amp;rdquo;&lt;/a&gt;&lt;/p&gt;
+&lt;h1 id=&#34;summary&#34;&gt;Summary&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;시간에 따라 변하는 temporal network에 network science적인 inference를 잘 할 수 있는 모델들이 부족하다.&lt;/li&gt;
+&lt;li&gt;기존의 일반적인 GNN은 structural feature를 잘 반영하기 어렵고, node 간의 distance를 사용한 모델들도 대부분 static network에 적용하는 것이었다.&lt;/li&gt;
+&lt;li&gt;Temporal network에 scalable하게 적용하는 방법으로 dictionary-type node representation과 neighborhood cache를 이용하여 다양한 link prediction task에서 좋은 성능을 달성했다.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;temporal-network&#34;&gt;Temporal network&lt;/h2&gt;
+&lt;p&gt;Temporal network는 시간에 따라 변하는, 복잡한 interactive system의 abstraction임.&lt;/p&gt;
+&lt;p&gt;네트워크 구조는 시간에 따라 변한다.&lt;/p&gt;
+&lt;p&gt;예시:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;사용자-아이템 네트워크&lt;/li&gt;
+&lt;li&gt;소셜 미디어 네트워크&lt;/li&gt;
+&lt;li&gt;이메일 네트워크&lt;/li&gt;
+&lt;li&gt;모빌리티 네트워크 등&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;저자의 목표:&lt;/p&gt;
+&lt;p&gt;Temporal network가 어떻게 변할지 예측하여 link prediction을 수행하는 것.&lt;/p&gt;
+&lt;p&gt;적용 가능 분야:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Recommendation&lt;/li&gt;
+&lt;li&gt;Anomaly detection&lt;/li&gt;
+&lt;li&gt;&amp;hellip;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;network-science에서-temporal-network&#34;&gt;Network science에서 temporal network&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Network science는 네트워크 구조가 복잡한 시스템 하에서 어떻게 진화하고 변할지에 대한 기본적인 법칙을 연구하는 학문.&lt;/p&gt;
+&lt;p&gt;예시:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Triadic closure in social network: 겹치는 친구가 있는 경우 서로 친구가 될 확률이 높다.&lt;/li&gt;
+&lt;li&gt;Feed-forward control: positive stimuli 뒤에는 negative stimuli가 따라온다.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;선행-연구들&#34;&gt;선행 연구들&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;일반적인 GNN은 여러 node가 관여된 structural feature를 반영할 수 없음.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;예를 들어, triadic closure의 경우,&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://gujh14.github.io/ko/p/neighborhood-aware-scalable-temporal-network-representation-learning/imgs/Untitled.png&#34;
+	width=&#34;862&#34;
+	height=&#34;444&#34;
+	srcset=&#34;https://gujh14.github.io/ko/p/neighborhood-aware-scalable-temporal-network-representation-learning/imgs/Untitled_hu0af0c10cdb137a663b0f78c123bc4e21_292022_480x0_resize_box_3.png 480w, https://gujh14.github.io/ko/p/neighborhood-aware-scalable-temporal-network-representation-learning/imgs/Untitled_hu0af0c10cdb137a663b0f78c123bc4e21_292022_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;194&#34;
+		data-flex-basis=&#34;465px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;timestep $t_3$에서 u와 v가 연결될지, $u$와 $w$가 연결될지 결정할 때, traditional GNN은 $w$와 $v$의 embedding을 동일하게 업데이트 한다. 즉, 두 node의 computation graph가 동일해서 구분하지 못 한다.&lt;/p&gt;
+&lt;p&gt;→ 이런 방법을 사용하면 network representation 이 잘 학습되지 않을 것이다.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Static graph에서는 이 issue를 해결하기 위한 시도들이 존재.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;SEAL (Zhang et al. 2018)&lt;/li&gt;
+&lt;li&gt;Distance encoding (Li et al. 2020)&lt;/li&gt;
+&lt;li&gt;Labeling trick (Zhang et al. 2021)&lt;/li&gt;
+&lt;li&gt;SUREL (Yin et al. 2022)&lt;/li&gt;
+&lt;li&gt;ELPH (Chamberlain et al. 2022)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;대부분의 key idea는 structural feature를 만들어서 extra feature로 사용하는 것.&lt;/p&gt;
+&lt;p&gt;보통 shortest path distance를 사용.&lt;/p&gt;
+&lt;p&gt;이런 idea를 temporal network에 effective하고 scalable하게 적용하는 것이 중요.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Temporal network에 대한 최근 연구&lt;/p&gt;
+&lt;p&gt;CAWN (Wang et al. 2021): computation overhead가 높다.&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;각 node pair마다 random walk이 sampling 되어야 한다.&lt;/li&gt;
+&lt;li&gt;Relative positional encoding이 online으로 계산되어야 한다.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;neighborhood-aware-temporal-network-nat&#34;&gt;Neighborhood Aware Temporal Network (NAT)&lt;/h2&gt;
+&lt;p&gt;본 연구의 두 가지 특징&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Dictionary-type node representation&lt;/p&gt;
+&lt;p&gt;구조적인 feature를 효율적으로 만들고, online neighbor sampling이 필요없다.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Neighborhood caches (N-caches)&lt;/p&gt;
+&lt;p&gt;Hashing을 parallel하게 진행해서 dictionary representation을 유지한다.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;dictionary-representation&#34;&gt;Dictionary representation&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;굳이 long-vector representation을 사용하지 않는다.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;각 node $u$가 dictionary로 표현된다.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Keys: 0-hop (self), 1-hop, 2-hop, … 관계에 있는 이웃들을 down-sampling 한 것&lt;/li&gt;
+&lt;li&gt;Values: short vector representation (2~8 dim)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&#34;https://gujh14.github.io/ko/p/neighborhood-aware-scalable-temporal-network-representation-learning/imgs/Untitled1.png&#34;
+	width=&#34;2683&#34;
+	height=&#34;803&#34;
+	srcset=&#34;https://gujh14.github.io/ko/p/neighborhood-aware-scalable-temporal-network-representation-learning/imgs/Untitled1_hu65974e64d5b0485f6147db68e88da199_223468_480x0_resize_box_3.png 480w, https://gujh14.github.io/ko/p/neighborhood-aware-scalable-temporal-network-representation-learning/imgs/Untitled1_hu65974e64d5b0485f6147db68e88da199_223468_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;334&#34;
+		data-flex-basis=&#34;801px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;예시:&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://gujh14.github.io/ko/p/neighborhood-aware-scalable-temporal-network-representation-learning/imgs/Untitled2.png&#34;
+	width=&#34;1872&#34;
+	height=&#34;880&#34;
+	srcset=&#34;https://gujh14.github.io/ko/p/neighborhood-aware-scalable-temporal-network-representation-learning/imgs/Untitled2_huade67fa509dc97d339187804f4125a21_1059953_480x0_resize_box_3.png 480w, https://gujh14.github.io/ko/p/neighborhood-aware-scalable-temporal-network-representation-learning/imgs/Untitled2_huade67fa509dc97d339187804f4125a21_1059953_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;212&#34;
+		data-flex-basis=&#34;510px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;→ Node $u$와 $v$ 사이의 joint neighborhood 구조를 반영할 수 있다.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://gujh14.github.io/ko/p/neighborhood-aware-scalable-temporal-network-representation-learning/imgs/Untitled3.png&#34;
+	width=&#34;2118&#34;
+	height=&#34;1040&#34;
+	srcset=&#34;https://gujh14.github.io/ko/p/neighborhood-aware-scalable-temporal-network-representation-learning/imgs/Untitled3_hu66849c16475129caf62098591160e14d_1210153_480x0_resize_box_3.png 480w, https://gujh14.github.io/ko/p/neighborhood-aware-scalable-temporal-network-representation-learning/imgs/Untitled3_hu66849c16475129caf62098591160e14d_1210153_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;203&#34;
+		data-flex-basis=&#34;488px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;→ NAT는 전통적인 vector representation에서 쓰듯이 그냥 sum 등으로 representation을 aggregate 한다.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;nat-architecture&#34;&gt;NAT architecture&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Architecture
+&lt;img src=&#34;https://gujh14.github.io/ko/p/neighborhood-aware-scalable-temporal-network-representation-learning/imgs/Untitled4.png&#34;
+	width=&#34;2492&#34;
+	height=&#34;1133&#34;
+	srcset=&#34;https://gujh14.github.io/ko/p/neighborhood-aware-scalable-temporal-network-representation-learning/imgs/Untitled4_hu37c1e302144fb2103f270f74417e8020_310888_480x0_resize_box_3.png 480w, https://gujh14.github.io/ko/p/neighborhood-aware-scalable-temporal-network-representation-learning/imgs/Untitled4_hu37c1e302144fb2103f270f74417e8020_310888_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;219&#34;
+		data-flex-basis=&#34;527px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Experiments
+&lt;img src=&#34;https://gujh14.github.io/ko/p/neighborhood-aware-scalable-temporal-network-representation-learning/imgs/Untitled5.png&#34;
+	width=&#34;1800&#34;
+	height=&#34;760&#34;
+	srcset=&#34;https://gujh14.github.io/ko/p/neighborhood-aware-scalable-temporal-network-representation-learning/imgs/Untitled5_huc6510b21f6b038d5eeef0509f8d82bd4_443546_480x0_resize_box_3.png 480w, https://gujh14.github.io/ko/p/neighborhood-aware-scalable-temporal-network-representation-learning/imgs/Untitled5_huc6510b21f6b038d5eeef0509f8d82bd4_443546_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;236&#34;
+		data-flex-basis=&#34;568px&#34;
+	
+&gt;&lt;br&gt;
+Inductive &amp;amp; Transductive (node 기준) 모두 실험.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Performance
+&lt;img src=&#34;https://gujh14.github.io/ko/p/neighborhood-aware-scalable-temporal-network-representation-learning/imgs/Untitled6.png&#34;
+	width=&#34;1948&#34;
+	height=&#34;780&#34;
+	srcset=&#34;https://gujh14.github.io/ko/p/neighborhood-aware-scalable-temporal-network-representation-learning/imgs/Untitled6_hu1244281417561286df41d8b587100bd3_1715747_480x0_resize_box_3.png 480w, https://gujh14.github.io/ko/p/neighborhood-aware-scalable-temporal-network-representation-learning/imgs/Untitled6_hu1244281417561286df41d8b587100bd3_1715747_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;249&#34;
+		data-flex-basis=&#34;599px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Computation &amp;amp; Scalability&lt;br&gt;
+&lt;img src=&#34;https://gujh14.github.io/ko/p/neighborhood-aware-scalable-temporal-network-representation-learning/imgs/Untitled7.png&#34;
+	width=&#34;1452&#34;
+	height=&#34;996&#34;
+	srcset=&#34;https://gujh14.github.io/ko/p/neighborhood-aware-scalable-temporal-network-representation-learning/imgs/Untitled7_hua5e9fd5770935b069b9c5fb370894ce1_814749_480x0_resize_box_3.png 480w, https://gujh14.github.io/ko/p/neighborhood-aware-scalable-temporal-network-representation-learning/imgs/Untitled7_hua5e9fd5770935b069b9c5fb370894ce1_814749_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;145&#34;
+		data-flex-basis=&#34;349px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;takeaways&#34;&gt;Takeaways&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;여러 node의 joint neighborhood로부터 얻은 structural feature가 temporal network evolution에 중요하다.&lt;/li&gt;
+&lt;li&gt;Dictionary-type representation은 structural feature 구성과 전통적인 vector representation을 모두 반영한다.&lt;/li&gt;
+&lt;li&gt;Dictionary-type representation으로 online construction을 효율적으로 할 수 있다.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;reference&#34;&gt;Reference&lt;/h2&gt;
+&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://arxiv.org/abs/2209.01084&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Neighborhood-aware Scalable Temporal Network Representation Learning&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://www.youtube.com/live/wp5S9GHyAgw?feature=share&amp;amp;t=8409&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Learning on Graphs Conference 2022 - Day 1 Livestream&lt;/a&gt;&lt;/p&gt;
+</description>
+        </item>
+        <item>
         <title>A Generalist Neural Algorithmic Learner</title>
         <link>https://gujh14.github.io/ko/p/a-generalist-neural-algorithmic-learner/</link>
         <pubDate>Fri, 13 Jan 2023 00:00:00 +0000</pubDate>

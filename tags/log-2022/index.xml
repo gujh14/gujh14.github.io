@@ -6,7 +6,225 @@
         <description>Recent content in LoG 2022 on JH Gu&#39;s Tech Blog</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>en-us</language>
-        <lastBuildDate>Fri, 13 Jan 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://gujh14.github.io/tags/log-2022/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Sun, 15 Jan 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://gujh14.github.io/tags/log-2022/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>Neighborhood-aware Scalable Temporal Network Representation Learning</title>
+        <link>https://gujh14.github.io/p/neighborhood-aware-scalable-temporal-network-representation-learning/</link>
+        <pubDate>Sun, 15 Jan 2023 00:00:00 +0000</pubDate>
+        
+        <guid>https://gujh14.github.io/p/neighborhood-aware-scalable-temporal-network-representation-learning/</guid>
+        <description>&lt;img src="https://gujh14.github.io/p/neighborhood-aware-scalable-temporal-network-representation-learning/thumbnail.png" alt="Featured image of post Neighborhood-aware Scalable Temporal Network Representation Learning" /&gt;&lt;p&gt;LoG, &amp;lsquo;22&lt;br&gt;
+&lt;a class=&#34;link&#34; href=&#34;https://arxiv.org/abs/2209.01084&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;&amp;ldquo;Neighborhood-aware Scalable Temporal Network Representation Learning&amp;rdquo;&lt;/a&gt;&lt;/p&gt;
+&lt;h1 id=&#34;summary&#34;&gt;Summary&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;There are few models to infer network-scientific properties on time-varying temporal network.&lt;/li&gt;
+&lt;li&gt;Traditional GNNs cannot deal with structural features, and most of the existing works used distance between nodes on static networks.&lt;/li&gt;
+&lt;li&gt;Authors proposed dictionary-type node representation and neighborhood cache as a scalable way to represent temporal networks, and achieved SOTA performance on many link prediction tasks.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;temporal-network&#34;&gt;Temporal Network&lt;/h2&gt;
+&lt;p&gt;Temporal network is an abstraction of complex interactive systems.&lt;/p&gt;
+&lt;p&gt;Network structures evolve over time.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Examples:
+&lt;ul&gt;
+&lt;li&gt;User-item network&lt;/li&gt;
+&lt;li&gt;Social media network&lt;/li&gt;
+&lt;li&gt;Email network&lt;/li&gt;
+&lt;li&gt;Engineering control networks&lt;/li&gt;
+&lt;li&gt;Mobility networks&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Goal:&lt;/p&gt;
+&lt;p&gt;Predicting how temporal networks evolve → link prediction in temporal networks&lt;/p&gt;
+&lt;p&gt;Application:&lt;/p&gt;
+&lt;p&gt;recommendation, anomaly detection, …&lt;/p&gt;
+&lt;h2 id=&#34;temporal-networks-in-network-science&#34;&gt;Temporal networks in network science&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Network science: how network structures evolves reflects the fundamental laws of these complex systems
+&lt;ul&gt;
+&lt;li&gt;Triadic closure in social network: people with common friends tend to know each other.&lt;/li&gt;
+&lt;li&gt;Feed-forward control in biological/engineering control systems: positive stimuli are followed with negative stimuli.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;issues-of-previous-approaches-effectiveness&#34;&gt;Issues of Previous Approaches (Effectiveness)&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;GNNs cannot capture structural features that involve multiple nodes of interest, such as triadic closure.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://gujh14.github.io/p/neighborhood-aware-scalable-temporal-network-representation-learning/imgs/Untitled.png&#34;
+	width=&#34;862&#34;
+	height=&#34;444&#34;
+	srcset=&#34;https://gujh14.github.io/p/neighborhood-aware-scalable-temporal-network-representation-learning/imgs/Untitled_hu0af0c10cdb137a663b0f78c123bc4e21_292022_480x0_resize_box_3.png 480w, https://gujh14.github.io/p/neighborhood-aware-scalable-temporal-network-representation-learning/imgs/Untitled_hu0af0c10cdb137a663b0f78c123bc4e21_292022_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;194&#34;
+		data-flex-basis=&#34;465px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;At time step $t_3$, it is hard for traditional GNN to distinguish nodes $w$ and $v$, since their computation graphs are same.&lt;/p&gt;
+&lt;p&gt;→ Temporal network representation learning, if following traditional GNN-type computation, will fail to learn such information.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Works over static graph&lt;/p&gt;
+&lt;p&gt;There were some works to deal with this issues on static graphs.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;SEAL (Zhang et al. 2018)&lt;/li&gt;
+&lt;li&gt;Distance encoding (Li et al. 2020)&lt;/li&gt;
+&lt;li&gt;Labeling trick (Zhang et al. 2021)&lt;/li&gt;
+&lt;li&gt;SUREL (Yin et al. 2022)&lt;/li&gt;
+&lt;li&gt;ELPH (Chamberlain et al. 2022)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Most of the idea is to build structural feature (usually shortest path distance) and use it as extra feature.&lt;/p&gt;
+&lt;p&gt;How can we apply this idea to temporal networks, in an efficient and scalable way?&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Recent work over temporal networks&lt;/p&gt;
+&lt;p&gt;CAWN (Wang et al. 2021): but high computation overhead.&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;For each queried node pair, random walks need to be sampled.&lt;/li&gt;
+&lt;li&gt;The relative positional encoding needs to be computed online.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;neighborhood-aware-temporal-network-nat&#34;&gt;Neighborhood Aware Temporal Network (NAT)&lt;/h2&gt;
+&lt;p&gt;Key ideas&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Dictionary-type node representations
+&lt;ul&gt;
+&lt;li&gt;Constructs structural feature efficiently&lt;/li&gt;
+&lt;li&gt;Avoids online neighbor sampling&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Neighborhood Caches (N-caches)
+&lt;ul&gt;
+&lt;li&gt;Maintains dictionary representations with parallel hashing scalably&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;dictionary-representations&#34;&gt;Dictionary representations&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Do not use long-vector representations&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Each node u is represented as a dictionary&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Keys: Down-sampled neighbors in 0-hop (self), 1-hop, 2-hop, …&lt;/li&gt;
+&lt;li&gt;Values: Short vector representations (2~8 dim)
+&lt;ul&gt;
+&lt;li&gt;representation for node $a$ as a neighbor of node $u$&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&#34;https://gujh14.github.io/p/neighborhood-aware-scalable-temporal-network-representation-learning/imgs/Untitled2.png&#34;
+	width=&#34;1872&#34;
+	height=&#34;880&#34;
+	srcset=&#34;https://gujh14.github.io/p/neighborhood-aware-scalable-temporal-network-representation-learning/imgs/Untitled2_huade67fa509dc97d339187804f4125a21_1059953_480x0_resize_box_3.png 480w, https://gujh14.github.io/p/neighborhood-aware-scalable-temporal-network-representation-learning/imgs/Untitled2_huade67fa509dc97d339187804f4125a21_1059953_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;212&#34;
+		data-flex-basis=&#34;510px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;→ Captures joint neighborhood structural features between $u$ and $v$&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://gujh14.github.io/p/neighborhood-aware-scalable-temporal-network-representation-learning/imgs/Untitled3.png&#34;
+	width=&#34;2118&#34;
+	height=&#34;1040&#34;
+	srcset=&#34;https://gujh14.github.io/p/neighborhood-aware-scalable-temporal-network-representation-learning/imgs/Untitled3_hu66849c16475129caf62098591160e14d_1210153_480x0_resize_box_3.png 480w, https://gujh14.github.io/p/neighborhood-aware-scalable-temporal-network-representation-learning/imgs/Untitled3_hu66849c16475129caf62098591160e14d_1210153_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;203&#34;
+		data-flex-basis=&#34;488px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;→ NAT combines structural feature construction and traditional vector representations&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;nat-architecture&#34;&gt;NAT architecture&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Architecture
+&lt;img src=&#34;https://gujh14.github.io/p/neighborhood-aware-scalable-temporal-network-representation-learning/imgs/Untitled4.png&#34;
+	width=&#34;2492&#34;
+	height=&#34;1133&#34;
+	srcset=&#34;https://gujh14.github.io/p/neighborhood-aware-scalable-temporal-network-representation-learning/imgs/Untitled4_hu37c1e302144fb2103f270f74417e8020_310888_480x0_resize_box_3.png 480w, https://gujh14.github.io/p/neighborhood-aware-scalable-temporal-network-representation-learning/imgs/Untitled4_hu37c1e302144fb2103f270f74417e8020_310888_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;219&#34;
+		data-flex-basis=&#34;527px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Experiments
+&lt;img src=&#34;https://gujh14.github.io/p/neighborhood-aware-scalable-temporal-network-representation-learning/imgs/Untitled5.png&#34;
+	width=&#34;1800&#34;
+	height=&#34;760&#34;
+	srcset=&#34;https://gujh14.github.io/p/neighborhood-aware-scalable-temporal-network-representation-learning/imgs/Untitled5_huc6510b21f6b038d5eeef0509f8d82bd4_443546_480x0_resize_box_3.png 480w, https://gujh14.github.io/p/neighborhood-aware-scalable-temporal-network-representation-learning/imgs/Untitled5_huc6510b21f6b038d5eeef0509f8d82bd4_443546_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;236&#34;
+		data-flex-basis=&#34;568px&#34;
+	
+&gt;
+Performed on both inductive &amp;amp; transductive setting.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Performance
+&lt;img src=&#34;https://gujh14.github.io/p/neighborhood-aware-scalable-temporal-network-representation-learning/imgs/Untitled6.png&#34;
+	width=&#34;1948&#34;
+	height=&#34;780&#34;
+	srcset=&#34;https://gujh14.github.io/p/neighborhood-aware-scalable-temporal-network-representation-learning/imgs/Untitled6_hu1244281417561286df41d8b587100bd3_1715747_480x0_resize_box_3.png 480w, https://gujh14.github.io/p/neighborhood-aware-scalable-temporal-network-representation-learning/imgs/Untitled6_hu1244281417561286df41d8b587100bd3_1715747_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;249&#34;
+		data-flex-basis=&#34;599px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Computation &amp;amp; Scalability
+&lt;img src=&#34;https://gujh14.github.io/p/neighborhood-aware-scalable-temporal-network-representation-learning/imgs/Untitled7.png&#34;
+	width=&#34;1452&#34;
+	height=&#34;996&#34;
+	srcset=&#34;https://gujh14.github.io/p/neighborhood-aware-scalable-temporal-network-representation-learning/imgs/Untitled7_hua5e9fd5770935b069b9c5fb370894ce1_814749_480x0_resize_box_3.png 480w, https://gujh14.github.io/p/neighborhood-aware-scalable-temporal-network-representation-learning/imgs/Untitled7_hua5e9fd5770935b069b9c5fb370894ce1_814749_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;145&#34;
+		data-flex-basis=&#34;349px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;takeaways&#34;&gt;Takeaways&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Structural features from a joint neighborhood of multiple nodes are crucial to predict temporal network evolution&lt;/li&gt;
+&lt;li&gt;Dictionary-type representations can combine structural feature construction with traditional vector representations.&lt;/li&gt;
+&lt;li&gt;Dictionary-type representations allow online construction of such structural features in an efficient way.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;reference&#34;&gt;Reference&lt;/h2&gt;
+&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://arxiv.org/abs/2209.01084&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Neighborhood-aware Scalable Temporal Network Representation Learning&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://www.youtube.com/live/wp5S9GHyAgw?feature=share&amp;amp;t=8409&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Learning on Graphs Conference 2022 - Day 1 Livestream&lt;/a&gt;&lt;/p&gt;
+</description>
+        </item>
+        <item>
         <title>A Generalist Neural Algorithmic Learner</title>
         <link>https://gujh14.github.io/p/a-generalist-neural-algorithmic-learner/</link>
         <pubDate>Fri, 13 Jan 2023 00:00:00 +0000</pubDate>
