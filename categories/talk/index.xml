@@ -1,0 +1,453 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>Talk on JH Gu&#39;s Tech Blog</title>
+        <link>https://gujh14.github.io/categories/talk/</link>
+        <description>Recent content in Talk on JH Gu&#39;s Tech Blog</description>
+        <generator>Hugo -- gohugo.io</generator>
+        <language>en-us</language>
+        <lastBuildDate>Sat, 04 Feb 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://gujh14.github.io/categories/talk/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>Graph Representation Learning for Drug Discovery</title>
+        <link>https://gujh14.github.io/p/graph-representation-learning-for-drug-discovery/</link>
+        <pubDate>Sat, 04 Feb 2023 00:00:00 +0000</pubDate>
+        
+        <guid>https://gujh14.github.io/p/graph-representation-learning-for-drug-discovery/</guid>
+        <description>&lt;img src="https://gujh14.github.io/p/graph-representation-learning-for-drug-discovery/imgs/thumbnail.png" alt="Featured image of post Graph Representation Learning for Drug Discovery" /&gt;&lt;p&gt;LoG conference, &amp;lsquo;22,&lt;br&gt;
+&lt;a class=&#34;link&#34; href=&#34;https://www.youtube.com/live/ouuxi5uW-JA?feature=share&amp;amp;t=8477&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;&amp;ldquo;LoG conference Day 4 Youtube&amp;rdquo;&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;lecturer-djork-arné-clevert&#34;&gt;Lecturer: Djork-Arné Clevert&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;2022.05.19~09.22: Bayer Pharma, Head of Machine Learning Research (All work presented today were published during Bayer.)&lt;/li&gt;
+&lt;li&gt;2022.10.22~: Pfizer, Head of Machine Learning Research&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&#34;summary&#34;&gt;Summary&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;Most ML methods are focused on early drug discovery part.&lt;/li&gt;
+&lt;li&gt;Major applications of ML in drug discovery include:
+&lt;ul&gt;
+&lt;li&gt;ADMET modeling&lt;/li&gt;
+&lt;li&gt;Representation learning&lt;/li&gt;
+&lt;li&gt;Conditional &lt;em&gt;de novo&lt;/em&gt; hit design&lt;/li&gt;
+&lt;li&gt;Inverse molecule modeling&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;drug-discovery-vs-drug-development&#34;&gt;Drug Discovery vs Drug Development&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&#34;https://gujh14.github.io/p/graph-representation-learning-for-drug-discovery/imgs/Untitled.png&#34;
+	width=&#34;1772&#34;
+	height=&#34;970&#34;
+	srcset=&#34;https://gujh14.github.io/p/graph-representation-learning-for-drug-discovery/imgs/Untitled_hua64a52a27cd2ec95511902cc0e2eb6a9_979997_480x0_resize_box_3.png 480w, https://gujh14.github.io/p/graph-representation-learning-for-drug-discovery/imgs/Untitled_hua64a52a27cd2ec95511902cc0e2eb6a9_979997_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;182&#34;
+		data-flex-basis=&#34;438px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Drug discovery: the early part (Hit identification ~ Pre-clinical phase)&lt;/li&gt;
+&lt;li&gt;Drug development: the later part (Clinical trials phase 1 ~ Phase 4)&lt;/li&gt;
+&lt;li&gt;Most ML research is focused on the &lt;strong&gt;Drug discovery&lt;/strong&gt; part, since there is a larger quantity of data available that is more convenient to input into a computer.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;background-bioactivity--admet-modeling&#34;&gt;Background bioactivity / ADMET modeling&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&#34;https://gujh14.github.io/p/graph-representation-learning-for-drug-discovery/imgs/Untitled1.png&#34;
+	width=&#34;1738&#34;
+	height=&#34;814&#34;
+	srcset=&#34;https://gujh14.github.io/p/graph-representation-learning-for-drug-discovery/imgs/Untitled1_hudbb6af4119d46068c7258fb6b3cff36e_759561_480x0_resize_box_3.png 480w, https://gujh14.github.io/p/graph-representation-learning-for-drug-discovery/imgs/Untitled1_hudbb6af4119d46068c7258fb6b3cff36e_759561_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;213&#34;
+		data-flex-basis=&#34;512px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Bioactivity modeling have been used since the 1960s.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;[Research article] &lt;a class=&#34;link&#34; href=&#34;https://www.mdpi.com/1420-3049/25/1/44&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Modeling Physico-Chemical ADMET Endpoints with Multitask Graph Convolutional Networks&lt;/a&gt; (Molecules, 2019)&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://gujh14.github.io/p/graph-representation-learning-for-drug-discovery/imgs/Untitled2.png&#34;
+	width=&#34;988&#34;
+	height=&#34;526&#34;
+	srcset=&#34;https://gujh14.github.io/p/graph-representation-learning-for-drug-discovery/imgs/Untitled2_hu649375d0013ae572ab7fc69e5611002e_317129_480x0_resize_box_3.png 480w, https://gujh14.github.io/p/graph-representation-learning-for-drug-discovery/imgs/Untitled2_hu649375d0013ae572ab7fc69e5611002e_317129_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;187&#34;
+		data-flex-basis=&#34;450px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Multitask GCN for modeling physico-chemical properties.&lt;/li&gt;
+&lt;li&gt;Performed a molecular property prediction with GCN in multi-task setting.&lt;/li&gt;
+&lt;li&gt;This is an early work in this field using GNNs to predict properties.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;[Research article] &lt;a class=&#34;link&#34; href=&#34;https://arxiv.org/abs/2105.04854&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Improving Molecular GCNs Explainability with Orthonormality and Sparsity&lt;/a&gt; (ICML, 2021)&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://gujh14.github.io/p/graph-representation-learning-for-drug-discovery/imgs/Untitled3.png&#34;
+	width=&#34;730&#34;
+	height=&#34;270&#34;
+	srcset=&#34;https://gujh14.github.io/p/graph-representation-learning-for-drug-discovery/imgs/Untitled3_hu67cdd698a9b14f619c5bc18bdc6fa78a_106175_480x0_resize_box_3.png 480w, https://gujh14.github.io/p/graph-representation-learning-for-drug-discovery/imgs/Untitled3_hu67cdd698a9b14f619c5bc18bdc6fa78a_106175_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;270&#34;
+		data-flex-basis=&#34;648px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://gujh14.github.io/p/graph-representation-learning-for-drug-discovery/imgs/Untitled4.png&#34;
+	width=&#34;1072&#34;
+	height=&#34;536&#34;
+	srcset=&#34;https://gujh14.github.io/p/graph-representation-learning-for-drug-discovery/imgs/Untitled4_hu5a470f2e0dbe53944268ff17baac79fd_159224_480x0_resize_box_3.png 480w, https://gujh14.github.io/p/graph-representation-learning-for-drug-discovery/imgs/Untitled4_hu5a470f2e0dbe53944268ff17baac79fd_159224_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;200&#34;
+		data-flex-basis=&#34;480px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Proposed two regularization techniques to improve the accuracy and explainability.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Batch Representation Orthonormalization (BRO)&lt;/p&gt;
+&lt;p&gt;→ encourages graph convolution operations to generate orthonormal node embeddings.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Gini regularization&lt;/p&gt;
+&lt;p&gt;→ applied to the weights of the output layer and constrains the number of dimensions the model can use to make predictions.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Explainability results&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://gujh14.github.io/p/graph-representation-learning-for-drug-discovery/imgs/Untitled5.png&#34;
+	width=&#34;1036&#34;
+	height=&#34;376&#34;
+	srcset=&#34;https://gujh14.github.io/p/graph-representation-learning-for-drug-discovery/imgs/Untitled5_hu77aafb4785149c07b72e5319e0c6bbb8_284430_480x0_resize_box_3.png 480w, https://gujh14.github.io/p/graph-representation-learning-for-drug-discovery/imgs/Untitled5_hu77aafb4785149c07b72e5319e0c6bbb8_284430_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;275&#34;
+		data-flex-basis=&#34;661px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;[Research article] &lt;a class=&#34;link&#34; href=&#34;https://openreview.net/forum?id=kv4xUo5Pu6&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Representation Learning on Biomolecular Structures using Equivariant Graph Attention&lt;/a&gt; (LoG, 2022)&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://gujh14.github.io/p/graph-representation-learning-for-drug-discovery/imgs/Untitled6.png&#34;
+	width=&#34;916&#34;
+	height=&#34;504&#34;
+	srcset=&#34;https://gujh14.github.io/p/graph-representation-learning-for-drug-discovery/imgs/Untitled6_hu8922ffb1f267cd2627e49ecaa8b65e6a_100926_480x0_resize_box_3.png 480w, https://gujh14.github.io/p/graph-representation-learning-for-drug-discovery/imgs/Untitled6_hu8922ffb1f267cd2627e49ecaa8b65e6a_100926_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;181&#34;
+		data-flex-basis=&#34;436px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Let’s not focus only on invariant feature, but on &lt;strong&gt;equivariant&lt;/strong&gt; feature.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;EQGAT operates with Cartesian coordinates to incorporate directionality and is implemented with a novel attention mechanism, acting as a content and spatial dependent filter when propagating information between nodes.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Performed well on large biomolecule dataset (ATOM3D), and it is efficient.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://gujh14.github.io/p/graph-representation-learning-for-drug-discovery/imgs/Untitled7.png&#34;
+	width=&#34;1334&#34;
+	height=&#34;452&#34;
+	srcset=&#34;https://gujh14.github.io/p/graph-representation-learning-for-drug-discovery/imgs/Untitled7_hu1d3d9c5ac687ab432cca3fa8ea0ddc8c_164144_480x0_resize_box_3.png 480w, https://gujh14.github.io/p/graph-representation-learning-for-drug-discovery/imgs/Untitled7_hu1d3d9c5ac687ab432cca3fa8ea0ddc8c_164144_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;295&#34;
+		data-flex-basis=&#34;708px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;the-diversity-of-data-in-drug-discovery&#34;&gt;The Diversity of Data in Drug Discovery&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&#34;https://gujh14.github.io/p/graph-representation-learning-for-drug-discovery/imgs/Untitled8.png&#34;
+	width=&#34;1896&#34;
+	height=&#34;954&#34;
+	srcset=&#34;https://gujh14.github.io/p/graph-representation-learning-for-drug-discovery/imgs/Untitled8_hu8b0a0e6d6568a7fc43f2031f929b4b79_2304778_480x0_resize_box_3.png 480w, https://gujh14.github.io/p/graph-representation-learning-for-drug-discovery/imgs/Untitled8_hu8b0a0e6d6568a7fc43f2031f929b4b79_2304778_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;198&#34;
+		data-flex-basis=&#34;476px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;There are many types of data in molecule domain, including various spectrometry data, graph, sequence, image, 3D point clouds, …&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;molecular-representations-for-drug-discovery&#34;&gt;Molecular Representations for Drug Discovery&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;[Research article] &lt;a class=&#34;link&#34; href=&#34;https://pubs.rsc.org/en/content/articlelanding/2019/sc/c8sc04175j&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Learning continuous and data-driven molecular descriptors by translating equivalent chemical representations&lt;/a&gt; (Chemical Science, 2019)&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://gujh14.github.io/p/graph-representation-learning-for-drug-discovery/imgs/Untitled9.png&#34;
+	width=&#34;391&#34;
+	height=&#34;186&#34;
+	srcset=&#34;https://gujh14.github.io/p/graph-representation-learning-for-drug-discovery/imgs/Untitled9_hu32ad2bb6d680ca9c51bc225e7623fb8d_32073_480x0_resize_box_3.png 480w, https://gujh14.github.io/p/graph-representation-learning-for-drug-discovery/imgs/Untitled9_hu32ad2bb6d680ca9c51bc225e7623fb8d_32073_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;210&#34;
+		data-flex-basis=&#34;504px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;To learn molecule representation, authors made a autoencoder model that translates any SMILES into canonical SMILES. It was good for predicting downstream tasks.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Performance results&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://gujh14.github.io/p/graph-representation-learning-for-drug-discovery/imgs/Untitled10.png&#34;
+	width=&#34;813&#34;
+	height=&#34;439&#34;
+	srcset=&#34;https://gujh14.github.io/p/graph-representation-learning-for-drug-discovery/imgs/Untitled10_huba82b51e21959611fb45dd12d2c351d5_104101_480x0_resize_box_3.png 480w, https://gujh14.github.io/p/graph-representation-learning-for-drug-discovery/imgs/Untitled10_huba82b51e21959611fb45dd12d2c351d5_104101_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;185&#34;
+		data-flex-basis=&#34;444px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;[Research article] &lt;a class=&#34;link&#34; href=&#34;https://pubs.rsc.org/en/content/articlelanding/2019/sc/c9sc01928f&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Efficient multi-objective molecular optimization in a continuous latent space&lt;/a&gt; (Chemical Science, 2019)&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://gujh14.github.io/p/graph-representation-learning-for-drug-discovery/imgs/Untitled11.png&#34;
+	width=&#34;1892&#34;
+	height=&#34;944&#34;
+	srcset=&#34;https://gujh14.github.io/p/graph-representation-learning-for-drug-discovery/imgs/Untitled11_hudad0f192432291e5f773df0db2d70c8e_873804_480x0_resize_box_3.png 480w, https://gujh14.github.io/p/graph-representation-learning-for-drug-discovery/imgs/Untitled11_hudad0f192432291e5f773df0db2d70c8e_873804_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;200&#34;
+		data-flex-basis=&#34;481px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;This method takes a starting compound as input and proposes new molecules with more desirable (predicted) properties.&lt;/li&gt;
+&lt;li&gt;Objective function combines multiple &lt;em&gt;in silico&lt;/em&gt; prediction models, defined desirability ranges and substructure constraints.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;conditional-molecular-de-novo-hit-design&#34;&gt;Conditional Molecular de novo Hit Design&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;[Research article] &lt;a class=&#34;link&#34; href=&#34;https://www.nature.com/articles/s41467-019-13807-w&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;De novo generation of hit-like molecules from gene expression signatures using artificial intelligence&lt;/a&gt; (Nature Communications, 2020)&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://gujh14.github.io/p/graph-representation-learning-for-drug-discovery/imgs/Untitled12.png&#34;
+	width=&#34;1848&#34;
+	height=&#34;790&#34;
+	srcset=&#34;https://gujh14.github.io/p/graph-representation-learning-for-drug-discovery/imgs/Untitled12_hu658b0b96fa629f553c4f90069980bcb2_578254_480x0_resize_box_3.png 480w, https://gujh14.github.io/p/graph-representation-learning-for-drug-discovery/imgs/Untitled12_hu658b0b96fa629f553c4f90069980bcb2_578254_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;233&#34;
+		data-flex-basis=&#34;561px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;A generative model (GAN) that bridges systems biology and molecular design, conditioning a generative adversarial network with transcriptomic data.&lt;/li&gt;
+&lt;li&gt;When the model is provided with the desired state of gene expression signature, it is able to design active-like molecules for desired targets without any previous target annotation.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;[Research article] &lt;a class=&#34;link&#34; href=&#34;https://pubs.rsc.org/en/content/articlelanding/2023/dd/d2dd00081d&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Cell morphology-guided &lt;em&gt;de novo&lt;/em&gt; hit design by conditioning GANs on phenotypic image features&lt;/a&gt; (Digital Discovery, 2023)&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://gujh14.github.io/p/graph-representation-learning-for-drug-discovery/imgs/Untitled13.png&#34;
+	width=&#34;378&#34;
+	height=&#34;139&#34;
+	srcset=&#34;https://gujh14.github.io/p/graph-representation-learning-for-drug-discovery/imgs/Untitled13_hub33e4072a68c13ca0fa58f7bd15eb1ef_30956_480x0_resize_box_3.png 480w, https://gujh14.github.io/p/graph-representation-learning-for-drug-discovery/imgs/Untitled13_hub33e4072a68c13ca0fa58f7bd15eb1ef_30956_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;271&#34;
+		data-flex-basis=&#34;652px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://gujh14.github.io/p/graph-representation-learning-for-drug-discovery/imgs/Untitled14.png&#34;
+	width=&#34;969&#34;
+	height=&#34;400&#34;
+	srcset=&#34;https://gujh14.github.io/p/graph-representation-learning-for-drug-discovery/imgs/Untitled14_hua12dd3e019d28bbe3d9a2f4945050a88_185135_480x0_resize_box_3.png 480w, https://gujh14.github.io/p/graph-representation-learning-for-drug-discovery/imgs/Untitled14_hua12dd3e019d28bbe3d9a2f4945050a88_185135_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;242&#34;
+		data-flex-basis=&#34;581px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Utilized cellular morphology (cell painting morphological profiles) to directly guide the de novo design of small molecules. Authors used conditional GAN as a generative model.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;inverse-molecular-problems&#34;&gt;Inverse Molecular problems&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&#34;https://gujh14.github.io/p/graph-representation-learning-for-drug-discovery/imgs/Untitled15.png&#34;
+	width=&#34;1750&#34;
+	height=&#34;872&#34;
+	srcset=&#34;https://gujh14.github.io/p/graph-representation-learning-for-drug-discovery/imgs/Untitled15_hubb543cc87a122c441e1bec25137b29dc_452957_480x0_resize_box_3.png 480w, https://gujh14.github.io/p/graph-representation-learning-for-drug-discovery/imgs/Untitled15_hubb543cc87a122c441e1bec25137b29dc_452957_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;200&#34;
+		data-flex-basis=&#34;481px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Is it possible to inverse fingerprint, molecular depiction, or resonance spectrum into a molecule structure?&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;[Research article] &lt;a class=&#34;link&#34; href=&#34;https://pubs.rsc.org/en/content/articlelanding/2020/sc/d0sc03115a&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Neuraldecipher – reverse-engineering extended-connectivity fingerprints (ECFPs) to their molecular structures&lt;/a&gt; (Chemical Science, 2020)&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://gujh14.github.io/p/graph-representation-learning-for-drug-discovery/imgs/Untitled16.png&#34;
+	width=&#34;1804&#34;
+	height=&#34;832&#34;
+	srcset=&#34;https://gujh14.github.io/p/graph-representation-learning-for-drug-discovery/imgs/Untitled16_hu5e25f4e2b0c931956509d3146a825ff5_919120_480x0_resize_box_3.png 480w, https://gujh14.github.io/p/graph-representation-learning-for-drug-discovery/imgs/Untitled16_hu5e25f4e2b0c931956509d3146a825ff5_919120_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;216&#34;
+		data-flex-basis=&#34;520px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Since ECFP representation is made with hash function, they are often non-invertible.&lt;/li&gt;
+&lt;li&gt;Neuraldecipher is a neural net model that predicts a compact vector representation of compounds, given ECFPs.&lt;/li&gt;
+&lt;li&gt;Then utilize another pre-trained model to retrieve the molecular structure as SMILES representation.&lt;/li&gt;
+&lt;li&gt;This model were able to correctly deduce up to 69% of molecular structures.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;[Research article] &lt;a class=&#34;link&#34; href=&#34;https://pubs.rsc.org/en/content/articlelanding/2021/sc/d1sc01839f&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Img2Mol – accurate SMILES recognition from molecular graphical depictions&lt;/a&gt; (Chemical Science, 2021)&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://gujh14.github.io/p/graph-representation-learning-for-drug-discovery/imgs/Untitled17.png&#34;
+	width=&#34;1890&#34;
+	height=&#34;858&#34;
+	srcset=&#34;https://gujh14.github.io/p/graph-representation-learning-for-drug-discovery/imgs/Untitled17_huda5efde8e717cf3bfcb320e9ae4d2b02_786847_480x0_resize_box_3.png 480w, https://gujh14.github.io/p/graph-representation-learning-for-drug-discovery/imgs/Untitled17_huda5efde8e717cf3bfcb320e9ae4d2b02_786847_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;220&#34;
+		data-flex-basis=&#34;528px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;This model use CNN for molecule depictions and a pre-trained decoder that translates the latent representation into the SMILES representation of the molecules.&lt;/li&gt;
+&lt;li&gt;Img2Mol was able to correctly translate up to 88% of the molecular depictions into SMILES.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;learning-graph-level-representation&#34;&gt;Learning Graph level representation&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&#34;https://gujh14.github.io/p/graph-representation-learning-for-drug-discovery/imgs/Untitled18.png&#34;
+	width=&#34;1768&#34;
+	height=&#34;670&#34;
+	srcset=&#34;https://gujh14.github.io/p/graph-representation-learning-for-drug-discovery/imgs/Untitled18_hua8dda04f02b4954a8c1192f6974d7ca5_446734_480x0_resize_box_3.png 480w, https://gujh14.github.io/p/graph-representation-learning-for-drug-discovery/imgs/Untitled18_hua8dda04f02b4954a8c1192f6974d7ca5_446734_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;263&#34;
+		data-flex-basis=&#34;633px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;[Research article] &lt;a class=&#34;link&#34; href=&#34;https://arxiv.org/abs/2104.09856&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Permutation-Invariant Variational Autoencoder for Graph-Level Representation Learning&lt;/a&gt; (NeurIPS, 2021, Poster)&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://gujh14.github.io/p/graph-representation-learning-for-drug-discovery/imgs/Untitled19.png&#34;
+	width=&#34;1744&#34;
+	height=&#34;906&#34;
+	srcset=&#34;https://gujh14.github.io/p/graph-representation-learning-for-drug-discovery/imgs/Untitled19_huc674cc97c1269f6580191657e3776c67_631068_480x0_resize_box_3.png 480w, https://gujh14.github.io/p/graph-representation-learning-for-drug-discovery/imgs/Untitled19_huc674cc97c1269f6580191657e3776c67_631068_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;192&#34;
+		data-flex-basis=&#34;461px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://gujh14.github.io/p/graph-representation-learning-for-drug-discovery/imgs/Untitled20.png&#34;
+	width=&#34;1822&#34;
+	height=&#34;844&#34;
+	srcset=&#34;https://gujh14.github.io/p/graph-representation-learning-for-drug-discovery/imgs/Untitled20_hued4e9253d969d40a6d007bf2c75af722_710121_480x0_resize_box_3.png 480w, https://gujh14.github.io/p/graph-representation-learning-for-drug-discovery/imgs/Untitled20_hued4e9253d969d40a6d007bf2c75af722_710121_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;215&#34;
+		data-flex-basis=&#34;518px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://gujh14.github.io/p/graph-representation-learning-for-drug-discovery/imgs/Untitled21.png&#34;
+	width=&#34;1810&#34;
+	height=&#34;824&#34;
+	srcset=&#34;https://gujh14.github.io/p/graph-representation-learning-for-drug-discovery/imgs/Untitled21_hu96f0312f1590e881ca0db88f95ac34cf_411416_480x0_resize_box_3.png 480w, https://gujh14.github.io/p/graph-representation-learning-for-drug-discovery/imgs/Untitled21_hu96f0312f1590e881ca0db88f95ac34cf_411416_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;219&#34;
+		data-flex-basis=&#34;527px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Graph representation is highly complexed, which can be represented by $(\#\text{ nodes})!$ equivalent adjacency matrices.&lt;/li&gt;
+&lt;li&gt;This model indirectly learns to match the node ordering of input and output graph, without imposing a particular node ordering or performing expensive graph matching.&lt;/li&gt;
+&lt;li&gt;Showed promising results in graph classification, generation, clustering, interpolation.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;personal-opinion&#34;&gt;Personal Opinion&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;It was interesting to see what kinds of research is being performed in big pharmas.&lt;/li&gt;
+&lt;li&gt;Big pharmas seem to be more interested in applying ML methods on small problems than creating state-of-the-arts techniques.&lt;/li&gt;
+&lt;li&gt;Inverse molecular modeling seems interesting for me.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;references&#34;&gt;References&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;https://www.youtube.com/live/ouuxi5uW-JA?feature=share&amp;amp;t=8477&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://www.youtube.com/live/ouuxi5uW-JA?feature=share&amp;t=8477&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+        </item>
+        
+    </channel>
+</rss>

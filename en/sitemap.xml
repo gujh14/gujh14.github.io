@@ -3,7 +3,7 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://gujh14.github.io/</loc>
-    <lastmod>2023-01-15T00:00:00+00:00</lastmod>
+    <lastmod>2023-02-04T00:00:00+00:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
     <xhtml:link
@@ -17,8 +17,13 @@
                 href="https://gujh14.github.io/"
                 />
   </url><url>
+    <loc>https://gujh14.github.io/tags/bayer/</loc>
+    <lastmod>2023-02-04T00:00:00+00:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url><url>
     <loc>https://gujh14.github.io/categories/</loc>
-    <lastmod>2023-01-15T00:00:00+00:00</lastmod>
+    <lastmod>2023-02-04T00:00:00+00:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
     <xhtml:link
@@ -31,6 +36,71 @@
                 hreflang="en"
                 href="https://gujh14.github.io/categories/"
                 />
+  </url><url>
+    <loc>https://gujh14.github.io/tags/drug-discovery/</loc>
+    <lastmod>2023-02-04T00:00:00+00:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>https://gujh14.github.io/tags/graph/</loc>
+    <lastmod>2023-02-04T00:00:00+00:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>https://gujh14.github.io/p/graph-representation-learning-for-drug-discovery/</loc>
+    <lastmod>2023-02-04T00:00:00+00:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>https://gujh14.github.io/tags/log-conference/</loc>
+    <lastmod>2023-02-04T00:00:00+00:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>https://gujh14.github.io/tags/pfizer/</loc>
+    <lastmod>2023-02-04T00:00:00+00:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>https://gujh14.github.io/post/</loc>
+    <lastmod>2023-02-04T00:00:00+00:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link
+                rel="alternate"
+                hreflang="ko"
+                href="https://gujh14.github.io/ko/post/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://gujh14.github.io/post/"
+                />
+  </url><url>
+    <loc>https://gujh14.github.io/tags/representation-learning/</loc>
+    <lastmod>2023-02-04T00:00:00+00:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>https://gujh14.github.io/tags/</loc>
+    <lastmod>2023-02-04T00:00:00+00:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link
+                rel="alternate"
+                hreflang="ko"
+                href="https://gujh14.github.io/ko/tags/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://gujh14.github.io/tags/"
+                />
+  </url><url>
+    <loc>https://gujh14.github.io/categories/talk/</loc>
+    <lastmod>2023-02-04T00:00:00+00:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
   </url><url>
     <loc>https://gujh14.github.io/tags/gnn/</loc>
     <lastmod>2023-01-15T00:00:00+00:00</lastmod>
@@ -107,21 +177,6 @@
                 href="https://gujh14.github.io/p/neighborhood-aware-scalable-temporal-network-representation-learning/"
                 />
   </url><url>
-    <loc>https://gujh14.github.io/post/</loc>
-    <lastmod>2023-01-15T00:00:00+00:00</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.5</priority>
-    <xhtml:link
-                rel="alternate"
-                hreflang="ko"
-                href="https://gujh14.github.io/ko/post/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://gujh14.github.io/post/"
-                />
-  </url><url>
     <loc>https://gujh14.github.io/categories/research-technical/</loc>
     <lastmod>2023-01-15T00:00:00+00:00</lastmod>
     <changefreq>daily</changefreq>
@@ -135,21 +190,6 @@
                 rel="alternate"
                 hreflang="en"
                 href="https://gujh14.github.io/categories/research-technical/"
-                />
-  </url><url>
-    <loc>https://gujh14.github.io/tags/</loc>
-    <lastmod>2023-01-15T00:00:00+00:00</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.5</priority>
-    <xhtml:link
-                rel="alternate"
-                hreflang="ko"
-                href="https://gujh14.github.io/ko/tags/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://gujh14.github.io/tags/"
                 />
   </url><url>
     <loc>https://gujh14.github.io/tags/temporal-network/</loc>
