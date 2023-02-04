@@ -52,6 +52,21 @@
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url><url>
+    <loc>https://gujh14.github.io/categories/log/</loc>
+    <lastmod>2023-02-04T00:00:00+00:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link
+                rel="alternate"
+                hreflang="ko"
+                href="https://gujh14.github.io/ko/categories/log/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://gujh14.github.io/categories/log/"
+                />
+  </url><url>
     <loc>https://gujh14.github.io/tags/log-conference/</loc>
     <lastmod>2023-02-04T00:00:00+00:00</lastmod>
     <changefreq>daily</changefreq>
@@ -130,21 +145,6 @@
                 rel="alternate"
                 hreflang="en"
                 href="https://gujh14.github.io/tags/link-prediction/"
-                />
-  </url><url>
-    <loc>https://gujh14.github.io/categories/log/</loc>
-    <lastmod>2023-01-15T00:00:00+00:00</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.5</priority>
-    <xhtml:link
-                rel="alternate"
-                hreflang="ko"
-                href="https://gujh14.github.io/ko/categories/log/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://gujh14.github.io/categories/log/"
                 />
   </url><url>
     <loc>https://gujh14.github.io/tags/log-2022/</loc>
