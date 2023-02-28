@@ -6,7 +6,23 @@
         <description>Recent content in Categories on JH Gu&#39;s Tech Blog</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>en-us</language>
-        <lastBuildDate>Sat, 04 Feb 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://gujh14.github.io/categories/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Mon, 27 Feb 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://gujh14.github.io/categories/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>ICLR</title>
+        <link>https://gujh14.github.io/categories/iclr/</link>
+        <pubDate>Mon, 27 Feb 2023 00:00:00 +0000</pubDate>
+        
+        <guid>https://gujh14.github.io/categories/iclr/</guid>
+        <description></description>
+        </item>
+        <item>
+        <title>Research (Application)</title>
+        <link>https://gujh14.github.io/categories/research-application/</link>
+        <pubDate>Mon, 27 Feb 2023 00:00:00 +0000</pubDate>
+        
+        <guid>https://gujh14.github.io/categories/research-application/</guid>
+        <description></description>
+        </item>
+        <item>
         <title>LoG</title>
         <link>https://gujh14.github.io/categories/log/</link>
         <pubDate>Sat, 04 Feb 2023 00:00:00 +0000</pubDate>
@@ -44,22 +60,6 @@
         <pubDate>Fri, 22 Jul 2022 00:00:00 +0000</pubDate>
         
         <guid>https://gujh14.github.io/categories/oncogene/</guid>
-        <description></description>
-        </item>
-        <item>
-        <title>Research (Application)</title>
-        <link>https://gujh14.github.io/categories/research-application/</link>
-        <pubDate>Fri, 22 Jul 2022 00:00:00 +0000</pubDate>
-        
-        <guid>https://gujh14.github.io/categories/research-application/</guid>
-        <description></description>
-        </item>
-        <item>
-        <title>ICLR</title>
-        <link>https://gujh14.github.io/categories/iclr/</link>
-        <pubDate>Fri, 15 Oct 2021 00:00:00 +0000</pubDate>
-        
-        <guid>https://gujh14.github.io/categories/iclr/</guid>
         <description></description>
         </item>
         <item>

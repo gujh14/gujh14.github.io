@@ -1,0 +1,1312 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='ICLR, &amp;lsquo;23 &amp;ldquo;DiffDock: Diffusion Steps, Twists, and Turns for Molecular Docking&amp;rdquo;
+Summary Molecular docking as a generative problem, not regression!
+Problem of learning a distribution over ligand poses conditioned on the target protein structure $p(\mathbf{x} | \mathbf{y})$ Used “Diffusion process” for generation
+Two separate model
+Score model: $s(\mathbf{x}, \mathbf{y}, t)$
+Predicts score based on ligand pose $\mathbf{x}$, protein structure $\mathbf{y}$, and timestep $t$
+Confidence model: $d(\mathbf{x}, \mathbf{y})$
+Predicts whether the ligand pose has RMSD below 2Å compared to ground truth ligand pose'>
+<title>DiffDock: Diffusion Steps, Twists, and Turns for Molecular Docking</title>
+
+<link rel='canonical' href='https://gujh14.github.io/p/diffdock-diffusion-steps-twists-and-turns-for-molecular-docking/'>
+
+<link rel="stylesheet" href="/scss/style.min.8191399262444ab68b72a18c97392f5349be20a1615d77445be51e974c144cff.css"><meta property='og:title' content='DiffDock: Diffusion Steps, Twists, and Turns for Molecular Docking'>
+<meta property='og:description' content='ICLR, &amp;lsquo;23 &amp;ldquo;DiffDock: Diffusion Steps, Twists, and Turns for Molecular Docking&amp;rdquo;
+Summary Molecular docking as a generative problem, not regression!
+Problem of learning a distribution over ligand poses conditioned on the target protein structure $p(\mathbf{x} | \mathbf{y})$ Used “Diffusion process” for generation
+Two separate model
+Score model: $s(\mathbf{x}, \mathbf{y}, t)$
+Predicts score based on ligand pose $\mathbf{x}$, protein structure $\mathbf{y}$, and timestep $t$
+Confidence model: $d(\mathbf{x}, \mathbf{y})$
+Predicts whether the ligand pose has RMSD below 2Å compared to ground truth ligand pose'>
+<meta property='og:url' content='https://gujh14.github.io/p/diffdock-diffusion-steps-twists-and-turns-for-molecular-docking/'>
+<meta property='og:site_name' content='JH Gu&#39;s Tech Blog'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='ICLR 2023' /><meta property='article:tag' content='Diffusion' /><meta property='article:tag' content='Molecular Docking' /><meta property='article:published_time' content='2023-02-27T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2023-02-27T00:00:00&#43;00:00'/><meta property='og:image' content='https://gujh14.github.io/p/diffdock-diffusion-steps-twists-and-turns-for-molecular-docking/thumbnail.png' />
+<meta name="twitter:title" content="DiffDock: Diffusion Steps, Twists, and Turns for Molecular Docking">
+<meta name="twitter:description" content="ICLR, &amp;lsquo;23 &amp;ldquo;DiffDock: Diffusion Steps, Twists, and Turns for Molecular Docking&amp;rdquo;
+Summary Molecular docking as a generative problem, not regression!
+Problem of learning a distribution over ligand poses conditioned on the target protein structure $p(\mathbf{x} | \mathbf{y})$ Used “Diffusion process” for generation
+Two separate model
+Score model: $s(\mathbf{x}, \mathbf{y}, t)$
+Predicts score based on ligand pose $\mathbf{x}$, protein structure $\mathbf{y}$, and timestep $t$
+Confidence model: $d(\mathbf{x}, \mathbf{y})$
+Predicts whether the ligand pose has RMSD below 2Å compared to ground truth ligand pose"><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='https://gujh14.github.io/p/diffdock-diffusion-steps-twists-and-turns-for-molecular-docking/thumbnail.png' />
+    <link rel="shortcut icon" href="/favicon.ico" />
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-253021474-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="Toggle Menu">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/avatar_hufcbd7da9f307c4c4f078e698b3a6d837_2396352_300x0_resize_q75_box.jpg" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+                    <span class="emoji">🍥</span>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">JH Gu&#39;s Tech Blog</a></h1>
+            <h2 class="site-description">Machine Learning researcher for Drug Discovery</h2>
+        </div>
+    </header><ol class="social-menu">
+            
+                <li>
+                    <a 
+                        href='https://github.com/gujh14'
+                        target="_blank"
+                        title="GitHub"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://instagram.com/coookgu'
+                        target="_blank"
+                        title="Instagram"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0,0,256,256" width="50px" height="50px" fill-rule="nonzero"><g fill="#bababa" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal"><g transform="scale(9.0,9.0)"><path d="M7.54688,0c-4.15625,0 -7.54687,3.39063 -7.54687,7.54688v10.90625c0,4.15625 3.39063,7.54688 7.54688,7.54688h10.90625c4.15625,0 7.54688,-3.39062 7.54688,-7.54687v-10.90625c0,-4.15625 -3.39062,-7.54687 -7.54687,-7.54687zM7.54688,2h10.90625c3.07422,0 5.54688,2.46875 5.54688,5.54688v10.90625c0,3.07422 -2.46875,5.54688 -5.54687,5.54688h-10.90625c-3.07422,0 -5.54687,-2.46875 -5.54687,-5.54687v-10.90625c0,-3.07422 2.46875,-5.54687 5.54688,-5.54687zM20.5,4c-0.82812,0 -1.5,0.67188 -1.5,1.5c0,0.82813 0.67188,1.5 1.5,1.5c0.82813,0 1.5,-0.67187 1.5,-1.5c0,-0.82812 -0.67187,-1.5 -1.5,-1.5zM13,6c-3.85547,0 -7,3.14453 -7,7c0,3.85547 3.14453,7 7,7c3.85547,0 7,-3.14453 7,-7c0,-3.85547 -3.14453,-7 -7,-7zM13,8c2.77344,0 5,2.22656 5,5c0,2.77344 -2.22656,5 -5,5c-2.77344,0 -5,-2.22656 -5,-5c0,-2.77344 2.22656,-5 5,-5z"></path></g></g></svg>
+<!-- 9.84615 -->
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://twitter.com/coookgu'
+                        target="_blank"
+                        title="Twitter"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-twitter" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M22 4.01c-1 .49 -1.98 .689 -3 .99c-1.121 -1.265 -2.783 -1.335 -4.38 -.737s-2.643 2.06 -2.62 3.737v1c-3.245 .083 -6.135 -1.395 -8 -4c0 0 -4.182 7.433 4 11c-1.872 1.247 -3.739 2.088 -6 2c3.308 1.803 6.913 2.423 10.034 1.517c3.58 -1.04 6.522 -3.723 7.651 -7.742a13.84 13.84 0 0 0 .497 -3.753c-.002 -.249 1.51 -2.772 1.818 -4.013z" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+        <li >
+            <a href='/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>Home</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/about-jh-gu/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>About JH Gu</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/archives/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>Archives</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>Search</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/links/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5" />
+  <path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5" />
+</svg>
+
+
+
+                
+                <span>Links</span>
+            </a>
+        </li>
+        
+
+        <div class="menu-bottom-section">
+                <li id="i18n-switch">  
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-language" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M4 5h7" />
+  <path d="M9 3v2c0 4.418 -2.239 8 -5 8" />
+  <path d="M5 9c-.003 2.144 2.952 3.908 6.7 4" />
+  <path d="M12 20l4 -9l4 9" />
+  <path d="M19.1 18h-6.2" />
+</svg>
+
+
+
+                    <select name="language" onchange="window.location.href = this.selectedOptions[0].value">
+                        
+                            <option value="https://gujh14.github.io/" selected>English</option>
+                        
+                            <option value="https://gujh14.github.io/ko/" >한국어</option>
+                        
+                    </select>
+                </li>
+            
+            
+            
+                <li id="dark-mode-toggle">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <span>Dark Mode</span>
+                </li>
+            
+        </div>
+    </ol>
+</aside>
+
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">Table of contents</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#preliminaries">Preliminaries</a>
+      <ol>
+        <li><a href="#molecular-docking">Molecular Docking</a></li>
+        <li><a href="#previous-works-search-based--regression-based">Previous works: Search-based / Regression-based</a></li>
+      </ol>
+    </li>
+    <li><a href="#docking-objective">Docking objective</a></li>
+    <li><a href="#diffdock-overview">DiffDock Overview</a>
+      <ol>
+        <li><a href="#score-model">Score model</a></li>
+        <li><a href="#confidence-model">Confidence Model</a></li>
+      </ol>
+    </li>
+    <li><a href="#diffdock-workflow">DiffDock Workflow</a></li>
+    <li><a href="#diffdock-results">DiffDock Results</a></li>
+    <li><a href="#personal-opinions">Personal opinions</a></li>
+    <li><a href="#reference">Reference</a></li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+            <main class="main full-width">
+    <article class="has-image main-article">
+    <header class="article-header">
+        <div class="article-image">
+            <a href="/p/diffdock-diffusion-steps-twists-and-turns-for-molecular-docking/">
+                <img src="/p/diffdock-diffusion-steps-twists-and-turns-for-molecular-docking/thumbnail_hu35359f9550b3436da89f85bd47cc7f53_260405_800x0_resize_box_3.png"
+                        srcset="/p/diffdock-diffusion-steps-twists-and-turns-for-molecular-docking/thumbnail_hu35359f9550b3436da89f85bd47cc7f53_260405_800x0_resize_box_3.png 800w, /p/diffdock-diffusion-steps-twists-and-turns-for-molecular-docking/thumbnail_hu35359f9550b3436da89f85bd47cc7f53_260405_1600x0_resize_box_3.png 1600w"
+                        width="800" 
+                        height="385" 
+                        loading="lazy"
+                        alt="Featured image of post DiffDock: Diffusion Steps, Twists, and Turns for Molecular Docking" />
+                
+            </a>
+        </div>
+    
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/research-application/" >
+                Research (Application)
+            </a>
+        
+            <a href="/categories/iclr/" >
+                ICLR
+            </a>
+        
+    </header>
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/p/diffdock-diffusion-steps-twists-and-turns-for-molecular-docking/">DiffDock: Diffusion Steps, Twists, and Turns for Molecular Docking</a>
+        </h2>
+    
+        
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">27 Feb 2023</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    5 minute read
+                </time>
+            </div>
+        
+    </footer>
+    
+
+    
+        <footer class="article-translations">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-language" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M4 5h7" />
+  <path d="M9 3v2c0 4.418 -2.239 8 -5 8" />
+  <path d="M5 9c-.003 2.144 2.952 3.908 6.7 4" />
+  <path d="M12 20l4 -9l4 9" />
+  <path d="M19.1 18h-6.2" />
+</svg>
+
+
+
+            <div>
+                
+                    <a href="https://gujh14.github.io/ko/p/diffdock-diffusion-steps-twists-and-turns-for-molecular-docking/" class="link">한국어</a>
+                
+            </div>
+        </footer>
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <p>ICLR, &lsquo;23
+<a class="link" href="https://arxiv.org/abs/2210.01776"  target="_blank" rel="noopener"
+    >&ldquo;DiffDock: Diffusion Steps, Twists, and Turns for Molecular Docking&rdquo;</a></p>
+<h1 id="summary">Summary</h1>
+<ul>
+<li>
+<p>Molecular docking as a generative problem, not regression!</p>
+<ul>
+<li>Problem of learning a distribution over ligand poses conditioned on the target protein structure $p(\mathbf{x} | \mathbf{y})$</li>
+</ul>
+</li>
+<li>
+<p>Used “Diffusion process” for generation</p>
+</li>
+<li>
+<p>Two separate model</p>
+<ul>
+<li>
+<p>Score model: $s(\mathbf{x}, \mathbf{y}, t)$</p>
+<p>Predicts score based on ligand pose $\mathbf{x}$, protein structure $\mathbf{y}$, and timestep $t$</p>
+</li>
+<li>
+<p>Confidence model: $d(\mathbf{x}, \mathbf{y})$</p>
+<p>Predicts whether the ligand pose has RMSD below 2Å compared to ground truth ligand pose</p>
+</li>
+</ul>
+</li>
+<li>
+<p>Diffusion on Product space $\mathbb{P}$</p>
+<ul>
+<li>Reduced degrees of freedom $3n \rightarrow (m+6)$</li>
+</ul>
+</li>
+</ul>
+<h2 id="preliminaries">Preliminaries</h2>
+<h3 id="molecular-docking">Molecular Docking</h3>
+<p><img src="/p/diffdock-diffusion-steps-twists-and-turns-for-molecular-docking/imgs/Untitled.png"
+	width="1942"
+	height="1116"
+	srcset="/p/diffdock-diffusion-steps-twists-and-turns-for-molecular-docking/imgs/Untitled_huf40d7e8c2d3df3da9d828794a85e8161_935838_480x0_resize_box_3.png 480w, /p/diffdock-diffusion-steps-twists-and-turns-for-molecular-docking/imgs/Untitled_huf40d7e8c2d3df3da9d828794a85e8161_935838_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="174"
+		data-flex-basis="417px"
+	
+></p>
+<ul>
+<li>
+<p>Definition:</p>
+<p>Predicting the position, orientation, and conformation of a ligand when bound to a target protein</p>
+</li>
+<li>
+<p>Two types of tasks</p>
+<ul>
+<li>Known-pocket docking
+<ul>
+<li>Given: position of the binding pocket</li>
+</ul>
+</li>
+<li>Blind docking
+<ul>
+<li>More general setting: no prior knowledge about binding pocket</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="previous-works-search-based--regression-based">Previous works: Search-based / Regression-based</h3>
+<p><img src="/p/diffdock-diffusion-steps-twists-and-turns-for-molecular-docking/imgs/Untitled1.png"
+	width="1462"
+	height="1104"
+	srcset="/p/diffdock-diffusion-steps-twists-and-turns-for-molecular-docking/imgs/Untitled1_huc1cd3bae2f7177be1a7cfda9b4564a85_264966_480x0_resize_box_3.png 480w, /p/diffdock-diffusion-steps-twists-and-turns-for-molecular-docking/imgs/Untitled1_huc1cd3bae2f7177be1a7cfda9b4564a85_264966_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="132"
+		data-flex-basis="317px"
+	
+></p>
+<ul>
+<li>
+<p>Search based docking methods</p>
+<ul>
+<li>
+<p>Traditional methods</p>
+</li>
+<li>
+<p>Consist of parameterized physics-based <strong>scoring function</strong> and a <strong>search algorithm</strong></p>
+</li>
+<li>
+<p>Scoring function</p>
+<ul>
+<li>Input: 3D structures</li>
+<li>Output: estimate of the quality/likelihood of the given pose</li>
+</ul>
+</li>
+<li>
+<p>Search algorithm</p>
+<ul>
+<li>Stochastically modifies the ligand pose (position, orientation, torsion angles)</li>
+<li>Goal: finding the global optimum of the scoring function.</li>
+</ul>
+</li>
+<li>
+<p>ML has been applied to parameterize the scoring function.</p>
+<ul>
+<li>But very computationally expensive (large search space)</li>
+</ul>
+</li>
+<li>
+<p>Example</p>
+<p><img src="/p/diffdock-diffusion-steps-twists-and-turns-for-molecular-docking/imgs/Untitled2.png"
+	width="1776"
+	height="166"
+	srcset="/p/diffdock-diffusion-steps-twists-and-turns-for-molecular-docking/imgs/Untitled2_huf43150a0e47223ef3cf22aed6633617b_81428_480x0_resize_box_3.png 480w, /p/diffdock-diffusion-steps-twists-and-turns-for-molecular-docking/imgs/Untitled2_huf43150a0e47223ef3cf22aed6633617b_81428_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="1069"
+		data-flex-basis="2567px"
+	
+></p>
+</li>
+</ul>
+</li>
+<li>
+<p>Regression based methods</p>
+<ul>
+<li>
+<p>Recent deep learning method</p>
+</li>
+<li>
+<p>Significant speedup compared to search based methods</p>
+</li>
+<li>
+<p>No improvements in accuracy</p>
+</li>
+<li>
+<p>Example</p>
+<p><img src="/p/diffdock-diffusion-steps-twists-and-turns-for-molecular-docking/imgs/Untitled3.png"
+	width="1152"
+	height="144"
+	srcset="/p/diffdock-diffusion-steps-twists-and-turns-for-molecular-docking/imgs/Untitled3_hu6b088dca52a85205018e5f1b36628350_49655_480x0_resize_box_3.png 480w, /p/diffdock-diffusion-steps-twists-and-turns-for-molecular-docking/imgs/Untitled3_hu6b088dca52a85205018e5f1b36628350_49655_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="800"
+		data-flex-basis="1920px"
+	
+></p>
+<ul>
+<li>
+<p><a class="link" href="https://arxiv.org/abs/2202.05146"  target="_blank" rel="noopener"
+    >EquiBind</a></p>
+<p><img src="/p/diffdock-diffusion-steps-twists-and-turns-for-molecular-docking/imgs/Untitled4.png"
+	width="2030"
+	height="550"
+	srcset="/p/diffdock-diffusion-steps-twists-and-turns-for-molecular-docking/imgs/Untitled4_hu663897c2650aaacc73297b198e4cc5b3_753604_480x0_resize_box_3.png 480w, /p/diffdock-diffusion-steps-twists-and-turns-for-molecular-docking/imgs/Untitled4_hu663897c2650aaacc73297b198e4cc5b3_753604_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="369"
+		data-flex-basis="885px"
+	
+></p>
+<ul>
+<li>Tried to tackle the blind docking task as a <strong>regression problem</strong> by directly predicting pocket keypoints on both ligand and protein and aligning them.</li>
+</ul>
+</li>
+<li>
+<p><a class="link" href="https://www.biorxiv.org/content/10.1101/2022.06.06.495043v3"  target="_blank" rel="noopener"
+    >TANKBind</a></p>
+<p><img src="/p/diffdock-diffusion-steps-twists-and-turns-for-molecular-docking/imgs/Untitled5.png"
+	width="1988"
+	height="732"
+	srcset="/p/diffdock-diffusion-steps-twists-and-turns-for-molecular-docking/imgs/Untitled5_hub1f86d8413b43196d2dbec69310f8555_603864_480x0_resize_box_3.png 480w, /p/diffdock-diffusion-steps-twists-and-turns-for-molecular-docking/imgs/Untitled5_hub1f86d8413b43196d2dbec69310f8555_603864_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="271"
+		data-flex-basis="651px"
+	
+></p>
+<ul>
+<li>Improved over this by independently predicting a docking pose for each possible pocket and then ranking them.</li>
+</ul>
+</li>
+<li>
+<p><a class="link" href="https://arxiv.org/abs/2210.06069"  target="_blank" rel="noopener"
+    >E3Bind</a></p>
+<p><img src="/p/diffdock-diffusion-steps-twists-and-turns-for-molecular-docking/imgs/Untitled6.png"
+	width="1536"
+	height="562"
+	srcset="/p/diffdock-diffusion-steps-twists-and-turns-for-molecular-docking/imgs/Untitled6_hu13edc0df2b71d59ba0b45cb41de53f20_193128_480x0_resize_box_3.png 480w, /p/diffdock-diffusion-steps-twists-and-turns-for-molecular-docking/imgs/Untitled6_hu13edc0df2b71d59ba0b45cb41de53f20_193128_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="273"
+		data-flex-basis="655px"
+	
+></p>
+<ul>
+<li>Used ligand-constrained &amp; protein-constrained update layer to embed ligand atoms and iteratively updated coordinates.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="docking-objective">Docking objective</h2>
+<p><img src="/p/diffdock-diffusion-steps-twists-and-turns-for-molecular-docking/imgs/Untitled7.png"
+	width="1520"
+	height="1214"
+	srcset="/p/diffdock-diffusion-steps-twists-and-turns-for-molecular-docking/imgs/Untitled7_hu5f4844bc8df901aef67687f97d63b662_915257_480x0_resize_box_3.png 480w, /p/diffdock-diffusion-steps-twists-and-turns-for-molecular-docking/imgs/Untitled7_hu5f4844bc8df901aef67687f97d63b662_915257_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="125"
+		data-flex-basis="300px"
+	
+></p>
+<ul>
+<li>Standard evaluation metric:
+<ul>
+<li>
+<p>$\mathcal{L}_{\epsilon} = \sum_{x, y} I_{\text{RMSD}(y, \hat{y}(x))&lt;\epsilon}$:</p>
+<p>proportion of predictions with $\text{RMSD} &lt; \epsilon$ → Not differentiable!</p>
+</li>
+<li>
+<p>Instead, we use $\text{argmin}_{\hat{y}} \lim_{\epsilon \rightarrow 0} \mathcal{L}_\epsilon$ as objective function.</p>
+</li>
+</ul>
+</li>
+<li>Regression is suitable for docking only if it is unimodal.</li>
+<li>Docking has significant aleatoric (irreducible) &amp; epistemic (reducible) uncertainty
+<ul>
+<li>Regression methods will minimize $\sum \|y - \hat{y}\|^2_2$ → will produce weighted mean of multiple modes</li>
+<li>On the other hand, generative model will populate all/most modes!</li>
+</ul>
+</li>
+</ul>
+<p><img src="/p/diffdock-diffusion-steps-twists-and-turns-for-molecular-docking/imgs/Untitled8.png"
+	width="2028"
+	height="1108"
+	srcset="/p/diffdock-diffusion-steps-twists-and-turns-for-molecular-docking/imgs/Untitled8_hu6b313aafde63670bc308ca51bccee486_1187222_480x0_resize_box_3.png 480w, /p/diffdock-diffusion-steps-twists-and-turns-for-molecular-docking/imgs/Untitled8_hu6b313aafde63670bc308ca51bccee486_1187222_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="183"
+		data-flex-basis="439px"
+	
+></p>
+<ul>
+<li>Regression (EquiBind) model set conformer in the middle of the modes.</li>
+<li>Generative samples can populate conformer in most modes.</li>
+</ul>
+<p><img src="/p/diffdock-diffusion-steps-twists-and-turns-for-molecular-docking/imgs/Untitled9.png"
+	width="2002"
+	height="1090"
+	srcset="/p/diffdock-diffusion-steps-twists-and-turns-for-molecular-docking/imgs/Untitled9_hu04edc1aff53bfad5a2de658c9efbf1ee_1153872_480x0_resize_box_3.png 480w, /p/diffdock-diffusion-steps-twists-and-turns-for-molecular-docking/imgs/Untitled9_hu04edc1aff53bfad5a2de658c9efbf1ee_1153872_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="183"
+		data-flex-basis="440px"
+	
+></p>
+<ul>
+<li>Much less steric clashes for generative models</li>
+</ul>
+<h2 id="diffdock-overview">DiffDock Overview</h2>
+<p><img src="/p/diffdock-diffusion-steps-twists-and-turns-for-molecular-docking/imgs/Untitled15.png"
+	width="1110"
+	height="534"
+	srcset="/p/diffdock-diffusion-steps-twists-and-turns-for-molecular-docking/imgs/Untitled15_hu35359f9550b3436da89f85bd47cc7f53_260405_480x0_resize_box_3.png 480w, /p/diffdock-diffusion-steps-twists-and-turns-for-molecular-docking/imgs/Untitled15_hu35359f9550b3436da89f85bd47cc7f53_260405_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="207"
+		data-flex-basis="498px"
+	
+></p>
+<ul>
+<li>Two-step approach
+<ul>
+<li>Score model: Reverse diffusion over translation, rotation, and torsion</li>
+<li>Confidence model: Predict whether or not each ligand pose is $\text{RMSD} &lt; 2\text{Å}$ compared to ground truth ligand pose</li>
+</ul>
+</li>
+</ul>
+<h3 id="score-model">Score model</h3>
+<ul>
+<li>
+<p>Ligand pose: $\mathbb{R}^{3n}$ ($n$: number of atoms)</p>
+</li>
+<li>
+<p>But molecular docking needs far less degrees of freedom.</p>
+<p><img src="/p/diffdock-diffusion-steps-twists-and-turns-for-molecular-docking/imgs/Untitled16.png"
+	width="2044"
+	height="1074"
+	srcset="/p/diffdock-diffusion-steps-twists-and-turns-for-molecular-docking/imgs/Untitled16_hu38cf56affd34313fb9003ca22c483d35_693157_480x0_resize_box_3.png 480w, /p/diffdock-diffusion-steps-twists-and-turns-for-molecular-docking/imgs/Untitled16_hu38cf56affd34313fb9003ca22c483d35_693157_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="190"
+		data-flex-basis="456px"
+	
+></p>
+<ul>
+<li>
+<p>Reduced degree of freedom: $(m+6)$</p>
+<ul>
+<li>
+<p>Local structure: Fixed (rigid) after conformer generation with RDKit <code>EmbedMolecule(mol)</code></p>
+<ul>
+<li>Bond length, angles, small rings</li>
+</ul>
+</li>
+<li>
+<p>Position (translation): $\mathbb{R}^3$ - 3D vector</p>
+<p><img src="/p/diffdock-diffusion-steps-twists-and-turns-for-molecular-docking/imgs/Untitled17.png"
+	width="698"
+	height="394"
+	srcset="/p/diffdock-diffusion-steps-twists-and-turns-for-molecular-docking/imgs/Untitled17_hubaace3e56e7acf27bdb1a448af48eb5b_40034_480x0_resize_box_3.png 480w, /p/diffdock-diffusion-steps-twists-and-turns-for-molecular-docking/imgs/Untitled17_hubaace3e56e7acf27bdb1a448af48eb5b_40034_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="177"
+		data-flex-basis="425px"
+	
+></p>
+</li>
+<li>
+<p>Orientation (rotation): $SO(3)$ - three Euler angle vector</p>
+<p><img src="/p/diffdock-diffusion-steps-twists-and-turns-for-molecular-docking/imgs/Euler2a.gif"
+	width="340"
+	height="322"
+	srcset="/p/diffdock-diffusion-steps-twists-and-turns-for-molecular-docking/imgs/Euler2a_hu98bbb1e40ff0f96440af8978741eb4d9_406254_480x0_resize_box_1.gif 480w, /p/diffdock-diffusion-steps-twists-and-turns-for-molecular-docking/imgs/Euler2a_hu98bbb1e40ff0f96440af8978741eb4d9_406254_1024x0_resize_box_1.gif 1024w"
+	loading="lazy"
+	
+		alt="Euler2a.gif"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="105"
+		data-flex-basis="253px"
+	
+></p>
+</li>
+<li>
+<p>Torsion angles: $\mathbb{T}^m$ ($m$: number of rotatable bonds)</p>
+<p><img src="/p/diffdock-diffusion-steps-twists-and-turns-for-molecular-docking/imgs/Dihedral-angles-anim.gif"
+	width="185"
+	height="200"
+	srcset="/p/diffdock-diffusion-steps-twists-and-turns-for-molecular-docking/imgs/Dihedral-angles-anim_hua8427fe8cdaef099affccff0d8af866f_448496_480x0_resize_box_1.gif 480w, /p/diffdock-diffusion-steps-twists-and-turns-for-molecular-docking/imgs/Dihedral-angles-anim_hua8427fe8cdaef099affccff0d8af866f_448496_1024x0_resize_box_1.gif 1024w"
+	loading="lazy"
+	
+		alt="Dihedral-angles-anim.gif"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="92"
+		data-flex-basis="222px"
+	
+></p>
+</li>
+</ul>
+</li>
+<li>
+<p>Can perform diffusion on product space $\mathbb{P}: \mathbb{R}^3 \times SO(3) \times \mathbb{T}^m$</p>
+<ul>
+<li>For a given seed conformation $\mathbf{c}$, the map $A(\cdot, \mathbf{c}): \mathbb{P} \rightarrow \mathcal{M}_\mathbf{c}$ is a bijection!</li>
+</ul>
+<p><img src="/p/diffdock-diffusion-steps-twists-and-turns-for-molecular-docking/imgs/Untitled18.png"
+	width="2618"
+	height="1122"
+	srcset="/p/diffdock-diffusion-steps-twists-and-turns-for-molecular-docking/imgs/Untitled18_huf848a016eb7455cba5e115c7211e6f55_618737_480x0_resize_box_3.png 480w, /p/diffdock-diffusion-steps-twists-and-turns-for-molecular-docking/imgs/Untitled18_huf848a016eb7455cba5e115c7211e6f55_618737_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="233"
+		data-flex-basis="560px"
+	
+></p>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="confidence-model">Confidence Model</h3>
+<p><img src="/p/diffdock-diffusion-steps-twists-and-turns-for-molecular-docking/imgs/Untitled19.png"
+	width="1740"
+	height="356"
+	srcset="/p/diffdock-diffusion-steps-twists-and-turns-for-molecular-docking/imgs/Untitled19_hud7e426523596c6c1031c9a3d319cc3e4_305102_480x0_resize_box_3.png 480w, /p/diffdock-diffusion-steps-twists-and-turns-for-molecular-docking/imgs/Untitled19_hud7e426523596c6c1031c9a3d319cc3e4_305102_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="488"
+		data-flex-basis="1173px"
+	
+></p>
+<ul>
+<li>Generative model can sample an arbitrary number of poses, but researchers are interested in one or a fixed number of them.</li>
+<li>Confidence predictions are very useful for downstream tasks.</li>
+<li>Confidence model $d(\mathbf{x}, \mathbf{y})$
+<ul>
+<li>$\mathbf{x}$: pose of a ligand</li>
+<li>$\mathbf{y}$: target protein structure</li>
+</ul>
+</li>
+<li>Samples are ranked by score and the score of the best is used as overall confidence score.</li>
+<li>Training &amp; Inference
+<ul>
+<li>Ran the trained diffusion model to obtain a set of candidate poses for every training example and generate binary labels: each pose has RMSD below $2 \text{Å}$ or not.</li>
+<li>Then the confidence model is trained with cross entropy loss to predict the binary label for each pose.</li>
+<li>During inference, diffusion model is run to generate $N$ poses in parallel, and passed to the confidence model that ranks them based on its confidence that they have RMSD below $2\text{Å}$.</li>
+</ul>
+</li>
+</ul>
+<h2 id="diffdock-workflow">DiffDock Workflow</h2>
+<p><img src="/p/diffdock-diffusion-steps-twists-and-turns-for-molecular-docking/imgs/Untitled20.png"
+	width="1786"
+	height="706"
+	srcset="/p/diffdock-diffusion-steps-twists-and-turns-for-molecular-docking/imgs/Untitled20_huf37ccbd6cea1d3a5450b7473806471ee_503096_480x0_resize_box_3.png 480w, /p/diffdock-diffusion-steps-twists-and-turns-for-molecular-docking/imgs/Untitled20_huf37ccbd6cea1d3a5450b7473806471ee_503096_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="252"
+		data-flex-basis="607px"
+	
+></p>
+<h2 id="diffdock-results">DiffDock Results</h2>
+<ul>
+<li>
+<p>Standard benchmark: PDBBind</p>
+<p>19k experimentally determined structures of small molecules + proteins</p>
+<p>Baselines: search-based &amp; deep learning</p>
+</li>
+<li>
+<p>Prediction correctness</p>
+<p><img src="/p/diffdock-diffusion-steps-twists-and-turns-for-molecular-docking/imgs/Untitled21.png"
+	width="1476"
+	height="782"
+	srcset="/p/diffdock-diffusion-steps-twists-and-turns-for-molecular-docking/imgs/Untitled21_hu6492e850775254853f2253df277369e5_216895_480x0_resize_box_3.png 480w, /p/diffdock-diffusion-steps-twists-and-turns-for-molecular-docking/imgs/Untitled21_hu6492e850775254853f2253df277369e5_216895_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="188"
+		data-flex-basis="452px"
+	
+></p>
+<p>Outperform search-based, deep learning, and pocket prediction + search-based methods</p>
+</li>
+<li>
+<p>Runtime</p>
+<p><img src="/p/diffdock-diffusion-steps-twists-and-turns-for-molecular-docking/imgs/Untitled22.png"
+	width="1380"
+	height="776"
+	srcset="/p/diffdock-diffusion-steps-twists-and-turns-for-molecular-docking/imgs/Untitled22_hu1e9d177239c85ffcc71145b4c82f01a0_199858_480x0_resize_box_3.png 480w, /p/diffdock-diffusion-steps-twists-and-turns-for-molecular-docking/imgs/Untitled22_hu1e9d177239c85ffcc71145b4c82f01a0_199858_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="177"
+		data-flex-basis="426px"
+	
+></p>
+<p>3 times faster than the most accurate baseline</p>
+</li>
+<li>
+<p>Generalization to unseen receptors</p>
+<p><img src="/p/diffdock-diffusion-steps-twists-and-turns-for-molecular-docking/imgs/Untitled23.png"
+	width="1494"
+	height="784"
+	srcset="/p/diffdock-diffusion-steps-twists-and-turns-for-molecular-docking/imgs/Untitled23_hu6b0a4098791f8fb33cad44759483ab95_176122_480x0_resize_box_3.png 480w, /p/diffdock-diffusion-steps-twists-and-turns-for-molecular-docking/imgs/Untitled23_hu6b0a4098791f8fb33cad44759483ab95_176122_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="190"
+		data-flex-basis="457px"
+	
+></p>
+<p>Able to generalize: outperform classical method</p>
+</li>
+<li>
+<p>Reverse diffusion process GIF</p>
+<p><img src="/p/diffdock-diffusion-steps-twists-and-turns-for-molecular-docking/imgs/diffdock.gif"
+	width="500"
+	height="282"
+	srcset="/p/diffdock-diffusion-steps-twists-and-turns-for-molecular-docking/imgs/diffdock_huf4cb667dc82f8b11af86b654f4b03337_2904312_480x0_resize_box_1.gif 480w, /p/diffdock-diffusion-steps-twists-and-turns-for-molecular-docking/imgs/diffdock_huf4cb667dc82f8b11af86b654f4b03337_2904312_1024x0_resize_box_1.gif 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="177"
+		data-flex-basis="425px"
+	
+></p>
+</li>
+<li>
+<p>Confidence score quality</p>
+<p><img src="/p/diffdock-diffusion-steps-twists-and-turns-for-molecular-docking/imgs/Untitled24.png"
+	width="1154"
+	height="768"
+	srcset="/p/diffdock-diffusion-steps-twists-and-turns-for-molecular-docking/imgs/Untitled24_hu647c20d3e720e07563131b84bd083487_321886_480x0_resize_box_3.png 480w, /p/diffdock-diffusion-steps-twists-and-turns-for-molecular-docking/imgs/Untitled24_hu647c20d3e720e07563131b84bd083487_321886_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="150"
+		data-flex-basis="360px"
+	
+></p>
+<p>High selective accuracy: valuable information for practitioners</p>
+</li>
+</ul>
+<h2 id="personal-opinions">Personal opinions</h2>
+<ul>
+<li>It is impressive that the authors formulated molecular docking as a generative problem, conditioned on protein structure.</li>
+<li>But it is not an end-to-end approach. And there are some discrepancy between the inputs and output of the confidence model. The input is the predicted ligand pose $\hat{\mathbf{x}}$ and protein structure $\mathbf{y}$, but the output is “whether the RMSE is below 2Å between predicted ligand pose $\hat{\mathbf{x}}$ and ground truth ligand pose $\mathbf{x}$”.</li>
+<li>There are quite a room to improve the performance, but it requires heavy workloads of GPUs.</li>
+<li>I’m skeptical about the generalizability of this model since there are almost no physics informed inductive bias in the model.</li>
+</ul>
+<h2 id="reference">Reference</h2>
+<ul>
+<li>
+<p>Article</p>
+<p><a class="link" href="https://openreview.net/forum?id=kKF8_K-mBbS"  target="_blank" rel="noopener"
+    >DiffDock: Diffusion Steps, Twists, and Turns for Molecular Docking</a></p>
+</li>
+<li>
+<p>Youtube</p>
+<p><a class="link" href="https://youtu.be/gAmTGw601dA"  target="_blank" rel="noopener"
+    >DiffDock: Diffusion Steps, Twists, and Turns for Molecular Docking</a></p>
+</li>
+<li>
+<p>Blog</p>
+<p><a class="link" href="https://yang-song.net/blog/2021/score/"  target="_blank" rel="noopener"
+    >Generative Modeling by Estimating Gradients of the Data Distribution | Yang Song</a></p>
+<p><a class="link" href="https://lilianweng.github.io/posts/2021-07-11-diffusion-models/"  target="_blank" rel="noopener"
+    >What are Diffusion Models?</a></p>
+</li>
+</ul>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/iclr-2023/">ICLR 2023</a>
+        
+            <a href="/tags/diffusion/">Diffusion</a>
+        
+            <a href="/tags/molecular-docking/">Molecular Docking</a>
+        
+    </section>
+
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+
+    
+        <link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/katex.min.css"integrity="sha256-J&#43;iAE0sgH8QSz9hpcDxXIftnj65JEZgNhGcgReTTK9s="crossorigin="anonymous"
+            ><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/katex.min.js"integrity="sha256-InsNdER1b2xUewP&#43;pKCUJpkhiqwHgqiPXDlIk7GzBu4="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/contrib/auto-render.min.js"integrity="sha256-y39Mpg7V3D4lhBX4x6O0bUqTV4pSrfgwEfGKfxkOdgI="crossorigin="anonymous"
+                defer
+                >
+            </script><script>
+    window.addEventListener("DOMContentLoaded", () => {
+        renderMathInElement(document.querySelector(`.article-content`), {
+            delimiters: [
+                { left: "$$", right: "$$", display: true },
+                { left: "$", right: "$", display: false },
+                { left: "\\(", right: "\\)", display: false },
+                { left: "\\[", right: "\\]", display: true }
+            ]
+        });})
+</script>
+    
+</article>
+
+    
+
+    
+
+<aside class="related-content--wrapper">
+    <h2 class="section-title">Related content</h2>
+    <div class="related-content">
+        <div class="flex article-list--tile">
+            
+                
+<article class="has-image">
+    <a href="/p/cmap-based-drug-repositioning-of-btz-to-reverse-the-metastatic-effect-of-galnt14-in-lung-cancer/">
+        
+        
+            <div class="article-image">
+                <img src="/p/cmap-based-drug-repositioning-of-btz-to-reverse-the-metastatic-effect-of-galnt14-in-lung-cancer/thumbnail.13245d4d206aac760054ab46b8c5427b_hub7b0114b78cd33a49a5f6e1bdf51e130_146004_250x150_fill_box_smart1_3.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post CMap based Drug Repositioning of BTZ to reverse the metastatic effect of GALNT14 in lung cancer"
+                        
+                        data-hash="md5-EyRdTSBqrHYAVKtGuMVCew==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">CMap based Drug Repositioning of BTZ to reverse the metastatic effect of GALNT14 in lung cancer</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/few-shot-learning-with-graph-neural-networks/">
+        
+        
+            <div class="article-image">
+                <img src="/p/few-shot-learning-with-graph-neural-networks/thumbnail.286574ec60889934044130d39a9bb9b3_hu8ba07e37572d4400f76afaadd55834a8_158186_250x150_fill_box_smart1_3.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post Few-shot Learning with Graph Neural Networks"
+                        
+                        data-hash="md5-KGV07GCImTQEQTDTmpu5sw==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Few-shot Learning with Graph Neural Networks</h2>
+        </div>
+    </a>
+</article>
+
+            
+        </div>
+    </div>
+</aside>
+
+     
+    
+        
+    <div class="disqus-container">
+    <div id="disqus_thread"></div>
+<script type="application/javascript">
+    window.disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "jh-gu-blog" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div>
+
+<style>
+    .disqus-container {
+        background-color: var(--card-background);
+        border-radius: var(--card-border-radius);
+        box-shadow: var(--shadow-l1);
+        padding: var(--card-padding);
+    }
+</style>
+
+<script>
+    window.addEventListener('onColorSchemeChange', (e) => {
+        if (typeof DISQUS == 'object') {
+            DISQUS.reset({
+                reload: true
+            });
+        }
+    })
+</script>
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2020 - 
+        
+        2023 JH Gu&#39;s Tech Blog
+    </section>
+    
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.16.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>

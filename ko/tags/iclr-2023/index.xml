@@ -1,0 +1,570 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>ICLR 2023 on JH Gu&#39;s Tech Blog</title>
+        <link>https://gujh14.github.io/ko/tags/iclr-2023/</link>
+        <description>Recent content in ICLR 2023 on JH Gu&#39;s Tech Blog</description>
+        <generator>Hugo -- gohugo.io</generator>
+        <language>en-us</language>
+        <lastBuildDate>Mon, 27 Feb 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://gujh14.github.io/ko/tags/iclr-2023/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>DiffDock: Diffusion Steps, Twists, and Turns for Molecular Docking</title>
+        <link>https://gujh14.github.io/ko/p/diffdock-diffusion-steps-twists-and-turns-for-molecular-docking/</link>
+        <pubDate>Mon, 27 Feb 2023 00:00:00 +0000</pubDate>
+        
+        <guid>https://gujh14.github.io/ko/p/diffdock-diffusion-steps-twists-and-turns-for-molecular-docking/</guid>
+        <description>&lt;img src="https://gujh14.github.io/ko/p/diffdock-diffusion-steps-twists-and-turns-for-molecular-docking/thumbnail.png" alt="Featured image of post DiffDock: Diffusion Steps, Twists, and Turns for Molecular Docking" /&gt;&lt;p&gt;ICLR, &amp;lsquo;23
+&lt;a class=&#34;link&#34; href=&#34;https://arxiv.org/abs/2210.01776&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;&amp;ldquo;DiffDock: Diffusion Steps, Twists, and Turns for Molecular Docking&amp;rdquo;&lt;/a&gt;&lt;/p&gt;
+&lt;h1 id=&#34;summary&#34;&gt;Summary&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Molecular docking을 regression이 아닌, generative problem으로 formulation&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Target protein 구조 $\mathbf{y}$를 조건으로 하여, ligand의 위치와 구조$\mathbf{x}$의 distribution을 학습 → $p(\mathbf{x} | \mathbf{y})$&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Generation에 diffusion process 사용&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;두 개의 구분된 모델 사용&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Score model: $s(\mathbf{x}, \mathbf{y}, t)$&lt;/p&gt;
+&lt;p&gt;Ligand, protein, timestep을 input으로 하여 score를 prediction하는 model&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Confidence model: $d(\mathbf{x}, \mathbf{y})$&lt;/p&gt;
+&lt;p&gt;Ligand와 protein의 구조를 바탕으로 ground truth ligand pose 대비 RMSD 기준 2Å 이하의 pose일 확률 return&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Diffusion on Product space $\mathbb{P}$&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Degree of freedom을 $3n$에서 $(m+6)$로 축소하여 diffusion 수행&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;preliminaries&#34;&gt;Preliminaries&lt;/h2&gt;
+&lt;h3 id=&#34;molecular-docking&#34;&gt;Molecular Docking&lt;/h3&gt;
+&lt;p&gt;&lt;img src=&#34;https://gujh14.github.io/ko/p/diffdock-diffusion-steps-twists-and-turns-for-molecular-docking/imgs/Untitled.png&#34;
+	width=&#34;1942&#34;
+	height=&#34;1116&#34;
+	srcset=&#34;https://gujh14.github.io/ko/p/diffdock-diffusion-steps-twists-and-turns-for-molecular-docking/imgs/Untitled_huf40d7e8c2d3df3da9d828794a85e8161_935838_480x0_resize_box_3.png 480w, https://gujh14.github.io/ko/p/diffdock-diffusion-steps-twists-and-turns-for-molecular-docking/imgs/Untitled_huf40d7e8c2d3df3da9d828794a85e8161_935838_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;174&#34;
+		data-flex-basis=&#34;417px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Definition:&lt;/p&gt;
+&lt;p&gt;Target protein에 결합한 ligand의 position, orientation, conformation을 예측하는 것을 의미&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Two types of tasks 크게 두 종류의 task로 구분함&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Known-pocket docking
+&lt;ul&gt;
+&lt;li&gt;Protein의 binding pocket의 위치 정보를 주고 예측&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Blind docking
+&lt;ul&gt;
+&lt;li&gt;Binding pocket에 대한 정보 없이 예측하는 더 일반적이고 어려운 상황&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;previous-works-search-based--regression-based&#34;&gt;Previous works: Search-based / Regression-based&lt;/h3&gt;
+&lt;p&gt;&lt;img src=&#34;https://gujh14.github.io/ko/p/diffdock-diffusion-steps-twists-and-turns-for-molecular-docking/imgs/Untitled1.png&#34;
+	width=&#34;1462&#34;
+	height=&#34;1104&#34;
+	srcset=&#34;https://gujh14.github.io/ko/p/diffdock-diffusion-steps-twists-and-turns-for-molecular-docking/imgs/Untitled1_huc1cd3bae2f7177be1a7cfda9b4564a85_264966_480x0_resize_box_3.png 480w, https://gujh14.github.io/ko/p/diffdock-diffusion-steps-twists-and-turns-for-molecular-docking/imgs/Untitled1_huc1cd3bae2f7177be1a7cfda9b4564a85_264966_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;132&#34;
+		data-flex-basis=&#34;317px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Search based docking methods&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Traditional methods&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Parameterize 된 physics 기반의 &lt;strong&gt;scoring function&lt;/strong&gt;과 &lt;strong&gt;search algorithm&lt;/strong&gt;으로 구성&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Scoring function&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Input: 3D 구조&lt;/li&gt;
+&lt;li&gt;Output: 특정 pose에 대한 quality나 likelihood 예측&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Search algorithm&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Ligand pose (position, orientation, torsion angles)를 확률론적으로 랜덤하게 (stochastically) 바꿈&lt;/li&gt;
+&lt;li&gt;Goal: scoring function의 global optimum을 찾는 것&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Scoring function을 parameterize하기 위해 ML이 적용되고 있지만, search space 가 너무 커서 계산량이 매우 많다.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;예시&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://gujh14.github.io/ko/p/diffdock-diffusion-steps-twists-and-turns-for-molecular-docking/imgs/Untitled2.png&#34;
+	width=&#34;1776&#34;
+	height=&#34;166&#34;
+	srcset=&#34;https://gujh14.github.io/ko/p/diffdock-diffusion-steps-twists-and-turns-for-molecular-docking/imgs/Untitled2_huf43150a0e47223ef3cf22aed6633617b_81428_480x0_resize_box_3.png 480w, https://gujh14.github.io/ko/p/diffdock-diffusion-steps-twists-and-turns-for-molecular-docking/imgs/Untitled2_huf43150a0e47223ef3cf22aed6633617b_81428_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;1069&#34;
+		data-flex-basis=&#34;2567px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Regression based methods&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;최신 딥러닝 기반의 방법들이 ground truth position에 대해 regression으로 formulation&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Search based method 대비&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;속도는 상당히 빨라짐.&lt;/li&gt;
+&lt;li&gt;정확도에 있어서는 부족하거나, 비슷한 정도.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;예시&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://gujh14.github.io/ko/p/diffdock-diffusion-steps-twists-and-turns-for-molecular-docking/imgs/Untitled3.png&#34;
+	width=&#34;1152&#34;
+	height=&#34;144&#34;
+	srcset=&#34;https://gujh14.github.io/ko/p/diffdock-diffusion-steps-twists-and-turns-for-molecular-docking/imgs/Untitled3_hu6b088dca52a85205018e5f1b36628350_49655_480x0_resize_box_3.png 480w, https://gujh14.github.io/ko/p/diffdock-diffusion-steps-twists-and-turns-for-molecular-docking/imgs/Untitled3_hu6b088dca52a85205018e5f1b36628350_49655_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;800&#34;
+		data-flex-basis=&#34;1920px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://arxiv.org/abs/2202.05146&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;EquiBind&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://gujh14.github.io/ko/p/diffdock-diffusion-steps-twists-and-turns-for-molecular-docking/imgs/Untitled4.png&#34;
+	width=&#34;2030&#34;
+	height=&#34;550&#34;
+	srcset=&#34;https://gujh14.github.io/ko/p/diffdock-diffusion-steps-twists-and-turns-for-molecular-docking/imgs/Untitled4_hu663897c2650aaacc73297b198e4cc5b3_753604_480x0_resize_box_3.png 480w, https://gujh14.github.io/ko/p/diffdock-diffusion-steps-twists-and-turns-for-molecular-docking/imgs/Untitled4_hu663897c2650aaacc73297b198e4cc5b3_753604_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;369&#34;
+		data-flex-basis=&#34;885px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Blind docking을 regression으로 접근하여 binding pocket의 keypoint를 직접 예측함.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://www.biorxiv.org/content/10.1101/2022.06.06.495043v3&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;TANKBind&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://gujh14.github.io/ko/p/diffdock-diffusion-steps-twists-and-turns-for-molecular-docking/imgs/Untitled5.png&#34;
+	width=&#34;1988&#34;
+	height=&#34;732&#34;
+	srcset=&#34;https://gujh14.github.io/ko/p/diffdock-diffusion-steps-twists-and-turns-for-molecular-docking/imgs/Untitled5_hub1f86d8413b43196d2dbec69310f8555_603864_480x0_resize_box_3.png 480w, https://gujh14.github.io/ko/p/diffdock-diffusion-steps-twists-and-turns-for-molecular-docking/imgs/Untitled5_hub1f86d8413b43196d2dbec69310f8555_603864_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;271&#34;
+		data-flex-basis=&#34;651px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Protein의 각 가능한 pocket에 대해 docking pose를 예측하고 따로 ranking 하여 평가하여 성능 향상.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://arxiv.org/abs/2210.06069&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;E3Bind&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://gujh14.github.io/ko/p/diffdock-diffusion-steps-twists-and-turns-for-molecular-docking/imgs/Untitled6.png&#34;
+	width=&#34;1536&#34;
+	height=&#34;562&#34;
+	srcset=&#34;https://gujh14.github.io/ko/p/diffdock-diffusion-steps-twists-and-turns-for-molecular-docking/imgs/Untitled6_hu13edc0df2b71d59ba0b45cb41de53f20_193128_480x0_resize_box_3.png 480w, https://gujh14.github.io/ko/p/diffdock-diffusion-steps-twists-and-turns-for-molecular-docking/imgs/Untitled6_hu13edc0df2b71d59ba0b45cb41de53f20_193128_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;273&#34;
+		data-flex-basis=&#34;655px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Ligand 내부의 atom끼리의 상호작용, protein residue와의 상호작용을 모두 고려하여 ligand atom embedding을 만들고, iterative하게 좌표를 업데이트하여 binding pose 예측 수행.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;docking-objective&#34;&gt;Docking objective&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&#34;https://gujh14.github.io/ko/p/diffdock-diffusion-steps-twists-and-turns-for-molecular-docking/imgs/Untitled7.png&#34;
+	width=&#34;1520&#34;
+	height=&#34;1214&#34;
+	srcset=&#34;https://gujh14.github.io/ko/p/diffdock-diffusion-steps-twists-and-turns-for-molecular-docking/imgs/Untitled7_hu5f4844bc8df901aef67687f97d63b662_915257_480x0_resize_box_3.png 480w, https://gujh14.github.io/ko/p/diffdock-diffusion-steps-twists-and-turns-for-molecular-docking/imgs/Untitled7_hu5f4844bc8df901aef67687f97d63b662_915257_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;125&#34;
+		data-flex-basis=&#34;300px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Standard evaluation metric:
+&lt;ul&gt;
+&lt;li&gt;$\mathcal{L}_{\epsilon} = \sum_{x, y} I_{\text{RMSD}(y, \hat{y}(x))&amp;lt;\epsilon}$: $\text{RMSD} &amp;lt; \epsilon$ 으로 예측한 것들의 비율 → 미분 불가능함.&lt;/li&gt;
+&lt;li&gt;대신, $\text{argmin}_{\hat{y}} \lim_{\epsilon \rightarrow 0} \mathcal{L}_\epsilon$ 을 objective function 으로 사용함.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Regression은 unimodal일 경우에만 이 objective function과 일맥 상통함.&lt;/li&gt;
+&lt;li&gt;그러나 Docking은 상당한 aleatoric (irreducible) &amp;amp; epistemic (reducible) uncertainty 지님.
+&lt;ul&gt;
+&lt;li&gt;Regression 방법들은 $\sum \|y - \hat{y}\|^2_2$ 를 최소화하는 것이 목적이고, 이는 여러 mode들의 weighted mean을 예측하도록 학습할 것.&lt;/li&gt;
+&lt;li&gt;반면 generative model은 대부분의 mode에 대해 generation 가능.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&#34;https://gujh14.github.io/ko/p/diffdock-diffusion-steps-twists-and-turns-for-molecular-docking/imgs/Untitled8.png&#34;
+	width=&#34;2028&#34;
+	height=&#34;1108&#34;
+	srcset=&#34;https://gujh14.github.io/ko/p/diffdock-diffusion-steps-twists-and-turns-for-molecular-docking/imgs/Untitled8_hu6b313aafde63670bc308ca51bccee486_1187222_480x0_resize_box_3.png 480w, https://gujh14.github.io/ko/p/diffdock-diffusion-steps-twists-and-turns-for-molecular-docking/imgs/Untitled8_hu6b313aafde63670bc308ca51bccee486_1187222_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;183&#34;
+		data-flex-basis=&#34;439px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;실제 결과를 살펴보면, EquiBind 같은 regression model은 여러 mode들의 중간에 위치하도록 예측함.&lt;/li&gt;
+&lt;li&gt;반면 generative model은 여러 mode들에 대해 conformer를 위치시킬 수 있음.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&#34;https://gujh14.github.io/ko/p/diffdock-diffusion-steps-twists-and-turns-for-molecular-docking/imgs/Untitled9.png&#34;
+	width=&#34;2002&#34;
+	height=&#34;1090&#34;
+	srcset=&#34;https://gujh14.github.io/ko/p/diffdock-diffusion-steps-twists-and-turns-for-molecular-docking/imgs/Untitled9_hu04edc1aff53bfad5a2de658c9efbf1ee_1153872_480x0_resize_box_3.png 480w, https://gujh14.github.io/ko/p/diffdock-diffusion-steps-twists-and-turns-for-molecular-docking/imgs/Untitled9_hu04edc1aff53bfad5a2de658c9efbf1ee_1153872_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;183&#34;
+		data-flex-basis=&#34;440px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;DiffDock이 steric clash가 덜하다.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;diffdock-overview&#34;&gt;DiffDock Overview&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&#34;https://gujh14.github.io/ko/p/diffdock-diffusion-steps-twists-and-turns-for-molecular-docking/imgs/Untitled15.png&#34;
+	width=&#34;1110&#34;
+	height=&#34;534&#34;
+	srcset=&#34;https://gujh14.github.io/ko/p/diffdock-diffusion-steps-twists-and-turns-for-molecular-docking/imgs/Untitled15_hu35359f9550b3436da89f85bd47cc7f53_260405_480x0_resize_box_3.png 480w, https://gujh14.github.io/ko/p/diffdock-diffusion-steps-twists-and-turns-for-molecular-docking/imgs/Untitled15_hu35359f9550b3436da89f85bd47cc7f53_260405_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;207&#34;
+		data-flex-basis=&#34;498px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;두 단계 model 사용
+&lt;ul&gt;
+&lt;li&gt;Score model: Translation (평행 이동), rotation (회전), torsion (비틀림)에 대해 reverse diffusion 수행&lt;/li&gt;
+&lt;li&gt;Confidence model: 각 ligand pose가 ground truth 와 비교 시 $\text{RMSD} &amp;lt; 2\text{Å}$ 차이로 잘 위치했는지 binary prediction.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;score-model&#34;&gt;Score model&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Ligand pose: $\mathbb{R}^{3n}$ ($n$: number of atoms)&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;하지만 molecular docking은 이보다 더 적은 degree of freedom으로 수행할 수 있다.
+&lt;img src=&#34;https://gujh14.github.io/ko/p/diffdock-diffusion-steps-twists-and-turns-for-molecular-docking/imgs/Untitled16.png&#34;
+	width=&#34;2044&#34;
+	height=&#34;1074&#34;
+	srcset=&#34;https://gujh14.github.io/ko/p/diffdock-diffusion-steps-twists-and-turns-for-molecular-docking/imgs/Untitled16_hu38cf56affd34313fb9003ca22c483d35_693157_480x0_resize_box_3.png 480w, https://gujh14.github.io/ko/p/diffdock-diffusion-steps-twists-and-turns-for-molecular-docking/imgs/Untitled16_hu38cf56affd34313fb9003ca22c483d35_693157_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;190&#34;
+		data-flex-basis=&#34;456px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;축소된 degree of freedom: $(m+6)$
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Local structure: RDKit conformer generation (&lt;code&gt;EmbedMolecule(mol)&lt;/code&gt;) 이후 어느 정도 고정되어 있다고 가정할 수 있음.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Bond length, angle, small rings&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Position (translation): $\mathbb{R}^3$ - 3D vector&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://gujh14.github.io/ko/p/diffdock-diffusion-steps-twists-and-turns-for-molecular-docking/imgs/Untitled17.png&#34;
+	width=&#34;698&#34;
+	height=&#34;394&#34;
+	srcset=&#34;https://gujh14.github.io/ko/p/diffdock-diffusion-steps-twists-and-turns-for-molecular-docking/imgs/Untitled17_hubaace3e56e7acf27bdb1a448af48eb5b_40034_480x0_resize_box_3.png 480w, https://gujh14.github.io/ko/p/diffdock-diffusion-steps-twists-and-turns-for-molecular-docking/imgs/Untitled17_hubaace3e56e7acf27bdb1a448af48eb5b_40034_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;177&#34;
+		data-flex-basis=&#34;425px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Orientation (rotation): $SO(3)$ - three Euler angle vector&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://gujh14.github.io/ko/p/diffdock-diffusion-steps-twists-and-turns-for-molecular-docking/imgs/Euler2a.gif&#34;
+	width=&#34;340&#34;
+	height=&#34;322&#34;
+	srcset=&#34;https://gujh14.github.io/ko/p/diffdock-diffusion-steps-twists-and-turns-for-molecular-docking/imgs/Euler2a_hu98bbb1e40ff0f96440af8978741eb4d9_406254_480x0_resize_box_1.gif 480w, https://gujh14.github.io/ko/p/diffdock-diffusion-steps-twists-and-turns-for-molecular-docking/imgs/Euler2a_hu98bbb1e40ff0f96440af8978741eb4d9_406254_1024x0_resize_box_1.gif 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;105&#34;
+		data-flex-basis=&#34;253px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Torsion angles: $\mathbb{T}^m$ ($m$: number of rotatable bonds)&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://gujh14.github.io/ko/p/diffdock-diffusion-steps-twists-and-turns-for-molecular-docking/imgs/Dihedral-angles-anim.gif&#34;
+	width=&#34;185&#34;
+	height=&#34;200&#34;
+	srcset=&#34;https://gujh14.github.io/ko/p/diffdock-diffusion-steps-twists-and-turns-for-molecular-docking/imgs/Dihedral-angles-anim_hua8427fe8cdaef099affccff0d8af866f_448496_480x0_resize_box_1.gif 480w, https://gujh14.github.io/ko/p/diffdock-diffusion-steps-twists-and-turns-for-molecular-docking/imgs/Dihedral-angles-anim_hua8427fe8cdaef099affccff0d8af866f_448496_1024x0_resize_box_1.gif 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;92&#34;
+		data-flex-basis=&#34;222px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Product space $\mathbb{P}: \mathbb{R}^3 \times SO(3) \times \mathbb{T}^m$ 에서 diffusion 수행 가능&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Seed conformation $\mathbf{c}$가 주어진 상황이라면, mapping $A(\cdot, \mathbf{c}): \mathbb{P} \rightarrow \mathcal{M}_\mathbf{c}$는 bijection 이다.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&#34;https://gujh14.github.io/ko/p/diffdock-diffusion-steps-twists-and-turns-for-molecular-docking/imgs/Untitled18.png&#34;
+	width=&#34;2618&#34;
+	height=&#34;1122&#34;
+	srcset=&#34;https://gujh14.github.io/ko/p/diffdock-diffusion-steps-twists-and-turns-for-molecular-docking/imgs/Untitled18_huf848a016eb7455cba5e115c7211e6f55_618737_480x0_resize_box_3.png 480w, https://gujh14.github.io/ko/p/diffdock-diffusion-steps-twists-and-turns-for-molecular-docking/imgs/Untitled18_huf848a016eb7455cba5e115c7211e6f55_618737_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;233&#34;
+		data-flex-basis=&#34;560px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;confidence-model&#34;&gt;Confidence Model&lt;/h3&gt;
+&lt;p&gt;&lt;img src=&#34;https://gujh14.github.io/ko/p/diffdock-diffusion-steps-twists-and-turns-for-molecular-docking/imgs/Untitled19.png&#34;
+	width=&#34;1740&#34;
+	height=&#34;356&#34;
+	srcset=&#34;https://gujh14.github.io/ko/p/diffdock-diffusion-steps-twists-and-turns-for-molecular-docking/imgs/Untitled19_hud7e426523596c6c1031c9a3d319cc3e4_305102_480x0_resize_box_3.png 480w, https://gujh14.github.io/ko/p/diffdock-diffusion-steps-twists-and-turns-for-molecular-docking/imgs/Untitled19_hud7e426523596c6c1031c9a3d319cc3e4_305102_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;488&#34;
+		data-flex-basis=&#34;1173px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Generative model은 여러 pose를 sampling 할 수 있지만, 대부분 연구자들은 1개나 몇 개 정도의 sample만 보기를 원한다.&lt;/li&gt;
+&lt;li&gt;따라서 confidence prediction은 downstream task에 있어 유용하게 사용될 수 있다.&lt;/li&gt;
+&lt;li&gt;Confidence model $d(\mathbf{x}, \mathbf{y})$
+&lt;ul&gt;
+&lt;li&gt;$\mathbf{x}$: Ligand의 pose&lt;/li&gt;
+&lt;li&gt;$\mathbf{y}$: Target protein의 구조&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Sample들은 confidence score로 순위가 매겨지고, 가장 좋은 순위의 confidence score가 사용된다.&lt;/li&gt;
+&lt;li&gt;Training &amp;amp; Inference
+&lt;ul&gt;
+&lt;li&gt;학습된 diffusion score model에 대해 후보 pose들을 sampling 하고, binary label (각 pose가 ground truth pose 대비 $\text{RMSD} &amp;lt; 2\text{Å}$인지 아닌지)을 만든다.&lt;/li&gt;
+&lt;li&gt;이후 confidence model은 binary label을 맞추도록 cross entropy loss로 학습된다.&lt;/li&gt;
+&lt;li&gt;Inference 시에는 diffusion score model이 $N$개의 pose를 생성하고, confidence model에 그 pose가 전달되어 confidence score 기반으로 순위를 매겨 사용한다.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;diffdock-workflow&#34;&gt;DiffDock Workflow&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&#34;https://gujh14.github.io/ko/p/diffdock-diffusion-steps-twists-and-turns-for-molecular-docking/imgs/Untitled20.png&#34;
+	width=&#34;1786&#34;
+	height=&#34;706&#34;
+	srcset=&#34;https://gujh14.github.io/ko/p/diffdock-diffusion-steps-twists-and-turns-for-molecular-docking/imgs/Untitled20_huf37ccbd6cea1d3a5450b7473806471ee_503096_480x0_resize_box_3.png 480w, https://gujh14.github.io/ko/p/diffdock-diffusion-steps-twists-and-turns-for-molecular-docking/imgs/Untitled20_huf37ccbd6cea1d3a5450b7473806471ee_503096_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;252&#34;
+		data-flex-basis=&#34;607px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;h2 id=&#34;diffdock-results&#34;&gt;DiffDock Results&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Standard benchmark: PDBBind
+19k experimentally determined structures of small molecules + proteins&lt;/p&gt;
+&lt;p&gt;Baselines: search-based &amp;amp; deep learning&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Prediction correctness
+&lt;img src=&#34;https://gujh14.github.io/ko/p/diffdock-diffusion-steps-twists-and-turns-for-molecular-docking/imgs/Untitled21.png&#34;
+	width=&#34;1476&#34;
+	height=&#34;782&#34;
+	srcset=&#34;https://gujh14.github.io/ko/p/diffdock-diffusion-steps-twists-and-turns-for-molecular-docking/imgs/Untitled21_hu6492e850775254853f2253df277369e5_216895_480x0_resize_box_3.png 480w, https://gujh14.github.io/ko/p/diffdock-diffusion-steps-twists-and-turns-for-molecular-docking/imgs/Untitled21_hu6492e850775254853f2253df277369e5_216895_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;188&#34;
+		data-flex-basis=&#34;452px&#34;
+	
+&gt;
+Outperform search-based, deep learning, and pocket prediction + search-based methods&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Runtime
+&lt;img src=&#34;https://gujh14.github.io/ko/p/diffdock-diffusion-steps-twists-and-turns-for-molecular-docking/imgs/Untitled22.png&#34;
+	width=&#34;1380&#34;
+	height=&#34;776&#34;
+	srcset=&#34;https://gujh14.github.io/ko/p/diffdock-diffusion-steps-twists-and-turns-for-molecular-docking/imgs/Untitled22_hu1e9d177239c85ffcc71145b4c82f01a0_199858_480x0_resize_box_3.png 480w, https://gujh14.github.io/ko/p/diffdock-diffusion-steps-twists-and-turns-for-molecular-docking/imgs/Untitled22_hu1e9d177239c85ffcc71145b4c82f01a0_199858_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;177&#34;
+		data-flex-basis=&#34;426px&#34;
+	
+&gt;
+3 times faster than the most accurate baseline&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Generalization to unseen receptors
+&lt;img src=&#34;https://gujh14.github.io/ko/p/diffdock-diffusion-steps-twists-and-turns-for-molecular-docking/imgs/Untitled23.png&#34;
+	width=&#34;1494&#34;
+	height=&#34;784&#34;
+	srcset=&#34;https://gujh14.github.io/ko/p/diffdock-diffusion-steps-twists-and-turns-for-molecular-docking/imgs/Untitled23_hu6b0a4098791f8fb33cad44759483ab95_176122_480x0_resize_box_3.png 480w, https://gujh14.github.io/ko/p/diffdock-diffusion-steps-twists-and-turns-for-molecular-docking/imgs/Untitled23_hu6b0a4098791f8fb33cad44759483ab95_176122_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;190&#34;
+		data-flex-basis=&#34;457px&#34;
+	
+&gt;
+Able to generalize: outperform classical method&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Reverse diffusion process GIF
+&lt;img src=&#34;https://gujh14.github.io/ko/p/diffdock-diffusion-steps-twists-and-turns-for-molecular-docking/imgs/diffdock.gif&#34;
+	width=&#34;500&#34;
+	height=&#34;282&#34;
+	srcset=&#34;https://gujh14.github.io/ko/p/diffdock-diffusion-steps-twists-and-turns-for-molecular-docking/imgs/diffdock_huf4cb667dc82f8b11af86b654f4b03337_2904312_480x0_resize_box_1.gif 480w, https://gujh14.github.io/ko/p/diffdock-diffusion-steps-twists-and-turns-for-molecular-docking/imgs/diffdock_huf4cb667dc82f8b11af86b654f4b03337_2904312_1024x0_resize_box_1.gif 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;177&#34;
+		data-flex-basis=&#34;425px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Confidence score quality
+&lt;img src=&#34;https://gujh14.github.io/ko/p/diffdock-diffusion-steps-twists-and-turns-for-molecular-docking/imgs/Untitled24.png&#34;
+	width=&#34;1154&#34;
+	height=&#34;768&#34;
+	srcset=&#34;https://gujh14.github.io/ko/p/diffdock-diffusion-steps-twists-and-turns-for-molecular-docking/imgs/Untitled24_hu647c20d3e720e07563131b84bd083487_321886_480x0_resize_box_3.png 480w, https://gujh14.github.io/ko/p/diffdock-diffusion-steps-twists-and-turns-for-molecular-docking/imgs/Untitled24_hu647c20d3e720e07563131b84bd083487_321886_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;150&#34;
+		data-flex-basis=&#34;360px&#34;
+	
+&gt;
+High selective accuracy: valuable information for practitioners&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;personal-opinions&#34;&gt;Personal opinions&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Molecular docking을 generation problem으로 formulation 했다는 점이 아주 인상 깊다.&lt;/li&gt;
+&lt;li&gt;Conformer generation의 condition으로 protein structure를 사용했다.&lt;/li&gt;
+&lt;li&gt;하지만 two step approach라는 점, 그리고 confidence model의 input이 predicted ligand pose $\hat{\mathbf{x}}$와 protein structure $\mathbf{y}$ 인데, 결국 예측하는 것은 “predicted ligand pose $\hat{\mathbf{x}}$와 ground truth ligand pose $\mathbf{x}$ 간의 차이가 2Å 이하인지” 라서 약간의 괴리감이 있는 것 같다.&lt;/li&gt;
+&lt;li&gt;아직 성능 개선의 room 이 상당히 남아있지만, GPU workload가 꽤 많이 들어서 우리 연구실에서 수행하기에는 어려울 수도 있을 것 같다는 생각이 든다.&lt;/li&gt;
+&lt;li&gt;Docking 이지만 physics 기반의 inductive bias가 들어가 있지는 않은 것 같아서 얼마나 generalization 하기에 적합한지 의문이다.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;reference&#34;&gt;Reference&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Article&lt;/p&gt;
+&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://openreview.net/forum?id=kKF8_K-mBbS&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;DiffDock: Diffusion Steps, Twists, and Turns for Molecular Docking&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Youtube&lt;/p&gt;
+&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://youtu.be/gAmTGw601dA&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;DiffDock: Diffusion Steps, Twists, and Turns for Molecular Docking&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Blog&lt;/p&gt;
+&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://yang-song.net/blog/2021/score/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Generative Modeling by Estimating Gradients of the Data Distribution | Yang Song&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://lilianweng.github.io/posts/2021-07-11-diffusion-models/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;What are Diffusion Models?&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+        </item>
+        
+    </channel>
+</rss>

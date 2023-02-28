@@ -6,7 +6,23 @@
         <description>Recent content in Categories on JH Gu&#39;s Tech Blog</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>en-us</language>
-        <lastBuildDate>Sun, 15 Jan 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://gujh14.github.io/ko/categories/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Mon, 27 Feb 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://gujh14.github.io/ko/categories/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>ICLR</title>
+        <link>https://gujh14.github.io/ko/categories/iclr/</link>
+        <pubDate>Mon, 27 Feb 2023 00:00:00 +0000</pubDate>
+        
+        <guid>https://gujh14.github.io/ko/categories/iclr/</guid>
+        <description></description>
+        </item>
+        <item>
+        <title>Research (Application)</title>
+        <link>https://gujh14.github.io/ko/categories/research-application/</link>
+        <pubDate>Mon, 27 Feb 2023 00:00:00 +0000</pubDate>
+        
+        <guid>https://gujh14.github.io/ko/categories/research-application/</guid>
+        <description></description>
+        </item>
+        <item>
         <title>LoG</title>
         <link>https://gujh14.github.io/ko/categories/log/</link>
         <pubDate>Sun, 15 Jan 2023 00:00:00 +0000</pubDate>
