@@ -17,9 +17,9 @@
     &gt;DiffDock: Diffusion Steps, Twists, and Turns for Molecular Docking&lt;/a&gt;&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;본 논문은 molecular docking을 generative problem으로 간주한 첫 연구이자, 굉장히 흥미로운 결과들을 보여주었고, 성능 향상을 달성했다.&lt;/li&gt;
-&lt;li&gt;Diffusion과 molecular docking에 관심이 있다면 꼭 한 &lt;a class=&#34;link&#34; href=&#34;https://www.youtube.com/watch?v=gAmTGw601dA&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
-    &gt;https://www.youtube.com/watch?v=gAmTGw601dA&lt;/a&gt;번 읽어봐야 할 논문이다.&lt;/li&gt;
-&lt;li&gt;가능하다면 저자들이 본 논문에 대해 설명한 &lt;a class=&#34;link&#34; href=&#34;&#34; &gt;youtube 영상&lt;/a&gt;도 보면 이해에 도움이 된다.&lt;/li&gt;
+&lt;li&gt;Diffusion과 molecular docking에 관심이 있다면 꼭 한 번 읽어봐야 할 논문이다.&lt;/li&gt;
+&lt;li&gt;가능하다면 저자들이 본 논문에 대해 설명한 &lt;a class=&#34;link&#34; href=&#34;https://www.youtube.com/watch?v=gAmTGw601dA&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;youtube 영상&lt;/a&gt;도 보면 이해에 도움이 된다.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h1 id=&#34;summary&#34;&gt;Summary&lt;/h1&gt;
 &lt;ul&gt;
