@@ -3,7 +3,7 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://gujh14.github.io/</loc>
-    <lastmod>2023-02-27T00:00:00+00:00</lastmod>
+    <lastmod>2023-03-01T00:00:00+00:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
     <xhtml:link
@@ -18,7 +18,7 @@
                 />
   </url><url>
     <loc>https://gujh14.github.io/categories/</loc>
-    <lastmod>2023-02-27T00:00:00+00:00</lastmod>
+    <lastmod>2023-03-01T00:00:00+00:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
     <xhtml:link
@@ -31,6 +31,56 @@
                 hreflang="en"
                 href="https://gujh14.github.io/categories/"
                 />
+  </url><url>
+    <loc>https://gujh14.github.io/tags/drug/</loc>
+    <lastmod>2023-03-01T00:00:00+00:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>https://gujh14.github.io/tags/molecule/</loc>
+    <lastmod>2023-03-01T00:00:00+00:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>https://gujh14.github.io/post/</loc>
+    <lastmod>2023-03-01T00:00:00+00:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link
+                rel="alternate"
+                hreflang="ko"
+                href="https://gujh14.github.io/ko/post/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://gujh14.github.io/post/"
+                />
+  </url><url>
+    <loc>https://gujh14.github.io/categories/resources/</loc>
+    <lastmod>2023-03-01T00:00:00+00:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>https://gujh14.github.io/tags/</loc>
+    <lastmod>2023-03-01T00:00:00+00:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link
+                rel="alternate"
+                hreflang="ko"
+                href="https://gujh14.github.io/ko/tags/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://gujh14.github.io/tags/"
+                />
+  </url><url>
+    <loc>https://gujh14.github.io/p/useful-sources-for-molecule-learning-in-progress/</loc>
+    <lastmod>2023-03-01T00:00:00+00:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
   </url><url>
     <loc>https://gujh14.github.io/p/diffdock-diffusion-steps-twists-and-turns-for-molecular-docking/</loc>
     <lastmod>2023-02-27T00:00:00+00:00</lastmod>
@@ -107,21 +157,6 @@
                 href="https://gujh14.github.io/tags/molecular-docking/"
                 />
   </url><url>
-    <loc>https://gujh14.github.io/post/</loc>
-    <lastmod>2023-02-27T00:00:00+00:00</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.5</priority>
-    <xhtml:link
-                rel="alternate"
-                hreflang="ko"
-                href="https://gujh14.github.io/ko/post/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://gujh14.github.io/post/"
-                />
-  </url><url>
     <loc>https://gujh14.github.io/categories/research-application/</loc>
     <lastmod>2023-02-27T00:00:00+00:00</lastmod>
     <changefreq>daily</changefreq>
@@ -135,21 +170,6 @@
                 rel="alternate"
                 hreflang="en"
                 href="https://gujh14.github.io/categories/research-application/"
-                />
-  </url><url>
-    <loc>https://gujh14.github.io/tags/</loc>
-    <lastmod>2023-02-27T00:00:00+00:00</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.5</priority>
-    <xhtml:link
-                rel="alternate"
-                hreflang="ko"
-                href="https://gujh14.github.io/ko/tags/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://gujh14.github.io/tags/"
                 />
   </url><url>
     <loc>https://gujh14.github.io/tags/bayer/</loc>
@@ -353,11 +373,6 @@
     <priority>0.5</priority>
   </url><url>
     <loc>https://gujh14.github.io/p/does-gnn-pre-training-help-molecular-representation/</loc>
-    <lastmod>2022-11-22T00:00:00+00:00</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.5</priority>
-  </url><url>
-    <loc>https://gujh14.github.io/tags/molecule/</loc>
     <lastmod>2022-11-22T00:00:00+00:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
