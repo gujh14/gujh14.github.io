@@ -2,24 +2,20 @@
 <html lang="en-us" dir="ltr">
     <head><meta charset='utf-8'>
 <meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='NeurIPS, &amp;lsquo;22,
-Graph Self-supervised Learning with Accurate Discrepancy Learning
-Summary Authors proposed a framework called D-SLA that aims to learn the exact discrepancy between the original and the perturbed graphs. Three major components Learn to distinguish whether each graph is the original graph or the perturbed one. Capture the amount of discrepancy for each perturbed graph (using edit distance) Learn relative discrepancy with other graphs Preliminaries Graph Neural Networks (GNN) Aggregate the features from its neighbors Combining the aggregated message Variants of Update &amp;amp; Aggregate functions'>
+Graph Self-supervised Learning with Accurate Discrepancy Learning Summary Authors proposed a framework called D-SLA that aims to learn the exact discrepancy between the original and the perturbed graphs. Three major components Learn to distinguish whether each graph is the original graph or the perturbed one. Capture the amount of discrepancy for each perturbed graph (using edit distance) Learn relative discrepancy with other graphs Preliminaries Graph Neural Networks (GNN) Aggregate the features from its neighbors Combining the aggregated message Variants of Update &amp;amp; Aggregate functions'>
 <title>Graph Self-supervised Learning with Accurate Discrepancy Learning</title>
 
 <link rel='canonical' href='https://gujh14.github.io/p/graph-self-supervised-learning-with-accurate-discrepancy-learning/'>
 
 <link rel="stylesheet" href="/scss/style.min.8191399262444ab68b72a18c97392f5349be20a1615d77445be51e974c144cff.css"><meta property='og:title' content='Graph Self-supervised Learning with Accurate Discrepancy Learning'>
 <meta property='og:description' content='NeurIPS, &amp;lsquo;22,
-Graph Self-supervised Learning with Accurate Discrepancy Learning
-Summary Authors proposed a framework called D-SLA that aims to learn the exact discrepancy between the original and the perturbed graphs. Three major components Learn to distinguish whether each graph is the original graph or the perturbed one. Capture the amount of discrepancy for each perturbed graph (using edit distance) Learn relative discrepancy with other graphs Preliminaries Graph Neural Networks (GNN) Aggregate the features from its neighbors Combining the aggregated message Variants of Update &amp;amp; Aggregate functions'>
+Graph Self-supervised Learning with Accurate Discrepancy Learning Summary Authors proposed a framework called D-SLA that aims to learn the exact discrepancy between the original and the perturbed graphs. Three major components Learn to distinguish whether each graph is the original graph or the perturbed one. Capture the amount of discrepancy for each perturbed graph (using edit distance) Learn relative discrepancy with other graphs Preliminaries Graph Neural Networks (GNN) Aggregate the features from its neighbors Combining the aggregated message Variants of Update &amp;amp; Aggregate functions'>
 <meta property='og:url' content='https://gujh14.github.io/p/graph-self-supervised-learning-with-accurate-discrepancy-learning/'>
 <meta property='og:site_name' content='JH Gu&#39;s Tech Blog'>
-<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='NeurIPS 2022' /><meta property='article:tag' content='Molecule' /><meta property='article:published_time' content='2022-09-21T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2022-09-21T00:00:00&#43;00:00'/><meta property='og:image' content='https://gujh14.github.io/p/graph-self-supervised-learning-with-accurate-discrepancy-learning/thumbnail.png' />
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='NeurIPS 2022' /><meta property='article:tag' content='Molecule' /><meta property='article:published_time' content='2022-09-21T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2022-09-21T00:00:00&#43;00:00'/>
 <meta name="twitter:title" content="Graph Self-supervised Learning with Accurate Discrepancy Learning">
 <meta name="twitter:description" content="NeurIPS, &amp;lsquo;22,
-Graph Self-supervised Learning with Accurate Discrepancy Learning
-Summary Authors proposed a framework called D-SLA that aims to learn the exact discrepancy between the original and the perturbed graphs. Three major components Learn to distinguish whether each graph is the original graph or the perturbed one. Capture the amount of discrepancy for each perturbed graph (using edit distance) Learn relative discrepancy with other graphs Preliminaries Graph Neural Networks (GNN) Aggregate the features from its neighbors Combining the aggregated message Variants of Update &amp;amp; Aggregate functions"><meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:image" content='https://gujh14.github.io/p/graph-self-supervised-learning-with-accurate-discrepancy-learning/thumbnail.png' />
+Graph Self-supervised Learning with Accurate Discrepancy Learning Summary Authors proposed a framework called D-SLA that aims to learn the exact discrepancy between the original and the perturbed graphs. Three major components Learn to distinguish whether each graph is the original graph or the perturbed one. Capture the amount of discrepancy for each perturbed graph (using edit distance) Learn relative discrepancy with other graphs Preliminaries Graph Neural Networks (GNN) Aggregate the features from its neighbors Combining the aggregated message Variants of Update &amp;amp; Aggregate functions">
     <link rel="shortcut icon" href="/favicon.ico" />
 
 <script type="application/javascript">
@@ -344,20 +340,8 @@ if (!doNotTrack) {
 
 
             <main class="main full-width">
-    <article class="has-image main-article">
+    <article class="main-article">
     <header class="article-header">
-        <div class="article-image">
-            <a href="/p/graph-self-supervised-learning-with-accurate-discrepancy-learning/">
-                <img src="/p/graph-self-supervised-learning-with-accurate-discrepancy-learning/thumbnail_hu1da554d6c291b842a8ea287e9b40bdf6_233064_800x0_resize_box_3.png"
-                        srcset="/p/graph-self-supervised-learning-with-accurate-discrepancy-learning/thumbnail_hu1da554d6c291b842a8ea287e9b40bdf6_233064_800x0_resize_box_3.png 800w, /p/graph-self-supervised-learning-with-accurate-discrepancy-learning/thumbnail_hu1da554d6c291b842a8ea287e9b40bdf6_233064_1600x0_resize_box_3.png 1600w"
-                        width="800" 
-                        height="274" 
-                        loading="lazy"
-                        alt="Featured image of post Graph Self-supervised Learning with Accurate Discrepancy Learning" />
-                
-            </a>
-        </div>
-    
 
     <div class="article-details">
     
@@ -430,7 +414,19 @@ if (!doNotTrack) {
     
     <p>NeurIPS, &lsquo;22,<br>
 <a class="link" href="https://openreview.net/forum?id=SgZ-glWWUlq"  target="_blank" rel="noopener"
-    >Graph Self-supervised Learning with Accurate Discrepancy Learning</a></p>
+    >Graph Self-supervised Learning with Accurate Discrepancy Learning</a>
+<img src="/p/graph-self-supervised-learning-with-accurate-discrepancy-learning/thumbnail.png"
+	width="1414"
+	height="484"
+	srcset="/p/graph-self-supervised-learning-with-accurate-discrepancy-learning/thumbnail_hu1da554d6c291b842a8ea287e9b40bdf6_233064_480x0_resize_box_3.png 480w, /p/graph-self-supervised-learning-with-accurate-discrepancy-learning/thumbnail_hu1da554d6c291b842a8ea287e9b40bdf6_233064_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="292"
+		data-flex-basis="701px"
+	
+></p>
 <h1 id="summary">Summary</h1>
 <ul>
 <li>Authors proposed a framework called D-SLA that aims to learn the exact discrepancy between the original and the perturbed graphs.</li>
@@ -481,10 +477,10 @@ if (!doNotTrack) {
 <li>predict the generative sequence, contextual property, and motifs</li>
 </ul>
 <p>But predictive learning <strong>may not capture the global structures and/or semantics of graphs.</strong></p>
-<p><img src="/p/graph-self-supervised-learning-with-accurate-discrepancy-learning/Untitled.png"
+<p><img src="/p/graph-self-supervised-learning-with-accurate-discrepancy-learning/imgs/Untitled.png"
 	width="896"
 	height="520"
-	srcset="/p/graph-self-supervised-learning-with-accurate-discrepancy-learning/Untitled_huff270fcc5aeca6685caf1879e044c99c_227289_480x0_resize_box_3.png 480w, /p/graph-self-supervised-learning-with-accurate-discrepancy-learning/Untitled_huff270fcc5aeca6685caf1879e044c99c_227289_1024x0_resize_box_3.png 1024w"
+	srcset="/p/graph-self-supervised-learning-with-accurate-discrepancy-learning/imgs/Untitled_huff270fcc5aeca6685caf1879e044c99c_227289_480x0_resize_box_3.png 480w, /p/graph-self-supervised-learning-with-accurate-discrepancy-learning/imgs/Untitled_huff270fcc5aeca6685caf1879e044c99c_227289_1024x0_resize_box_3.png 1024w"
 	loading="lazy"
 	
 	
@@ -503,10 +499,10 @@ if (!doNotTrack) {
 <li>Recent CL adversarial methods generate positive examples either by adaptively removing the edges or by adjusting the attributes.</li>
 </ul>
 <p>But CL <strong>may not distinguish two topologically similar graphs yet having completely different properties.</strong></p>
-<p><img src="/p/graph-self-supervised-learning-with-accurate-discrepancy-learning/Untitled1.png"
+<p><img src="/p/graph-self-supervised-learning-with-accurate-discrepancy-learning/imgs/Untitled1.png"
 	width="894"
 	height="526"
-	srcset="/p/graph-self-supervised-learning-with-accurate-discrepancy-learning/Untitled1_hu2f022890e791016794b0ba84351f912a_250914_480x0_resize_box_3.png 480w, /p/graph-self-supervised-learning-with-accurate-discrepancy-learning/Untitled1_hu2f022890e791016794b0ba84351f912a_250914_1024x0_resize_box_3.png 1024w"
+	srcset="/p/graph-self-supervised-learning-with-accurate-discrepancy-learning/imgs/Untitled1_hu2f022890e791016794b0ba84351f912a_250914_480x0_resize_box_3.png 480w, /p/graph-self-supervised-learning-with-accurate-discrepancy-learning/imgs/Untitled1_hu2f022890e791016794b0ba84351f912a_250914_1024x0_resize_box_3.png 1024w"
 	loading="lazy"
 	
 	
@@ -515,10 +511,10 @@ if (!doNotTrack) {
 		data-flex-basis="407px"
 	
 ></p>
-<p><img src="/p/graph-self-supervised-learning-with-accurate-discrepancy-learning/Untitled2.png"
+<p><img src="/p/graph-self-supervised-learning-with-accurate-discrepancy-learning/imgs/Untitled2.png"
 	width="946"
 	height="384"
-	srcset="/p/graph-self-supervised-learning-with-accurate-discrepancy-learning/Untitled2_hu5b683b5549a725d0a4cfb0bcb47c4b83_188133_480x0_resize_box_3.png 480w, /p/graph-self-supervised-learning-with-accurate-discrepancy-learning/Untitled2_hu5b683b5549a725d0a4cfb0bcb47c4b83_188133_1024x0_resize_box_3.png 1024w"
+	srcset="/p/graph-self-supervised-learning-with-accurate-discrepancy-learning/imgs/Untitled2_hu5b683b5549a725d0a4cfb0bcb47c4b83_188133_480x0_resize_box_3.png 480w, /p/graph-self-supervised-learning-with-accurate-discrepancy-learning/imgs/Untitled2_hu5b683b5549a725d0a4cfb0bcb47c4b83_188133_1024x0_resize_box_3.png 1024w"
 	loading="lazy"
 	
 	
@@ -539,10 +535,10 @@ if (!doNotTrack) {
 </li>
 </ul>
 <h2 id="discrepancy-learning">Discrepancy Learning</h2>
-<p><img src="/p/graph-self-supervised-learning-with-accurate-discrepancy-learning/Untitled3.png"
+<p><img src="/p/graph-self-supervised-learning-with-accurate-discrepancy-learning/imgs/Untitled3.png"
 	width="1312"
 	height="402"
-	srcset="/p/graph-self-supervised-learning-with-accurate-discrepancy-learning/Untitled3_hu733a3810c757eb627bd173cc2c52ec22_403552_480x0_resize_box_3.png 480w, /p/graph-self-supervised-learning-with-accurate-discrepancy-learning/Untitled3_hu733a3810c757eb627bd173cc2c52ec22_403552_1024x0_resize_box_3.png 1024w"
+	srcset="/p/graph-self-supervised-learning-with-accurate-discrepancy-learning/imgs/Untitled3_hu733a3810c757eb627bd173cc2c52ec22_403552_480x0_resize_box_3.png 480w, /p/graph-self-supervised-learning-with-accurate-discrepancy-learning/imgs/Untitled3_hu733a3810c757eb627bd173cc2c52ec22_403552_1024x0_resize_box_3.png 1024w"
 	loading="lazy"
 	
 	
@@ -614,10 +610,10 @@ if (!doNotTrack) {
 <h3 id="overall-loss">Overall loss</h3>
 <p>$\mathcal{L} = \mathcal{L}_{GD} + \lambda_1 \mathcal{L}_{edit} + \lambda_2 \mathcal{L}_{margin}$</p>
 <h2 id="results">Results</h2>
-<p><img src="/p/graph-self-supervised-learning-with-accurate-discrepancy-learning/Untitled4.png"
+<p><img src="/p/graph-self-supervised-learning-with-accurate-discrepancy-learning/imgs/Untitled4.png"
 	width="2760"
 	height="878"
-	srcset="/p/graph-self-supervised-learning-with-accurate-discrepancy-learning/Untitled4_hu61ce1efc03ade92431ecba0566b173fe_1254349_480x0_resize_box_3.png 480w, /p/graph-self-supervised-learning-with-accurate-discrepancy-learning/Untitled4_hu61ce1efc03ade92431ecba0566b173fe_1254349_1024x0_resize_box_3.png 1024w"
+	srcset="/p/graph-self-supervised-learning-with-accurate-discrepancy-learning/imgs/Untitled4_hu61ce1efc03ade92431ecba0566b173fe_1254349_480x0_resize_box_3.png 480w, /p/graph-self-supervised-learning-with-accurate-discrepancy-learning/imgs/Untitled4_hu61ce1efc03ade92431ecba0566b173fe_1254349_1024x0_resize_box_3.png 1024w"
 	loading="lazy"
 	
 	
@@ -626,10 +622,10 @@ if (!doNotTrack) {
 		data-flex-basis="754px"
 	
 ></p>
-<p><img src="/p/graph-self-supervised-learning-with-accurate-discrepancy-learning/Untitled5.png"
+<p><img src="/p/graph-self-supervised-learning-with-accurate-discrepancy-learning/imgs/Untitled5.png"
 	width="662"
 	height="656"
-	srcset="/p/graph-self-supervised-learning-with-accurate-discrepancy-learning/Untitled5_hub614ec3849a1c45ba1bddf42f077afb8_259131_480x0_resize_box_3.png 480w, /p/graph-self-supervised-learning-with-accurate-discrepancy-learning/Untitled5_hub614ec3849a1c45ba1bddf42f077afb8_259131_1024x0_resize_box_3.png 1024w"
+	srcset="/p/graph-self-supervised-learning-with-accurate-discrepancy-learning/imgs/Untitled5_hub614ec3849a1c45ba1bddf42f077afb8_259131_480x0_resize_box_3.png 480w, /p/graph-self-supervised-learning-with-accurate-discrepancy-learning/imgs/Untitled5_hub614ec3849a1c45ba1bddf42f077afb8_259131_1024x0_resize_box_3.png 1024w"
 	loading="lazy"
 	
 	
@@ -638,10 +634,10 @@ if (!doNotTrack) {
 		data-flex-basis="242px"
 	
 ></p>
-<p><img src="/p/graph-self-supervised-learning-with-accurate-discrepancy-learning/Untitled6.png"
+<p><img src="/p/graph-self-supervised-learning-with-accurate-discrepancy-learning/imgs/Untitled6.png"
 	width="2072"
 	height="640"
-	srcset="/p/graph-self-supervised-learning-with-accurate-discrepancy-learning/Untitled6_hua1d295acff7e146071f146ac8c9b5420_722837_480x0_resize_box_3.png 480w, /p/graph-self-supervised-learning-with-accurate-discrepancy-learning/Untitled6_hua1d295acff7e146071f146ac8c9b5420_722837_1024x0_resize_box_3.png 1024w"
+	srcset="/p/graph-self-supervised-learning-with-accurate-discrepancy-learning/imgs/Untitled6_hua1d295acff7e146071f146ac8c9b5420_722837_480x0_resize_box_3.png 480w, /p/graph-self-supervised-learning-with-accurate-discrepancy-learning/imgs/Untitled6_hua1d295acff7e146071f146ac8c9b5420_722837_1024x0_resize_box_3.png 1024w"
 	loading="lazy"
 	
 	
@@ -716,20 +712,9 @@ if (!doNotTrack) {
         <div class="flex article-list--tile">
             
                 
-<article class="has-image">
+<article class="">
     <a href="/p/does-gnn-pre-training-help-molecular-representation/">
         
-        
-            <div class="article-image">
-                <img src="/p/does-gnn-pre-training-help-molecular-representation/thumbnail.b471fb84ebc6833319819aca8beac3d0_hube49b7519c97672414e9b0ddbe5479a4_229014_250x150_fill_box_smart1_3.png" 
-                        width="250" 
-                        height="150" 
-                        loading="lazy"
-                        alt="Featured image of post Does GNN Pre-training Help Molecular Representation?"
-                        
-                        data-hash="md5-tHH7hOvGgzMZgZrKi&#43;rD0A==">
-                
-            </div>
         
 
         <div class="article-details">
@@ -740,20 +725,9 @@ if (!doNotTrack) {
 
             
                 
-<article class="has-image">
+<article class="">
     <a href="/p/physchem-deep-molecular-representation-learning-via-fusing-physical-and-chemical-information/">
         
-        
-            <div class="article-image">
-                <img src="/p/physchem-deep-molecular-representation-learning-via-fusing-physical-and-chemical-information/thumbnail.41601d124d7da4c34d71567d5753ea1d_hu614a3ffe516a8cd557a8bbd359513341_952945_250x150_fill_box_smart1_3.png" 
-                        width="250" 
-                        height="150" 
-                        loading="lazy"
-                        alt="Featured image of post PhysChem: Deep Molecular Representation Learning via Fusing Physical and Chemical Information"
-                        
-                        data-hash="md5-QWAdEk19pMNNcVZ9V1PqHQ==">
-                
-            </div>
         
 
         <div class="article-details">
@@ -764,20 +738,9 @@ if (!doNotTrack) {
 
             
                 
-<article class="has-image">
+<article class="">
     <a href="/p/neighborhood-aware-scalable-temporal-network-representation-learning/">
         
-        
-            <div class="article-image">
-                <img src="/p/neighborhood-aware-scalable-temporal-network-representation-learning/thumbnail.3ff626e6e37943f3f44478f4387c42ce_hu242d3a243b2ed8387d2472cbaa72b75a_149908_250x150_fill_box_smart1_3.png" 
-                        width="250" 
-                        height="150" 
-                        loading="lazy"
-                        alt="Featured image of post Neighborhood-aware Scalable Temporal Network Representation Learning"
-                        
-                        data-hash="md5-P/Ym5uN5Q/P0RHj0OHxCzg==">
-                
-            </div>
         
 
         <div class="article-details">
@@ -788,20 +751,9 @@ if (!doNotTrack) {
 
             
                 
-<article class="has-image">
+<article class="">
     <a href="/p/a-generalist-neural-algorithmic-learner/">
         
-        
-            <div class="article-image">
-                <img src="/p/a-generalist-neural-algorithmic-learner/thumbnail.87ab7bba0bf6c94f3db215b0b0ce836d_hudd1318377aff45244e3590338f52153c_112022_250x150_fill_box_smart1_3.png" 
-                        width="250" 
-                        height="150" 
-                        loading="lazy"
-                        alt="Featured image of post A Generalist Neural Algorithmic Learner"
-                        
-                        data-hash="md5-h6t7ugv2yU89shWwsM6DbQ==">
-                
-            </div>
         
 
         <div class="article-details">
@@ -812,20 +764,9 @@ if (!doNotTrack) {
 
             
                 
-<article class="has-image">
+<article class="">
     <a href="/p/few-shot-learning-with-graph-neural-networks/">
         
-        
-            <div class="article-image">
-                <img src="/p/few-shot-learning-with-graph-neural-networks/thumbnail.286574ec60889934044130d39a9bb9b3_hu8ba07e37572d4400f76afaadd55834a8_158186_250x150_fill_box_smart1_3.png" 
-                        width="250" 
-                        height="150" 
-                        loading="lazy"
-                        alt="Featured image of post Few-shot Learning with Graph Neural Networks"
-                        
-                        data-hash="md5-KGV07GCImTQEQTDTmpu5sw==">
-                
-            </div>
         
 
         <div class="article-details">

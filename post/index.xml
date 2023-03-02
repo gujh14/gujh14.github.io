@@ -7,11 +7,11 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>en-us</language>
         <lastBuildDate>Wed, 01 Mar 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://gujh14.github.io/post/index.xml" rel="self" type="application/rss+xml" /><item>
-        <title>Useful Sources for Molecule Learning (in Progress)</title>
-        <link>https://gujh14.github.io/p/useful-sources-for-molecule-learning-in-progress/</link>
+        <title>Useful Resources for Molecule Learning (in Progress)</title>
+        <link>https://gujh14.github.io/p/useful-resources-for-molecule-learning-in-progress/</link>
         <pubDate>Wed, 01 Mar 2023 00:00:00 +0000</pubDate>
         
-        <guid>https://gujh14.github.io/p/useful-sources-for-molecule-learning-in-progress/</guid>
+        <guid>https://gujh14.github.io/p/useful-resources-for-molecule-learning-in-progress/</guid>
         <description>&lt;h2 id=&#34;m2d2&#34;&gt;M2D2&lt;/h2&gt;
 &lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://m2d2.io/talks/m2d2/about/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;m2d2.io&lt;/a&gt;&lt;/p&gt;
@@ -36,9 +36,21 @@
         <pubDate>Mon, 27 Feb 2023 00:00:00 +0000</pubDate>
         
         <guid>https://gujh14.github.io/p/diffdock-diffusion-steps-twists-and-turns-for-molecular-docking/</guid>
-        <description>&lt;img src="https://gujh14.github.io/p/diffdock-diffusion-steps-twists-and-turns-for-molecular-docking/thumbnail.png" alt="Featured image of post DiffDock: Diffusion Steps, Twists, and Turns for Molecular Docking" /&gt;&lt;p&gt;ICLR, &amp;lsquo;23&lt;/p&gt;
-&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://arxiv.org/abs/2210.01776&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
-    &gt;DiffDock: Diffusion Steps, Twists, and Turns for Molecular Docking&lt;/a&gt;&lt;/p&gt;
+        <description>&lt;p&gt;ICLR, &amp;lsquo;23&lt;br&gt;
+&lt;a class=&#34;link&#34; href=&#34;https://arxiv.org/abs/2210.01776&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;DiffDock: Diffusion Steps, Twists, and Turns for Molecular Docking&lt;/a&gt;
+&lt;img src=&#34;https://gujh14.github.io/p/diffdock-diffusion-steps-twists-and-turns-for-molecular-docking/thumbnail.png&#34;
+	width=&#34;1110&#34;
+	height=&#34;534&#34;
+	srcset=&#34;https://gujh14.github.io/p/diffdock-diffusion-steps-twists-and-turns-for-molecular-docking/thumbnail_hu35359f9550b3436da89f85bd47cc7f53_260405_480x0_resize_box_3.png 480w, https://gujh14.github.io/p/diffdock-diffusion-steps-twists-and-turns-for-molecular-docking/thumbnail_hu35359f9550b3436da89f85bd47cc7f53_260405_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;207&#34;
+		data-flex-basis=&#34;498px&#34;
+	
+&gt;&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;
 &lt;p&gt;This article is one of the first research work that formulated molecular docking as a generative problem.&lt;/p&gt;
@@ -621,9 +633,21 @@
         <pubDate>Sat, 04 Feb 2023 00:00:00 +0000</pubDate>
         
         <guid>https://gujh14.github.io/p/graph-representation-learning-for-drug-discovery/</guid>
-        <description>&lt;img src="https://gujh14.github.io/p/graph-representation-learning-for-drug-discovery/imgs/thumbnail.png" alt="Featured image of post Graph Representation Learning for Drug Discovery" /&gt;&lt;p&gt;LoG conference, &amp;lsquo;22,&lt;br&gt;
+        <description>&lt;p&gt;LoG conference, &amp;lsquo;22,&lt;br&gt;
 &lt;a class=&#34;link&#34; href=&#34;https://www.youtube.com/live/ouuxi5uW-JA?feature=share&amp;amp;t=8477&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
-    &gt;&amp;ldquo;LoG conference Day 4 Youtube&amp;rdquo;&lt;/a&gt;&lt;/p&gt;
+    &gt;LoG conference Day 4 Youtube&lt;/a&gt;
+&lt;img src=&#34;https://gujh14.github.io/p/graph-representation-learning-for-drug-discovery/thumbnail.png&#34;
+	width=&#34;1458&#34;
+	height=&#34;804&#34;
+	srcset=&#34;https://gujh14.github.io/p/graph-representation-learning-for-drug-discovery/thumbnail_hu0d4bc15913e42a594fe5b478b080476a_169216_480x0_resize_box_3.png 480w, https://gujh14.github.io/p/graph-representation-learning-for-drug-discovery/thumbnail_hu0d4bc15913e42a594fe5b478b080476a_169216_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;181&#34;
+		data-flex-basis=&#34;435px&#34;
+	
+&gt;&lt;/p&gt;
 &lt;h2 id=&#34;lecturer-djork-arné-clevert&#34;&gt;Lecturer: Djork-Arné Clevert&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;2022.05.19~09.22: Bayer Pharma, Head of Machine Learning Research (All work presented today were published during Bayer.)&lt;/li&gt;
@@ -1063,9 +1087,21 @@
         <pubDate>Sun, 15 Jan 2023 00:00:00 +0000</pubDate>
         
         <guid>https://gujh14.github.io/p/neighborhood-aware-scalable-temporal-network-representation-learning/</guid>
-        <description>&lt;img src="https://gujh14.github.io/p/neighborhood-aware-scalable-temporal-network-representation-learning/thumbnail.png" alt="Featured image of post Neighborhood-aware Scalable Temporal Network Representation Learning" /&gt;&lt;p&gt;LoG, &amp;lsquo;22&lt;br&gt;
+        <description>&lt;p&gt;LoG, &amp;lsquo;22&lt;br&gt;
 &lt;a class=&#34;link&#34; href=&#34;https://arxiv.org/abs/2209.01084&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
-    &gt;&amp;ldquo;Neighborhood-aware Scalable Temporal Network Representation Learning&amp;rdquo;&lt;/a&gt;&lt;/p&gt;
+    &gt;Neighborhood-aware Scalable Temporal Network Representation Learning&lt;/a&gt;
+&lt;img src=&#34;https://gujh14.github.io/p/neighborhood-aware-scalable-temporal-network-representation-learning/thumbnail.png&#34;
+	width=&#34;914&#34;
+	height=&#34;388&#34;
+	srcset=&#34;https://gujh14.github.io/p/neighborhood-aware-scalable-temporal-network-representation-learning/thumbnail_hu242d3a243b2ed8387d2472cbaa72b75a_149908_480x0_resize_box_3.png 480w, https://gujh14.github.io/p/neighborhood-aware-scalable-temporal-network-representation-learning/thumbnail_hu242d3a243b2ed8387d2472cbaa72b75a_149908_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;235&#34;
+		data-flex-basis=&#34;565px&#34;
+	
+&gt;&lt;/p&gt;
 &lt;h1 id=&#34;summary&#34;&gt;Summary&lt;/h1&gt;
 &lt;ul&gt;
 &lt;li&gt;There are few models to infer network-scientific properties on time-varying temporal network.&lt;/li&gt;
@@ -1281,9 +1317,21 @@ Performed on both inductive &amp;amp; transductive setting.&lt;/p&gt;
         <pubDate>Fri, 13 Jan 2023 00:00:00 +0000</pubDate>
         
         <guid>https://gujh14.github.io/p/a-generalist-neural-algorithmic-learner/</guid>
-        <description>&lt;img src="https://gujh14.github.io/p/a-generalist-neural-algorithmic-learner/thumbnail.png" alt="Featured image of post A Generalist Neural Algorithmic Learner" /&gt;&lt;p&gt;LoG, 22 &lt;br&gt;
+        <description>&lt;p&gt;LoG, 22 &lt;br&gt;
 &lt;a class=&#34;link&#34; href=&#34;https://arxiv.org/abs/2209.11142&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
-    &gt;&amp;ldquo;A Generalist Neural Algorithmic Learner&amp;rdquo;&lt;/a&gt;&lt;/p&gt;
+    &gt;A Generalist Neural Algorithmic Learner&lt;/a&gt;
+&lt;img src=&#34;https://gujh14.github.io/p/a-generalist-neural-algorithmic-learner/thumbnail.png&#34;
+	width=&#34;1042&#34;
+	height=&#34;528&#34;
+	srcset=&#34;https://gujh14.github.io/p/a-generalist-neural-algorithmic-learner/thumbnail_hudd1318377aff45244e3590338f52153c_112022_480x0_resize_box_3.png 480w, https://gujh14.github.io/p/a-generalist-neural-algorithmic-learner/thumbnail_hudd1318377aff45244e3590338f52153c_112022_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;197&#34;
+		data-flex-basis=&#34;473px&#34;
+	
+&gt;&lt;/p&gt;
 &lt;h1 id=&#34;summary&#34;&gt;Summary&lt;/h1&gt;
 &lt;ul&gt;
 &lt;li&gt;Neural network, especially GNN, can learn traditional computer science algorithms in CLRS book.&lt;/li&gt;
@@ -1641,19 +1689,31 @@ Erdös-Rényi graphs)&lt;/p&gt;
         <pubDate>Tue, 22 Nov 2022 00:00:00 +0000</pubDate>
         
         <guid>https://gujh14.github.io/p/does-gnn-pre-training-help-molecular-representation/</guid>
-        <description>&lt;img src="https://gujh14.github.io/p/does-gnn-pre-training-help-molecular-representation/thumbnail.png" alt="Featured image of post Does GNN Pre-training Help Molecular Representation?" /&gt;&lt;p&gt;NeurIPS, &amp;lsquo;22&lt;br&gt;
+        <description>&lt;p&gt;NeurIPS, &amp;lsquo;22&lt;br&gt;
 &lt;a class=&#34;link&#34; href=&#34;https://arxiv.org/abs/2207.06010&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
-    &gt;Does GNN Pre-training Help Molecular Representation?&lt;/a&gt;&lt;/p&gt;
+    &gt;Does GNN Pre-training Help Molecular Representation?&lt;/a&gt;
+&lt;img src=&#34;https://gujh14.github.io/p/does-gnn-pre-training-help-molecular-representation/thumbnail.png&#34;
+	width=&#34;1816&#34;
+	height=&#34;446&#34;
+	srcset=&#34;https://gujh14.github.io/p/does-gnn-pre-training-help-molecular-representation/thumbnail_hube49b7519c97672414e9b0ddbe5479a4_229014_480x0_resize_box_3.png 480w, https://gujh14.github.io/p/does-gnn-pre-training-help-molecular-representation/thumbnail_hube49b7519c97672414e9b0ddbe5479a4_229014_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;407&#34;
+		data-flex-basis=&#34;977px&#34;
+	
+&gt;&lt;/p&gt;
 &lt;h1 id=&#34;summary&#34;&gt;Summary&lt;/h1&gt;
 &lt;ul&gt;
 &lt;li&gt;Self-supervised pre-training alone &lt;strong&gt;does not&lt;/strong&gt; provide statistically significant improvements over non-pre-trained methods on downstream tasks.&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;Data splits, hand-crafted rich features, or hyperparameters&lt;/strong&gt; can bring significant improvements.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h2 id=&#34;preliminaries&#34;&gt;Preliminaries&lt;/h2&gt;
-&lt;p&gt;&lt;img src=&#34;https://gujh14.github.io/p/does-gnn-pre-training-help-molecular-representation/Untitled.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://gujh14.github.io/p/does-gnn-pre-training-help-molecular-representation/imgs/Untitled.png&#34;
 	width=&#34;1722&#34;
 	height=&#34;582&#34;
-	srcset=&#34;https://gujh14.github.io/p/does-gnn-pre-training-help-molecular-representation/Untitled_hu2522057aecca1aa237485e0d3503f9e7_141482_480x0_resize_box_3.png 480w, https://gujh14.github.io/p/does-gnn-pre-training-help-molecular-representation/Untitled_hu2522057aecca1aa237485e0d3503f9e7_141482_1024x0_resize_box_3.png 1024w&#34;
+	srcset=&#34;https://gujh14.github.io/p/does-gnn-pre-training-help-molecular-representation/imgs/Untitled_hu2522057aecca1aa237485e0d3503f9e7_141482_480x0_resize_box_3.png 480w, https://gujh14.github.io/p/does-gnn-pre-training-help-molecular-representation/imgs/Untitled_hu2522057aecca1aa237485e0d3503f9e7_141482_1024x0_resize_box_3.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;Image 1&#34;
@@ -1686,10 +1746,10 @@ Pre-train objectives&lt;/p&gt;
 &lt;p&gt;Basic
 Feature set used in &lt;a class=&#34;link&#34; href=&#34;https://arxiv.org/abs/1905.12265&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;Hu et al.&lt;/a&gt;&lt;br&gt;
-&lt;img src=&#34;https://gujh14.github.io/p/does-gnn-pre-training-help-molecular-representation/Untitled1.png&#34;
+&lt;img src=&#34;https://gujh14.github.io/p/does-gnn-pre-training-help-molecular-representation/imgs/Untitled1.png&#34;
 	width=&#34;1694&#34;
 	height=&#34;508&#34;
-	srcset=&#34;https://gujh14.github.io/p/does-gnn-pre-training-help-molecular-representation/Untitled1_hu88729ad961e3498c17ab82c4660c440e_117274_480x0_resize_box_3.png 480w, https://gujh14.github.io/p/does-gnn-pre-training-help-molecular-representation/Untitled1_hu88729ad961e3498c17ab82c4660c440e_117274_1024x0_resize_box_3.png 1024w&#34;
+	srcset=&#34;https://gujh14.github.io/p/does-gnn-pre-training-help-molecular-representation/imgs/Untitled1_hu88729ad961e3498c17ab82c4660c440e_117274_480x0_resize_box_3.png 480w, https://gujh14.github.io/p/does-gnn-pre-training-help-molecular-representation/imgs/Untitled1_hu88729ad961e3498c17ab82c4660c440e_117274_1024x0_resize_box_3.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;Image 1&#34;
@@ -1705,10 +1765,10 @@ Feature set used in &lt;a class=&#34;link&#34; href=&#34;https://arxiv.org/abs/1
 &lt;p&gt;Rich&lt;/p&gt;
 &lt;p&gt;Feature set used in &lt;a class=&#34;link&#34; href=&#34;https://arxiv.org/abs/2007.02835&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;Rong et al.&lt;/a&gt; This is the superset of basic features.
-&lt;img src=&#34;https://gujh14.github.io/p/does-gnn-pre-training-help-molecular-representation/Untitled2.png&#34;
+&lt;img src=&#34;https://gujh14.github.io/p/does-gnn-pre-training-help-molecular-representation/imgs/Untitled2.png&#34;
 	width=&#34;1338&#34;
 	height=&#34;1076&#34;
-	srcset=&#34;https://gujh14.github.io/p/does-gnn-pre-training-help-molecular-representation/Untitled2_hub6d6462cb2f07779a844e0b6f42f690b_168013_480x0_resize_box_3.png 480w, https://gujh14.github.io/p/does-gnn-pre-training-help-molecular-representation/Untitled2_hub6d6462cb2f07779a844e0b6f42f690b_168013_1024x0_resize_box_3.png 1024w&#34;
+	srcset=&#34;https://gujh14.github.io/p/does-gnn-pre-training-help-molecular-representation/imgs/Untitled2_hub6d6462cb2f07779a844e0b6f42f690b_168013_480x0_resize_box_3.png 480w, https://gujh14.github.io/p/does-gnn-pre-training-help-molecular-representation/imgs/Untitled2_hub6d6462cb2f07779a844e0b6f42f690b_168013_1024x0_resize_box_3.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;Image 1&#34;
@@ -1755,10 +1815,10 @@ In downstream tasks, additional 2d normalized &lt;code&gt;rdNormalizedDescriptor
 &lt;/li&gt;
 &lt;/ul&gt;
 &lt;h2 id=&#34;results&#34;&gt;Results&lt;/h2&gt;
-&lt;p&gt;&lt;img src=&#34;https://gujh14.github.io/p/does-gnn-pre-training-help-molecular-representation/Untitled3.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://gujh14.github.io/p/does-gnn-pre-training-help-molecular-representation/imgs/Untitled3.png&#34;
 	width=&#34;1696&#34;
 	height=&#34;402&#34;
-	srcset=&#34;https://gujh14.github.io/p/does-gnn-pre-training-help-molecular-representation/Untitled3_hu23dfaf19760eb9198a64586f6e9e538d_129521_480x0_resize_box_3.png 480w, https://gujh14.github.io/p/does-gnn-pre-training-help-molecular-representation/Untitled3_hu23dfaf19760eb9198a64586f6e9e538d_129521_1024x0_resize_box_3.png 1024w&#34;
+	srcset=&#34;https://gujh14.github.io/p/does-gnn-pre-training-help-molecular-representation/imgs/Untitled3_hu23dfaf19760eb9198a64586f6e9e538d_129521_480x0_resize_box_3.png 480w, https://gujh14.github.io/p/does-gnn-pre-training-help-molecular-representation/imgs/Untitled3_hu23dfaf19760eb9198a64586f6e9e538d_129521_1024x0_resize_box_3.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 	
@@ -1767,10 +1827,10 @@ In downstream tasks, additional 2d normalized &lt;code&gt;rdNormalizedDescriptor
 		data-flex-basis=&#34;1012px&#34;
 	
 &gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://gujh14.github.io/p/does-gnn-pre-training-help-molecular-representation/Untitled4.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://gujh14.github.io/p/does-gnn-pre-training-help-molecular-representation/imgs/Untitled4.png&#34;
 	width=&#34;1694&#34;
 	height=&#34;306&#34;
-	srcset=&#34;https://gujh14.github.io/p/does-gnn-pre-training-help-molecular-representation/Untitled4_hub456f2da350b268e245cd11a5535bf94_107470_480x0_resize_box_3.png 480w, https://gujh14.github.io/p/does-gnn-pre-training-help-molecular-representation/Untitled4_hub456f2da350b268e245cd11a5535bf94_107470_1024x0_resize_box_3.png 1024w&#34;
+	srcset=&#34;https://gujh14.github.io/p/does-gnn-pre-training-help-molecular-representation/imgs/Untitled4_hub456f2da350b268e245cd11a5535bf94_107470_480x0_resize_box_3.png 480w, https://gujh14.github.io/p/does-gnn-pre-training-help-molecular-representation/imgs/Untitled4_hub456f2da350b268e245cd11a5535bf94_107470_1024x0_resize_box_3.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 	
@@ -1779,10 +1839,10 @@ In downstream tasks, additional 2d normalized &lt;code&gt;rdNormalizedDescriptor
 		data-flex-basis=&#34;1328px&#34;
 	
 &gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://gujh14.github.io/p/does-gnn-pre-training-help-molecular-representation/Untitled5.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://gujh14.github.io/p/does-gnn-pre-training-help-molecular-representation/imgs/Untitled5.png&#34;
 	width=&#34;1690&#34;
 	height=&#34;390&#34;
-	srcset=&#34;https://gujh14.github.io/p/does-gnn-pre-training-help-molecular-representation/Untitled5_hu2c1b41f4be72da8a39843fe8bece40ca_127650_480x0_resize_box_3.png 480w, https://gujh14.github.io/p/does-gnn-pre-training-help-molecular-representation/Untitled5_hu2c1b41f4be72da8a39843fe8bece40ca_127650_1024x0_resize_box_3.png 1024w&#34;
+	srcset=&#34;https://gujh14.github.io/p/does-gnn-pre-training-help-molecular-representation/imgs/Untitled5_hu2c1b41f4be72da8a39843fe8bece40ca_127650_480x0_resize_box_3.png 480w, https://gujh14.github.io/p/does-gnn-pre-training-help-molecular-representation/imgs/Untitled5_hu2c1b41f4be72da8a39843fe8bece40ca_127650_1024x0_resize_box_3.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 	
@@ -1791,10 +1851,10 @@ In downstream tasks, additional 2d normalized &lt;code&gt;rdNormalizedDescriptor
 		data-flex-basis=&#34;1040px&#34;
 	
 &gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://gujh14.github.io/p/does-gnn-pre-training-help-molecular-representation/Untitled6.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://gujh14.github.io/p/does-gnn-pre-training-help-molecular-representation/imgs/Untitled6.png&#34;
 	width=&#34;1712&#34;
 	height=&#34;308&#34;
-	srcset=&#34;https://gujh14.github.io/p/does-gnn-pre-training-help-molecular-representation/Untitled6_hu9e3333a7416211da0979291a20928457_104323_480x0_resize_box_3.png 480w, https://gujh14.github.io/p/does-gnn-pre-training-help-molecular-representation/Untitled6_hu9e3333a7416211da0979291a20928457_104323_1024x0_resize_box_3.png 1024w&#34;
+	srcset=&#34;https://gujh14.github.io/p/does-gnn-pre-training-help-molecular-representation/imgs/Untitled6_hu9e3333a7416211da0979291a20928457_104323_480x0_resize_box_3.png 480w, https://gujh14.github.io/p/does-gnn-pre-training-help-molecular-representation/imgs/Untitled6_hu9e3333a7416211da0979291a20928457_104323_1024x0_resize_box_3.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 	
@@ -1803,10 +1863,10 @@ In downstream tasks, additional 2d normalized &lt;code&gt;rdNormalizedDescriptor
 		data-flex-basis=&#34;1334px&#34;
 	
 &gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://gujh14.github.io/p/does-gnn-pre-training-help-molecular-representation/Untitled7.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://gujh14.github.io/p/does-gnn-pre-training-help-molecular-representation/imgs/Untitled7.png&#34;
 	width=&#34;1700&#34;
 	height=&#34;326&#34;
-	srcset=&#34;https://gujh14.github.io/p/does-gnn-pre-training-help-molecular-representation/Untitled7_hufd2c8cd9ddab44b099368583aeb3c4b4_98592_480x0_resize_box_3.png 480w, https://gujh14.github.io/p/does-gnn-pre-training-help-molecular-representation/Untitled7_hufd2c8cd9ddab44b099368583aeb3c4b4_98592_1024x0_resize_box_3.png 1024w&#34;
+	srcset=&#34;https://gujh14.github.io/p/does-gnn-pre-training-help-molecular-representation/imgs/Untitled7_hufd2c8cd9ddab44b099368583aeb3c4b4_98592_480x0_resize_box_3.png 480w, https://gujh14.github.io/p/does-gnn-pre-training-help-molecular-representation/imgs/Untitled7_hufd2c8cd9ddab44b099368583aeb3c4b4_98592_1024x0_resize_box_3.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 	
@@ -1815,10 +1875,10 @@ In downstream tasks, additional 2d normalized &lt;code&gt;rdNormalizedDescriptor
 		data-flex-basis=&#34;1251px&#34;
 	
 &gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://gujh14.github.io/p/does-gnn-pre-training-help-molecular-representation/Untitled8.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://gujh14.github.io/p/does-gnn-pre-training-help-molecular-representation/imgs/Untitled8.png&#34;
 	width=&#34;1702&#34;
 	height=&#34;316&#34;
-	srcset=&#34;https://gujh14.github.io/p/does-gnn-pre-training-help-molecular-representation/Untitled8_hue724faf0b9e1050d8cd4ed3ab8021048_107066_480x0_resize_box_3.png 480w, https://gujh14.github.io/p/does-gnn-pre-training-help-molecular-representation/Untitled8_hue724faf0b9e1050d8cd4ed3ab8021048_107066_1024x0_resize_box_3.png 1024w&#34;
+	srcset=&#34;https://gujh14.github.io/p/does-gnn-pre-training-help-molecular-representation/imgs/Untitled8_hue724faf0b9e1050d8cd4ed3ab8021048_107066_480x0_resize_box_3.png 480w, https://gujh14.github.io/p/does-gnn-pre-training-help-molecular-representation/imgs/Untitled8_hue724faf0b9e1050d8cd4ed3ab8021048_107066_1024x0_resize_box_3.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 	
@@ -1827,10 +1887,10 @@ In downstream tasks, additional 2d normalized &lt;code&gt;rdNormalizedDescriptor
 		data-flex-basis=&#34;1292px&#34;
 	
 &gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://gujh14.github.io/p/does-gnn-pre-training-help-molecular-representation/Untitled9.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://gujh14.github.io/p/does-gnn-pre-training-help-molecular-representation/imgs/Untitled9.png&#34;
 	width=&#34;1710&#34;
 	height=&#34;324&#34;
-	srcset=&#34;https://gujh14.github.io/p/does-gnn-pre-training-help-molecular-representation/Untitled9_hu3469e656073a5e47d18db581b35e22f4_102002_480x0_resize_box_3.png 480w, https://gujh14.github.io/p/does-gnn-pre-training-help-molecular-representation/Untitled9_hu3469e656073a5e47d18db581b35e22f4_102002_1024x0_resize_box_3.png 1024w&#34;
+	srcset=&#34;https://gujh14.github.io/p/does-gnn-pre-training-help-molecular-representation/imgs/Untitled9_hu3469e656073a5e47d18db581b35e22f4_102002_480x0_resize_box_3.png 480w, https://gujh14.github.io/p/does-gnn-pre-training-help-molecular-representation/imgs/Untitled9_hu3469e656073a5e47d18db581b35e22f4_102002_1024x0_resize_box_3.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 	
@@ -1839,10 +1899,10 @@ In downstream tasks, additional 2d normalized &lt;code&gt;rdNormalizedDescriptor
 		data-flex-basis=&#34;1266px&#34;
 	
 &gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://gujh14.github.io/p/does-gnn-pre-training-help-molecular-representation/Untitled10.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://gujh14.github.io/p/does-gnn-pre-training-help-molecular-representation/imgs/Untitled10.png&#34;
 	width=&#34;1696&#34;
 	height=&#34;328&#34;
-	srcset=&#34;https://gujh14.github.io/p/does-gnn-pre-training-help-molecular-representation/Untitled10_hu3e2f5f911381baac558177a0aa61cd89_114788_480x0_resize_box_3.png 480w, https://gujh14.github.io/p/does-gnn-pre-training-help-molecular-representation/Untitled10_hu3e2f5f911381baac558177a0aa61cd89_114788_1024x0_resize_box_3.png 1024w&#34;
+	srcset=&#34;https://gujh14.github.io/p/does-gnn-pre-training-help-molecular-representation/imgs/Untitled10_hu3e2f5f911381baac558177a0aa61cd89_114788_480x0_resize_box_3.png 480w, https://gujh14.github.io/p/does-gnn-pre-training-help-molecular-representation/imgs/Untitled10_hu3e2f5f911381baac558177a0aa61cd89_114788_1024x0_resize_box_3.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 	
@@ -1851,10 +1911,10 @@ In downstream tasks, additional 2d normalized &lt;code&gt;rdNormalizedDescriptor
 		data-flex-basis=&#34;1240px&#34;
 	
 &gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://gujh14.github.io/p/does-gnn-pre-training-help-molecular-representation/Untitled11.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://gujh14.github.io/p/does-gnn-pre-training-help-molecular-representation/imgs/Untitled11.png&#34;
 	width=&#34;1698&#34;
 	height=&#34;358&#34;
-	srcset=&#34;https://gujh14.github.io/p/does-gnn-pre-training-help-molecular-representation/Untitled11_hucbfacb23d6af299525c858ef04d38582_129938_480x0_resize_box_3.png 480w, https://gujh14.github.io/p/does-gnn-pre-training-help-molecular-representation/Untitled11_hucbfacb23d6af299525c858ef04d38582_129938_1024x0_resize_box_3.png 1024w&#34;
+	srcset=&#34;https://gujh14.github.io/p/does-gnn-pre-training-help-molecular-representation/imgs/Untitled11_hucbfacb23d6af299525c858ef04d38582_129938_480x0_resize_box_3.png 480w, https://gujh14.github.io/p/does-gnn-pre-training-help-molecular-representation/imgs/Untitled11_hucbfacb23d6af299525c858ef04d38582_129938_1024x0_resize_box_3.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 	
@@ -1863,10 +1923,10 @@ In downstream tasks, additional 2d normalized &lt;code&gt;rdNormalizedDescriptor
 		data-flex-basis=&#34;1138px&#34;
 	
 &gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://gujh14.github.io/p/does-gnn-pre-training-help-molecular-representation/Untitled12.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://gujh14.github.io/p/does-gnn-pre-training-help-molecular-representation/imgs/Untitled12.png&#34;
 	width=&#34;1704&#34;
 	height=&#34;368&#34;
-	srcset=&#34;https://gujh14.github.io/p/does-gnn-pre-training-help-molecular-representation/Untitled12_hu98ddd8342e269d06b326bfdd4dd2ec69_121600_480x0_resize_box_3.png 480w, https://gujh14.github.io/p/does-gnn-pre-training-help-molecular-representation/Untitled12_hu98ddd8342e269d06b326bfdd4dd2ec69_121600_1024x0_resize_box_3.png 1024w&#34;
+	srcset=&#34;https://gujh14.github.io/p/does-gnn-pre-training-help-molecular-representation/imgs/Untitled12_hu98ddd8342e269d06b326bfdd4dd2ec69_121600_480x0_resize_box_3.png 480w, https://gujh14.github.io/p/does-gnn-pre-training-help-molecular-representation/imgs/Untitled12_hu98ddd8342e269d06b326bfdd4dd2ec69_121600_1024x0_resize_box_3.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 	
@@ -1907,9 +1967,21 @@ In downstream tasks, additional 2d normalized &lt;code&gt;rdNormalizedDescriptor
         <pubDate>Wed, 21 Sep 2022 00:00:00 +0000</pubDate>
         
         <guid>https://gujh14.github.io/p/graph-self-supervised-learning-with-accurate-discrepancy-learning/</guid>
-        <description>&lt;img src="https://gujh14.github.io/p/graph-self-supervised-learning-with-accurate-discrepancy-learning/thumbnail.png" alt="Featured image of post Graph Self-supervised Learning with Accurate Discrepancy Learning" /&gt;&lt;p&gt;NeurIPS, &amp;lsquo;22,&lt;br&gt;
+        <description>&lt;p&gt;NeurIPS, &amp;lsquo;22,&lt;br&gt;
 &lt;a class=&#34;link&#34; href=&#34;https://openreview.net/forum?id=SgZ-glWWUlq&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
-    &gt;Graph Self-supervised Learning with Accurate Discrepancy Learning&lt;/a&gt;&lt;/p&gt;
+    &gt;Graph Self-supervised Learning with Accurate Discrepancy Learning&lt;/a&gt;
+&lt;img src=&#34;https://gujh14.github.io/p/graph-self-supervised-learning-with-accurate-discrepancy-learning/thumbnail.png&#34;
+	width=&#34;1414&#34;
+	height=&#34;484&#34;
+	srcset=&#34;https://gujh14.github.io/p/graph-self-supervised-learning-with-accurate-discrepancy-learning/thumbnail_hu1da554d6c291b842a8ea287e9b40bdf6_233064_480x0_resize_box_3.png 480w, https://gujh14.github.io/p/graph-self-supervised-learning-with-accurate-discrepancy-learning/thumbnail_hu1da554d6c291b842a8ea287e9b40bdf6_233064_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;292&#34;
+		data-flex-basis=&#34;701px&#34;
+	
+&gt;&lt;/p&gt;
 &lt;h1 id=&#34;summary&#34;&gt;Summary&lt;/h1&gt;
 &lt;ul&gt;
 &lt;li&gt;Authors proposed a framework called D-SLA that aims to learn the exact discrepancy between the original and the perturbed graphs.&lt;/li&gt;
@@ -1960,10 +2032,10 @@ In downstream tasks, additional 2d normalized &lt;code&gt;rdNormalizedDescriptor
 &lt;li&gt;predict the generative sequence, contextual property, and motifs&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;But predictive learning &lt;strong&gt;may not capture the global structures and/or semantics of graphs.&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://gujh14.github.io/p/graph-self-supervised-learning-with-accurate-discrepancy-learning/Untitled.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://gujh14.github.io/p/graph-self-supervised-learning-with-accurate-discrepancy-learning/imgs/Untitled.png&#34;
 	width=&#34;896&#34;
 	height=&#34;520&#34;
-	srcset=&#34;https://gujh14.github.io/p/graph-self-supervised-learning-with-accurate-discrepancy-learning/Untitled_huff270fcc5aeca6685caf1879e044c99c_227289_480x0_resize_box_3.png 480w, https://gujh14.github.io/p/graph-self-supervised-learning-with-accurate-discrepancy-learning/Untitled_huff270fcc5aeca6685caf1879e044c99c_227289_1024x0_resize_box_3.png 1024w&#34;
+	srcset=&#34;https://gujh14.github.io/p/graph-self-supervised-learning-with-accurate-discrepancy-learning/imgs/Untitled_huff270fcc5aeca6685caf1879e044c99c_227289_480x0_resize_box_3.png 480w, https://gujh14.github.io/p/graph-self-supervised-learning-with-accurate-discrepancy-learning/imgs/Untitled_huff270fcc5aeca6685caf1879e044c99c_227289_1024x0_resize_box_3.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 	
@@ -1982,10 +2054,10 @@ In downstream tasks, additional 2d normalized &lt;code&gt;rdNormalizedDescriptor
 &lt;li&gt;Recent CL adversarial methods generate positive examples either by adaptively removing the edges or by adjusting the attributes.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;But CL &lt;strong&gt;may not distinguish two topologically similar graphs yet having completely different properties.&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://gujh14.github.io/p/graph-self-supervised-learning-with-accurate-discrepancy-learning/Untitled1.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://gujh14.github.io/p/graph-self-supervised-learning-with-accurate-discrepancy-learning/imgs/Untitled1.png&#34;
 	width=&#34;894&#34;
 	height=&#34;526&#34;
-	srcset=&#34;https://gujh14.github.io/p/graph-self-supervised-learning-with-accurate-discrepancy-learning/Untitled1_hu2f022890e791016794b0ba84351f912a_250914_480x0_resize_box_3.png 480w, https://gujh14.github.io/p/graph-self-supervised-learning-with-accurate-discrepancy-learning/Untitled1_hu2f022890e791016794b0ba84351f912a_250914_1024x0_resize_box_3.png 1024w&#34;
+	srcset=&#34;https://gujh14.github.io/p/graph-self-supervised-learning-with-accurate-discrepancy-learning/imgs/Untitled1_hu2f022890e791016794b0ba84351f912a_250914_480x0_resize_box_3.png 480w, https://gujh14.github.io/p/graph-self-supervised-learning-with-accurate-discrepancy-learning/imgs/Untitled1_hu2f022890e791016794b0ba84351f912a_250914_1024x0_resize_box_3.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 	
@@ -1994,10 +2066,10 @@ In downstream tasks, additional 2d normalized &lt;code&gt;rdNormalizedDescriptor
 		data-flex-basis=&#34;407px&#34;
 	
 &gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://gujh14.github.io/p/graph-self-supervised-learning-with-accurate-discrepancy-learning/Untitled2.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://gujh14.github.io/p/graph-self-supervised-learning-with-accurate-discrepancy-learning/imgs/Untitled2.png&#34;
 	width=&#34;946&#34;
 	height=&#34;384&#34;
-	srcset=&#34;https://gujh14.github.io/p/graph-self-supervised-learning-with-accurate-discrepancy-learning/Untitled2_hu5b683b5549a725d0a4cfb0bcb47c4b83_188133_480x0_resize_box_3.png 480w, https://gujh14.github.io/p/graph-self-supervised-learning-with-accurate-discrepancy-learning/Untitled2_hu5b683b5549a725d0a4cfb0bcb47c4b83_188133_1024x0_resize_box_3.png 1024w&#34;
+	srcset=&#34;https://gujh14.github.io/p/graph-self-supervised-learning-with-accurate-discrepancy-learning/imgs/Untitled2_hu5b683b5549a725d0a4cfb0bcb47c4b83_188133_480x0_resize_box_3.png 480w, https://gujh14.github.io/p/graph-self-supervised-learning-with-accurate-discrepancy-learning/imgs/Untitled2_hu5b683b5549a725d0a4cfb0bcb47c4b83_188133_1024x0_resize_box_3.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 	
@@ -2018,10 +2090,10 @@ In downstream tasks, additional 2d normalized &lt;code&gt;rdNormalizedDescriptor
 &lt;/li&gt;
 &lt;/ul&gt;
 &lt;h2 id=&#34;discrepancy-learning&#34;&gt;Discrepancy Learning&lt;/h2&gt;
-&lt;p&gt;&lt;img src=&#34;https://gujh14.github.io/p/graph-self-supervised-learning-with-accurate-discrepancy-learning/Untitled3.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://gujh14.github.io/p/graph-self-supervised-learning-with-accurate-discrepancy-learning/imgs/Untitled3.png&#34;
 	width=&#34;1312&#34;
 	height=&#34;402&#34;
-	srcset=&#34;https://gujh14.github.io/p/graph-self-supervised-learning-with-accurate-discrepancy-learning/Untitled3_hu733a3810c757eb627bd173cc2c52ec22_403552_480x0_resize_box_3.png 480w, https://gujh14.github.io/p/graph-self-supervised-learning-with-accurate-discrepancy-learning/Untitled3_hu733a3810c757eb627bd173cc2c52ec22_403552_1024x0_resize_box_3.png 1024w&#34;
+	srcset=&#34;https://gujh14.github.io/p/graph-self-supervised-learning-with-accurate-discrepancy-learning/imgs/Untitled3_hu733a3810c757eb627bd173cc2c52ec22_403552_480x0_resize_box_3.png 480w, https://gujh14.github.io/p/graph-self-supervised-learning-with-accurate-discrepancy-learning/imgs/Untitled3_hu733a3810c757eb627bd173cc2c52ec22_403552_1024x0_resize_box_3.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 	
@@ -2093,10 +2165,10 @@ In downstream tasks, additional 2d normalized &lt;code&gt;rdNormalizedDescriptor
 &lt;h3 id=&#34;overall-loss&#34;&gt;Overall loss&lt;/h3&gt;
 &lt;p&gt;$\mathcal{L} = \mathcal{L}_{GD} + \lambda_1 \mathcal{L}_{edit} + \lambda_2 \mathcal{L}_{margin}$&lt;/p&gt;
 &lt;h2 id=&#34;results&#34;&gt;Results&lt;/h2&gt;
-&lt;p&gt;&lt;img src=&#34;https://gujh14.github.io/p/graph-self-supervised-learning-with-accurate-discrepancy-learning/Untitled4.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://gujh14.github.io/p/graph-self-supervised-learning-with-accurate-discrepancy-learning/imgs/Untitled4.png&#34;
 	width=&#34;2760&#34;
 	height=&#34;878&#34;
-	srcset=&#34;https://gujh14.github.io/p/graph-self-supervised-learning-with-accurate-discrepancy-learning/Untitled4_hu61ce1efc03ade92431ecba0566b173fe_1254349_480x0_resize_box_3.png 480w, https://gujh14.github.io/p/graph-self-supervised-learning-with-accurate-discrepancy-learning/Untitled4_hu61ce1efc03ade92431ecba0566b173fe_1254349_1024x0_resize_box_3.png 1024w&#34;
+	srcset=&#34;https://gujh14.github.io/p/graph-self-supervised-learning-with-accurate-discrepancy-learning/imgs/Untitled4_hu61ce1efc03ade92431ecba0566b173fe_1254349_480x0_resize_box_3.png 480w, https://gujh14.github.io/p/graph-self-supervised-learning-with-accurate-discrepancy-learning/imgs/Untitled4_hu61ce1efc03ade92431ecba0566b173fe_1254349_1024x0_resize_box_3.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 	
@@ -2105,10 +2177,10 @@ In downstream tasks, additional 2d normalized &lt;code&gt;rdNormalizedDescriptor
 		data-flex-basis=&#34;754px&#34;
 	
 &gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://gujh14.github.io/p/graph-self-supervised-learning-with-accurate-discrepancy-learning/Untitled5.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://gujh14.github.io/p/graph-self-supervised-learning-with-accurate-discrepancy-learning/imgs/Untitled5.png&#34;
 	width=&#34;662&#34;
 	height=&#34;656&#34;
-	srcset=&#34;https://gujh14.github.io/p/graph-self-supervised-learning-with-accurate-discrepancy-learning/Untitled5_hub614ec3849a1c45ba1bddf42f077afb8_259131_480x0_resize_box_3.png 480w, https://gujh14.github.io/p/graph-self-supervised-learning-with-accurate-discrepancy-learning/Untitled5_hub614ec3849a1c45ba1bddf42f077afb8_259131_1024x0_resize_box_3.png 1024w&#34;
+	srcset=&#34;https://gujh14.github.io/p/graph-self-supervised-learning-with-accurate-discrepancy-learning/imgs/Untitled5_hub614ec3849a1c45ba1bddf42f077afb8_259131_480x0_resize_box_3.png 480w, https://gujh14.github.io/p/graph-self-supervised-learning-with-accurate-discrepancy-learning/imgs/Untitled5_hub614ec3849a1c45ba1bddf42f077afb8_259131_1024x0_resize_box_3.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 	
@@ -2117,10 +2189,10 @@ In downstream tasks, additional 2d normalized &lt;code&gt;rdNormalizedDescriptor
 		data-flex-basis=&#34;242px&#34;
 	
 &gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://gujh14.github.io/p/graph-self-supervised-learning-with-accurate-discrepancy-learning/Untitled6.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://gujh14.github.io/p/graph-self-supervised-learning-with-accurate-discrepancy-learning/imgs/Untitled6.png&#34;
 	width=&#34;2072&#34;
 	height=&#34;640&#34;
-	srcset=&#34;https://gujh14.github.io/p/graph-self-supervised-learning-with-accurate-discrepancy-learning/Untitled6_hua1d295acff7e146071f146ac8c9b5420_722837_480x0_resize_box_3.png 480w, https://gujh14.github.io/p/graph-self-supervised-learning-with-accurate-discrepancy-learning/Untitled6_hua1d295acff7e146071f146ac8c9b5420_722837_1024x0_resize_box_3.png 1024w&#34;
+	srcset=&#34;https://gujh14.github.io/p/graph-self-supervised-learning-with-accurate-discrepancy-learning/imgs/Untitled6_hua1d295acff7e146071f146ac8c9b5420_722837_480x0_resize_box_3.png 480w, https://gujh14.github.io/p/graph-self-supervised-learning-with-accurate-discrepancy-learning/imgs/Untitled6_hua1d295acff7e146071f146ac8c9b5420_722837_1024x0_resize_box_3.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 	
@@ -2137,9 +2209,21 @@ In downstream tasks, additional 2d normalized &lt;code&gt;rdNormalizedDescriptor
         <pubDate>Fri, 29 Jul 2022 00:00:00 +0000</pubDate>
         
         <guid>https://gujh14.github.io/p/physchem-deep-molecular-representation-learning-via-fusing-physical-and-chemical-information/</guid>
-        <description>&lt;img src="https://gujh14.github.io/p/physchem-deep-molecular-representation-learning-via-fusing-physical-and-chemical-information/thumbnail.png" alt="Featured image of post PhysChem: Deep Molecular Representation Learning via Fusing Physical and Chemical Information" /&gt;&lt;p&gt;NeurIPS Poster, &amp;lsquo;21,&lt;br&gt;
+        <description>&lt;p&gt;NeurIPS Poster, &amp;lsquo;21,&lt;br&gt;
 &lt;a class=&#34;link&#34; href=&#34;https://arxiv.org/abs/2112.04624&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
-    &gt;PhysChem: Deep Molecular Representation Learning via Fusing Physical and Chemical Information&lt;/a&gt;&lt;/p&gt;
+    &gt;PhysChem: Deep Molecular Representation Learning via Fusing Physical and Chemical Information&lt;/a&gt;
+&lt;img src=&#34;https://gujh14.github.io/p/physchem-deep-molecular-representation-learning-via-fusing-physical-and-chemical-information/thumbnail.png&#34;
+	width=&#34;2000&#34;
+	height=&#34;709&#34;
+	srcset=&#34;https://gujh14.github.io/p/physchem-deep-molecular-representation-learning-via-fusing-physical-and-chemical-information/thumbnail_hu614a3ffe516a8cd557a8bbd359513341_952945_480x0_resize_box_3.png 480w, https://gujh14.github.io/p/physchem-deep-molecular-representation-learning-via-fusing-physical-and-chemical-information/thumbnail_hu614a3ffe516a8cd557a8bbd359513341_952945_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;282&#34;
+		data-flex-basis=&#34;677px&#34;
+	
+&gt;&lt;/p&gt;
 &lt;h1 id=&#34;summary&#34;&gt;Summary&lt;/h1&gt;
 &lt;ul&gt;
 &lt;li&gt;Used physicist network (PhysNet) and chemist network (ChemNet) simultaneously, and each network shares information to solve individual tasks.&lt;/li&gt;
@@ -2291,9 +2375,21 @@ HamNet showed that neural networks can simulate molecular dynamics for conformat
         <pubDate>Fri, 22 Jul 2022 00:00:00 +0000</pubDate>
         
         <guid>https://gujh14.github.io/p/cmap-based-drug-repositioning-of-btz-to-reverse-the-metastatic-effect-of-galnt14-in-lung-cancer/</guid>
-        <description>&lt;img src="https://gujh14.github.io/p/cmap-based-drug-repositioning-of-btz-to-reverse-the-metastatic-effect-of-galnt14-in-lung-cancer/thumbnail.png" alt="Featured image of post CMap based Drug Repositioning of BTZ to reverse the metastatic effect of GALNT14 in lung cancer" /&gt;&lt;p&gt;Oncogene, &amp;lsquo;20&lt;br&gt;
+        <description>&lt;p&gt;Oncogene, &amp;lsquo;20&lt;br&gt;
 &lt;a class=&#34;link&#34; href=&#34;https://www.nature.com/articles/s41388-020-1316-2&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
-    &gt;CMap based Drug Repositioning of BTZ to reverse the metastatic effect of GALNT14 in lung cancer&lt;/a&gt;&lt;/p&gt;
+    &gt;CMap based Drug Repositioning of BTZ to reverse the metastatic effect of GALNT14 in lung cancer&lt;/a&gt;
+&lt;img src=&#34;https://gujh14.github.io/p/cmap-based-drug-repositioning-of-btz-to-reverse-the-metastatic-effect-of-galnt14-in-lung-cancer/thumbnail.png&#34;
+	width=&#34;1784&#34;
+	height=&#34;690&#34;
+	srcset=&#34;https://gujh14.github.io/p/cmap-based-drug-repositioning-of-btz-to-reverse-the-metastatic-effect-of-galnt14-in-lung-cancer/thumbnail_hub7b0114b78cd33a49a5f6e1bdf51e130_146004_480x0_resize_box_3.png 480w, https://gujh14.github.io/p/cmap-based-drug-repositioning-of-btz-to-reverse-the-metastatic-effect-of-galnt14-in-lung-cancer/thumbnail_hub7b0114b78cd33a49a5f6e1bdf51e130_146004_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;258&#34;
+		data-flex-basis=&#34;620px&#34;
+	
+&gt;&lt;/p&gt;
 &lt;h1 id=&#34;summary&#34;&gt;Summary&lt;/h1&gt;
 &lt;ul&gt;
 &lt;li&gt;In-silico approach based on CMap to identify drug candidates for lung cancer metastasis&lt;/li&gt;
@@ -2373,9 +2469,21 @@ BTZ의 anti-migration, anti-invasion effect를 in vitro level에서 확인한 �
         <pubDate>Fri, 15 Oct 2021 00:00:00 +0000</pubDate>
         
         <guid>https://gujh14.github.io/p/few-shot-learning-with-graph-neural-networks/</guid>
-        <description>&lt;img src="https://gujh14.github.io/p/few-shot-learning-with-graph-neural-networks/thumbnail.png" alt="Featured image of post Few-shot Learning with Graph Neural Networks" /&gt;&lt;p&gt;ICLR, &amp;lsquo;17,&lt;br&gt;
+        <description>&lt;p&gt;ICLR, &amp;lsquo;17,&lt;br&gt;
 &lt;a class=&#34;link&#34; href=&#34;https://arxiv.org/abs/1711.04043&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
-    &gt;Few-Shot Learning with Graph Neural Networks&lt;/a&gt;&lt;/p&gt;
+    &gt;Few-Shot Learning with Graph Neural Networks&lt;/a&gt;
+&lt;img src=&#34;https://gujh14.github.io/p/few-shot-learning-with-graph-neural-networks/thumbnail.png&#34;
+	width=&#34;820&#34;
+	height=&#34;582&#34;
+	srcset=&#34;https://gujh14.github.io/p/few-shot-learning-with-graph-neural-networks/thumbnail_hu8ba07e37572d4400f76afaadd55834a8_158186_480x0_resize_box_3.png 480w, https://gujh14.github.io/p/few-shot-learning-with-graph-neural-networks/thumbnail_hu8ba07e37572d4400f76afaadd55834a8_158186_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;140&#34;
+		data-flex-basis=&#34;338px&#34;
+	
+&gt;&lt;/p&gt;
 &lt;h1 id=&#34;summary&#34;&gt;Summary&lt;/h1&gt;
 &lt;ul&gt;
 &lt;li&gt;Used similarity value between samples for few shot learning.&lt;/li&gt;
@@ -2410,10 +2518,10 @@ BTZ의 anti-migration, anti-invasion effect를 in vitro level에서 확인한 �
 &lt;li&gt;
 &lt;p&gt;Semi-supervised learning:&lt;/p&gt;
 &lt;p&gt;Learning from a mixture of labeled and unlabeled examples&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://gujh14.github.io/p/few-shot-learning-with-graph-neural-networks/Untitled2.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://gujh14.github.io/p/few-shot-learning-with-graph-neural-networks/imgs/Untitled2.png&#34;
 	width=&#34;1024&#34;
 	height=&#34;428&#34;
-	srcset=&#34;https://gujh14.github.io/p/few-shot-learning-with-graph-neural-networks/Untitled2_huc1bfe4fa7e46f3525a992e0a384e32c8_196077_480x0_resize_box_3.png 480w, https://gujh14.github.io/p/few-shot-learning-with-graph-neural-networks/Untitled2_huc1bfe4fa7e46f3525a992e0a384e32c8_196077_1024x0_resize_box_3.png 1024w&#34;
+	srcset=&#34;https://gujh14.github.io/p/few-shot-learning-with-graph-neural-networks/imgs/Untitled2_huc1bfe4fa7e46f3525a992e0a384e32c8_196077_480x0_resize_box_3.png 480w, https://gujh14.github.io/p/few-shot-learning-with-graph-neural-networks/imgs/Untitled2_huc1bfe4fa7e46f3525a992e0a384e32c8_196077_1024x0_resize_box_3.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;https://blog.est.ai/2020/11/ssl/&#34;
@@ -2428,10 +2536,10 @@ BTZ의 anti-migration, anti-invasion effect를 in vitro level에서 확인한 �
 &lt;li&gt;
 &lt;p&gt;Active learning:&lt;/p&gt;
 &lt;p&gt;The learner has the option to request those missing labels that will be most helpful for the prediction task&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://gujh14.github.io/p/few-shot-learning-with-graph-neural-networks/Untitled3.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://gujh14.github.io/p/few-shot-learning-with-graph-neural-networks/imgs/Untitled3.png&#34;
 	width=&#34;1704&#34;
 	height=&#34;610&#34;
-	srcset=&#34;https://gujh14.github.io/p/few-shot-learning-with-graph-neural-networks/Untitled3_huc6f63af45ed0ccc0628e36f08d894c39_473048_480x0_resize_box_3.png 480w, https://gujh14.github.io/p/few-shot-learning-with-graph-neural-networks/Untitled3_huc6f63af45ed0ccc0628e36f08d894c39_473048_1024x0_resize_box_3.png 1024w&#34;
+	srcset=&#34;https://gujh14.github.io/p/few-shot-learning-with-graph-neural-networks/imgs/Untitled3_huc6f63af45ed0ccc0628e36f08d894c39_473048_480x0_resize_box_3.png 480w, https://gujh14.github.io/p/few-shot-learning-with-graph-neural-networks/imgs/Untitled3_huc6f63af45ed0ccc0628e36f08d894c39_473048_1024x0_resize_box_3.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;ICML 2019 active learning tutorial&#34;
@@ -2442,10 +2550,10 @@ BTZ의 anti-migration, anti-invasion effect를 in vitro level에서 확인한 �
 		data-flex-basis=&#34;670px&#34;
 	
 &gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://gujh14.github.io/p/few-shot-learning-with-graph-neural-networks/Untitled4.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://gujh14.github.io/p/few-shot-learning-with-graph-neural-networks/imgs/Untitled4.png&#34;
 	width=&#34;1024&#34;
 	height=&#34;428&#34;
-	srcset=&#34;https://gujh14.github.io/p/few-shot-learning-with-graph-neural-networks/Untitled4_hu29a98bb38a9c671de7bd69329e42d18f_525600_480x0_resize_box_3.png 480w, https://gujh14.github.io/p/few-shot-learning-with-graph-neural-networks/Untitled4_hu29a98bb38a9c671de7bd69329e42d18f_525600_1024x0_resize_box_3.png 1024w&#34;
+	srcset=&#34;https://gujh14.github.io/p/few-shot-learning-with-graph-neural-networks/imgs/Untitled4_hu29a98bb38a9c671de7bd69329e42d18f_525600_480x0_resize_box_3.png 480w, https://gujh14.github.io/p/few-shot-learning-with-graph-neural-networks/imgs/Untitled4_hu29a98bb38a9c671de7bd69329e42d18f_525600_1024x0_resize_box_3.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;Annotated by JH Gu&#34;
@@ -2470,10 +2578,10 @@ BTZ의 anti-migration, anti-invasion effect를 in vitro level에서 확인한 �
 &lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;And developed an end-to-end trainable k-nearest neighbors, accepting those support sets as input via attention LSTM.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://gujh14.github.io/p/few-shot-learning-with-graph-neural-networks/Untitled5.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://gujh14.github.io/p/few-shot-learning-with-graph-neural-networks/imgs/Untitled5.png&#34;
 	width=&#34;2610&#34;
 	height=&#34;1132&#34;
-	srcset=&#34;https://gujh14.github.io/p/few-shot-learning-with-graph-neural-networks/Untitled5_hu0e12fc917e2d1e75fc1d11c369c80fd5_198931_480x0_resize_box_3.png 480w, https://gujh14.github.io/p/few-shot-learning-with-graph-neural-networks/Untitled5_hu0e12fc917e2d1e75fc1d11c369c80fd5_198931_1024x0_resize_box_3.png 1024w&#34;
+	srcset=&#34;https://gujh14.github.io/p/few-shot-learning-with-graph-neural-networks/imgs/Untitled5_hu0e12fc917e2d1e75fc1d11c369c80fd5_198931_480x0_resize_box_3.png 480w, https://gujh14.github.io/p/few-shot-learning-with-graph-neural-networks/imgs/Untitled5_hu0e12fc917e2d1e75fc1d11c369c80fd5_198931_1024x0_resize_box_3.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;Vinyals et al.(2016), cited over 3000 times&#34;
@@ -2484,10 +2592,10 @@ BTZ의 anti-migration, anti-invasion effect를 in vitro level에서 확인한 �
 		data-flex-basis=&#34;553px&#34;
 	
 &gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://gujh14.github.io/p/few-shot-learning-with-graph-neural-networks/Untitled6.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://gujh14.github.io/p/few-shot-learning-with-graph-neural-networks/imgs/Untitled6.png&#34;
 	width=&#34;1722&#34;
 	height=&#34;1194&#34;
-	srcset=&#34;https://gujh14.github.io/p/few-shot-learning-with-graph-neural-networks/Untitled6_hu682bd0f012da9d625d12e31d1ed30fa9_900563_480x0_resize_box_3.png 480w, https://gujh14.github.io/p/few-shot-learning-with-graph-neural-networks/Untitled6_hu682bd0f012da9d625d12e31d1ed30fa9_900563_1024x0_resize_box_3.png 1024w&#34;
+	srcset=&#34;https://gujh14.github.io/p/few-shot-learning-with-graph-neural-networks/imgs/Untitled6_hu682bd0f012da9d625d12e31d1ed30fa9_900563_480x0_resize_box_3.png 480w, https://gujh14.github.io/p/few-shot-learning-with-graph-neural-networks/imgs/Untitled6_hu682bd0f012da9d625d12e31d1ed30fa9_900563_1024x0_resize_box_3.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 	
@@ -2496,10 +2604,10 @@ BTZ의 anti-migration, anti-invasion effect를 in vitro level에서 확인한 �
 		data-flex-basis=&#34;346px&#34;
 	
 &gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://gujh14.github.io/p/few-shot-learning-with-graph-neural-networks/Untitled7.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://gujh14.github.io/p/few-shot-learning-with-graph-neural-networks/imgs/Untitled7.png&#34;
 	width=&#34;2114&#34;
 	height=&#34;786&#34;
-	srcset=&#34;https://gujh14.github.io/p/few-shot-learning-with-graph-neural-networks/Untitled7_huc8e7223a5841039c99c90f590a76f75b_236044_480x0_resize_box_3.png 480w, https://gujh14.github.io/p/few-shot-learning-with-graph-neural-networks/Untitled7_huc8e7223a5841039c99c90f590a76f75b_236044_1024x0_resize_box_3.png 1024w&#34;
+	srcset=&#34;https://gujh14.github.io/p/few-shot-learning-with-graph-neural-networks/imgs/Untitled7_huc8e7223a5841039c99c90f590a76f75b_236044_480x0_resize_box_3.png 480w, https://gujh14.github.io/p/few-shot-learning-with-graph-neural-networks/imgs/Untitled7_huc8e7223a5841039c99c90f590a76f75b_236044_1024x0_resize_box_3.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 	
@@ -2520,10 +2628,10 @@ BTZ의 anti-migration, anti-invasion effect를 in vitro level에서 확인한 �
 &lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;[Research article] Prototypical Networks for Few-shot Learning - Snell et al.(2017)&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://gujh14.github.io/p/few-shot-learning-with-graph-neural-networks/Untitled8.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://gujh14.github.io/p/few-shot-learning-with-graph-neural-networks/imgs/Untitled8.png&#34;
 	width=&#34;1096&#34;
 	height=&#34;320&#34;
-	srcset=&#34;https://gujh14.github.io/p/few-shot-learning-with-graph-neural-networks/Untitled8_hu673a9f33c51a89e6c015e050431013a1_40631_480x0_resize_box_3.png 480w, https://gujh14.github.io/p/few-shot-learning-with-graph-neural-networks/Untitled8_hu673a9f33c51a89e6c015e050431013a1_40631_1024x0_resize_box_3.png 1024w&#34;
+	srcset=&#34;https://gujh14.github.io/p/few-shot-learning-with-graph-neural-networks/imgs/Untitled8_hu673a9f33c51a89e6c015e050431013a1_40631_480x0_resize_box_3.png 480w, https://gujh14.github.io/p/few-shot-learning-with-graph-neural-networks/imgs/Untitled8_hu673a9f33c51a89e6c015e050431013a1_40631_1024x0_resize_box_3.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 	
@@ -2550,10 +2658,10 @@ BTZ의 anti-migration, anti-invasion effect를 in vitro level에서 확인한 �
 &lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;[Review article] Geometric deep learning - Bronstein et al.(2017)&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://gujh14.github.io/p/few-shot-learning-with-graph-neural-networks/Untitled9.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://gujh14.github.io/p/few-shot-learning-with-graph-neural-networks/imgs/Untitled9.png&#34;
 	width=&#34;3380&#34;
 	height=&#34;760&#34;
-	srcset=&#34;https://gujh14.github.io/p/few-shot-learning-with-graph-neural-networks/Untitled9_huce1372555d0695877b90856ae5320997_165518_480x0_resize_box_3.png 480w, https://gujh14.github.io/p/few-shot-learning-with-graph-neural-networks/Untitled9_huce1372555d0695877b90856ae5320997_165518_1024x0_resize_box_3.png 1024w&#34;
+	srcset=&#34;https://gujh14.github.io/p/few-shot-learning-with-graph-neural-networks/imgs/Untitled9_huce1372555d0695877b90856ae5320997_165518_480x0_resize_box_3.png 480w, https://gujh14.github.io/p/few-shot-learning-with-graph-neural-networks/imgs/Untitled9_huce1372555d0695877b90856ae5320997_165518_1024x0_resize_box_3.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 	
@@ -2568,10 +2676,10 @@ BTZ의 anti-migration, anti-invasion effect를 in vitro level에서 확인한 �
 &lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;[Research article] Message passing - Gilmer et al.(2017)&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://gujh14.github.io/p/few-shot-learning-with-graph-neural-networks/Untitled10.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://gujh14.github.io/p/few-shot-learning-with-graph-neural-networks/imgs/Untitled10.png&#34;
 	width=&#34;3232&#34;
 	height=&#34;614&#34;
-	srcset=&#34;https://gujh14.github.io/p/few-shot-learning-with-graph-neural-networks/Untitled10_hu1eef0041f9c47cde680bf6ae160fab5e_104258_480x0_resize_box_3.png 480w, https://gujh14.github.io/p/few-shot-learning-with-graph-neural-networks/Untitled10_hu1eef0041f9c47cde680bf6ae160fab5e_104258_1024x0_resize_box_3.png 1024w&#34;
+	srcset=&#34;https://gujh14.github.io/p/few-shot-learning-with-graph-neural-networks/imgs/Untitled10_hu1eef0041f9c47cde680bf6ae160fab5e_104258_480x0_resize_box_3.png 480w, https://gujh14.github.io/p/few-shot-learning-with-graph-neural-networks/imgs/Untitled10_hu1eef0041f9c47cde680bf6ae160fab5e_104258_1024x0_resize_box_3.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 	
@@ -2611,10 +2719,10 @@ $$&lt;/p&gt;
 &lt;/ul&gt;
 &lt;h3 id=&#34;general-set-up&#34;&gt;General set-up&lt;/h3&gt;
 &lt;p&gt;Input-output pairs $(\mathcal{T}_i, Y_i)_i$ drawn from i.i.d. from a distribution $\mathcal{P}$ of partially labeled image collections&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://gujh14.github.io/p/few-shot-learning-with-graph-neural-networks/Untitled11.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://gujh14.github.io/p/few-shot-learning-with-graph-neural-networks/imgs/Untitled11.png&#34;
 	width=&#34;4000&#34;
 	height=&#34;423&#34;
-	srcset=&#34;https://gujh14.github.io/p/few-shot-learning-with-graph-neural-networks/Untitled11_hu5436287761932c1cedb9fbd5fa84a3d6_135160_480x0_resize_box_3.png 480w, https://gujh14.github.io/p/few-shot-learning-with-graph-neural-networks/Untitled11_hu5436287761932c1cedb9fbd5fa84a3d6_135160_1024x0_resize_box_3.png 1024w&#34;
+	srcset=&#34;https://gujh14.github.io/p/few-shot-learning-with-graph-neural-networks/imgs/Untitled11_hu5436287761932c1cedb9fbd5fa84a3d6_135160_480x0_resize_box_3.png 480w, https://gujh14.github.io/p/few-shot-learning-with-graph-neural-networks/imgs/Untitled11_hu5436287761932c1cedb9fbd5fa84a3d6_135160_1024x0_resize_box_3.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 	
@@ -2642,10 +2750,10 @@ $$&lt;/p&gt;
 &lt;h3 id=&#34;active-learning-setting&#34;&gt;Active learning setting&lt;/h3&gt;
 &lt;p&gt;The learner has the ability to request labels from the auxiliary images ${\tilde{x}_1, &amp;hellip;, \tilde{x}_r}$.&lt;/p&gt;
 &lt;h2 id=&#34;model&#34;&gt;Model&lt;/h2&gt;
-&lt;p&gt;&lt;img src=&#34;https://gujh14.github.io/p/few-shot-learning-with-graph-neural-networks/Untitled12.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://gujh14.github.io/p/few-shot-learning-with-graph-neural-networks/imgs/Untitled12.png&#34;
 	width=&#34;1188&#34;
 	height=&#34;900&#34;
-	srcset=&#34;https://gujh14.github.io/p/few-shot-learning-with-graph-neural-networks/Untitled12_hu518b9887168c60fff5bff4e932a1b548_336596_480x0_resize_box_3.png 480w, https://gujh14.github.io/p/few-shot-learning-with-graph-neural-networks/Untitled12_hu518b9887168c60fff5bff4e932a1b548_336596_1024x0_resize_box_3.png 1024w&#34;
+	srcset=&#34;https://gujh14.github.io/p/few-shot-learning-with-graph-neural-networks/imgs/Untitled12_hu518b9887168c60fff5bff4e932a1b548_336596_480x0_resize_box_3.png 480w, https://gujh14.github.io/p/few-shot-learning-with-graph-neural-networks/imgs/Untitled12_hu518b9887168c60fff5bff4e932a1b548_336596_1024x0_resize_box_3.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 	
@@ -2666,10 +2774,10 @@ $$&lt;/p&gt;
 &lt;p&gt;Similarity measure is not pre-specified, but learned!&lt;/p&gt;
 &lt;p&gt;c.f.) in Siamese network, the similarity measure is fixed(L1 distance)!&lt;/p&gt;
 &lt;p&gt;본 논문(Few shot learning with GNN)에 쓰인 문장 구조가 이상해서 헷갈리게 쓰여있음.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://gujh14.github.io/p/few-shot-learning-with-graph-neural-networks/Untitled13.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://gujh14.github.io/p/few-shot-learning-with-graph-neural-networks/imgs/Untitled13.png&#34;
 	width=&#34;3024&#34;
 	height=&#34;1004&#34;
-	srcset=&#34;https://gujh14.github.io/p/few-shot-learning-with-graph-neural-networks/Untitled13_hu195ce8430d176ca0bb51f3bd3cc2cd4a_386759_480x0_resize_box_3.png 480w, https://gujh14.github.io/p/few-shot-learning-with-graph-neural-networks/Untitled13_hu195ce8430d176ca0bb51f3bd3cc2cd4a_386759_1024x0_resize_box_3.png 1024w&#34;
+	srcset=&#34;https://gujh14.github.io/p/few-shot-learning-with-graph-neural-networks/imgs/Untitled13_hu195ce8430d176ca0bb51f3bd3cc2cd4a_386759_480x0_resize_box_3.png 480w, https://gujh14.github.io/p/few-shot-learning-with-graph-neural-networks/imgs/Untitled13_hu195ce8430d176ca0bb51f3bd3cc2cd4a_386759_1024x0_resize_box_3.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;Koch et al.(2015), https://tyami.github.io/deep learning/Siamese-neural-networks/&#34;
@@ -2681,10 +2789,10 @@ $$&lt;/p&gt;
 	
 &gt;&lt;/p&gt;
 &lt;h3 id=&#34;graph-neural-networks&#34;&gt;Graph Neural Networks&lt;/h3&gt;
-&lt;p&gt;&lt;img src=&#34;https://gujh14.github.io/p/few-shot-learning-with-graph-neural-networks/Untitled14.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://gujh14.github.io/p/few-shot-learning-with-graph-neural-networks/imgs/Untitled14.png&#34;
 	width=&#34;1982&#34;
 	height=&#34;838&#34;
-	srcset=&#34;https://gujh14.github.io/p/few-shot-learning-with-graph-neural-networks/Untitled14_hu2b7b1594699112bb43a74ec4c994064f_379402_480x0_resize_box_3.png 480w, https://gujh14.github.io/p/few-shot-learning-with-graph-neural-networks/Untitled14_hu2b7b1594699112bb43a74ec4c994064f_379402_1024x0_resize_box_3.png 1024w&#34;
+	srcset=&#34;https://gujh14.github.io/p/few-shot-learning-with-graph-neural-networks/imgs/Untitled14_hu2b7b1594699112bb43a74ec4c994064f_379402_480x0_resize_box_3.png 480w, https://gujh14.github.io/p/few-shot-learning-with-graph-neural-networks/imgs/Untitled14_hu2b7b1594699112bb43a74ec4c994064f_379402_1024x0_resize_box_3.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 	
@@ -2772,10 +2880,10 @@ $$&lt;/p&gt;
 &lt;h2 id=&#34;results&#34;&gt;Results&lt;/h2&gt;
 &lt;h3 id=&#34;few-shot-learning&#34;&gt;Few-shot learning&lt;/h3&gt;
 &lt;p&gt;Omniglot&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://gujh14.github.io/p/few-shot-learning-with-graph-neural-networks/Untitled15.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://gujh14.github.io/p/few-shot-learning-with-graph-neural-networks/imgs/Untitled15.png&#34;
 	width=&#34;1744&#34;
 	height=&#34;720&#34;
-	srcset=&#34;https://gujh14.github.io/p/few-shot-learning-with-graph-neural-networks/Untitled15_hud1dea68979c0bbf767eb191d1fd1d37e_221954_480x0_resize_box_3.png 480w, https://gujh14.github.io/p/few-shot-learning-with-graph-neural-networks/Untitled15_hud1dea68979c0bbf767eb191d1fd1d37e_221954_1024x0_resize_box_3.png 1024w&#34;
+	srcset=&#34;https://gujh14.github.io/p/few-shot-learning-with-graph-neural-networks/imgs/Untitled15_hud1dea68979c0bbf767eb191d1fd1d37e_221954_480x0_resize_box_3.png 480w, https://gujh14.github.io/p/few-shot-learning-with-graph-neural-networks/imgs/Untitled15_hud1dea68979c0bbf767eb191d1fd1d37e_221954_1024x0_resize_box_3.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 	
@@ -2786,10 +2894,10 @@ $$&lt;/p&gt;
 &gt;&lt;/p&gt;
 &lt;p&gt;# of parameters: $\sim5\text{M} (\text{TCML})$, $\sim300 \text{K}(3 \text{layers GNN})$&lt;/p&gt;
 &lt;p&gt;Omniglot: 1,623 characters  X 20 examples for each characters&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://gujh14.github.io/p/few-shot-learning-with-graph-neural-networks/Untitled16.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://gujh14.github.io/p/few-shot-learning-with-graph-neural-networks/imgs/Untitled16.png&#34;
 	width=&#34;2170&#34;
 	height=&#34;945&#34;
-	srcset=&#34;https://gujh14.github.io/p/few-shot-learning-with-graph-neural-networks/Untitled16_hu734905f970a0a113fc187b3c1a108a68_954773_480x0_resize_box_3.png 480w, https://gujh14.github.io/p/few-shot-learning-with-graph-neural-networks/Untitled16_hu734905f970a0a113fc187b3c1a108a68_954773_1024x0_resize_box_3.png 1024w&#34;
+	srcset=&#34;https://gujh14.github.io/p/few-shot-learning-with-graph-neural-networks/imgs/Untitled16_hu734905f970a0a113fc187b3c1a108a68_954773_480x0_resize_box_3.png 480w, https://gujh14.github.io/p/few-shot-learning-with-graph-neural-networks/imgs/Untitled16_hu734905f970a0a113fc187b3c1a108a68_954773_1024x0_resize_box_3.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;Omniglot&#34;
@@ -2801,10 +2909,10 @@ $$&lt;/p&gt;
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;Mini-ImageNet: Originally introduced by Vinyals et al.(2016)&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://gujh14.github.io/p/few-shot-learning-with-graph-neural-networks/Untitled17.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://gujh14.github.io/p/few-shot-learning-with-graph-neural-networks/imgs/Untitled17.png&#34;
 	width=&#34;1628&#34;
 	height=&#34;584&#34;
-	srcset=&#34;https://gujh14.github.io/p/few-shot-learning-with-graph-neural-networks/Untitled17_hu78e7bfaf35d1da92942e4f4a1fe7dadb_170810_480x0_resize_box_3.png 480w, https://gujh14.github.io/p/few-shot-learning-with-graph-neural-networks/Untitled17_hu78e7bfaf35d1da92942e4f4a1fe7dadb_170810_1024x0_resize_box_3.png 1024w&#34;
+	srcset=&#34;https://gujh14.github.io/p/few-shot-learning-with-graph-neural-networks/imgs/Untitled17_hu78e7bfaf35d1da92942e4f4a1fe7dadb_170810_480x0_resize_box_3.png 480w, https://gujh14.github.io/p/few-shot-learning-with-graph-neural-networks/imgs/Untitled17_hu78e7bfaf35d1da92942e4f4a1fe7dadb_170810_1024x0_resize_box_3.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 	
@@ -2814,10 +2922,10 @@ $$&lt;/p&gt;
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;# of parameters: $\sim 11\text{M} (\text{TCML})$, $\sim 400 \text{K}(3 \text{ layers GNN})$&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://gujh14.github.io/p/few-shot-learning-with-graph-neural-networks/Untitled18.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://gujh14.github.io/p/few-shot-learning-with-graph-neural-networks/imgs/Untitled18.png&#34;
 	width=&#34;795&#34;
 	height=&#34;400&#34;
-	srcset=&#34;https://gujh14.github.io/p/few-shot-learning-with-graph-neural-networks/Untitled18_hu379e1637ed83ad26af73f3539cf37e81_707619_480x0_resize_box_3.png 480w, https://gujh14.github.io/p/few-shot-learning-with-graph-neural-networks/Untitled18_hu379e1637ed83ad26af73f3539cf37e81_707619_1024x0_resize_box_3.png 1024w&#34;
+	srcset=&#34;https://gujh14.github.io/p/few-shot-learning-with-graph-neural-networks/imgs/Untitled18_hu379e1637ed83ad26af73f3539cf37e81_707619_480x0_resize_box_3.png 480w, https://gujh14.github.io/p/few-shot-learning-with-graph-neural-networks/imgs/Untitled18_hu379e1637ed83ad26af73f3539cf37e81_707619_1024x0_resize_box_3.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;Mini-ImageNet&#34;
@@ -2832,10 +2940,10 @@ $$&lt;/p&gt;
 &lt;p&gt;Divided into 64 training, 16 validation, 20 testing classes each containing 600 examples.&lt;/p&gt;
 &lt;h3 id=&#34;semi-supervised-learning&#34;&gt;Semi-supervised learning&lt;/h3&gt;
 &lt;p&gt;Omniglot&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://gujh14.github.io/p/few-shot-learning-with-graph-neural-networks/Untitled19.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://gujh14.github.io/p/few-shot-learning-with-graph-neural-networks/imgs/Untitled19.png&#34;
 	width=&#34;1444&#34;
 	height=&#34;304&#34;
-	srcset=&#34;https://gujh14.github.io/p/few-shot-learning-with-graph-neural-networks/Untitled19_hu21116ea201fb3837edc6f9ad35132df9_60736_480x0_resize_box_3.png 480w, https://gujh14.github.io/p/few-shot-learning-with-graph-neural-networks/Untitled19_hu21116ea201fb3837edc6f9ad35132df9_60736_1024x0_resize_box_3.png 1024w&#34;
+	srcset=&#34;https://gujh14.github.io/p/few-shot-learning-with-graph-neural-networks/imgs/Untitled19_hu21116ea201fb3837edc6f9ad35132df9_60736_480x0_resize_box_3.png 480w, https://gujh14.github.io/p/few-shot-learning-with-graph-neural-networks/imgs/Untitled19_hu21116ea201fb3837edc6f9ad35132df9_60736_1024x0_resize_box_3.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 	
@@ -2845,10 +2953,10 @@ $$&lt;/p&gt;
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;Mini-ImageNet&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://gujh14.github.io/p/few-shot-learning-with-graph-neural-networks/Untitled20.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://gujh14.github.io/p/few-shot-learning-with-graph-neural-networks/imgs/Untitled20.png&#34;
 	width=&#34;1666&#34;
 	height=&#34;342&#34;
-	srcset=&#34;https://gujh14.github.io/p/few-shot-learning-with-graph-neural-networks/Untitled20_hu1158a4c24840395ac6dcb63f5d7034ea_78788_480x0_resize_box_3.png 480w, https://gujh14.github.io/p/few-shot-learning-with-graph-neural-networks/Untitled20_hu1158a4c24840395ac6dcb63f5d7034ea_78788_1024x0_resize_box_3.png 1024w&#34;
+	srcset=&#34;https://gujh14.github.io/p/few-shot-learning-with-graph-neural-networks/imgs/Untitled20_hu1158a4c24840395ac6dcb63f5d7034ea_78788_480x0_resize_box_3.png 480w, https://gujh14.github.io/p/few-shot-learning-with-graph-neural-networks/imgs/Untitled20_hu1158a4c24840395ac6dcb63f5d7034ea_78788_1024x0_resize_box_3.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 	
@@ -2858,10 +2966,10 @@ $$&lt;/p&gt;
 	
 &gt;&lt;/p&gt;
 &lt;h3 id=&#34;active-learning&#34;&gt;Active learning&lt;/h3&gt;
-&lt;p&gt;&lt;img src=&#34;https://gujh14.github.io/p/few-shot-learning-with-graph-neural-networks/Untitled21.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://gujh14.github.io/p/few-shot-learning-with-graph-neural-networks/imgs/Untitled21.png&#34;
 	width=&#34;1676&#34;
 	height=&#34;444&#34;
-	srcset=&#34;https://gujh14.github.io/p/few-shot-learning-with-graph-neural-networks/Untitled21_hu57c3addab4b9d756f0d1227c98fe6ef2_119500_480x0_resize_box_3.png 480w, https://gujh14.github.io/p/few-shot-learning-with-graph-neural-networks/Untitled21_hu57c3addab4b9d756f0d1227c98fe6ef2_119500_1024x0_resize_box_3.png 1024w&#34;
+	srcset=&#34;https://gujh14.github.io/p/few-shot-learning-with-graph-neural-networks/imgs/Untitled21_hu57c3addab4b9d756f0d1227c98fe6ef2_119500_480x0_resize_box_3.png 480w, https://gujh14.github.io/p/few-shot-learning-with-graph-neural-networks/imgs/Untitled21_hu57c3addab4b9d756f0d1227c98fe6ef2_119500_1024x0_resize_box_3.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 	
@@ -2880,9 +2988,21 @@ $$&lt;/p&gt;
         <pubDate>Wed, 15 Sep 2021 00:00:00 +0000</pubDate>
         
         <guid>https://gujh14.github.io/p/maml-model-agnostic-meta-learning-for-fast-adaptation-of-deep-networks/</guid>
-        <description>&lt;img src="https://gujh14.github.io/p/maml-model-agnostic-meta-learning-for-fast-adaptation-of-deep-networks/thumbnail.png" alt="Featured image of post MAML: Model-Agnostic Meta -Learning for Fast Adaptation of Deep Networks" /&gt;&lt;p&gt;ICML, &amp;lsquo;17&lt;br&gt;
+        <description>&lt;p&gt;ICML, &amp;lsquo;17&lt;br&gt;
 &lt;a class=&#34;link&#34; href=&#34;https://arxiv.org/abs/1703.03400&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
-    &gt;Model-Agnostic Meta-Learning for Fast Adaptation of Deep Networks&lt;/a&gt;&lt;/p&gt;
+    &gt;Model-Agnostic Meta-Learning for Fast Adaptation of Deep Networks&lt;/a&gt;
+&lt;img src=&#34;https://gujh14.github.io/p/maml-model-agnostic-meta-learning-for-fast-adaptation-of-deep-networks/thumbnail.png&#34;
+	width=&#34;650&#34;
+	height=&#34;292&#34;
+	srcset=&#34;https://gujh14.github.io/p/maml-model-agnostic-meta-learning-for-fast-adaptation-of-deep-networks/thumbnail_huac13bc7b7974135f98c493a6d9abadaf_36220_480x0_resize_box_3.png 480w, https://gujh14.github.io/p/maml-model-agnostic-meta-learning-for-fast-adaptation-of-deep-networks/thumbnail_huac13bc7b7974135f98c493a6d9abadaf_36220_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;222&#34;
+		data-flex-basis=&#34;534px&#34;
+	
+&gt;&lt;/p&gt;
 &lt;h1 id=&#34;summary&#34;&gt;Summary&lt;/h1&gt;
 &lt;ul&gt;
 &lt;li&gt;MAML is a general and model-agnostic algorithm that can be directly applied to a model trained with &lt;strong&gt;gradient descent&lt;/strong&gt; procedure.&lt;/li&gt;
@@ -2900,65 +3020,49 @@ $$&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;
 &lt;p&gt;Common Approaches of Meta-Learning and MAML&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://gujh14.github.io/p/maml-model-agnostic-meta-learning-for-fast-adaptation-of-deep-networks/Untitled.png&#34;
-	width=&#34;1522&#34;
-	height=&#34;726&#34;
-	srcset=&#34;https://gujh14.github.io/p/maml-model-agnostic-meta-learning-for-fast-adaptation-of-deep-networks/Untitled_hu2810079d992af17206a7c032e637187e_371302_480x0_resize_box_3.png 480w, https://gujh14.github.io/p/maml-model-agnostic-meta-learning-for-fast-adaptation-of-deep-networks/Untitled_hu2810079d992af17206a7c032e637187e_371302_1024x0_resize_box_3.png 1024w&#34;
+&lt;p&gt;&lt;img src=&#34;https://gujh14.github.io/Untitled.png&#34;
+	
+	
+	
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;https://lilianweng.github.io/lil-log/2018/11/30/meta-learning.html&#34;
 	
 	
-		class=&#34;gallery-image&#34; 
-		data-flex-grow=&#34;209&#34;
-		data-flex-basis=&#34;503px&#34;
-	
 &gt;&lt;/p&gt;
 &lt;p&gt;MAML is one of the most influential model of optimization-based approaches.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://gujh14.github.io/p/maml-model-agnostic-meta-learning-for-fast-adaptation-of-deep-networks/Untitled1.png&#34;
-	width=&#34;1484&#34;
-	height=&#34;834&#34;
-	srcset=&#34;https://gujh14.github.io/p/maml-model-agnostic-meta-learning-for-fast-adaptation-of-deep-networks/Untitled1_hu7ef081ff7698cafbf43593ac8d1bcbcd_922101_480x0_resize_box_3.png 480w, https://gujh14.github.io/p/maml-model-agnostic-meta-learning-for-fast-adaptation-of-deep-networks/Untitled1_hu7ef081ff7698cafbf43593ac8d1bcbcd_922101_1024x0_resize_box_3.png 1024w&#34;
+&lt;p&gt;&lt;img src=&#34;https://gujh14.github.io/Untitled1.png&#34;
+	
+	
+	
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;https://youtu.be/Izqod36syY8&#34;
 	
 	
-		class=&#34;gallery-image&#34; 
-		data-flex-grow=&#34;177&#34;
-		data-flex-basis=&#34;427px&#34;
-	
 &gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;A few terminologies of meta-learning problems&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://gujh14.github.io/p/maml-model-agnostic-meta-learning-for-fast-adaptation-of-deep-networks/Untitled2.png&#34;
-	width=&#34;2102&#34;
-	height=&#34;1524&#34;
-	srcset=&#34;https://gujh14.github.io/p/maml-model-agnostic-meta-learning-for-fast-adaptation-of-deep-networks/Untitled2_hu73d9cc73c6ab2d7d1dd2a961a777268b_357680_480x0_resize_box_3.png 480w, https://gujh14.github.io/p/maml-model-agnostic-meta-learning-for-fast-adaptation-of-deep-networks/Untitled2_hu73d9cc73c6ab2d7d1dd2a961a777268b_357680_1024x0_resize_box_3.png 1024w&#34;
+&lt;p&gt;&lt;img src=&#34;https://gujh14.github.io/Untitled2.png&#34;
+	
+	
+	
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;https://ai.stanford.edu/~cbfinn/_files/dissertation.pdf&#34;
 	
 	
-		class=&#34;gallery-image&#34; 
-		data-flex-grow=&#34;137&#34;
-		data-flex-basis=&#34;331px&#34;
-	
 &gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
 &lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
-&lt;p&gt;&lt;img src=&#34;https://gujh14.github.io/p/maml-model-agnostic-meta-learning-for-fast-adaptation-of-deep-networks/Untitled3.png&#34;
-	width=&#34;636&#34;
-	height=&#34;382&#34;
-	srcset=&#34;https://gujh14.github.io/p/maml-model-agnostic-meta-learning-for-fast-adaptation-of-deep-networks/Untitled3_hu49418efd97bf156417160555a8d5baef_47140_480x0_resize_box_3.png 480w, https://gujh14.github.io/p/maml-model-agnostic-meta-learning-for-fast-adaptation-of-deep-networks/Untitled3_hu49418efd97bf156417160555a8d5baef_47140_1024x0_resize_box_3.png 1024w&#34;
+&lt;p&gt;&lt;img src=&#34;https://gujh14.github.io/Untitled3.png&#34;
+	
+	
+	
 	loading=&#34;lazy&#34;
 	
-	
-		class=&#34;gallery-image&#34; 
-		data-flex-grow=&#34;166&#34;
-		data-flex-basis=&#34;399px&#34;
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;Goal of ideal artificial agent:&lt;/p&gt;
@@ -2999,28 +3103,20 @@ $$&lt;/p&gt;
 &lt;p&gt;The model $f$ is then improved by considering how the $test$ error on new data from $q_i$ changes with respect to the parameters.&lt;/p&gt;
 &lt;h3 id=&#34;22-a-model-agnostic-meta-learning-algorithm&#34;&gt;2.2. A Model-Agnostic Meta-Learning Algorithm&lt;/h3&gt;
 &lt;p&gt;Intuition: Some internal representations are more transferrable than others. How can we encourage the emergence of such general-purpose representations?&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://gujh14.github.io/p/maml-model-agnostic-meta-learning-for-fast-adaptation-of-deep-networks/Untitled4.png&#34;
-	width=&#34;2354&#34;
-	height=&#34;1132&#34;
-	srcset=&#34;https://gujh14.github.io/p/maml-model-agnostic-meta-learning-for-fast-adaptation-of-deep-networks/Untitled4_huffde7ac579bb4dc3080f2015f65a7fd2_1156243_480x0_resize_box_3.png 480w, https://gujh14.github.io/p/maml-model-agnostic-meta-learning-for-fast-adaptation-of-deep-networks/Untitled4_huffde7ac579bb4dc3080f2015f65a7fd2_1156243_1024x0_resize_box_3.png 1024w&#34;
+&lt;p&gt;&lt;img src=&#34;https://gujh14.github.io/Untitled4.png&#34;
+	
+	
+	
 	loading=&#34;lazy&#34;
 	
-	
-		class=&#34;gallery-image&#34; 
-		data-flex-grow=&#34;207&#34;
-		data-flex-basis=&#34;499px&#34;
 	
 &gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://gujh14.github.io/p/maml-model-agnostic-meta-learning-for-fast-adaptation-of-deep-networks/Untitled5.png&#34;
-	width=&#34;2360&#34;
-	height=&#34;1116&#34;
-	srcset=&#34;https://gujh14.github.io/p/maml-model-agnostic-meta-learning-for-fast-adaptation-of-deep-networks/Untitled5_hu896a6c8d932c96e0c863feb29ee4c599_1114541_480x0_resize_box_3.png 480w, https://gujh14.github.io/p/maml-model-agnostic-meta-learning-for-fast-adaptation-of-deep-networks/Untitled5_hu896a6c8d932c96e0c863feb29ee4c599_1114541_1024x0_resize_box_3.png 1024w&#34;
+&lt;p&gt;&lt;img src=&#34;https://gujh14.github.io/Untitled5.png&#34;
+	
+	
+	
 	loading=&#34;lazy&#34;
 	
-	
-		class=&#34;gallery-image&#34; 
-		data-flex-grow=&#34;211&#34;
-		data-flex-basis=&#34;507px&#34;
 	
 &gt;&lt;/p&gt;
 &lt;ul&gt;
@@ -3032,31 +3128,23 @@ $$&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;Algorithm&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://gujh14.github.io/p/maml-model-agnostic-meta-learning-for-fast-adaptation-of-deep-networks/Untitled6.png&#34;
-	width=&#34;862&#34;
-	height=&#34;598&#34;
-	srcset=&#34;https://gujh14.github.io/p/maml-model-agnostic-meta-learning-for-fast-adaptation-of-deep-networks/Untitled6_hu4f3fbc659182e4f29d6ca5f28e4663c9_286070_480x0_resize_box_3.png 480w, https://gujh14.github.io/p/maml-model-agnostic-meta-learning-for-fast-adaptation-of-deep-networks/Untitled6_hu4f3fbc659182e4f29d6ca5f28e4663c9_286070_1024x0_resize_box_3.png 1024w&#34;
+&lt;p&gt;&lt;img src=&#34;https://gujh14.github.io/Untitled6.png&#34;
+	
+	
+	
 	loading=&#34;lazy&#34;
 	
-	
-		class=&#34;gallery-image&#34; 
-		data-flex-grow=&#34;144&#34;
-		data-flex-basis=&#34;345px&#34;
 	
 &gt;&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;
 &lt;p&gt;cf) Terminologies for below description(temporarily defined by JH Gu)&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://gujh14.github.io/p/maml-model-agnostic-meta-learning-for-fast-adaptation-of-deep-networks/Untitled7.png&#34;
-	width=&#34;1708&#34;
-	height=&#34;1352&#34;
-	srcset=&#34;https://gujh14.github.io/p/maml-model-agnostic-meta-learning-for-fast-adaptation-of-deep-networks/Untitled7_hu8110c6352be8c0d888d6667531616c11_282586_480x0_resize_box_3.png 480w, https://gujh14.github.io/p/maml-model-agnostic-meta-learning-for-fast-adaptation-of-deep-networks/Untitled7_hu8110c6352be8c0d888d6667531616c11_282586_1024x0_resize_box_3.png 1024w&#34;
+&lt;p&gt;&lt;img src=&#34;https://gujh14.github.io/Untitled7.png&#34;
+	
+	
+	
 	loading=&#34;lazy&#34;
 	
-	
-		class=&#34;gallery-image&#34; 
-		data-flex-grow=&#34;126&#34;
-		data-flex-basis=&#34;303px&#34;
 	
 &gt;&lt;/p&gt;
 &lt;/li&gt;
@@ -3107,16 +3195,12 @@ $$&lt;/p&gt;
 \begin{align*} \textcolor{red}{\theta&amp;rsquo;} &amp;amp;= \theta - \alpha \nabla_\theta \mathcal{L}(\theta) \ \nabla_\theta \mathcal{L}(\textcolor{red}{\theta&amp;rsquo;}) &amp;amp;= (\textcolor{red}\nabla_{\textcolor{red}{\theta&amp;rsquo;}} \mathcal{L}(\textcolor{red}{\theta&amp;rsquo;})) \cdot (\nabla_\theta \textcolor{red}{\theta&amp;rsquo;}) \ &amp;amp;= (\textcolor{red}\nabla_{\textcolor{red}{\theta&amp;rsquo;}} \mathcal{L}(\textcolor{red}{\theta&amp;rsquo;})) \cdot (\nabla_\theta (\theta - \alpha \nabla_\theta \mathcal{L}(\theta)) \ &amp;amp;\approx (\textcolor{red}\nabla_{\textcolor{red}{\theta&amp;rsquo;}} \mathcal{L}(\textcolor{red}{\theta&amp;rsquo;})) \cdot (\nabla_\theta \theta) \ &amp;amp;= (\textcolor{red}\nabla_{\textcolor{red}{\theta&amp;rsquo;}} \mathcal{L}(\textcolor{red}{\theta&amp;rsquo;})) \end{align*}
 $$&lt;/p&gt;
 &lt;p&gt;Authors included a comparison to drop the backward pass term and using just the first-order approximation, which showed not much difference.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://gujh14.github.io/p/maml-model-agnostic-meta-learning-for-fast-adaptation-of-deep-networks/Untitled8.png&#34;
-	width=&#34;1174&#34;
-	height=&#34;308&#34;
-	srcset=&#34;https://gujh14.github.io/p/maml-model-agnostic-meta-learning-for-fast-adaptation-of-deep-networks/Untitled8_hu06f5aec29bc68380b99667335eb21667_106124_480x0_resize_box_3.png 480w, https://gujh14.github.io/p/maml-model-agnostic-meta-learning-for-fast-adaptation-of-deep-networks/Untitled8_hu06f5aec29bc68380b99667335eb21667_106124_1024x0_resize_box_3.png 1024w&#34;
+&lt;p&gt;&lt;img src=&#34;https://gujh14.github.io/Untitled8.png&#34;
+	
+	
+	
 	loading=&#34;lazy&#34;
 	
-	
-		class=&#34;gallery-image&#34; 
-		data-flex-grow=&#34;381&#34;
-		data-flex-basis=&#34;914px&#34;
 	
 &gt;&lt;/p&gt;
 &lt;/li&gt;
@@ -3141,16 +3225,12 @@ $$&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;
 &lt;p&gt;Algorithm&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://gujh14.github.io/p/maml-model-agnostic-meta-learning-for-fast-adaptation-of-deep-networks/Untitled9.png&#34;
-	width=&#34;858&#34;
-	height=&#34;700&#34;
-	srcset=&#34;https://gujh14.github.io/p/maml-model-agnostic-meta-learning-for-fast-adaptation-of-deep-networks/Untitled9_hu8161162bc48d5bed870c55b7080befad_351296_480x0_resize_box_3.png 480w, https://gujh14.github.io/p/maml-model-agnostic-meta-learning-for-fast-adaptation-of-deep-networks/Untitled9_hu8161162bc48d5bed870c55b7080befad_351296_1024x0_resize_box_3.png 1024w&#34;
+&lt;p&gt;&lt;img src=&#34;https://gujh14.github.io/Untitled9.png&#34;
+	
+	
+	
 	loading=&#34;lazy&#34;
 	
-	
-		class=&#34;gallery-image&#34; 
-		data-flex-grow=&#34;122&#34;
-		data-flex-basis=&#34;294px&#34;
 	
 &gt;&lt;/p&gt;
 &lt;/li&gt;
@@ -3185,18 +3265,14 @@ $$&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;
 &lt;p&gt;Algorithm&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://gujh14.github.io/p/maml-model-agnostic-meta-learning-for-fast-adaptation-of-deep-networks/Untitled10.png&#34;
-	width=&#34;858&#34;
-	height=&#34;698&#34;
-	srcset=&#34;https://gujh14.github.io/p/maml-model-agnostic-meta-learning-for-fast-adaptation-of-deep-networks/Untitled10_hu3c6285d700509d496607cdcdbd973580_136262_480x0_resize_box_3.png 480w, https://gujh14.github.io/p/maml-model-agnostic-meta-learning-for-fast-adaptation-of-deep-networks/Untitled10_hu3c6285d700509d496607cdcdbd973580_136262_1024x0_resize_box_3.png 1024w&#34;
+&lt;p&gt;&lt;img src=&#34;https://gujh14.github.io/Untitled10.png&#34;
+	
+	
+	
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;Untitled&#34;
 	
-	
-		class=&#34;gallery-image&#34; 
-		data-flex-grow=&#34;122&#34;
-		data-flex-basis=&#34;295px&#34;
 	
 &gt;&lt;/p&gt;
 &lt;/li&gt;
@@ -3260,78 +3336,54 @@ $$&lt;/p&gt;
 &lt;li&gt;Can a model learned with MAML continue to improve with additional gradient updates and/or examples?&lt;/li&gt;
 &lt;/ol&gt;
 &lt;h3 id=&#34;51-regression&#34;&gt;5.1. Regression&lt;/h3&gt;
-&lt;p&gt;&lt;img src=&#34;https://gujh14.github.io/p/maml-model-agnostic-meta-learning-for-fast-adaptation-of-deep-networks/Untitled11.png&#34;
-	width=&#34;2054&#34;
-	height=&#34;640&#34;
-	srcset=&#34;https://gujh14.github.io/p/maml-model-agnostic-meta-learning-for-fast-adaptation-of-deep-networks/Untitled11_hueb5d57f33093f3e6c97de66eea7eedea_389010_480x0_resize_box_3.png 480w, https://gujh14.github.io/p/maml-model-agnostic-meta-learning-for-fast-adaptation-of-deep-networks/Untitled11_hueb5d57f33093f3e6c97de66eea7eedea_389010_1024x0_resize_box_3.png 1024w&#34;
+&lt;p&gt;&lt;img src=&#34;https://gujh14.github.io/Untitled11.png&#34;
+	
+	
+	
 	loading=&#34;lazy&#34;
 	
-	
-		class=&#34;gallery-image&#34; 
-		data-flex-grow=&#34;320&#34;
-		data-flex-basis=&#34;770px&#34;
 	
 &gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://gujh14.github.io/p/maml-model-agnostic-meta-learning-for-fast-adaptation-of-deep-networks/Untitled12.png&#34;
-	width=&#34;2034&#34;
-	height=&#34;650&#34;
-	srcset=&#34;https://gujh14.github.io/p/maml-model-agnostic-meta-learning-for-fast-adaptation-of-deep-networks/Untitled12_hu1ff3a227b90faeda4e52f0040b735e3e_305489_480x0_resize_box_3.png 480w, https://gujh14.github.io/p/maml-model-agnostic-meta-learning-for-fast-adaptation-of-deep-networks/Untitled12_hu1ff3a227b90faeda4e52f0040b735e3e_305489_1024x0_resize_box_3.png 1024w&#34;
+&lt;p&gt;&lt;img src=&#34;https://gujh14.github.io/Untitled12.png&#34;
+	
+	
+	
 	loading=&#34;lazy&#34;
 	
-	
-		class=&#34;gallery-image&#34; 
-		data-flex-grow=&#34;312&#34;
-		data-flex-basis=&#34;751px&#34;
 	
 &gt;&lt;/p&gt;
 &lt;h3 id=&#34;52-classification&#34;&gt;5.2. Classification&lt;/h3&gt;
-&lt;p&gt;&lt;img src=&#34;https://gujh14.github.io/p/maml-model-agnostic-meta-learning-for-fast-adaptation-of-deep-networks/Untitled13.png&#34;
-	width=&#34;1796&#34;
-	height=&#34;808&#34;
-	srcset=&#34;https://gujh14.github.io/p/maml-model-agnostic-meta-learning-for-fast-adaptation-of-deep-networks/Untitled13_hu8b2f95fd4f45de82cd6351f281788721_270027_480x0_resize_box_3.png 480w, https://gujh14.github.io/p/maml-model-agnostic-meta-learning-for-fast-adaptation-of-deep-networks/Untitled13_hu8b2f95fd4f45de82cd6351f281788721_270027_1024x0_resize_box_3.png 1024w&#34;
+&lt;p&gt;&lt;img src=&#34;https://gujh14.github.io/Untitled13.png&#34;
+	
+	
+	
 	loading=&#34;lazy&#34;
 	
-	
-		class=&#34;gallery-image&#34; 
-		data-flex-grow=&#34;222&#34;
-		data-flex-basis=&#34;533px&#34;
 	
 &gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://gujh14.github.io/p/maml-model-agnostic-meta-learning-for-fast-adaptation-of-deep-networks/Untitled14.png&#34;
-	width=&#34;2042&#34;
-	height=&#34;246&#34;
-	srcset=&#34;https://gujh14.github.io/p/maml-model-agnostic-meta-learning-for-fast-adaptation-of-deep-networks/Untitled14_hubf35b4892da9571cbc8a38fed428c704_107171_480x0_resize_box_3.png 480w, https://gujh14.github.io/p/maml-model-agnostic-meta-learning-for-fast-adaptation-of-deep-networks/Untitled14_hubf35b4892da9571cbc8a38fed428c704_107171_1024x0_resize_box_3.png 1024w&#34;
+&lt;p&gt;&lt;img src=&#34;https://gujh14.github.io/Untitled14.png&#34;
+	
+	
+	
 	loading=&#34;lazy&#34;
 	
-	
-		class=&#34;gallery-image&#34; 
-		data-flex-grow=&#34;830&#34;
-		data-flex-basis=&#34;1992px&#34;
 	
 &gt;&lt;/p&gt;
 &lt;h3 id=&#34;53-reinforcement-learning&#34;&gt;5.3. Reinforcement Learning&lt;/h3&gt;
-&lt;p&gt;&lt;img src=&#34;https://gujh14.github.io/p/maml-model-agnostic-meta-learning-for-fast-adaptation-of-deep-networks/Untitled15.png&#34;
-	width=&#34;1002&#34;
-	height=&#34;734&#34;
-	srcset=&#34;https://gujh14.github.io/p/maml-model-agnostic-meta-learning-for-fast-adaptation-of-deep-networks/Untitled15_hucc6319bab99c944b90e93c405f346352_263853_480x0_resize_box_3.png 480w, https://gujh14.github.io/p/maml-model-agnostic-meta-learning-for-fast-adaptation-of-deep-networks/Untitled15_hucc6319bab99c944b90e93c405f346352_263853_1024x0_resize_box_3.png 1024w&#34;
+&lt;p&gt;&lt;img src=&#34;https://gujh14.github.io/Untitled15.png&#34;
+	
+	
+	
 	loading=&#34;lazy&#34;
 	
-	
-		class=&#34;gallery-image&#34; 
-		data-flex-grow=&#34;136&#34;
-		data-flex-basis=&#34;327px&#34;
 	
 &gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://gujh14.github.io/p/maml-model-agnostic-meta-learning-for-fast-adaptation-of-deep-networks/Untitled16.png&#34;
-	width=&#34;2042&#34;
-	height=&#34;576&#34;
-	srcset=&#34;https://gujh14.github.io/p/maml-model-agnostic-meta-learning-for-fast-adaptation-of-deep-networks/Untitled16_hu9fd7b30672c4ee6f028386c6c663c852_404417_480x0_resize_box_3.png 480w, https://gujh14.github.io/p/maml-model-agnostic-meta-learning-for-fast-adaptation-of-deep-networks/Untitled16_hu9fd7b30672c4ee6f028386c6c663c852_404417_1024x0_resize_box_3.png 1024w&#34;
+&lt;p&gt;&lt;img src=&#34;https://gujh14.github.io/Untitled16.png&#34;
+	
+	
+	
 	loading=&#34;lazy&#34;
 	
-	
-		class=&#34;gallery-image&#34; 
-		data-flex-grow=&#34;354&#34;
-		data-flex-basis=&#34;850px&#34;
 	
 &gt;&lt;/p&gt;
 &lt;hr&gt;

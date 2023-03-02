@@ -12,9 +12,21 @@
         <pubDate>Fri, 13 Jan 2023 00:00:00 +0000</pubDate>
         
         <guid>https://gujh14.github.io/ko/p/a-generalist-neural-algorithmic-learner/</guid>
-        <description>&lt;img src="https://gujh14.github.io/ko/p/a-generalist-neural-algorithmic-learner/thumbnail.png" alt="Featured image of post A Generalist Neural Algorithmic Learner" /&gt;&lt;p&gt;LoG, 22 &lt;br&gt;
+        <description>&lt;p&gt;LoG, 22 &lt;br&gt;
 &lt;a class=&#34;link&#34; href=&#34;https://arxiv.org/abs/2209.11142&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
-    &gt;&amp;ldquo;A Generalist Neural Algorithmic Learner&amp;rdquo;&lt;/a&gt;&lt;/p&gt;
+    &gt;A Generalist Neural Algorithmic Learner&lt;/a&gt;
+&lt;img src=&#34;https://gujh14.github.io/ko/p/a-generalist-neural-algorithmic-learner/thumbnail.png&#34;
+	width=&#34;1042&#34;
+	height=&#34;528&#34;
+	srcset=&#34;https://gujh14.github.io/ko/p/a-generalist-neural-algorithmic-learner/thumbnail_hudd1318377aff45244e3590338f52153c_112022_480x0_resize_box_3.png 480w, https://gujh14.github.io/ko/p/a-generalist-neural-algorithmic-learner/thumbnail_hudd1318377aff45244e3590338f52153c_112022_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;197&#34;
+		data-flex-basis=&#34;473px&#34;
+	
+&gt;&lt;/p&gt;
 &lt;h1 id=&#34;summary&#34;&gt;Summary&lt;/h1&gt;
 &lt;ul&gt;
 &lt;li&gt;Neural network, 그 중에서도 GNN은 전통적인 컴퓨터과학 알고리즘(CLRS 책에 기재된)을 학습할 수 있다.&lt;/li&gt;

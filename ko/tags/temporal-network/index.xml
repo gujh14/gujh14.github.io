@@ -12,9 +12,21 @@
         <pubDate>Sun, 15 Jan 2023 00:00:00 +0000</pubDate>
         
         <guid>https://gujh14.github.io/ko/p/neighborhood-aware-scalable-temporal-network-representation-learning/</guid>
-        <description>&lt;img src="https://gujh14.github.io/ko/p/neighborhood-aware-scalable-temporal-network-representation-learning/thumbnail.png" alt="Featured image of post Neighborhood-aware Scalable Temporal Network Representation Learning" /&gt;&lt;p&gt;LoG, &amp;lsquo;22&lt;br&gt;
+        <description>&lt;p&gt;LoG, &amp;lsquo;22&lt;br&gt;
 &lt;a class=&#34;link&#34; href=&#34;https://arxiv.org/abs/2209.01084&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
-    &gt;&amp;ldquo;Neighborhood-aware Scalable Temporal Network Representation Learning&amp;rdquo;&lt;/a&gt;&lt;/p&gt;
+    &gt;Neighborhood-aware Scalable Temporal Network Representation Learning&lt;/a&gt;
+&lt;img src=&#34;https://gujh14.github.io/ko/p/neighborhood-aware-scalable-temporal-network-representation-learning/thumbnail.png&#34;
+	width=&#34;914&#34;
+	height=&#34;388&#34;
+	srcset=&#34;https://gujh14.github.io/ko/p/neighborhood-aware-scalable-temporal-network-representation-learning/thumbnail_hu242d3a243b2ed8387d2472cbaa72b75a_149908_480x0_resize_box_3.png 480w, https://gujh14.github.io/ko/p/neighborhood-aware-scalable-temporal-network-representation-learning/thumbnail_hu242d3a243b2ed8387d2472cbaa72b75a_149908_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;235&#34;
+		data-flex-basis=&#34;565px&#34;
+	
+&gt;&lt;/p&gt;
 &lt;h1 id=&#34;summary&#34;&gt;Summary&lt;/h1&gt;
 &lt;ul&gt;
 &lt;li&gt;시간에 따라 변하는 temporal network에 network science적인 inference를 잘 할 수 있는 모델들이 부족하다.&lt;/li&gt;
